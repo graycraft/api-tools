@@ -5,23 +5,22 @@
  */
 
 import coinbaseGet from "../get.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      CURRENCY_ALL,
-    }
-  } = config,
-  {
-    authentication: {
-      sign
-    }
-  } = settings;
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
  */
-const currencyAll = () => coinbaseGet(sign, CURRENCY_ALL);
+const currencyAll = () => {
+  const { config, settings } = global.apiTools,
+    { PATH: { CURRENCY_ALL } } = config,
+    {
+      authentication: {
+        sign
+      }
+    } = settings;
+
+  coinbaseGet(sign, CURRENCY_ALL)
+};
 
 export default currencyAll;

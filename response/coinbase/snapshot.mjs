@@ -24,9 +24,7 @@ const responseSnapshot = (json, path) => {
 
   if (global.isSnapshot) {
     const pathName = snapshot.find(
-      item => {
-        console.log({ item });
-        return item === obtainName(path, PATH)}
+      item => item === obtainName(path, PATH)
     )?.toLowerCase();
 
     if (pathName) {

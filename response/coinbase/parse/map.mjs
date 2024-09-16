@@ -1,5 +1,5 @@
 /**
- * Map items from a Bybit API response array by object key.
+ * Map items from a Coinbase Advanced API response array by object key.
  * 
  * @module response/bybit/parse/map
  */

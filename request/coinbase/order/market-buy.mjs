@@ -4,32 +4,9 @@
  * @module request/bybit/order/place_limit
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional, warnRequired } from "../../../lib/output.mjs";
-import bybitPost from "../post.mjs";
-
-const {
-    CURRENCY,
-    ORDER,
-    PATH: {
-      ORDER_PLACE
-    },
-    TRADE,
-  } = config,
-  {
-    // account,
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import coinbasePost from "../post.mjs";
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
@@ -37,14 +14,32 @@ const {
  * @see https://bybit-exchange.github.io/docs/v5/smp
  */
 const orderMarketBuy = (qty, symbol, {} = {}) => {
-  const data = {
-    category,
-    orderType: ORDER.MARKET,
-    side: TRADE.BUY,
-    symbol: base + quote
-  };
+  const { config, settings } = global.apiTools,
+    {
+      CURRENCY,
+      ORDER,
+      PATH: { ORDER_PLACE },
+      TRADE,
+    } = config,
+    {
+      account: { category },
+      authentication: { sign },
+      currency: { base, quote }
+    } = settings,
+    defaults = {
+      category,
+      orderType: ORDER.MARKET,
+      side: TRADE.BUY,
+      symbol: base + quote
+    },
+    data = validateParams(
+      ORDER_CANCEL_ALL, isValidParams, defaults,
+      { throwRequired: { qty } },
+      { warnOptional: { symbol } },
+      { warnRequired: { marketUnit } },
+    );
 
-  if (marketUnit/*  && account.wallet === "UNIFIED" */) {
+  /* if (marketUnit) {
     if (marketUnit)
       data.marketUnit = marketUnit
     else warnRequired(PATH, ORDER_PLACE, "marketUnit");
@@ -60,9 +55,9 @@ const orderMarketBuy = (qty, symbol, {} = {}) => {
     ) {
       data.symbol = symbol
     } else warnOptional(PATH, ORDER_PLACE, "symbol", data.symbol);
-  }
+  } */
 
-  return bybitPost(sign, ORDER_PLACE, data)
+  return coinbasePost(sign, ORDER_PLACE, data)
 };
 
 export default orderMarketBuy;

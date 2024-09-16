@@ -27,7 +27,8 @@ const responseBybit = () => {
       }
     } else {
       Promise.resolve()
-        .then(response => orderAll())
+        .then(response => currencyAll())
+        .then(response => networkAll())
         .catch(console.log.bind(console))
     }
   };

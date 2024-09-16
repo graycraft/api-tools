@@ -5,57 +5,29 @@
  */
 
 import coinbaseGet from "../get.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/coinbase/validate.mjs";
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      ORDER_ALL
-    },
-    TRADE,
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders/
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
  */
-const orderAll = (product_id, order_side, limit, {
-  asset_filters,
-  contract_expiry_type,
-  cursor,
-  end_date,
-  order_ids,
-  order_placement_source,
-  order_status,
-  order_types,
-  product_ids,
-  product_type,
-  retail_portfolio_id,
-  sort_by,
-  start_date,
-  time_in_forces,
-  user_native_currency,
-} = {}) => {
-  const defaults = {
+const orderAll = (product_id, order_side, limit) => {
+  const { config, settings } = global.apiTools,
+    { PATH: { ORDER_ALL } } = config,
+    {
+      account: { category },
+      authentication: { sign },
+      currency: { base, quote }
+    } = settings,
+    defaults = {
+      /** @todo Constants. */
       order_status: "OPEN",
       product_id: base + "-" + quote,
+      product_type: 'SPOT',
     },
-    data = validate(
-      ORDER_ALL, isValid, defaults,
-      { warnOptional: { order_side, order_status, product_id } },
+    data = validateParams(
+      ORDER_ALL, isValidParams, defaults,
+      { warnOptional: { order_side, product_id } },
       { warnRequired: { limit } },
     );
 

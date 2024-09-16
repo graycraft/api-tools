@@ -1,7 +1,7 @@
 /**
  * Bybit API order cancel all endpoint.
  * 
- * @module request/bybit/order/cancel
+ * @module request/bybit/order/cancel-all
  */
 
 import config from "../../../configuration/bybit.json" with { type: "json" };

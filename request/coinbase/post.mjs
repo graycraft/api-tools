@@ -63,20 +63,20 @@ const coinbaseGet = async (sign, pathTemplate, data = {}) => {
       };
     };
 
-    let { json, status } = await fetchData(method, url, data, headers),
+    let { json, status, statusText } = await fetchData(method, url, data, headers),
       report = responseAnalyze(json, status);
 
     if (report.isResponseSuccessful) {
       /* responseSnapshot(
         responseParse(json, status, path, data), path
       ) */
-      responseParse(json, status, pathTemplate, data);
+      responseParse(json, statusText, pathTemplate, data);
       responseSnapshot(json, pathTemplate);
     } else {
       /** 
        * @todo Status synchronization with `status.json`.
        */
-      dirObject(status, json);
+      dirObject(statusText, json);
       console.info(`Could not parse and snapshot. Response is not successful.`)
     };
     console.info({ report })

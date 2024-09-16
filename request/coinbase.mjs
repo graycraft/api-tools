@@ -11,10 +11,15 @@ import settings from "../settings/coinbase.json" with { type: "json" };
 import accountAll from "./coinbase/account/all.mjs";
 import accountBalance from "./coinbase/account/balance.mjs";
 import accountWallets from "./coinbase/account/wallets.mjs";
+import addressAll from "./coinbase/address/all.mjs";
 import currencyAll from "./coinbase/currency/all.mjs";
 import depositNew from "./coinbase/deposit/new.mjs";
-import orderAll from "./coinbase/order/all.mjs";
+import marketInfo from "./coinbase/market/info.mjs";
+import marketHistory from "./coinbase/market/history.mjs";
 import marketTickers from "./coinbase/market/tickers.mjs";
+import orderAll from "./coinbase/order/all.mjs";
+import orderCancelAll from "./coinbase/order/cancel-all.mjs";
+import orderOne from "./coinbase/order/one.mjs";
 
 const {
     ACCOUNT,
@@ -35,10 +40,18 @@ const {
         case "accountAll": return accountAll(...params);
         case "accountBalance": return accountBalance(...params);
         case "accountWallets": return accountWallets(...params);
+        case "addressAll": return addressAll(...params);
         case "currencyAll": return currencyAll(...params);
         case "depositNew": return depositNew(...params);
+        case "marketHistory": return marketHistory(...params);
+        case "market":
+        case "marketInfo":
+        case "marketInformation": return marketInfo(...params);
         case "marketTickers": return marketTickers(...params);
         case "orderAll": return orderAll(...params);
+        case "orderCancelAll": return orderCancelAll(...params);
+        case "order":
+        case "orderOne": return orderOne(...params);
         default: throw new Error(requestCoinbase.name + ": " + optional(handler))
       }
     } else {

@@ -5,40 +5,27 @@
  */
 
 import coinbaseGet from "../get.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../validate.mjs";
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      ACCOUNT_BALANCE,
-    },
-  } = config,
-  {
-    account,
-    account: {
-      wallet
-    },
-    authentication: {
-      sign
-    },
-    /* currency: {
-      base
-    } */
-  } = settings;
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfoliobreakdown
  */
-const accountBalanceWallet = (asset, portfolio_uuid) => {
-  const defaults = {
+const accountBalanceWallet = (asset, portfolio_id) => {
+  const { config, settings } = global.apiTools,
+    { PATH: { ACCOUNT_BALANCE } } = config,
+    {
+      account,
+      account: { wallet  },
+      authentication: { sign },
+    } = settings,
+    defaults = {
       currency: "ETH",
-      portfolio_uuid: account[wallet],
+      portfolio_id: account[wallet],
     },
-    data = validate(
-      ACCOUNT_BALANCE, isValid, defaults,
-      { warnRequired: { portfolio_uuid } },
+    data = validateParams(
+      ACCOUNT_BALANCE, isValidParams, defaults,
+      { warnRequired: { portfolio_id } },
     );
 
   return coinbaseGet(sign, ACCOUNT_BALANCE, data, { asset })

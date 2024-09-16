@@ -22,7 +22,7 @@ const {
   } = settings;
 
 /**
- * Documentation do not describe `txID`, but similar endpoint for withdraw also has this parameter.
+ * Note: documentation do not describe `txID`, but similar endpoint for withdraw also has this parameter.
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
  */
 const depositAll = (coin, { cursor, endTime, limit, startTime } = {}) => {

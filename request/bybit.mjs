@@ -80,7 +80,8 @@ const {
         case "keyInformation": return keyInformation(...params);
         case "marketHistory": return marketHistory(...params);
         case "market":
-        case "marketInfo": return marketInfo(...params);
+        case "marketInfo":
+        case "marketInformation": return marketInfo(...params);
         case "marketTickers": return marketTickers(...params);
         case "networkAll": return networkAll(...params);
         case "orderAll": return orderAll(...params);
