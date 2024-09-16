@@ -18,6 +18,11 @@
     Server Errors
         500 Internal Server Error Something went wrong
         503 Service Unavailable Your connection is being throttled or the service is down for maintenance
+    'Bad Request': {
+      error: 'INVALID_ARGUMENT',
+      error_details: 'client_order_id argument is invalid ',
+      message: 'client_order_id argument is invalid '
+    }
  */
 
 import statusExchange from "./status.json" with { type: "json" };

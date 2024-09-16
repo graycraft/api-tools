@@ -5,34 +5,27 @@
  */
 
 import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/bybit/validate.mjs";
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      ACCOUNT_WALLETS,
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
  * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
  */
-const accountTypes = (memberIds) => {
-  const defaults = {},
-    data = validate(
-      ACCOUNT_WALLETS, isValid, defaults,
-      { warnRequired: { memberIds } },
+const accountWallets = (memberIds) => {
+  const { config, settings } = global.apiTools,
+    { PATH: { ACCOUNT_WALLETS } } = config,
+    {
+      account: { SPOT, UNIFIED },
+      authentication: { sign },
+    } = settings,
+    defaults = {
+      memberIds: [SPOT, UNIFIED].join()
+    },
+    data = bybitValidate(ACCOUNT_WALLETS, defaults,
+      { warnOptional: { memberIds } },
     );
 
   return bybitGet(sign, ACCOUNT_WALLETS, data)
 };
 
-export default accountTypes;
+export default accountWallets;

@@ -1,70 +1,36 @@
 /**
- * Bybit API trade history endpoint.
+ * Handle Bybit API trade history all endpoint.
  * 
- * @module request/bybit/trade/history
+ * @module request/bybit/trade/history-all
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnOptional } from "../../../lib/output.mjs";
 import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      TRADE_HISTORY_ALL
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
  */
 const tradeHistory = (side, symbol, limit, {
-  baseCoin, cursor, endTime, execType, orderId, orderLinkId, startTime
+  baseCoin, category, cursor, endTime, execType, orderId, orderLinkId, startTime
 } = {}) => {
-  const data = {
-    // baseCoin,
-    // cursor,
-    category,
-    // endTime,
-    // execType,
-    // limit,
-    // orderId,
-    // orderLinkId,
-    // startTime,
-    symbol: base + quote,
-  };
-
-  if (limit) {
-    if (Number(limit))
-      data.limit = limit
-    else warnRequired(PATH, TRADE_HISTORY_ALL, "limit");
-  }
-  if (side) {
-    if (Object.values(TRADE).some(trade => trade === side))
-      data.side = side
-    else warnOptional(PATH, ORDER_ALL, "side", data.side);
-  }
-  if (symbol) {
-    if (
-      Object.values(CURRENCY.BASE).some(currency1 => 
-        Object.values(CURRENCY.QUOTE).some(currency2 => currency1 + currency2 === symbol)
-      )
-    ) {
-      data.symbol = symbol
-    } else warnOptional(PATH, TRADE_HISTORY_ALL, "symbol", data.symbol);
-  }
+  const { config, settings } = global.apiTools,
+    { PATH: { TRADE_HISTORY_ALL } } = config,
+    {
+      account,
+      authentication: { sign },
+      // currency: { base, quote }
+    } = settings,
+    defaults = {
+      category: account.category,
+      // symbol: base + quote,
+    },
+    data = bybitValidate(TRADE_HISTORY_ALL, defaults,
+      { warnOptional: { category } },
+      { warnRequired: {
+        baseCoin, category, cursor, endTime, execType, limit, orderLinkId, side,
+        startTime, symbol
+      } },
+    );
 
   return bybitGet(sign, TRADE_HISTORY_ALL, data)
 };

@@ -8,10 +8,11 @@ import config from "../configuration/bybit.json" with { type: "json" };
 import { optional } from "../lib/template.mjs";
 import { parseArguments } from "../lib/utility.mjs";
 import settings from "../settings/bybit.json" with { type: "json" };
-import accountBalanceRate from "./bybit/account/balance_rate.mjs";
-import accountBalanceWallet from "./bybit/account/balance_wallet.mjs";
 import accountInformation from "./bybit/account/information.mjs";
 import accountWallets from "./bybit/account/wallets.mjs";
+import balanceAll from "./bybit/balance/all.mjs";
+import balanceInformation from "./bybit/balance/information.mjs";
+import balanceOne from "./bybit/balance/one.mjs";
 import currencyAll from "./bybit/currency/all.mjs";
 import currencyOne from "./bybit/currency/one.mjs";
 import depositAll from "./bybit/deposit/all.mjs";
@@ -20,9 +21,10 @@ import depositNewSub from "./bybit/deposit/new-sub.mjs";
 import depositOne from "./bybit/deposit/one.mjs";
 import keyInformation from "./bybit/key/information.mjs";
 import marketHistory from "./bybit/market/history.mjs";
-import marketInfo from "./bybit/market/info.mjs";
+import marketInformation from "./bybit/market/information.mjs";
 import marketTickers from "./bybit/market/tickers.mjs";
 import networkAll from "./bybit/network/all.mjs";
+import networkOne from "./bybit/network/one.mjs";
 import orderAll from "./bybit/order/all.mjs";
 import orderBook from "./bybit/order/book.mjs";
 import orderCancelAll from "./bybit/order/cancel-all.mjs";
@@ -59,11 +61,13 @@ const {
     global.apiTools = { config, settings };
     if (handler) {
       switch (handler) {
-        case "accountBalance":
-        case "accountBalanceRate": return accountBalanceRate(...params);
-        case "accountBalanceWallet": return accountBalanceWallet(...params);
+        case "balanceAll": return balanceAll(...params);
+        case "balance":
+        case "balanceInfo":
+        case "balanceInformation": return balanceInformation(...params);
+        case "balanceOne": return balanceOne(...params);
         case "account":
-        case "accountInfo": return accountInformation(...params);
+        case "accountInfo":
         case "accountInformation": return accountInformation(...params);
         case "accountWallets": return accountWallets(...params);
         case "currencyAll": return currencyAll(...params);
@@ -81,9 +85,11 @@ const {
         case "marketHistory": return marketHistory(...params);
         case "market":
         case "marketInfo":
-        case "marketInformation": return marketInfo(...params);
+        case "marketInformation": return marketInformation(...params);
         case "marketTickers": return marketTickers(...params);
         case "networkAll": return networkAll(...params);
+        case "network":
+        case "networkOne": return networkOne(...params);
         case "orderAll": return orderAll(...params);
         case "orderBook": return orderBook(...params);
         case "orderCancelAll": return orderCancelAll(...params);
@@ -128,7 +134,7 @@ const {
         .then(response => currencyAll())
         .then(response => currencyOne())
         .then(response => marketHistory())
-        .then(response => marketInfo())
+        .then(response => marketInformation())
         .then(response => marketTickers())
         .then(response => orderBook())
         .then(response => orderLimitSell("0.0002", "10000", TRADE.BUY))

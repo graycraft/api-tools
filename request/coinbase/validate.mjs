@@ -4,19 +4,14 @@
  * @module request/coinbase/validate
  */
 
+import requestValidate from "../validate.mjs";
 //import currencyAll from "../../collection/coinbase/currency_all.json" with { type: "json" };
 //import networkAll from "../../collection/coinbase/network_all.json" with { type: "json" };
-import config from "../../configuration/coinbase.json" with { type: "json" };
-import settings from "../../settings/coinbase.json" with { type: "json" };
-
-const {
-    ACCOUNT,
-    CURRENCY
-  } = config,
-  {} = settings;
 
 const isValid = (param) => {
-  const [key, value] = Object.entries(param)[0];
+  const { config } = global.apiTools,
+    { ACCOUNT, CURRENCY, TRADE } = config,
+    [key, value] = Object.entries(param)[0];
 
   switch (key) {
     case "accountType": return ACCOUNT.WALLET.some(account => account === value);
@@ -24,6 +19,7 @@ const isValid = (param) => {
     //case "coin": return currencyAll.some(currency => currency === value);
     case "memberId": return Number(value);
     case "memberIds": return Number(value) || value.split(",").every(member => Number(member));
+    //case "side": return Object.values(TRADE).some(side => side === value);
     /**
      * @todo Iterate over full list from collection.
      */
@@ -38,4 +34,10 @@ const isValid = (param) => {
   }
 };
 
-export default isValid
+const coinbaseValidate = (path, defaults, ...options) => {
+  const data = requestValidate(path, isValid, defaults, ...options)
+
+  return data
+};
+
+export default coinbaseValidate

@@ -12,8 +12,8 @@
         "MARKET": ""
     },
     "PATH": {
-        "ACCOUNT_BALANCE_RATE": "",
-        "ACCOUNT_BALANCE_WALLET": "",
+        "BALANCE_INFORMATION": "",
+        "BALANCE_ALL": "",
         "ACCOUNT_INFORMATION": "",
         "ACCOUNT_WALLETS": "",
         "CURRENCY_ALL": "",
@@ -24,7 +24,7 @@
         "DEPOSIT_ONE": "",
         "KEY_INFORMATION": "",
         "MARKET_HISTORY": "",
-        "MARKET_INFO": "",
+        "MARKET_INFORMATION": "",
         "MARKET_TICKERS": "",
         "NETWORK_ALL": "",
         "ORDER_ALL": "",
@@ -35,7 +35,7 @@
         "ORDER_HISTORY_ONE": "",
         "ORDER_ONE": "",
         "ORDER_PLACE": "",
-        "TRADE_FEES": "",
+        "TRADE_RATES": "",
         "TRADE_HISTORY_ALL": "",
         "TRADE_HISTORY_ONE": "",
         "TRANSFER_ALL": "",

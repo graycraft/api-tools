@@ -19,6 +19,9 @@ import marketHistory from "./coinbase/market/history.mjs";
 import marketTickers from "./coinbase/market/tickers.mjs";
 import orderAll from "./coinbase/order/all.mjs";
 import orderCancelAll from "./coinbase/order/cancel-all.mjs";
+import orderLimitBuy from "./coinbase/order/limit-buy.mjs";
+import orderLimitSell from "./coinbase/order/limit-sell.mjs";
+import orderMarketBuy from "./coinbase/order/market-buy.mjs";
 import orderOne from "./coinbase/order/one.mjs";
 
 const {
@@ -50,6 +53,12 @@ const {
         case "marketTickers": return marketTickers(...params);
         case "orderAll": return orderAll(...params);
         case "orderCancelAll": return orderCancelAll(...params);
+        case "orderLimit":
+        case "orderLimitBuy": return orderLimitBuy(...params);
+        case "orderLimitSell": return orderLimitSell(...params);
+        case "orderMarket":
+        case "orderMarketBuy": return orderMarketBuy(...params);
+        //case "orderMarketSell": return orderMarketSell(...params);
         case "order":
         case "orderOne": return orderOne(...params);
         default: throw new Error(requestCoinbase.name + ": " + optional(handler))

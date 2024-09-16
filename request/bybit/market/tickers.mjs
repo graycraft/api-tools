@@ -1,45 +1,34 @@
 /**
- * Bybit API market tickers endpoint.
+ * Handle Bybit API market tickers endpoint.
  * 
  * @module request/bybit/market/tickers
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnOptional } from "../../../lib/output.mjs";
 import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      MARKET_TICKERS,
-    }
-  } = config,
-  {
-    account: {
-      category,
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
+ * Note: limit is not available for this endpoint.
  * @see https://bybit-exchange.github.io/docs/v5/market/tickers
  */
-const marketTickers = (symbol) => {
-  const data = {
-    // baseCoin
-    category,
-    // expDate,
-    symbol: base + quote,
-  };
-
-  if (symbol) {
-    if (typeof symbol === "string")
-      data.symbol = symbol
-    else warnOptional(PATH, MARKET_TICKERS, "symbol", data.symbol)
-  };
+const marketTickers = (symbol, { category, baseCoin, expDate } = {}) => {
+  const { config, settings } = global.apiTools,
+    { PATH: { MARKET_TICKERS } } = config,
+    {
+      account,
+      /* currency: {
+        base,
+        quote
+      } */
+    } = settings,
+    defaults = {
+      category: account.category,
+      // symbol: base + quote,
+    },
+    data = bybitValidate(MARKET_TICKERS, defaults,
+      { warnOptional: { category } },
+      { warnRequired: { baseCoin, expDate, symbol } },
+    );
 
   return bybitGet(null, MARKET_TICKERS, data)
 };
