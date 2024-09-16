@@ -1,28 +1,19 @@
 /**
- * Handle Bybit API account information endpoint.
+ * Handle Bybit API endpoint, with margin mode and upgraded status information of an account.
  * 
  * @module request/bybit/account/information
  */
 
 import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      ACCOUNT_INFORMATION,
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-  } = settings;
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/account/account-info
  */
 const accountInformation = () => {
+  const { config, settings } = global.apiTools,
+    { PATH: { ACCOUNT_INFORMATION } } = config,
+    { authentication: { sign } } = settings;
+
   return bybitGet(sign, ACCOUNT_INFORMATION)
 };
 

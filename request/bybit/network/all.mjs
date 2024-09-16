@@ -5,23 +5,17 @@
  */
 
 import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      NETWORK_ALL,
-    }
-  } = config,
-  {
-    authentication: {
-      sign
-    }
-  } = settings;
 
 /**
+ * Note: uses the same endpoint as currency all.
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  */
-const networkAll = () => bybitGet(sign, NETWORK_ALL);
+const networkAll = (coin) => {
+  const { config, settings } = global.apiTools,
+    { PATH: { CURRENCY_ALL } } = config,
+    { authentication: { sign } } = settings;
+
+  return bybitGet(sign, CURRENCY_ALL)
+};
 
 export default networkAll;

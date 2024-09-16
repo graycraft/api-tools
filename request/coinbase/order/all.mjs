@@ -11,23 +11,22 @@ import validateParams from "../../validate.mjs";
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
  */
-const orderAll = (product_id, order_side, limit) => {
+const orderAll = (product_id, product_type, limit, {
+  order_side
+} = {}) => {
   const { config, settings } = global.apiTools,
     { PATH: { ORDER_ALL } } = config,
     {
-      account: { category },
       authentication: { sign },
-      currency: { base, quote }
     } = settings,
     defaults = {
       /** @todo Constants. */
       order_status: "OPEN",
-      product_id: base + "-" + quote,
       product_type: 'SPOT',
     },
     data = validateParams(
       ORDER_ALL, isValidParams, defaults,
-      { warnOptional: { order_side, product_id } },
+      { warnOptional: { order_side, product_id, product_type } },
       { warnRequired: { limit } },
     );
 

@@ -1,63 +1,35 @@
 /**
- * Bybit API trade history endpoint.
+ * Handle Bybit API trade fee rates endpoint.
  * 
- * @module request/bybit/trade/history
+ * @module request/bybit/trade/rates
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnOptional } from "../../../lib/output.mjs";
 import bybitGet from "../get.mjs";
-
-const {
-    CURRENCY,
-    PATH: {
-      TRADE_FEES
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/execution
+ * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
  */
 const tradeRates = (symbol, {
-  baseCoin
+  baseCoin, category
 } = {}) => {
-  const data = {
-    // baseCoin: base,
-    // cursor,
-    category,
-    // endTime,
-    // execType,
-    // limit,
-    // orderId,
-    // orderLinkId,
-    // startTime,
-    symbol: base + quote,
-  };
+  const { config, settings } = global.apiTools,
+    { PATH: { TRADE_RATES } } = config,
+    {
+      account,
+      authentication: { sign },
+      // currency: { base, quote }
+    } = settings,
+    defaults = {
+      category: account.category,
+      // symbol: base + quote,
+    },
+    data = bybitValidate(TRADE_RATES, defaults,
+      { warnOptional: { category } },
+      { warnRequired: { baseCoin, symbol } },
+    );
 
-  if (symbol) {
-    if (
-      Object.values(CURRENCY.BASE).some(currency1 => 
-        Object.values(CURRENCY.QUOTE).some(currency2 => currency1 + currency2 === symbol)
-      )
-    ) {
-      data.symbol = symbol
-    } else warnOptional(PATH, TRADE_FEES, "symbol", data.symbol);
-  }
-
-  return bybitGet(sign, TRADE_FEES, data)
+  return bybitGet(sign, TRADE_RATES, data)
 };
 
 export default tradeRates;

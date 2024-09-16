@@ -19,7 +19,7 @@ const responseParse = (json, status, path, data) => {
         ACCOUNT_BALANCE_CURRENCIES,
         CURRENCY_ALL,
         MARKET_HISTORY,
-        MARKET_INFO,
+        MARKET_INFORMATION,
         MARKET_TICKERS,
         NETWORK_ALL,
         ORDER_ALL,
@@ -61,7 +61,7 @@ const responseParse = (json, status, path, data) => {
         list: "rows",
       }); break; */
       case MARKET_HISTORY:
-      case MARKET_INFO:
+      case MARKET_INFORMATION:
       case MARKET_TICKERS: json = find(json, {
         criterion: data.symbol ?? (base + quote),
         key: "symbol",
@@ -89,7 +89,7 @@ const responseParse = (json, status, path, data) => {
       if (isMapped) parsed.push("mapped");
       output += parsed.join(", ") + ")";
     }
-  } else console.info(`Info: parsing of "${obtainName(path, PATH)}" is not enabled is settings.`);
+  } else console.info(`Parse: "${obtainName(path, PATH)}" is not enabled is settings.`);
   dirObject(output, json);
 
   return json

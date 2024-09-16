@@ -6,8 +6,8 @@
 
 import { throwRequired, warnOptional, warnRequired } from "../lib/output.mjs";
 
-const validateParams = (path, isValidParams, defaults, ...options) => {
-  const data = defaults,
+const requestValidate = (path, isValidParams, defaults, ...options) => {
+  const data = { ...defaults },
     { config: { PATH } } = global.apiTools;
   let index = options.length, category, key;
 
@@ -50,8 +50,8 @@ const validateParams = (path, isValidParams, defaults, ...options) => {
       }
     }
   }
-
+ 
   return data
 };
 
-export default validateParams
+export default requestValidate

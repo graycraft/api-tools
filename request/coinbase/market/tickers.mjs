@@ -9,7 +9,7 @@ import isValidParams from "../validate.mjs";
 import validateParams from "../../validate.mjs";
 
 /**
- * Note: returns data in same format as `MARKET_INFO` but without `products` array.
+ * Note: returns data in same format as `MARKET_INFORMATION` but without `products` array.
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproduct
  */
 const marketTickers = (product_id, limit) => {

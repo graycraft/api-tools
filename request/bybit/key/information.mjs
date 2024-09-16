@@ -5,24 +5,15 @@
  */
 
 import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      KEY_INFORMATION
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-  } = settings;
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/user/apikey-info
  */
 const keyInformation = () => {
+  const { config, settings } = global.apiTools,
+    { PATH: { KEY_INFORMATION } } = config,
+    { authentication: { sign } } = settings;
+
   return bybitGet(sign, KEY_INFORMATION);
 };
 

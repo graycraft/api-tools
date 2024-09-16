@@ -5,39 +5,30 @@
  */
 
 import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/bybit/validate.mjs";
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      DEPOSIT_NEW_SUB
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      network,
-    },
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
  * Value of `chain` param must from `CURRENCY_ALL` endpoint must be used for `chainType`.
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/sub-deposit-addr
  */
 const depositNewSub = (subMemberId, coin, chainType) => {
-  const defaults = {
+  const { config, settings } = global.apiTools,
+    { PATH: { DEPOSIT_NEW_SUB } } = config,
+    {
+      account,
+      authentication: { sign },
+      currency: {
+        base,
+        network
+      }
+    } = settings,
+    defaults = {
       chainType: network,
       coin: base,
+      subMemberId: account.SPOT
     },
-    data = validate(
-      DEPOSIT_NEW_SUB, isValid, defaults,
-      { throwRequired: { subMemberId } },
-      { warnOptional: { chainType, coin } },
+    data = bybitValidate(DEPOSIT_NEW_SUB, defaults,
+      { warnOptional: { chainType, coin, subMemberId } },
     );
 
   return bybitGet(sign, DEPOSIT_NEW_SUB, data);

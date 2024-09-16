@@ -11,7 +11,7 @@ import { dirObject } from "../lib/output.mjs";
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicmarkettrades
  */
-const validateJson = (json, schema) => {
+const responseValidate = (json, schema) => {
   const ajv = new Ajv2019({ allErrors: true }),
     validate = ajv.compile(schema),
     isValid = validate(json);
@@ -21,4 +21,4 @@ const validateJson = (json, schema) => {
   return isValid;
 };
 
-export default validateJson
+export default responseValidate

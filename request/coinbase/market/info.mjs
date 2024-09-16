@@ -14,7 +14,7 @@ import validateParams from "../../validate.mjs";
  */
 const marketInfo = (product_ids, limit) => {
   const { config, settings } = global.apiTools,
-    { PATH: { MARKET_INFO } } = config,
+    { PATH: { MARKET_INFORMATION } } = config,
     { currency: { base, quote } } = settings,
     defaults = {
       /** @todo Pass array ?product_ids=BTC-USDT&product_ids=ETH-USDT instead of ?product_ids=ETH-USDT%2CBTC-USDT. */
@@ -22,12 +22,12 @@ const marketInfo = (product_ids, limit) => {
       product_type: "SPOT",
     },
     data = validateParams(
-      MARKET_INFO, isValidParams, defaults,
+      MARKET_INFORMATION, isValidParams, defaults,
       { warnOptional: { product_ids } },
       { warnRequired: { limit } },
     );
 
-  return coinbaseGet(null, MARKET_INFO, data)
+  return coinbaseGet(null, MARKET_INFORMATION, data)
 };
 
 export default marketInfo;

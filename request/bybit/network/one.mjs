@@ -1,40 +1,29 @@
 /**
- * Handle Bybit API currency one endpoint.
+ * Handle Bybit API network one endpoint.
  * 
- * @module request/bybit/currency/one
+ * @module request/bybit/network/one
  */
 
 import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/bybit/validate.mjs";
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      CURRENCY_ONE,
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-    currency: {
-      base
-    }
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
+ * Note: uses the same endpoint as currency one.
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  */
 const currencyOne = (coin) => {
-  const defaults = {
-    coin: base
-  },
-  data = validate(
-    CURRENCY_ONE, isValid, defaults,
-    { warnOptional: { coin } },
-  )
+  const { config, settings } = global.apiTools,
+    { PATH: { CURRENCY_ONE } } = config,
+    {
+      authentication: { sign },
+      currency: { base }
+    } = settings,
+    defaults = {
+      coin: base
+    },
+    data = bybitValidate(CURRENCY_ONE, defaults,
+      { warnOptional: { coin } },
+    );
 
   return bybitGet(sign, CURRENCY_ONE, data);
 };
