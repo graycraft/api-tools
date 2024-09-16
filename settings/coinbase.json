@@ -1,0 +1,44 @@
+{
+    "account": {
+        "00000000-0000-0000-0000-000000000000": {
+            "permissions": []
+        },
+        "DEFAULT": "00000000-0000-0000-0000-000000000000",
+        "wallet": "DEFAULT"
+    },
+    "address": {
+        "withdraw": ""
+    },
+    "aggregate": [
+        "CURRENCY_ALL"
+    ],
+    "authentication": {
+        "delay": 1e3,
+        "hidden": "full",
+        "keys": {
+            "00000000-0000-0000-0000-000000000000": "********"
+        },
+        "secrets": {
+            "00000000-0000-0000-0000-000000000000": "********"
+        },
+        "sign": "JWT"
+    },
+    "currency": {
+        "base": "ETH",
+        "network": "MATIC",
+        "quote": "USDT",
+        "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    "enabled": [
+        "aggregate",
+        "parse",
+        "snapshot"
+    ],
+    "parse": [
+        "ACCOUNT_BALANCE",
+        "CURRENCY_ALL"
+    ],
+    "snapshot": [
+        "CURRENCY_ALL"
+    ]
+}

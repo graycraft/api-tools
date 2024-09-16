@@ -1,0 +1,61 @@
+{
+    "account": {
+        "000000001": {
+            "main": true,
+            "permissions": []
+        },
+        "000000002": {
+            "main": false,
+            "permissions": []
+        },
+        "SPOT": "000000002",
+        "UNIFIED": "000000001",
+        "category": "spot",
+        "wallet": "SPOT"
+    },
+    "address": {
+        "withdraw": "0x0000000000000000000000000000000000000000"
+    },
+    "aggregate": [
+        "CURRENCY_ALL",
+        "NETWORK_ALL"
+    ],
+    "authentication": {
+        "delay": 1e4,
+        "hidden": "mask",
+        "keys": {
+            "000000001": "********",
+            "000000002": "********"
+        },
+        "secrets": {
+            "000000001": "********",
+            "000000002": "********"
+        },
+        "sign": "HMAC"
+    },
+    "currency": {
+        "base": "ETH",
+        "network": "MATIC",
+        "quote": "USDT"
+    },
+    "enabled": [
+        "aggregate",
+        "parse",
+        "snapshot"
+    ],
+    "snapshot": [
+        "CURRENCY_ALL",
+        "KEY_INFORMATION",
+        "MARKET_HISTORY",
+        "NETWORK_ALL"
+    ],
+    "parse": [
+        "ACCOUNT_BALANCE_CURRENCIES",
+        "CURRENCY_ALL",
+        "MARKET_HISTORY",
+        "MARKET_INFO",
+        "MARKET_TICKERS",
+        "NETWORK_ALL",
+        "ORDER_ALL"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "OK": "OK",
+    "PERMISSION_DENIED": [
+        "User does not have access to portfolio"
+    ]
+}

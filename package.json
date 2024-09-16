@@ -1,0 +1,48 @@
+{
+  "name": "api-tools",
+  "version": "0.1.0-alpha",
+  "description": "Tools to work with a REST API.",
+  "main": "request.mjs",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "commit": "npx commit",
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graycraft/api-tools.git"
+  },
+  "keywords": [
+    "api",
+    "tools",
+    "request",
+    "response",
+    "analyze",
+    "parse",
+    "validate",
+    "test"
+  ],
+  "author": "Definitive Prototype <graycraft@pm.me> (graycraft@github)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/graycraft/api-tools/issues"
+  },
+  "homepage": "https://github.com/graycraft/api-tools#readme",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
+    "@commitlint/prompt-cli": "^19.4.1",
+    "prettier": "3.3.3"
+  },
+  "engines": {
+    "node": "22.7.0",
+    "npm": "10.8.3"
+  },
+  "type": "module"
+}

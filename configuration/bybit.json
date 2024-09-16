@@ -1,0 +1,55 @@
+{
+    "ACCOUNT": {
+        "CATEGORY": ["linear", "inverse", "option", "spot"],
+        "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
+    },
+    "CURRENCY": {
+        "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
+        "NETWORK": ["BTC", "CAVAX"],
+        "QUOTE": ["USDC", "USDT"]
+    },
+    "ENCODING": "hex",
+    "HOSTNAME": "api.bybit.com",
+    "ORDER": {
+        "LIMIT": "Limit",
+        "MARKET": "Market"
+    },
+    "PATH": {
+        "ACCOUNT_BALANCE_RATE": "account/wallet-balance",
+        "ACCOUNT_BALANCE_WALLET": "asset/transfer/query-account-coins-balance",
+        "ACCOUNT_INFORMATION": "account/info",
+        "ACCOUNT_WALLETS": "user/get-member-type",
+        "CURRENCY_ALL": "asset/coin/query-info",
+        "CURRENCY_ONE": "asset/coin/query-info?coin",
+        "DEPOSIT_ALL": "asset/deposit/query-record",
+        "DEPOSIT_NEW_MASTER": "asset/deposit/query-address",
+        "DEPOSIT_NEW_SUB": "asset/deposit/query-sub-member-address",
+        "DEPOSIT_ONE": "asset/deposit/query-record?txID",
+        "KEY_INFORMATION": "user/query-api",
+        "MARKET_HISTORY": "market/recent-trade",
+        "MARKET_INFO": "market/instruments-info",
+        "MARKET_TICKERS": "market/tickers",
+        "NETWORK_ALL": "asset/coin/query-info?chain",
+        "ORDER_ALL": "order/realtime",
+        "ORDER_BOOK": "market/orderbook",
+        "ORDER_CANCEL_ALL": "order/cancel-all",
+        "ORDER_CANCEL_ONE": "order/cancel",
+        "ORDER_HISTORY_ALL": "order/history",
+        "ORDER_HISTORY_ONE": "order/history?orderId",
+        "ORDER_ONE": "order/realtime?orderId",
+        "ORDER_PLACE": "order/create",
+        "TRADE_FEES": "account/fee-rate",
+        "TRADE_HISTORY_ALL": "execution/list",
+        "TRADE_HISTORY_ONE": "execution/list?orderId",
+        "TRANSFER_ALL": "asset/transfer/query-transfer-coin-list",
+        "TRANSFER_INTERNAL": "asset/transfer/inter-transfer",
+        "WITHDRAW_ALL": "asset/withdraw/query-record",
+        "WITHDRAW_NEW": "asset/withdraw/create",
+        "WITHDRAW_ONE": "asset/withdraw/query-record?txID"
+    },
+    "PREFIX": "/v5/",
+    "TRADE": {
+        "BUY": "Buy",
+        "SELL": "Sell"
+    }
+}
