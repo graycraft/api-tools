@@ -1,7 +1,7 @@
 /**
- * Bybit API order all endpoint.
+ * Handle Bybit API order one endpoint.
  * 
- * @module request/bybit/order/all
+ * @module request/bybit/order/one
  */
 
 import config from "../../../configuration/bybit.json" with { type: "json" };
@@ -11,7 +11,7 @@ import bybitGet from "../get.mjs";
 
 const {
     PATH: {
-      ORDER_ALL
+      ORDER_ONE
     },
   } = config,
   {
@@ -48,14 +48,14 @@ const orderOne = (orderId, {
 
   if (Number(orderId))
     data.orderId = orderId
-  else throwRequired(PATH, ORDER_ALL, "orderId");
+  else throwRequired(PATH, ORDER_ONE, "orderId");
   if (symbol) {
     if (typeof symbol === "string") {
       data.symbol = symbol
-    } else warnOptional(PATH, ORDER_ALL, "symbol", data.symbol);
+    } else warnOptional(PATH, ORDER_ONE, "symbol", data.symbol);
   }
 
-  return bybitGet(sign, ORDER_ALL, data)
+  return bybitGet(sign, ORDER_ONE, data)
 };
 
 export default orderOne;

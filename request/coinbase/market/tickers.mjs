@@ -5,32 +5,23 @@
  */
 
 import coinbaseGet from "../get.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/bybit/validate.mjs";
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      MARKET_TICKERS,
-    }
-  } = config,
-  {
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicmarkettrades
+ * Note: returns data in same format as `MARKET_INFO` but without `products` array.
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproduct
  */
-const marketTickers = (product_id, limit, { end, start } = {}) => {
-  const defaults = {
-      product_id: base + quote,
+const marketTickers = (product_id, limit) => {
+  const { config, settings } = global.apiTools,
+    { PATH: { MARKET_TICKERS } } = config,
+    { currency: { base, quote }} = settings,
+    defaults = {
+      /** @todo Formatter. */
+      product_id: base + "-" + quote,
     },
-    data = validate(
-      MARKET_TICKERS, isValid, defaults,
+    data = validateParams(
+      MARKET_TICKERS, isValidParams, defaults,
       { warnOptional: { product_id } },
       { warnRequired: { limit } },
     );

@@ -30,6 +30,14 @@ import responseSnapshot from "../../response/coinbase/snapshot.mjs";
 import responseParse from "../../response/coinbase/parse.mjs";
 import settings from "../../settings/coinbase.json" with { type: "json" };
 
+/**
+ * 
+ * @param {*} sign 
+ * @param {*} pathTemplate 
+ * @param {*} data 
+ * @param {*} parse 
+ * @returns {Promise<object>}
+ */
 const coinbaseGet = async (sign, pathTemplate, data = {}, parse) => {
     const { ENCODING, HOSTNAME, PATH, PREFIX } = config,
       { account, authentication } = settings,
@@ -65,20 +73,20 @@ const coinbaseGet = async (sign, pathTemplate, data = {}, parse) => {
       };
     };
 
-    let { json, status } = await fetchData(method, url, data, headers),
+    let { json, status, statusText } = await fetchData(method, url, data, headers),
       report = responseAnalyze(json, status);
 
     if (report.isResponseSuccessful) {
       /* responseSnapshot(
         responseParse(json, status, path, data), path
       ) */
-      responseParse(json, status, pathTemplate, Object.assign(data, parse))
+      responseParse(json, statusText, pathTemplate, Object.assign(data, parse))
       responseSnapshot(json, pathTemplate)
     } else {
       /** 
        * @todo Status synchronization with `status.json`.
        */
-      dirObject(status, json);
+      dirObject(statusText.replaceAll(" ", "_").toUpperCase(), json);
       console.info(`Could not parse and snapshot. Response is not successful.`)
     };
     console.info({ report })

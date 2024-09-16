@@ -5,29 +5,19 @@
  */
 
 import coinbaseGet from "../get.mjs";
-import isValid from "../validate.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      ACCOUNT_ALL,
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-  } = settings;
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfolios
  */
 const accountAll = (memberIds) => {
-  const defaults = {},
-    data = validate(
-      ACCOUNT_ALL, isValid, defaults,
+  const { config, settings } = global.apiTools,
+    { PATH: { ACCOUNT_ALL } } = config,
+    { authentication: { sign } } = settings,
+    defaults = {},
+    data = validateParams(
+      ACCOUNT_ALL, isValidParams, defaults,
       { warnRequired: { memberIds } },
     );
 

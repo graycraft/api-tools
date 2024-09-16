@@ -5,34 +5,24 @@
  */
 
 import coinbasePost from "../post.mjs";
-import isValid from "../../coinbase/validate.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      DEPOSIT_NEW
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-    currency: {
-      uuid,
-    },
-  } = settings;
+import isValidParams from "../validate.mjs";
+import validateParams from "../../validate.mjs";
 
 /**
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#create-address
  */
 const depositNew = (account_uuid) => {
-  const defaults = {
+  const { config, settings } = global.apiTools,
+    { PATH: { DEPOSIT_NEW } } = config,
+    {
+      authentication: { sign },
+      currency: { uuid },
+    } = settings,
+    defaults = {
       account_uuid: uuid,
     },
-    data = validate(
-      DEPOSIT_NEW, isValid, defaults,
+    data = validateParams(
+      DEPOSIT_NEW, isValidParams, defaults,
       { warnOptional: { account_uuid } },
     );
 

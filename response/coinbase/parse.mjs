@@ -85,7 +85,7 @@ const responseParse = (json, status, path, data) => {
       if (isMapped) parsed.push("mapped");
       output += parsed.join(", ") + ")";
     }
-  } else console.info(`Parse: "${obtainName(path, PATH)}" is not enabled is settings.`);
+  } else console.info(`Info: parsing of "${obtainName(path, PATH)}" is not enabled is settings.`);
   dirObject(output, json);
 
   return json

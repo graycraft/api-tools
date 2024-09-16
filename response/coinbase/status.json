@@ -1,5 +1,9 @@
 {
-    "OK": "OK",
+    "INTERNAL": "The service is unavailable",
+    "INVALID_ARGUMENT": [
+        "start and end argument is invalid - number of candles requested should be less than 350 "
+    ],
+    "OK": "OK", 
     "PERMISSION_DENIED": [
         "User does not have access to portfolio"
     ]
