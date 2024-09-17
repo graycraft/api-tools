@@ -1,21 +1,21 @@
 /**
- * Handle Coinbase Advanced API network all endpoint.
- * 
+ * Handle Coinbase Advanced API network all response aggregation.
+ *
  * @module response/coinbase/network/all
  */
 
-import coinbaseAggregate from "../aggregate.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      NETWORK_ALL,
-    }
-  } = config;
+import coinbaseAggregate from '../aggregate.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
  */
-const networkAll = () => coinbaseAggregate(NETWORK_ALL, "2024-08-17T16:53:20.580Z.json");
+const networkAll = () => {
+  const { config } = global.apiTools,
+    {
+      PATH: { NETWORK_ALL },
+    } = config;
+
+  coinbaseAggregate(NETWORK_ALL, '2024-08-23T11:04:55.458Z.json');
+};
 
 export default networkAll;

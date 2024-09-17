@@ -1,39 +1,42 @@
 /**
- * Handle Bybit API wallet withdraw endpoint.
- * 
- * @module request/bybit/wallet/withdraw
+ * Handle Bybit API transfer one endpoint by currency name.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
+ * @module request/bybit/transfer/one
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired } from "../../../lib/output.mjs";
-import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      TRANSFER_ALL
-    },
-  } = config,
-  {
-    account,
-    authentication: {
-      sign
-    },
-  } = settings;;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { transferOne as schema } from '../../../response/bybit/transfer/schema.mjs';
 
 /**
+ * @todo Implement parse filter by currency as API does not support it.
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
+ * @param {string} toAccountType
+ * @param {string} coin
+ * @returns {Promise<object>} JSON data from response.
  */
-const transferAll = (toAccountType, currency) => {
-  const data = {
-    fromAccountType: account.wallet,
-  };
+const transferOne = (toAccountType, coin) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { TRANSFER_ONE },
+    } = config,
+    {
+      account,
+      authentication: { security },
+      currency: { base },
+    } = settings,
+    defaults = {
+      fromAccountType: account.wallet,
+      coin: base,
+    },
+    data = validate(TRANSFER_ONE, defaults, {
+      warnOptional: { coin },
+      throwRequired: { toAccountType },
+    }),
+    json = get(TRANSFER_ONE, schema, security, data);
 
-  if (typeof toAccountType === "string")
-    data.toAccountType = toAccountType
-  else throwRequired(PATH, TRANSFER_ALL, "toAccountType");
-
-  return bybitGet(sign, TRANSFER_ALL, data);
+  return json;
 };
 
-export default transferAll;
+export default transferOne;

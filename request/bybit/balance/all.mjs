@@ -1,36 +1,44 @@
 /**
  * Handle Bybit API balance all endpoint.
- * 
+ *
  * @module request/bybit/balance/all
  */
 
-import bybitGet from "../get.mjs";
-import bybitValidate from "../validate.mjs";
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { balanceAll as schema } from '../../../response/bybit/balance/schema.mjs';
 
 /**
  * `memberId` is UID.
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
+ * @param {string} accountType
+ * @param {string} memberId
+ * @param {{ coin?, withBonus? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const balanceAll = (accountType, memberId, {
-  coin, withBonus
-} = {}) => {
+const balanceAll = (accountType, memberId, { coin, withBonus } = {}) => {
   const { config, settings } = global.apiTools,
-    { PATH: { BALANCE_ALL } } = config,
+    {
+      PATH: { BALANCE_ALL },
+    } = config,
     {
       account,
       account: { wallet },
-      authentication: { sign },
+      authentication: { security },
     } = settings,
     defaults = {
       accountType: account.wallet,
-      memberId: account[wallet]
+      memberId: account[wallet],
     },
-    data = bybitValidate(BALANCE_ALL, defaults,
+    data = validate(
+      BALANCE_ALL,
+      defaults,
       { warnOptional: { accountType, memberId } },
-      { warnRequired: { withBonus } },
-    );
+      { warnRequired: { coin, withBonus } },
+    ),
+    json = get(BALANCE_ALL, schema, security, data);
 
-  return bybitGet(sign, BALANCE_ALL, data)
-}
+  return json;
+};
 
 export default balanceAll;

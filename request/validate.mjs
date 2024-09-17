@@ -1,15 +1,19 @@
 /**
  * Validate parameters for a request.
- * 
+ *
  * @module request/validate
  */
 
-import { throwRequired, warnOptional, warnRequired } from "../lib/output.mjs";
+import { throwRequired, warnOptional, warnRequired } from '../lib/output.mjs';
 
 const requestValidate = (path, isValidParams, defaults, ...options) => {
   const data = { ...defaults },
-    { config: { PATH } } = global.apiTools;
-  let index = options.length, category, key;
+    {
+      config: { PATH },
+    } = global.apiTools;
+  let index = options.length,
+    category,
+    key;
 
   while (index) {
     --index;
@@ -17,41 +21,38 @@ const requestValidate = (path, isValidParams, defaults, ...options) => {
     const option = options[index];
 
     for (category in option) {
-      if (category === "throwRequired") {
+      if (category === 'throwRequired') {
         for (key in option[category]) {
           const value = option[category][key];
 
-          if (isValidParams({ [key]: value }))
-            data[key] = value
+          if (isValidParams({ [key]: value })) data[key] = value;
           else throwRequired(PATH, path, key);
         }
       }
-      if (category === "warnOptional") {
+      if (category === 'warnOptional') {
         for (key in option[category]) {
           const value = option[category][key];
 
           if (value) {
-            if (isValidParams({ [key]: value }))
-              data[key] = value
+            if (isValidParams({ [key]: value })) data[key] = value;
             else warnOptional(PATH, path, key, data[key]);
           }
         }
       }
-      if (category === "warnRequired") {
+      if (category === 'warnRequired') {
         for (key in option[category]) {
           const value = option[category][key];
 
           if (value) {
-            if (isValidParams({ [key]: value }))
-              data[key] = value
+            if (isValidParams({ [key]: value })) data[key] = value;
             else warnRequired(PATH, path, key);
           }
         }
       }
     }
   }
- 
-  return data
+
+  return data;
 };
 
-export default requestValidate
+export default requestValidate;

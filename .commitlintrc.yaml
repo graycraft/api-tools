@@ -1,4 +1,3 @@
 # @see https://commitlint.js.org/reference/configuration.html
 
-extends:
-  ["@commitlint/config-conventional"]
+extends: ['@commitlint/config-conventional']

@@ -1,38 +1,60 @@
 /**
  * Handle Bybit API trade history all endpoint.
- * 
+ *
  * @module request/bybit/trade/history-all
  */
 
-import bybitGet from "../get.mjs";
-import bybitValidate from "../validate.mjs";
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { tradeHistoryAll as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
+ * @param {string} side
+ * @param {string} symbol
+ * @param {string} limit
+ * @param {{ baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const tradeHistory = (side, symbol, limit, {
-  baseCoin, category, cursor, endTime, execType, orderId, orderLinkId, startTime
-} = {}) => {
+const tradeHistoryAll = (
+  side,
+  symbol,
+  limit,
+  { baseCoin, category, cursor, endTime, execType /* , orderId */, orderLinkId, startTime } = {},
+) => {
   const { config, settings } = global.apiTools,
-    { PATH: { TRADE_HISTORY_ALL } } = config,
+    {
+      PATH: { TRADE_HISTORY_ALL },
+    } = config,
     {
       account,
-      authentication: { sign },
-      // currency: { base, quote }
+      authentication: { security },
     } = settings,
     defaults = {
       category: account.category,
-      // symbol: base + quote,
     },
-    data = bybitValidate(TRADE_HISTORY_ALL, defaults,
+    data = validate(
+      TRADE_HISTORY_ALL,
+      defaults,
       { warnOptional: { category } },
-      { warnRequired: {
-        baseCoin, category, cursor, endTime, execType, limit, orderLinkId, side,
-        startTime, symbol
-      } },
-    );
+      {
+        warnRequired: {
+          baseCoin,
+          category,
+          cursor,
+          endTime,
+          execType,
+          limit,
+          orderLinkId,
+          side,
+          startTime,
+          symbol,
+        },
+      },
+    ),
+    json = get(TRADE_HISTORY_ALL, schema, security, data);
 
-  return bybitGet(sign, TRADE_HISTORY_ALL, data)
+  return json;
 };
 
-export default tradeHistory;
+export default tradeHistoryAll;

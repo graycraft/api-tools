@@ -1,63 +1,42 @@
 /**
- * Bybit API wallet withdraw endpoint.
- * 
- * @module request/bybit/wallet/withdraw
+ * Handle Bybit API new wallet withdraw endpoint.
+ * API key pair must have "*Withdrawal" permission.
+ *
+ * @module request/bybit/withdraw/new
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional } from "../../../lib/output.mjs";
-import bybitPost from "../post.mjs";
-
-const {
-    PATH: {
-      WITHDRAW_NEW
-    },
-  } = config,
-  {
-    address: {
-      withdraw
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      network,
-    }
-  } = settings;
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { withdrawNew as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw
  */
 const withdrawNew = (amount, coin, address, chain) => {
-  const data = {
-    address: withdraw,
-    chain: network,
-    coin: base,
-    timestamp: Date.now()
-  };
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { WITHDRAW_NEW },
+    } = config,
+    {
+      address: { withdraw },
+      authentication: { security },
+      currency: { base, network },
+    } = settings,
+    defaults = {
+      address: withdraw,
+      chain: network,
+      coin: base,
+      timestamp: Date.now(),
+    },
+    data = validate(
+      WITHDRAW_NEW,
+      defaults,
+      { throwRequired: { amount } },
+      { warnOptional: { address, chain, coin } },
+    ),
+    json = post(WITHDRAW_NEW, schema, security, data);
 
-  if (typeof amount === "string")
-    data.amount = amount
-  else throwRequired(PATH, WITHDRAW_NEW, "amount");
-  if (address) {
-    if (typeof address === "string")
-      data.address = address
-    else warnOptional(PATH, WITHDRAW_NEW, "address", data.address);
-  }
-  if (chain) {
-    if (typeof chain === "string")
-      data.chain = chain
-    else warnOptional(PATH, WITHDRAW_NEW, "chain", data.chain);
-  }
-  if (coin) {
-    if (typeof coin === "string")
-      data.coin = coin
-    else warnOptional(PATH, WITHDRAW_NEW, "coin", data.coin);
-  }
-
-  return bybitPost(sign, WITHDRAW_NEW, data);
+  return json;
 };
 
 export default withdrawNew;

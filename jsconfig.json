@@ -2,16 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "checkJs": true,
-    "lib": [
-      "es5", "es6", "dom", "dom.iterable"
-    ],
-    "module": "Node16",
-    "moduleResolution": "Node16",
+    "lib": ["es2021", "dom", "dom.iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "paths": {
       "types/*": ["./types/*"]
     },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "target": "ES6"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.mjs"]
+  "include": ["**/*.js", "**/*.mjs"]
 }

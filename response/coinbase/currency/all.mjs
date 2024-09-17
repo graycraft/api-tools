@@ -1,21 +1,21 @@
 /**
- * Handle Coinbase Advanced API currency all endpoint.
- * 
+ * Handle Coinbase Advanced API currency all response aggregation.
+ *
  * @module response/coinbase/currency/all
  */
 
-import coinbaseAggregate from "../aggregate.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      CURRENCY_ALL,
-    }
-  } = config;
+import coinbaseAggregate from '../aggregate.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
  */
-const currencyAll = () => coinbaseAggregate(CURRENCY_ALL, "2024-08-20T19:36:12.998Z.json");
+const currencyAll = () => {
+  const { config } = global.apiTools,
+    {
+      PATH: { CURRENCY_ALL },
+    } = config;
+
+  coinbaseAggregate(CURRENCY_ALL, '2024-08-23T11:04:55.458Z.json');
+};
 
 export default currencyAll;

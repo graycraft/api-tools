@@ -1,70 +1,70 @@
 {
-    "ACCOUNT": {
-        "CATEGORY": ["linear", "inverse", "option", "spot"],
-        "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
+  "ACCOUNT": {
+    "CATEGORY": ["linear", "inverse", "option", "spot"],
+    "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
+  },
+  "CURRENCY": {
+    "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
+    "NETWORK": ["BTC", "CAVAX"],
+    "QUOTE": ["USDC", "USDT"]
+  },
+  "ENCODING": "hex",
+  "HOSTNAME": "api.coinbase.com",
+  "ORDER": {
+    "LIMIT": "limit_limit_gtc",
+    "MARKET": "Market"
+  },
+  "PATH": {
+    "ACCOUNT_ALL": "/api/v3/brokerage/portfolios",
+    "ACCOUNT_BALANCE": "/api/v3/brokerage/portfolios/${portfolio_id}",
+    "ACCOUNT_INFORMATION": "",
+    "ACCOUNT_WALLETS": "/api/v3/brokerage/accounts",
+    "ADDRESS_ALL": "/v2/accounts/${account_uuid}/addresses",
+    "ADDRESS_ONE": "/v2/accounts/:account_id/addresses/${address_id}d",
+    "CURRENCY_ALL": "/api/v2/currencies/crypto",
+    "CURRENCY_ONE": "/api/v2/currencies/crypto?coin",
+    "DEPOSIT_ALL": "/v2/accounts/${account_uuid}/deposits",
+    "DEPOSIT_NEW": "/v2/accounts/${account_uuid}/addresses",
+    "DEPOSIT_ONE": "",
+    "KEY_INFORMATION": "",
+    "MARKET_HISTORY": "/api/v3/brokerage/market/products/${product_id}/ticker",
+    "MARKET_INFORMATION": "/api/v3/brokerage/market/products",
+    "MARKET_TICKERS": "/api/v3/brokerage/market/products/${product_id}",
+    "NETWORK_ALL": "/api/v2/currencies/crypto?network",
+    "ORDER_ALL": "/api/v3/brokerage/orders/historical/batch",
+    "ORDER_BOOK": "",
+    "ORDER_CANCEL_ALL": "/api/v3/brokerage/orders/batch_cancel",
+    "ORDER_CANCEL_ONE": "",
+    "ORDER_HISTORY_ALL": "",
+    "ORDER_HISTORY_ONE": "",
+    "ORDER_ONE": "/api/v3/brokerage/orders/historical/${order_id}",
+    "ORDER_PLACE": "/api/v3/brokerage/orders",
+    "TRADE_RATES": "",
+    "TRADE_HISTORY_ALL": "",
+    "TRADE_HISTORY_ONE": "",
+    "TRANSFER_ALL": "",
+    "TRANSFER_INTERNAL": "",
+    "WITHDRAW_ALL": "",
+    "WITHDRAW_NEW": "",
+    "WITHDRAW_ONE": ""
+  },
+  "PREFIX": "",
+  "SOCKET": {
+    "CHANNEL": {
+      "CANDLES": "candles",
+      "LEVEL2": "level2",
+      "MARKET_TRADES": "market_trades",
+      "STATUS": "status",
+      "TICKER_BATCH": "ticker_batch",
+      "TICKERS": "ticker",
+      "USER": "user"
     },
-    "CURRENCY": {
-        "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
-        "NETWORK": ["BTC", "CAVAX"],
-        "QUOTE": ["USDC", "USDT"]
-    },
-    "ENCODING": "hex",
-    "HOSTNAME": "api.coinbase.com",
-    "ORDER": {
-        "LIMIT": "limit_limit_gtc",
-        "MARKET": "Market"
-    },
-    "PATH": {
-        "ACCOUNT_ALL": "/api/v3/brokerage/portfolios",
-        "ACCOUNT_BALANCE": "/api/v3/brokerage/portfolios/${portfolio_id}",
-        "ACCOUNT_INFORMATION": "",
-        "ACCOUNT_WALLETS": "/api/v3/brokerage/accounts",
-        "ADDRESS_ALL": "/v2/accounts/${account_uuid}/addresses",
-        "ADDRESS_ONE": "/v2/accounts/:account_id/addresses/${address_id}",
-        "CURRENCY_ALL": "/api/v2/currencies/crypto",
-        "CURRENCY_ONE": "",
-        "DEPOSIT_ALL": "/v2/accounts/${account_uuid}/deposits",
-        "DEPOSIT_NEW": "/v2/accounts/${account_uuid}/addresses",
-        "DEPOSIT_ONE": "",
-        "KEY_INFORMATION": "",
-        "MARKET_HISTORY": "/api/v3/brokerage/market/products/${product_id}/ticker",
-        "MARKET_INFORMATION": "/api/v3/brokerage/market/products",
-        "MARKET_TICKERS": "/api/v3/brokerage/market/products/${product_id}",
-        "NETWORK_ALL": "",
-        "ORDER_ALL": "/api/v3/brokerage/orders/historical/batch",
-        "ORDER_BOOK": "",
-        "ORDER_CANCEL_ALL": "/api/v3/brokerage/orders/batch_cancel",
-        "ORDER_CANCEL_ONE": "",
-        "ORDER_HISTORY_ALL": "",
-        "ORDER_HISTORY_ONE": "",
-        "ORDER_ONE": "/api/v3/brokerage/orders/historical/${order_id}",
-        "ORDER_PLACE": "/api/v3/brokerage/orders",
-        "TRADE_RATES": "",
-        "TRADE_HISTORY_ALL": "",
-        "TRADE_HISTORY_ONE": "",
-        "TRANSFER_ALL": "",
-        "TRANSFER_INTERNAL": "",
-        "WITHDRAW_ALL": "",
-        "WITHDRAW_NEW": "",
-        "WITHDRAW_ONE": ""
-    },
-    "PREFIX": "",
-    "SOCKET": {
-        "CHANNEL": {
-            "CANDLES": "candles",
-            "LEVEL2": "level2",
-            "MARKET_TRADES": "market_trades",
-            "STATUS": "status",
-            "TICKER_BATCH": "ticker_batch",
-            "TICKERS": "ticker",
-            "USER": "user"
-        },
-        "SUBSCRIBE": "subscribe",
-        "UNSUBSCRIBE": "unsubscribe",
-        "URL": "wss://advanced-trade-ws.coinbase.com"
-    },
-    "TRADE": {
-        "BUY": "BUY",
-        "SELL": "SELL"
-    }
+    "SUBSCRIBE": "subscribe",
+    "UNSUBSCRIBE": "unsubscribe",
+    "URL": "wss://advanced-trade-ws.coinbase.com"
+  },
+  "TRADE": {
+    "BUY": "BUY",
+    "SELL": "SELL"
+  }
 }

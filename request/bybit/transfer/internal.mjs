@@ -1,53 +1,45 @@
 /**
- * Bybit API wallet withdraw endpoint.
- * 
- * @module request/bybit/wallet/withdraw
+ * Handle Bybit API transfer internal endpoint.
+ *
+ * @module request/bybit/transfer/internal
  */
 
-import nodeCrypto from "node:crypto";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional } from "../../../lib/output.mjs";
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import bybitPost from "../post.mjs";
-
-const {
-    PATH: {
-      TRANSFER_INTERNAL
-    },
-  } = config,
-  {
-    account,
-    authentication: {
-      sign
-    },
-    currency: {
-      base
-    }
-  } = settings;
+import nodeCrypto from 'node:crypto';
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { transferInternal as schema } from '../../../response/bybit/transfer/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/create-inter-transfer
+ * @param {string} toAccountType
+ * @param {string} amount
+ * @param {string} coin
+ * @returns {Promise<object>} JSON data from response.
  */
 const transferInternal = (toAccountType, amount, coin) => {
-  const data = {
-    coin: base,
-    fromAccountType: account.wallet,
-    transferId: nodeCrypto.randomUUID()
-  };
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { TRANSFER_INTERNAL },
+    } = config,
+    {
+      account,
+      authentication: { security },
+      currency: { base },
+    } = settings,
+    defaults = {
+      coin: base,
+      fromAccountType: account.wallet,
+      transferId: nodeCrypto.randomUUID(),
+    },
+    data = validate(
+      TRANSFER_INTERNAL,
+      defaults,
+      { throwRequired: { amount, toAccountType } },
+      { warnOptional: { coin } },
+    ),
+    json = post(TRANSFER_INTERNAL, schema, security, data);
 
-  if (Number(amount))
-    data.amount = Number(amount)
-  else throwRequired(PATH, TRANSFER_INTERNAL, "amount");
-  if (typeof toAccountType === "string")
-    data.toAccountType = toAccountType
-  else throwRequired(PATH, TRANSFER_INTERNAL, "toAccountType");
-  if (coin) {
-    if (typeof coin === "string")
-      data.coin = coin
-    else warnOptional(PATH, TRANSFER_INTERNAL, "coin", data.coin);
-  }
-
-  return bybitPost(sign, TRANSFER_INTERNAL, data);
+  return json;
 };
 
 export default transferInternal;

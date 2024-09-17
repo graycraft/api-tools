@@ -1,31 +1,37 @@
 /**
  * Handle Bybit API network one endpoint.
- * 
+ *
  * @module request/bybit/network/one
  */
 
-import bybitGet from "../get.mjs";
-import bybitValidate from "../validate.mjs";
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { networkOne as schema } from '../../../response/bybit/network/schema.mjs';
 
 /**
  * Note: uses the same endpoint as currency one.
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @param {string} coin
+ * @param {string} chain
+ * @returns {Promise<object>} JSON data from response.
  */
-const currencyOne = (coin) => {
+const networkOne = (coin, chain) => {
   const { config, settings } = global.apiTools,
-    { PATH: { CURRENCY_ONE } } = config,
     {
-      authentication: { sign },
-      currency: { base }
+      PATH: { NETWORK_ONE },
+    } = config,
+    {
+      authentication: { security },
+      currency: { base, network },
     } = settings,
     defaults = {
-      coin: base
+      coin: base,
+      chain: network,
     },
-    data = bybitValidate(CURRENCY_ONE, defaults,
-      { warnOptional: { coin } },
-    );
+    data = validate(NETWORK_ONE, defaults, { warnOptional: { chain, coin } }),
+    json = get(NETWORK_ONE, schema, security, data);
 
-  return bybitGet(sign, CURRENCY_ONE, data);
+  return json;
 };
 
-export default currencyOne;
+export default networkOne;
