@@ -1,5 +1,5 @@
 /**
- * Do response aggregation from snapshots for specified exchanges.
+ * Do API response aggregation from snapshots for specified exchanges.
  * 
  * @module response
  */

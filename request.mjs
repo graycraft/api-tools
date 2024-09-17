@@ -1,5 +1,5 @@
 /**
- * Do requests for specified exchanges.
+ * Do API requests for specified exchanges.
  * 
  * @module request
  */

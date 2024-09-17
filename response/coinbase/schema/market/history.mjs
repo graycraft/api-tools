@@ -1,5 +1,5 @@
 /**
- * Market history schema for Coinbase Advanced API response structure.
+ * Market history JSON-schema for Coinbase Advanced API response structure.
  * 
  * @module response/coinbase/market/history
  * @see https://json-schema.org/draft/2020-12/release-notes
