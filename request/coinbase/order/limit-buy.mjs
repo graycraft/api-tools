@@ -1,13 +1,13 @@
 /**
  * Handle Coinbase Advanced API order market buy endpoint.
- * 
+ *
  * @module request/coinbase/order/market-buy
  */
 
-import nodeCrypto from "node:crypto";
-import coinbasePost from "../post.mjs";
-import isValidParams from "../validate.mjs";
-import validateParams from "../../validate.mjs";
+import nodeCrypto from 'node:crypto';
+import coinbasePost from '../post.mjs';
+import isValidParams from '../validate.mjs';
+import validateParams from '../../validate.mjs';
 
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
@@ -21,7 +21,7 @@ const orderMarketBuy = (qty, price, symbol, {} = {}) => {
     } = config,
     {
       authentication: { sign },
-      currency: { base, quote }
+      currency: { base, quote },
     } = settings,
     defaults = {
       client_order_id: nodeCrypto.randomUUID(),
@@ -31,17 +31,19 @@ const orderMarketBuy = (qty, price, symbol, {} = {}) => {
           limit_price: price,
         },
       },
-      product_id: base + "-" + quote,
+      product_id: base + '-' + quote,
       side: TRADE.BUY,
     },
     data = validateParams(
-      ORDER_PLACE, isValidParams, defaults,
+      ORDER_PLACE,
+      isValidParams,
+      defaults,
       /** @todo Fix proto: (line 1:124): unknown field "qty" */
       //{ throwRequired: { qty, price } },
       { warnOptional: { symbol } },
     );
 
-  return coinbasePost(sign, ORDER_PLACE, data)
+  return coinbasePost(sign, ORDER_PLACE, data);
 };
 
 export default orderMarketBuy;

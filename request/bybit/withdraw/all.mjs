@@ -1,31 +1,27 @@
 /**
- * Bybit API wallet withdraw endpoint.
- * 
- * @module request/bybit/wallet/withdraw
+ * Handle Bybit API all wallet withdraw endpoint.
+ *
+ * @module request/bybit/withdraw/all
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      WITHDRAW_ALL
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-  } = settings;
+import get from '../get.mjs';
+import { withdrawAll as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
+ * @returns {Promise<object>} JSON data from response.
  */
 const withdrawAll = () => {
-  const data = {};
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { WITHDRAW_ALL },
+    } = config,
+    {
+      authentication: { security },
+    } = settings,
+    json = get(WITHDRAW_ALL, schema, security);
 
-  return bybitGet(sign, WITHDRAW_ALL, data);
+  return json;
 };
 
 export default withdrawAll;

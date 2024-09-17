@@ -1,39 +1,42 @@
 /**
  * Handle Bybit API market history endpoint.
- * 
+ *
  * @module request/bybit/market/history
  */
 
-import bybitGet from "../get.mjs";
-import bybitValidate from "../validate.mjs";
-import schema from "../../../response/bybit/schema/market/history.mjs";
-import responseValidate from "../../../response/validate.mjs";
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { marketHistory as schema } from '../../../response/bybit/market/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/market/recent-trade
+ * @param {string} symbol
+ * @param {string} limit
+ * @param {{ baseCoin?, category?, optionType? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const marketHistory = async (symbol, limit, { baseCoin, category, optionType } = {}) => {
+const marketHistory = (symbol, limit, { baseCoin, category, optionType } = {}) => {
   const { config, settings } = global.apiTools,
-    { PATH: { MARKET_HISTORY } } = config,
+    {
+      PATH: { MARKET_HISTORY },
+    } = config,
     {
       account,
-      currency: {
-        base,
-        quote
-      }
+      currency: { base, quote },
     } = settings,
     defaults = {
       category: account.category,
       symbol: base + quote,
     },
-    data = bybitValidate(MARKET_HISTORY, defaults,
+    data = validate(
+      MARKET_HISTORY,
+      defaults,
       { warnOptional: { category, symbol } },
       { warnRequired: { baseCoin, limit, optionType } },
     ),
-    json = await bybitGet(null, MARKET_HISTORY, data),
-    isValidJson = responseValidate(json, schema);
+    json = get(MARKET_HISTORY, schema, null, data);
 
-  return isValidJson
+  return json;
 };
 
 export default marketHistory;

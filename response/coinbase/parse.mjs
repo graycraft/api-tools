@@ -1,16 +1,16 @@
 /**
  * Parse a Coinbase Advanced API response, usually for shortening long arrays.
- * 
+ *
  * @module response/coinbase/parse
  */
 
 //import filter from "./parse/filter.mjs";
-import find from "./parse/find.mjs";
-import map from "./parse/map.mjs";
-import config from "../../configuration/coinbase.json" with { type: "json" };
-import settings from "../../settings/coinbase.json" with { type: "json" };
-import { dirObject } from "../../lib/output.mjs";
-import { obtainName } from "../../lib/utility.mjs";
+import find from './parse/find.mjs';
+import map from './parse/map.mjs';
+import config from '../../configuration/coinbase.json' with { type: 'json' };
+import settings from '../../settings/coinbase.json' with { type: 'json' };
+import { dirObject } from '../../lib/output.mjs';
+import { obtainName } from '../../lib/utility.mjs';
 
 const responseParse = (json, status, path, data) => {
   const {
@@ -23,15 +23,12 @@ const responseParse = (json, status, path, data) => {
         MARKET_TICKERS,
         NETWORK_ALL,
         ORDER_ALL,
-        TRADE_HISTORY_ALL
+        TRADE_HISTORY_ALL,
       },
       TRADE,
     } = config,
     {
-      currency: {
-        base,
-        quote
-      },
+      currency: { base, quote },
       parse,
     } = settings;
   let output = status;
@@ -50,45 +47,56 @@ const responseParse = (json, status, path, data) => {
         list: "balance",
       }); break; */
       case ORDER_ALL:
-      case TRADE_HISTORY_ALL: json = filter(json, {
-        criterion: data.side || TRADE.BUY,
-        key: "side",
-        list: "list",
-      }); break;
-      default: isFiltered = false
+      case TRADE_HISTORY_ALL:
+        json = filter(json, {
+          criterion: data.side || TRADE.BUY,
+          key: 'side',
+          list: 'list',
+        });
+        break;
+      default:
+        isFiltered = false;
     }
     switch (path) {
-      case ACCOUNT_BALANCE: json = find(json, {
-        criterion: data.asset ?? base,
-        key: "asset",
-        list: "spot_positions",
-      }); break; 
-      default: isFound = false
+      case ACCOUNT_BALANCE:
+        json = find(json, {
+          criterion: data.asset ?? base,
+          key: 'asset',
+          list: 'spot_positions',
+        });
+        break;
+      default:
+        isFound = false;
     }
     switch (path) {
-      case CURRENCY_ALL: json = map(json, {
-        key: "code",
-        list: "data",
-      }); break;
-      case NETWORK_ALL: json = map(json, {
-        key: ["coin", "chain"],
-        list: ["rows", "chains"],
-      }); break;
-      default: isMapped = false
+      case CURRENCY_ALL:
+        json = map(json, {
+          key: 'code',
+          list: 'data',
+        });
+        break;
+      case NETWORK_ALL:
+        json = map(json, {
+          key: ['coin', 'chain'],
+          list: ['rows', 'chains'],
+        });
+        break;
+      default:
+        isMapped = false;
     }
     if (isFiltered || isFound || isMapped) {
-      const parsed = []
+      const parsed = [];
 
-      output += " (";
-      if (isFiltered) parsed.push("filtered");;
-      if (isFound) parsed.push("found");
-      if (isMapped) parsed.push("mapped");
-      output += parsed.join(", ") + ")";
+      output += ' (';
+      if (isFiltered) parsed.push('filtered');
+      if (isFound) parsed.push('found');
+      if (isMapped) parsed.push('mapped');
+      output += parsed.join(', ') + ')';
     }
   } else console.info(`Parse: "${obtainName(path, PATH)}" is not enabled is settings.`);
   dirObject(output, json);
 
-  return json
+  return json;
 };
 
 export default responseParse;

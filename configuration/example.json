@@ -1,52 +1,52 @@
 {
-    "ACCOUNT": {},
-    "CURRENCY": {
-        "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
-        "NETWORK": ["BTC", "CAVAX"],
-        "QUOTE": ["USDC", "USDT"]
-    },
-    "ENCODING": "",
-    "HOSTNAME": "",
-    "ORDER": {
-        "LIMIT": "",
-        "MARKET": ""
-    },
-    "PATH": {
-        "BALANCE_INFORMATION": "",
-        "BALANCE_ALL": "",
-        "ACCOUNT_INFORMATION": "",
-        "ACCOUNT_WALLETS": "",
-        "CURRENCY_ALL": "",
-        "CURRENCY_ONE": "",
-        "DEPOSIT_ALL": "",
-        "DEPOSIT_NEW_MASTER": "",
-        "DEPOSIT_NEW_SUB": "",
-        "DEPOSIT_ONE": "",
-        "KEY_INFORMATION": "",
-        "MARKET_HISTORY": "",
-        "MARKET_INFORMATION": "",
-        "MARKET_TICKERS": "",
-        "NETWORK_ALL": "",
-        "ORDER_ALL": "",
-        "ORDER_BOOK": "",
-        "ORDER_CANCEL_ALL": "",
-        "ORDER_CANCEL_ONE": "",
-        "ORDER_HISTORY_ALL": "",
-        "ORDER_HISTORY_ONE": "",
-        "ORDER_ONE": "",
-        "ORDER_PLACE": "",
-        "TRADE_RATES": "",
-        "TRADE_HISTORY_ALL": "",
-        "TRADE_HISTORY_ONE": "",
-        "TRANSFER_ALL": "",
-        "TRANSFER_INTERNAL": "",
-        "WITHDRAW_ALL": "",
-        "WITHDRAW_NEW": "",
-        "WITHDRAW_ONE": ""
-    },
-    "PREFIX": "",
-    "TRADE": {
-        "BUY": "",
-        "SELL": ""
-    }
+  "ACCOUNT": {},
+  "CURRENCY": {
+    "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
+    "NETWORK": ["BTC", "CAVAX"],
+    "QUOTE": ["USDC", "USDT"]
+  },
+  "ENCODING": "",
+  "HOSTNAME": "",
+  "ORDER": {
+    "LIMIT": "",
+    "MARKET": ""
+  },
+  "PATH": {
+    "BALANCE_INFORMATION": "",
+    "BALANCE_ALL": "",
+    "ACCOUNT_INFORMATION": "",
+    "ACCOUNT_WALLETS": "",
+    "CURRENCY_ALL": "",
+    "CURRENCY_ONE": "",
+    "DEPOSIT_ALL": "",
+    "DEPOSIT_NEW_MASTER": "",
+    "DEPOSIT_NEW_SUB": "",
+    "DEPOSIT_ONE": "",
+    "KEY_INFORMATION": "",
+    "MARKET_HISTORY": "",
+    "MARKET_INFORMATION": "",
+    "MARKET_TICKERS": "",
+    "NETWORK_ALL": "",
+    "ORDER_ALL": "",
+    "ORDER_BOOK": "",
+    "ORDER_CANCEL_ALL": "",
+    "ORDER_CANCEL_ONE": "",
+    "ORDER_HISTORY_ALL": "",
+    "ORDER_HISTORY_ONE": "",
+    "ORDER_ONE": "",
+    "ORDER_PLACE": "",
+    "TRADE_RATES": "",
+    "TRADE_HISTORY_ALL": "",
+    "TRADE_HISTORY_ONE": "",
+    "TRANSFER_ALL": "",
+    "TRANSFER_INTERNAL": "",
+    "WITHDRAW_ALL": "",
+    "WITHDRAW_NEW": "",
+    "WITHDRAW_ONE": ""
+  },
+  "PREFIX": "",
+  "TRADE": {
+    "BUY": "",
+    "SELL": ""
+  }
 }

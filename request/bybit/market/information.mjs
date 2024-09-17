@@ -1,32 +1,38 @@
 /**
  * Handle Bybit API market information endpoint.
- * 
+ *
  * @module request/bybit/market/information
  */
 
-import bybitGet from "../get.mjs";
-import bybitValidate from "../validate.mjs";
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { marketInformation as schema } from '../../../response/bybit/market/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/market/instrument
+ * @param {string} symbol
+ * @param {string} limit
+ * @param {{ baseCoin?, category?, cursor?, status? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
 const marketInformation = (symbol, limit, { baseCoin, category, cursor, status } = {}) => {
   const { config, settings } = global.apiTools,
-    { PATH: { MARKET_INFORMATION } } = config,
     {
-      account,
-      // currency: { base, quote }
-    } = settings,
+      PATH: { MARKET_INFORMATION },
+    } = config,
+    { account } = settings,
     defaults = {
       category: account.category,
-      // symbol: base + quote,
     },
-    data = bybitValidate(MARKET_INFORMATION, defaults,
-      { warnOptional: { baseCoin, category, cursor, status, symbol } },
-      { warnRequired: { limit } },
-    );
-  
-  return bybitGet(null, MARKET_INFORMATION, data)
+    data = validate(
+      MARKET_INFORMATION,
+      defaults,
+      { warnOptional: { symbol } },
+      { warnRequired: { baseCoin, category, cursor, limit, status, symbol } },
+    ),
+    json = get(MARKET_INFORMATION, schema, null, data);
+
+  return json;
 };
 
 export default marketInformation;

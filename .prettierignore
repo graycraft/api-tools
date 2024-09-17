@@ -1,0 +1,4 @@
+# Directories with auto-generated files.
+.vscode
+collection
+response/**/snapshot

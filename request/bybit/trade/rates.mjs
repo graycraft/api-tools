@@ -1,35 +1,40 @@
 /**
  * Handle Bybit API trade fee rates endpoint.
- * 
+ *
  * @module request/bybit/trade/rates
  */
 
-import bybitGet from "../get.mjs";
-import bybitValidate from "../validate.mjs";
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { tradeRates as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
+ * @param {string} symbol
+ * @param {{ baseCoin?, category? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const tradeRates = (symbol, {
-  baseCoin, category
-} = {}) => {
+const tradeRates = (symbol, { baseCoin, category } = {}) => {
   const { config, settings } = global.apiTools,
-    { PATH: { TRADE_RATES } } = config,
+    {
+      PATH: { TRADE_RATES },
+    } = config,
     {
       account,
-      authentication: { sign },
-      // currency: { base, quote }
+      authentication: { security },
     } = settings,
     defaults = {
       category: account.category,
-      // symbol: base + quote,
     },
-    data = bybitValidate(TRADE_RATES, defaults,
+    data = validate(
+      TRADE_RATES,
+      defaults,
       { warnOptional: { category } },
       { warnRequired: { baseCoin, symbol } },
-    );
+    ),
+    json = get(TRADE_RATES, schema, security, data);
 
-  return bybitGet(sign, TRADE_RATES, data)
+  return json;
 };
 
 export default tradeRates;

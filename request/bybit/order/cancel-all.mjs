@@ -1,35 +1,52 @@
 /**
  * Handle Bybit API order cancel all endpoint.
- * 
+ *
  * @module request/bybit/order/cancel-all
  */
 
-import bybitPost from "../post.mjs";
-import bybitValidate from "../validate.mjs";
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { orderCancelAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-all
+ * @param {string} symbol
+ * @param {{ baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const orderCancelAll = (symbol, {
-  baseCoin, category, orderFilter, settleCoin, stopOrderType
-} = {}) => {
+const orderCancelAll = (
+  symbol,
+  { baseCoin, category, orderFilter, orderLinkId, settleCoin, stopOrderType } = {},
+) => {
   const { config, settings } = global.apiTools,
-    { PATH: { ORDER_CANCEL_ALL } } = config,
+    {
+      PATH: { ORDER_CANCEL_ALL },
+    } = config,
     {
       account,
-      authentication: { sign },
-      // currency: { base, quote }
+      authentication: { security },
     } = settings,
     defaults = {
       category: account.category,
-      // symbol: base + quote,
     },
-    data = bybitValidate(ORDER_CANCEL_ALL, defaults,
-      { warnOptional: { baseCoin, category, orderFilter, settleCoin, stopOrderType } },
+    data = validate(
+      ORDER_CANCEL_ALL,
+      defaults,
+      {
+        warnOptional: {
+          baseCoin,
+          category,
+          orderFilter,
+          orderLinkId,
+          settleCoin,
+          stopOrderType,
+        },
+      },
       { warnRequired: { symbol } },
-    );
+    ),
+    json = post(ORDER_CANCEL_ALL, schema, security, data);
 
-  return bybitPost(sign, ORDER_CANCEL_ALL, data)
+  return json;
 };
 
 export default orderCancelAll;

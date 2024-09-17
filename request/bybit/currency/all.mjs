@@ -1,20 +1,27 @@
 /**
  * Handle Bybit API currency all endpoint.
- * 
+ *
  * @module request/bybit/currency/all
  */
 
-import bybitGet from "../get.mjs";
+import get from '../get.mjs';
+import { currencyAll as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @returns {Promise<object>} JSON data from response.
  */
 const currencyAll = () => {
   const { config, settings } = global.apiTools,
-    { PATH: { CURRENCY_ALL } } = config,
-    { authentication: { sign } } = settings;
+    {
+      PATH: { CURRENCY_ALL },
+    } = config,
+    {
+      authentication: { security },
+    } = settings,
+    json = get(CURRENCY_ALL, schema, security);
 
-  return bybitGet(sign, CURRENCY_ALL)
+  return json;
 };
 
 export default currencyAll;
