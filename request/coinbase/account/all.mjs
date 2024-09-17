@@ -9,6 +9,7 @@ import isValidParams from "../validate.mjs";
 import validateParams from "../../validate.mjs";
 
 /**
+ * `memberId` is UID.
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfolios
  */
 const accountAll = (memberIds) => {

@@ -46,6 +46,7 @@ const {
         case "addressAll": return addressAll(...params);
         case "currencyAll": return currencyAll(...params);
         case "depositNew": return depositNew(...params);
+        case "level2": return level2(...params);
         case "marketHistory": return marketHistory(...params);
         case "market":
         case "marketInfo":

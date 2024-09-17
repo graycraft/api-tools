@@ -49,6 +49,20 @@
         "WITHDRAW_ONE": ""
     },
     "PREFIX": "",
+    "SOCKET": {
+        "CHANNEL": {
+            "CANDLES": "candles",
+            "LEVEL2": "level2",
+            "MARKET_TRADES": "market_trades",
+            "STATUS": "status",
+            "TICKER_BATCH": "ticker_batch",
+            "TICKERS": "ticker",
+            "USER": "user"
+        },
+        "SUBSCRIBE": "subscribe",
+        "UNSUBSCRIBE": "unsubscribe",
+        "URL": "wss://advanced-trade-ws.coinbase.com"
+    },
     "TRADE": {
         "BUY": "BUY",
         "SELL": "SELL"
