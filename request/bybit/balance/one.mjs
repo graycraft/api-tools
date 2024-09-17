@@ -8,6 +8,7 @@ import bybitGet from "../get.mjs";
 import bybitValidate from "../validate.mjs";
 
 /**
+ * `memberId` is UID.
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
  */
 const balanceOne = (accountType, coin, memberId, {

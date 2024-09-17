@@ -8,12 +8,14 @@
  */
 
 import config from "../../configuration/bybit.json" with { type: "json" };
-import settings from "../../settings/bybit.json" with { type: "json" };
 import { fetchData } from "../../lib/fetch.mjs";
 import { signHmac } from "../../lib/authentication.mjs";
 import { dirObject, infoName } from "../../lib/output.mjs";
+import { interpolate } from "../../lib/string.mjs";
 import responseAnalyze from "../../response/bybit/analyze.mjs";
 import responseParse from "../../response/bybit/parse.mjs";
+import responseSnapshot from "../../response/coinbase/snapshot.mjs";
+import settings from "../../settings/bybit.json" with { type: "json" };
 
 const bybitPost = async (sign, pathTemplate, data = {}) => {
     const { ENCODING, HOSTNAME, PATH, PREFIX } = config,

@@ -22,7 +22,7 @@ const responseSnapshot = (json, path) => {
       snapshot,
     } = settings;
 
-  if (global.isSnapshot) {
+  if (global.apiTools.options.isSnapshot) {
     const pathName = snapshot.find(
       item => item === obtainName(path, PATH)
     )?.toLowerCase();
@@ -31,7 +31,7 @@ const responseSnapshot = (json, path) => {
       const dirName = import.meta.dirname,
         fileData = JSON.stringify(json, null, 2),
         fileName = new Date().toISOString() + ".json",
-        filePath = nodePath.join(dirName, "../../snapshot/coinbase/" + pathName),
+        filePath = nodePath.join(dirName, "./snapshot/" + pathName),
         filePathFull = nodePath.join(filePath, fileName);
   
       fs.mkdirSync(filePath, { recursive: true });

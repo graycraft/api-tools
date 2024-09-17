@@ -1,92 +1,46 @@
 /**
- * Bybit API order place limit endpoint.
+ * Handle Bybit API place order limit sell endpoint.
  * 
- * @module request/bybit/order/place_limit
+ * @module request/bybit/order/limit-sell
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional } from "../../../lib/output.mjs";
 import bybitPost from "../post.mjs";
-
-const {
-    CURRENCY,
-    ORDER,
-    PATH: {
-      ORDER_PLACE
-    },
-    TRADE,
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import bybitValidate from "../validate.mjs";
 
 /**
+ * `qty` is in a base currency.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
+ * @see https://bybit-exchange.github.io/docs/v5/smp
  */
 const orderLimitSell = (qty, price, symbol, {
   closeOnTrigger, isLeverage, marketUnit, mmp, orderFilter, orderIv, orderLinkId, positionIdx, reduceOnly,
   slLimitPrice, slOrderType, slTriggerBy, smpType, stopLoss, takeProfit, timeInForce, tpLimitPrice,
   tpOrderType, tpTriggerBy, tpslMode, triggerDirection, triggerPrice, triggerBy
 } = {}) => {
-  const data = {
-    category,
-    // closeOnTrigger,
-    // isLeverage,
-    // marketUnit,
-    // mmp,
-    // orderFilter,
-    // orderIv,
-    // orderLinkId,
-    orderType: ORDER.LIMIT,
-    // positionIdx,
-    // price,
-    // qty,
-    // reduceOnly,
-    side: TRADE.SELL,
-    // slLimitPrice,
-    // slOrderType
-    // slTriggerBy,
-    smpType: "None",
-    // stopLoss,
-    symbol: base + quote
-    // takeProfit,
-    // timeInForce,
-    // tpLimitPrice,
-    // tpOrderType,
-    // tpTriggerBy,
-    // tpslMode,
-    // triggerDirection,
-    // triggerPrice,
-    // triggerBy,
-  };
-
-  if (Number(price))
-    data.price = price
-  else throwRequired(PATH, ORDER_PLACE, "price");
-  if (Number(qty))
-    data.qty = qty
-  else throwRequired(PATH, ORDER_PLACE, "qty");
-  if (symbol) {
-    if (
-      Object.values(CURRENCY.BASE).some(currency1 => 
-        Object.values(CURRENCY.QUOTE).some(currency2 =>
-          (currency1 + currency2 === symbol) && currency1 !== currency2
-        )
-      )
-    ) {
-      data.symbol = symbol
-    } else warnOptional(PATH, ORDER_PLACE, "symbol", data.symbol);
-  }
+  const { config, settings } = global.apiTools,
+    { ORDER, PATH: { ORDER_PLACE }, TRADE } = config,
+    {
+      account,
+      authentication: { sign },
+      currency: { base, quote }
+    } = settings,
+    defaults = {
+      category: account.category,
+      orderType: ORDER.LIMIT,
+      side: TRADE.SELL,
+      // smpType: "None",
+      symbol: base + quote
+    },
+    data = bybitValidate(ORDER_PLACE, defaults,
+      { throwRequired: { price, qty } },
+      { warnOptional: { symbol } },
+      { warnRequired: {
+        closeOnTrigger, isLeverage, marketUnit, mmp, orderFilter, orderIv, orderLinkId, positionIdx, reduceOnly,
+        slLimitPrice, slOrderType, slTriggerBy, smpType, stopLoss, takeProfit, timeInForce, tpLimitPrice,
+        tpOrderType, tpTriggerBy, tpslMode, triggerDirection, triggerPrice, triggerBy
+      } },
+    );
 
   return bybitPost(sign, ORDER_PLACE, data)
 };

@@ -1,7 +1,7 @@
 /**
- * Handle Bybit API trade history one endpoint.
+ * Handle Bybit API endpoint, with trade history one by order identifier.
  * 
- * @module request/bybit/trade/history
+ * @module request/bybit/trade/history-one
  */
 
 import bybitGet from "../get.mjs";

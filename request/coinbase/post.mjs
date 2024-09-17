@@ -25,8 +25,8 @@ import { fetchData } from "../../lib/fetch.mjs";
 import { dirObject, infoName } from "../../lib/output.mjs";
 import { interpolate } from "../../lib/string.mjs";
 import responseAnalyze from "../../response/coinbase/analyze.mjs";
-import responseSnapshot from "../../response/coinbase/snapshot.mjs";
 import responseParse from "../../response/coinbase/parse.mjs";
+import responseSnapshot from "../../response/coinbase/snapshot.mjs";
 import settings from "../../settings/coinbase.json" with { type: "json" };
 
 const coinbaseGet = async (sign, pathTemplate, data = {}) => {
