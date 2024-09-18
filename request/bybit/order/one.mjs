@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API order one endpoint by order identifier.
+ * Handle Bybit API one order endpoint, with unfilled or partially filled orders by order identifier.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/order/open-order
  * @module request/bybit/order/one
  */
 
@@ -9,14 +10,17 @@ import validate from '../validate.mjs';
 import { orderOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/open-order
- * @param {string} orderId
+ * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} orderId Order identifier.
  * @param {{
  *   baseCoin?, category?, cursor?, limit?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, side?, symbol?
  * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderOne = (
+const orderOne = async (
   orderId,
   {
     baseCoin,
@@ -63,7 +67,7 @@ const orderOne = (
         },
       },
     ),
-    json = get(ORDER_ONE, schema, security, data);
+    json = await get(ORDER_ONE, schema, security, data);
 
   return json;
 };

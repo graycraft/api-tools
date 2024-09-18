@@ -4,10 +4,19 @@
  * @module response/bybit/parse/filter
  */
 
+/**
+ * @param {object} json
+ * @param {{
+ *   criterion: string | ((item: object) => number),
+ *   key?: string,
+ *   list: string,
+ * }} options
+ * @returns
+ */
 const filter = (json, { criterion, key, list }) => {
   if (criterion) {
     const items = json.result[list].filter((item) =>
-      key ? item[key] === criterion : criterion(item),
+      key ? item[key] === criterion : typeof criterion === 'function' && criterion(item),
     );
 
     json = {

@@ -1,39 +1,44 @@
 /**
- * Handle Bybit API history one endpoint by order identifier.
+ * Handle Bybit API one order history endpoint by order identifier.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/order/order-list
  * @module request/bybit/order/history-one
  */
 
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { historyOne as schema } from '../../../response/bybit/order/schema.mjs';
+import { orderHistoryOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/order-list
- * @param {string} orderId
- * @param {string} symbol
- * @param {string} limit
+ * Because order creation and cancellation is asynchronous, the data returned from this endpoint may delay.
+ * To get real-time order information, it is better to request `ORDER_ALL` or rely on the web socket stream.
+ * Limit data per page - default is 20, maximum 50.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#orderstatus
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} orderId Order identifier.
  * @param {{
- *   baseCoin?, category?, cursor?, endTime?, openOnly?, orderFilter?, orderLinkId?, orderStatus?, settleCoin?,
- *   startTime?
+ *   baseCoin?, category?, cursor?, endTime?, limit?,openOnly?, orderFilter?, orderLinkId?,
+ *   orderStatus?, settleCoin?, startTime?, symbol?
  * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderHistoryOne = (
+const orderHistoryOne = async (
   orderId,
-  symbol,
-  limit,
   {
     baseCoin,
     category,
     cursor,
     endTime,
+    limit,
     openOnly,
     orderFilter,
     orderLinkId,
     orderStatus,
     settleCoin,
     startTime,
+    symbol,
   } = {},
 ) => {
   const { config, settings } = global.apiTools,
@@ -69,7 +74,7 @@ const orderHistoryOne = (
         },
       },
     ),
-    json = get(ORDER_HISTORY_ONE, schema, security, data);
+    json = await get(ORDER_HISTORY_ONE, schema, security, data);
 
   return json;
 };

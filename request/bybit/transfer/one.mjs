@@ -1,7 +1,7 @@
 /**
- * Handle Bybit API transfer one endpoint by currency name.
+ * Handle Bybit API endpoint, with one transferable coin between each account type.
  *
- * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
+ * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
  * @module request/bybit/transfer/one
  */
 
@@ -10,13 +10,12 @@ import validate from '../validate.mjs';
 import { transferOne as schema } from '../../../response/bybit/transfer/schema.mjs';
 
 /**
- * @todo Implement parse filter by currency as API does not support it.
- * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
- * @param {string} toAccountType
- * @param {string} coin
- * @returns {Promise<object>} JSON data from response.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
+ * @param {string} toAccountType To account type.
+ * @param {string} coin Not supported by the API, must be filtered while parsing.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const transferOne = (toAccountType, coin) => {
+const transferOne = async (toAccountType, coin) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { TRANSFER_ONE },
@@ -31,10 +30,9 @@ const transferOne = (toAccountType, coin) => {
       coin: base,
     },
     data = validate(TRANSFER_ONE, defaults, {
-      warnOptional: { coin },
-      throwRequired: { toAccountType },
+      throwRequired: { coin, toAccountType },
     }),
-    json = get(TRANSFER_ONE, schema, security, data);
+    json = await get(TRANSFER_ONE, schema, security, data);
 
   return json;
 };

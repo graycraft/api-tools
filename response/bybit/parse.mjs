@@ -17,10 +17,10 @@ const responseParse = (response, path, data) => {
       PATH: {
         BALANCE_ALL,
         CURRENCY_ALL,
+        CURRENCY_NETWORK_ALL,
         MARKET_HISTORY,
         MARKET_INFORMATION,
         MARKET_TICKERS,
-        NETWORK_ALL,
         ORDER_ALL,
         TRADE_HISTORY_ALL,
       },
@@ -83,7 +83,7 @@ const responseParse = (response, path, data) => {
           list: 'rows',
         });
         break;
-      case NETWORK_ALL:
+      case CURRENCY_NETWORK_ALL:
         json = map(json, {
           key: ['coin', 'chain'],
           list: ['rows', 'chains'],

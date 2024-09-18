@@ -1,12 +1,12 @@
 /**
- * Handle Coinbase Advanced API address all endpoint.
+ * Handle Coinbase Advanced API endpoint for all addresses.
  *
  * @module request/coinbase/address/all
  */
 
-import coinbaseGet from '../get.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { addressAll as schema } from '../../../response/coinbase/address/schema.mjs';
 
 /**
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
@@ -17,17 +17,18 @@ const addressAll = (account_uuid) => {
       PATH: { ADDRESS_ALL },
     } = config,
     {
-      authentication: { sign },
+      authentication: { security },
       currency: { uuid },
     } = settings,
     defaults = {
       account_uuid: uuid,
     },
-    data = validateParams(ADDRESS_ALL, isValidParams, defaults, {
+    data = validate(ADDRESS_ALL, defaults, {
       warnOptional: { account_uuid },
-    });
+    }),
+    json = get(ADDRESS_ALL, schema, security, data);
 
-  return coinbaseGet(sign, ADDRESS_ALL, data);
+  return json;
 };
 
 export default addressAll;

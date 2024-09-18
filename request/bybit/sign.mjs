@@ -8,27 +8,51 @@
  */
 
 import { blind, signHmac } from '../../lib/authentication.mjs';
-import { dirObject } from '../../lib/output.mjs';
+import { AUTH } from '../../lib/constants.mjs';
+
+let timestamp;
+
+export const bybitKey = () => {
+  const { settings } = global.apiTools,
+    { account, authentication } = settings,
+    { wallet } = account,
+    { keys } = authentication,
+    key = keys[account[wallet]];
+
+  /** Timestamp must be fresh for every request from an API scenario. */
+  timestamp = Date.now();
+
+  return { key, timestamp };
+};
+
+export const bybitSecret = () => {
+  const { settings } = global.apiTools,
+    { account, authentication } = settings,
+    { wallet } = account,
+    { secrets } = authentication,
+    secret = secrets[account[wallet]];
+
+  return secret;
+};
 
 /**
  * @param {"GET" | "POST"} method HTTP method to submit the request with.
  * @param {"HMAC" | "RSA" | null} security Authentication signature security.
  * @param {string} key Path template to be interpolated.
- * @param {number} timestamp Path template to be interpolated.
  * @param {object} payload JSON-schema to validate response with.
  * @param {object} [data] Data to send with request.
  * @returns {object} JSON data from response.
  */
-const bybitSign = (method, security, key, timestamp, payload, data = {}) => {
+export const bybitSign = (method, security, key, payload, data = {}) => {
   const { config, settings } = global.apiTools,
     { ENCODING } = config,
-    { account, authentication } = settings,
-    { wallet } = account,
-    { delay, secrets } = authentication,
-    secret = secrets[account[wallet]];
+    {
+      authentication: { delay },
+    } = settings,
+    secret = bybitSecret();
   let headers = {};
 
-  if (security === 'HMAC') {
+  if (security === AUTH.SECURITY.HMAC) {
     const digest = signHmac(ENCODING, payload, secret, key);
 
     headers = {
@@ -38,22 +62,20 @@ const bybitSign = (method, security, key, timestamp, payload, data = {}) => {
       'X-BAPI-SIGN-TYPE': 2,
       'X-BAPI-TIMESTAMP': timestamp,
     };
-    dirObject(method, {
+    global.apiTools.output[method] = {
       headers: {
         ...headers,
         'X-BAPI-API-KEY': blind(key, 'mask'),
         'X-BAPI-SIGN': blind(digest, 'mask'),
       },
       data,
-    });
+    };
   } else {
-    dirObject(method, {
+    global.apiTools.output[method] = {
       headers,
       data,
-    });
+    };
   }
 
   return headers;
 };
-
-export default bybitSign;

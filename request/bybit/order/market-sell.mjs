@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API place order market sell endpoint.
+ * Handle Bybit API endpoint, with placing market sell order.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @module request/bybit/order/market-sell
  */
 
@@ -9,23 +10,28 @@ import validate from '../validate.mjs';
 import { orderMarketSell as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * `qty` is in a base currency.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#ordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#positionidx
  * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
- * @see https://bybit-exchange.github.io/docs/v5/order/create-order
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @see https://bybit-exchange.github.io/docs/v5/enum#timeinforce
+ * @see https://bybit-exchange.github.io/docs/v5/enum#triggerby
  * @see https://bybit-exchange.github.io/docs/v5/smp
- * @param {string} qty
- * @param {string} symbol
+ * @param {string} qty Quote currency quantity.
+ * @param {string} [symbol] Symbol name.
  * @param {{
- *   closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
+ *   category?, closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
  *   reduceOnly?, slLimitPrice?, slOrderType?, slTriggerBy?, smpType?, stopLoss?, takeProfit?, timeInForce?,
  *   tpLimitPrice?, tpOrderType?, tpTriggerBy?, tpslMode?, triggerDirection?, triggerPrice?, triggerBy?
  * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderMarketSell = (
+const orderMarketSell = async (
   qty,
   symbol,
   {
+    category,
     closeOnTrigger,
     isLeverage,
     marketUnit,
@@ -56,7 +62,7 @@ const orderMarketSell = (
     {
       ORDER,
       PATH: { ORDER_PLACE },
-      TRADE,
+      TRADE: { SIDE },
     } = config,
     {
       account,
@@ -66,15 +72,14 @@ const orderMarketSell = (
     defaults = {
       category: account.category,
       orderType: ORDER.MARKET,
-      side: TRADE.SELL,
-      // smpType: "None",
+      side: SIDE.SELL,
       symbol: base + quote,
     },
     data = validate(
       ORDER_PLACE,
       defaults,
       { throwRequired: { qty } },
-      { warnOptional: { symbol } },
+      { warnOptional: { category, symbol } },
       {
         warnRequired: {
           closeOnTrigger,
@@ -103,7 +108,7 @@ const orderMarketSell = (
         },
       },
     ),
-    json = post(ORDER_PLACE, schema, security, data);
+    json = await post(ORDER_PLACE, schema, security, data);
 
   return json;
 };

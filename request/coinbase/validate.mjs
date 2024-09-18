@@ -5,37 +5,40 @@
  */
 
 import requestValidate from '../validate.mjs';
-//import currencyAll from "../../collection/coinbase/currency_all.json" with { type: "json" };
-//import networkAll from "../../collection/coinbase/network_all.json" with { type: "json" };
+import { REGEXP } from '../../lib/constants.mjs';
+import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
 const isValid = (param) => {
-  const { config } = global.apiTools,
-    { ACCOUNT, CURRENCY, TRADE } = config,
-    [key, value] = Object.entries(param)[0];
+  const { UUID } = REGEXP,
+    { config } = global.apiTools,
+    {
+      CURRENCY,
+      TRADE,
+      USER: { PORTFOLIO },
+    } = config,
+    [key, value] = Object.entries(param)[0],
+    currencyDir = 'collection/coinbase/currency_all',
+    currencyFile = fileNameNewest(currencyDir),
+    currencyAll = fileReadJson(currencyDir, currencyFile.name);
+  /* networkDir = 'collection/coinbase/network_all',
+    networkFile = fileNameNewest(networkDir),
+    networkAll = fileReadJson(networkDir, networkFile.name) */
 
   switch (key) {
-    case 'accountType':
-      return ACCOUNT.WALLET.some((account) => account === value);
-    //case "chainType": return networkAll.some(currency => currency === value);
-    //case "coin": return currencyAll.some(currency => currency === value);
-    case 'memberId':
+    case 'account_uuid':
+      return UUID.test(value);
+    /* case 'chainType':
+      return networkAll.some((currency) => currency === value); */
+    case 'cursor':
+      return UUID.test(value);
+    case 'limit':
       return Number(value);
-    case 'memberIds':
-      return Number(value) || value.split(',').every((member) => Number(member));
-    //case "side": return Object.values(TRADE).some(side => side === value);
-    /**
-     * @todo Iterate over full list from collection.
-     */
-    case 'symbol':
-      return Object.values(CURRENCY.BASE).some((currency1) =>
-        Object.values(CURRENCY.QUOTE).some(
-          (currency2) => currency1 + currency2 === value && currency1 !== currency2,
-        ),
-      );
-    case 'txID':
-      return /^0x[0-9A-Fa-f]{64}$/.test(value);
-    case 'withBonus':
-      return Number(value);
+    case 'portfolio_type':
+      return PORTFOLIO.some((portfolio) => portfolio === value);
+    case 'portfolio_uuid':
+      return UUID.test(value);
+    case 'retail_portfolio_id':
+      return UUID.test(value);
     default:
       return typeof value === 'string';
   }

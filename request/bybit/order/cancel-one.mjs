@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API order cancel one endpoint by order identifier.
+ * Handle Bybit API endpoint, with cancel one order by order identifier or `orderLinkId`.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
  * @module request/bybit/order/cancel-one
  */
 
@@ -9,12 +10,14 @@ import validate from '../validate.mjs';
 import { orderCancelOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
- * @param {string} orderId
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} orderId Order identifier.
  * @param {{ category?, orderFilter?, orderLinkId?, symbol? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderCancelOne = (orderId, { category, orderFilter, orderLinkId, symbol } = {}) => {
+const orderCancelOne = async (orderId, { category, orderFilter, orderLinkId, symbol } = {}) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { ORDER_CANCEL_ONE },
@@ -32,7 +35,7 @@ const orderCancelOne = (orderId, { category, orderFilter, orderLinkId, symbol } 
       { throwRequired: { orderId } },
       { warnRequired: { category, orderFilter, orderLinkId, symbol } },
     ),
-    json = post(ORDER_CANCEL_ONE, schema, security, data);
+    json = await post(ORDER_CANCEL_ONE, schema, security, data);
 
   return json;
 };

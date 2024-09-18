@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API one wallet withdraw endpoint by transaction identifier.
+ * Handle Bybit API one wallet withdraw entry endpoint by transaction identifier.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
  * @module request/bybit/withdraw/one
  */
 
@@ -9,11 +10,14 @@ import validate from '../validate.mjs';
 import { withdrawOne as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
- * @param {string} txID
- * @returns {Promise<object>} JSON data from response.
+ * @param {string} txID Transaction identifier.
+ * @param {{ coin?, cursor?, endTime?, limit?, startTime?, withdrawID?, withdrawType? }} rest
+ * @returns {Promise<Object>} JSON data from response.
  */
-const withdrawOne = (txID) => {
+const withdrawOne = async (
+  txID,
+  { coin, cursor, endTime, limit, startTime, withdrawID, withdrawType } = {},
+) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { WITHDRAW_ONE },
@@ -22,8 +26,11 @@ const withdrawOne = (txID) => {
       authentication: { security },
     } = settings,
     defaults = {},
-    data = validate(WITHDRAW_ONE, defaults, { throwRequired: { txID } }),
-    json = get(WITHDRAW_ONE, schema, security, data);
+    data = validate(WITHDRAW_ONE, defaults, {
+      throwRequired: { txID },
+      warnRequired: { coin, cursor, endTime, limit, startTime, withdrawID, withdrawType },
+    }),
+    json = await get(WITHDRAW_ONE, schema, security, data);
 
   return json;
 };

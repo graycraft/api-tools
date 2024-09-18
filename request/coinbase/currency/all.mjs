@@ -1,12 +1,11 @@
 /**
- * Handle Coinbase Advanced API currency all endpoint.
+ * Handle Coinbase Advanced API all currencies endpoint.
  *
  * @module request/coinbase/currency/all
  */
 
-import coinbaseGet from '../get.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import get from '../get.mjs';
+//import { currencyAll as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
@@ -17,10 +16,11 @@ const currencyAll = () => {
       PATH: { CURRENCY_ALL },
     } = config,
     {
-      authentication: { sign },
-    } = settings;
+      authentication: { security },
+    } = settings,
+    json = get(CURRENCY_ALL, {}, security);
 
-  coinbaseGet(sign, CURRENCY_ALL);
+  return json;
 };
 
 export default currencyAll;

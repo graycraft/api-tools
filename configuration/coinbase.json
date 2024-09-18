@@ -1,26 +1,12 @@
 {
-  "ACCOUNT": {
-    "CATEGORY": ["linear", "inverse", "option", "spot"],
-    "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
-  },
-  "CURRENCY": {
-    "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
-    "NETWORK": ["BTC", "CAVAX"],
-    "QUOTE": ["USDC", "USDT"]
-  },
   "ENCODING": "hex",
   "HOSTNAME": "api.coinbase.com",
   "ORDER": {
-    "LIMIT": "limit_limit_gtc",
-    "MARKET": "Market"
+    "LIMIT": "limit_limit_gtc"
   },
   "PATH": {
-    "ACCOUNT_ALL": "/api/v3/brokerage/portfolios",
-    "ACCOUNT_BALANCE": "/api/v3/brokerage/portfolios/${portfolio_id}",
-    "ACCOUNT_INFORMATION": "",
-    "ACCOUNT_WALLETS": "/api/v3/brokerage/accounts",
     "ADDRESS_ALL": "/v2/accounts/${account_uuid}/addresses",
-    "ADDRESS_ONE": "/v2/accounts/:account_id/addresses/${address_id}d",
+    "ADDRESS_ONE": "/v2/accounts/${account_uuid}/addresses/${address_uuid}",
     "CURRENCY_ALL": "/api/v2/currencies/crypto",
     "CURRENCY_ONE": "/api/v2/currencies/crypto?coin",
     "DEPOSIT_ALL": "/v2/accounts/${account_uuid}/deposits",
@@ -44,6 +30,10 @@
     "TRADE_HISTORY_ONE": "",
     "TRANSFER_ALL": "",
     "TRANSFER_INTERNAL": "",
+    "USER_ACCOUNT_ALL": "/api/v3/brokerage/accounts",
+    "USER_ACCOUNT_ONE": "/api/v3/brokerage/accounts/${account_uuid}",
+    "USER_PORTFOLIO_ALL": "/api/v3/brokerage/portfolios",
+    "USER_PORTFOLIO_ONE": "/api/v3/brokerage/portfolios/${portfolio_uuid}",
     "WITHDRAW_ALL": "",
     "WITHDRAW_NEW": "",
     "WITHDRAW_ONE": ""
@@ -52,11 +42,13 @@
   "SOCKET": {
     "CHANNEL": {
       "CANDLES": "candles",
+      "FUTURES_BALANCE": "futures_balance_summary",
+      "HEARTBEATS": "heartbeats",
       "LEVEL2": "level2",
       "MARKET_TRADES": "market_trades",
       "STATUS": "status",
+      "TICKER": "ticker",
       "TICKER_BATCH": "ticker_batch",
-      "TICKERS": "ticker",
       "USER": "user"
     },
     "SUBSCRIBE": "subscribe",
@@ -66,5 +58,8 @@
   "TRADE": {
     "BUY": "BUY",
     "SELL": "SELL"
+  },
+  "USER": {
+    "PORTFOLIO": ["CONSUMER", "DEFAULT", "INTX", "UNDEFINED"]
   }
 }

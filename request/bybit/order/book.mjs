@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API order book endpoint.
+ * Handle Bybit API order book depth endpoint.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/market/orderbook
  * @module request/bybit/order/book
  */
 
@@ -9,13 +10,18 @@ import validate from '../validate.mjs';
 import { orderBook as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/market/orderbook
- * @param {string} category
- * @param {string} symbol
- * @param {string} limit
- * @returns {Promise<object>} JSON data from response.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} symbol Symbol name is required by API.
+ * @param {string} category Product type.
+ * @param {string} limit Limit for data size per page (
+ *   for `linear` or `inverse` default is 25, maximum 500;
+ *   for `option` default is 1, maximum 25;
+ *   for `spot` default is 1, maximum 200
+ * ).
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderBook = (category, symbol, limit) => {
+const orderBook = async (symbol, category, limit) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { ORDER_BOOK },
@@ -32,10 +38,11 @@ const orderBook = (category, symbol, limit) => {
     data = validate(
       ORDER_BOOK,
       defaults,
-      { warnOptional: { category, symbol } },
+      { throwRequired: { symbol } },
+      { warnOptional: { category } },
       { warnRequired: { limit } },
     ),
-    json = get(ORDER_BOOK, schema, security, data);
+    json = await get(ORDER_BOOK, schema, security, data);
 
   return json;
 };

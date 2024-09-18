@@ -10,8 +10,10 @@ export const accountInformation = {
   additionalProperties: false,
   properties: {
     retCode: { type: 'number' },
+    retExtInfo: { type: 'object' },
     retMsg: { type: 'string' },
     result: { type: 'object' },
+    time: { type: 'number' },
   },
   required: ['result', 'retCode', 'retMsg'],
   type: 'object',

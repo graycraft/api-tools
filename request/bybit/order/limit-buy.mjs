@@ -1,8 +1,7 @@
 /**
- * Handle Bybit API place order limit buy endpoint.
+ * Handle Bybit API endpoint, with placing limit buy order.
  *
- * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
- * @see https://bybit-exchange.github.io/docs/v5/smp
+ * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @module request/bybit/order/limit-buy
  */
 
@@ -11,23 +10,30 @@ import validate from '../validate.mjs';
 import { orderLimitBuy as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * `qty` is in a base currency.
- * @see https://bybit-exchange.github.io/docs/v5/order/create-order
- * @param {string} qty
- * @param {string} price
- * @param {string} symbol
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#ordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#positionidx
+ * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @see https://bybit-exchange.github.io/docs/v5/enum#timeinforce
+ * @see https://bybit-exchange.github.io/docs/v5/enum#triggerby
+ * @see https://bybit-exchange.github.io/docs/v5/smp
+ * @param {string} qty Base currency quantity.
+ * @param {string} price Order price complying with min price and price precision from `MARKET_INFORMATION` endpoint.
+ * @param {string} [symbol] Symbol name.
  * @param {{
- *   closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
+ *   category?, closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
  *   reduceOnly?, slLimitPrice?, slOrderType?, slTriggerBy?, smpType?, stopLoss?, takeProfit?, timeInForce?,
  *   tpLimitPrice?, tpOrderType?, tpTriggerBy?, tpslMode?, triggerBy?, triggerDirection?, triggerPrice?
  * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderLimitBuy = (
+const orderLimitBuy = async (
   qty,
   price,
   symbol,
   {
+    category,
     closeOnTrigger,
     isLeverage,
     marketUnit,
@@ -57,7 +63,7 @@ const orderLimitBuy = (
     {
       ORDER,
       PATH: { ORDER_PLACE },
-      TRADE,
+      TRADE: { SIDE },
     } = config,
     {
       account,
@@ -67,14 +73,14 @@ const orderLimitBuy = (
     defaults = {
       category: account.category,
       orderType: ORDER.LIMIT,
-      side: TRADE.BUY,
+      side: SIDE.BUY,
       symbol: base + quote,
     },
     data = validate(
       ORDER_PLACE,
       defaults,
       { throwRequired: { price, qty } },
-      { warnOptional: { symbol } },
+      { warnOptional: { category, symbol } },
       {
         warnRequired: {
           closeOnTrigger,
@@ -103,7 +109,7 @@ const orderLimitBuy = (
         },
       },
     ),
-    json = post(ORDER_PLACE, schema, security, data);
+    json = await post(ORDER_PLACE, schema, security, data);
 
   return json;
 };

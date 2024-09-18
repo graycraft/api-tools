@@ -6,7 +6,7 @@
 
 import { throwRequired, warnOptional, warnRequired } from '../lib/output.mjs';
 
-const requestValidate = (path, isValidParams, defaults, ...options) => {
+const requestValidate = (path, isValid, defaults, ...options) => {
   const data = { ...defaults },
     {
       config: { PATH },
@@ -25,7 +25,7 @@ const requestValidate = (path, isValidParams, defaults, ...options) => {
         for (key in option[category]) {
           const value = option[category][key];
 
-          if (isValidParams({ [key]: value })) data[key] = value;
+          if (isValid({ [key]: value })) data[key] = value;
           else throwRequired(PATH, path, key);
         }
       }
@@ -34,7 +34,7 @@ const requestValidate = (path, isValidParams, defaults, ...options) => {
           const value = option[category][key];
 
           if (value) {
-            if (isValidParams({ [key]: value })) data[key] = value;
+            if (isValid({ [key]: value })) data[key] = value;
             else warnOptional(PATH, path, key, data[key]);
           }
         }
@@ -44,7 +44,7 @@ const requestValidate = (path, isValidParams, defaults, ...options) => {
           const value = option[category][key];
 
           if (value) {
-            if (isValidParams({ [key]: value })) data[key] = value;
+            if (isValid({ [key]: value })) data[key] = value;
             else warnRequired(PATH, path, key);
           }
         }

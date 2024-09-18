@@ -1,8 +1,67 @@
 {
-  "INTERNAL": "The service is unavailable",
-  "INVALID_ARGUMENT": [
-    "start and end argument is invalid - number of candles requested should be less than 350 "
-  ],
-  "OK": "OK",
-  "PERMISSION_DENIED": ["User does not have access to portfolio"]
+  "000": {
+    "BRACKET_LIMIT_PRICE_OUT_OF_BOUNDS": "",
+    "BRACKET_ORDER_NOT_SUPPORTED": "",
+    "COMMANDER_REJECTED_NEW_ORDER": "",
+    "END_TIME_TOO_FAR_IN_FUTURE": "",
+    "FOK_DISABLED": "",
+    "FOK_ONLY_ALLOWED_ON_LIMIT_ORDERS": "",
+    "FUTURES_AFTER_HOUR_INVALID_ORDER_TYPE": "",
+    "FUTURES_AFTER_HOUR_INVALID_TIME_IN_FORCE": "",
+    "GEOFENCING_RESTRICTION": "",
+    "IN_LIQUIDATION": "",
+    "INELIGIBLE_PAIR": "",
+    "INSUFFICIENT_FUND": "",
+    "INSUFFICIENT_FUNDS": "",
+    "INVALID_ATTACHED_STOP_LOSS_PRICE": "",
+    "INVALID_ATTACHED_STOP_LOSS_PRICE_OUT_OF_BOUNDS": "",
+    "INVALID_ATTACHED_STOP_LOSS_PRICE_PRECISION": "",
+    "INVALID_ATTACHED_TAKE_PROFIT_PRICE": "",
+    "INVALID_ATTACHED_TAKE_PROFIT_PRICE_OUT_OF_BOUNDS": "",
+    "INVALID_ATTACHED_TAKE_PROFIT_PRICE_PRECISION": "",
+    "INVALID_BRACKET_LIMIT_PRICE": "",
+    "INVALID_BRACKET_PRICES": "",
+    "INVALID_BRACKET_STOP_TRIGGER_PRICE": "",
+    "INVALID_FCM_TRADING_SESSION": "",
+    "INVALID_LEDGER_BALANCE": "",
+    "INVALID_LEVERAGE": "",
+    "INVALID_LIMIT_PRICE": "",
+    "INVALID_LIMIT_PRICE_POST_ONLY": "",
+    "INVALID_MARGIN_TYPE": "",
+    "INVALID_NO_LIQUIDITY": "",
+    "INVALID_PRICE_PRECISION": "",
+    "INVALID_PRODUCT_ID": "",
+    "INVALID_REQUEST": "",
+    "INVALID_SIDE": "",
+    "INVALID_SIZE_PRECISION": "",
+    "LIMIT_PRICE_TOO_FAR_FROM_MARKET": "",
+    "MISSING_MARKET_TRADE_DATA": "",
+    "OPEN_BRACKET_ORDERS": "",
+    "ORDER_ENTRY_DISABLED": "",
+    "QUOTE_SIZE_NOT_ALLOWED_FOR_BRACKET": "",
+    "POST_ONLY_NOT_ALLOWED_WITH_FOK": "",
+    "STOP_TRIGGER_PRICE_OUT_OF_BOUNDS": "",
+    "UBO_HIGH_LEVERAGE_QUANTITY_BREACHED": "",
+    "UNKNOWN_FAILURE_REASON": "",
+    "UNSUPPORTED_ORDER_CONFIGURATION": "",
+    "UNTRADABLE_PRODUCT": ""
+  },
+  "200": {
+    "OK": "OK"
+  },
+  "401": {},
+  "400": {
+    "INVALID_ARGUMENT": [
+      "Invalid account uuid",
+      "Invalid product_id",
+      "start and end argument is invalid - number of candles requested should be less than 350 "
+    ]
+  },
+  "403": {
+    "PERMISSION_DENIED": "User does not have access to portfolio"
+  },
+  "404": { "NOT_FOUND": "Could not find user's account information" },
+  "500": {
+    "INTERNAL": "The service is unavailable"
+  }
 }

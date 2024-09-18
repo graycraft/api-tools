@@ -1,22 +1,27 @@
 /**
  * Analyze a Coinbase Advanced API response by comparing its code and description.
  *
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/error-response
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/status-codes
  * @module response/coinbase/analyze
  */
 
-import statusExchange from './status.json' with { type: 'json' };
+import statuses from './status.json' with { type: 'json' };
 import { HTTP } from '../../lib/constants.mjs';
 
-const responseAnalyze = (response, statusHttp) => {
+const responseAnalyze = (response, http) => {
   const { STATUS } = HTTP,
-    code = response.error ?? 'OK',
-    message = response.message ?? 'OK',
-    description = statusExchange[code],
-    isCodeDescribed =
+    { json, status } = response,
+    ok = 'OK',
+    code = json.error ?? ok,
+    message = json.message ?? ok,
+    description = statuses[String(http)][code] ?? '',
+    isCodeKnown =
       description === message ||
-      (Boolean(description.some) && description.some((desc) => desc === message)),
-    isCodeKnown = Boolean(statusExchange[code]),
-    isSuccessful = code === 'OK' && statusHttp === STATUS.OK,
+      (description instanceof Array && description.some((desc) => desc === message)),
+    isCodeDescribed = Boolean(description),
+    isSuccessful = code === ok && status === STATUS.OK,
     report = {
       isCodeDescribed,
       isCodeKnown,

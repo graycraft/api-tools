@@ -4,15 +4,14 @@
  * @module response/coinbase/parse
  */
 
-//import filter from "./parse/filter.mjs";
+import filter from './parse/filter.mjs';
 import find from './parse/find.mjs';
 import map from './parse/map.mjs';
 import config from '../../configuration/coinbase.json' with { type: 'json' };
-import settings from '../../settings/coinbase.json' with { type: 'json' };
-import { dirObject } from '../../lib/output.mjs';
 import { obtainName } from '../../lib/utility.mjs';
+import settings from '../../settings/coinbase.json' with { type: 'json' };
 
-const responseParse = (json, status, path, data) => {
+const responseParse = (response, path, data) => {
   const {
       PATH,
       PATH: {
@@ -31,7 +30,7 @@ const responseParse = (json, status, path, data) => {
       currency: { base, quote },
       parse,
     } = settings;
-  let output = status;
+  let { json, statusText } = response;
 
   /**
    * @todo Refactor to `response/parse`.
@@ -87,16 +86,16 @@ const responseParse = (json, status, path, data) => {
     if (isFiltered || isFound || isMapped) {
       const parsed = [];
 
-      output += ' (';
+      statusText += ' (';
       if (isFiltered) parsed.push('filtered');
       if (isFound) parsed.push('found');
       if (isMapped) parsed.push('mapped');
-      output += parsed.join(', ') + ')';
+      statusText += parsed.join(', ') + ')';
     }
-  } else console.info(`Parse: "${obtainName(path, PATH)}" is not enabled is settings.`);
-  dirObject(output, json);
+    console.info(`Parsed endpoint "${obtainName(path, PATH)}" successfully.`);
+  } else console.info(`Parse: endpoint "${obtainName(path, PATH)}" is not enabled is settings.`);
 
-  return json;
+  return { json, statusText };
 };
 
 export default responseParse;

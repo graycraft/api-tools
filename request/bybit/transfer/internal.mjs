@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API transfer internal endpoint.
+ * Handle Bybit API endpoint, with internal transfer between different account types under the same UID.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/create-inter-transfer
  * @module request/bybit/transfer/internal
  */
 
@@ -10,13 +11,19 @@ import validate from '../validate.mjs';
 import { transferInternal as schema } from '../../../response/bybit/transfer/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/create-inter-transfer
- * @param {string} toAccountType
- * @param {string} amount
- * @param {string} coin
- * @returns {Promise<object>} JSON data from response.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
+ * @param {string} toAccountType To account type.
+ * @param {string} amount Currency amount to transfer.
+ * @param {string} [coin] Currency name.
+ * @param {{ fromAccountType?, transferId? }} rest
+ * @returns {Promise<Object>} JSON data from response.
  */
-const transferInternal = (toAccountType, amount, coin) => {
+const transferInternal = async (
+  toAccountType,
+  amount,
+  coin,
+  { fromAccountType, transferId } = {},
+) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { TRANSFER_INTERNAL },
@@ -35,9 +42,9 @@ const transferInternal = (toAccountType, amount, coin) => {
       TRANSFER_INTERNAL,
       defaults,
       { throwRequired: { amount, toAccountType } },
-      { warnOptional: { coin } },
+      { warnOptional: { coin, fromAccountType, transferId } },
     ),
-    json = post(TRANSFER_INTERNAL, schema, security, data);
+    json = await post(TRANSFER_INTERNAL, schema, security, data);
 
   return json;
 };

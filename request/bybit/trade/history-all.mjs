@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API trade history all endpoint.
+ * Handle Bybit API endpoint, with all trade history.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/order/execution
  * @module request/bybit/trade/history-all
  */
 
@@ -9,14 +10,16 @@ import validate from '../validate.mjs';
 import { tradeHistoryAll as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/execution
- * @param {string} side
- * @param {string} symbol
- * @param {string} limit
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#exectype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} [side] Not supported by the API, must be filtered while parsing.
+ * @param {string} [symbol] Symbol name.
+ * @param {string} [limit] Limit data per page (default is 50, maximum 100).
  * @param {{ baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const tradeHistoryAll = (
+const tradeHistoryAll = async (
   side,
   symbol,
   limit,
@@ -52,7 +55,7 @@ const tradeHistoryAll = (
         },
       },
     ),
-    json = get(TRADE_HISTORY_ALL, schema, security, data);
+    json = await get(TRADE_HISTORY_ALL, schema, security, data);
 
   return json;
 };

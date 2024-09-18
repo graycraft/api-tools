@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API deposit new sub endpoint.
+ * Handle Bybit API endpoint, with deposit address information of a sub account.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/sub-deposit-addr
  * @module request/bybit/new-sub
  */
 
@@ -9,14 +10,13 @@ import validate from '../validate.mjs';
 import { depositNewSub as schema } from '../../../response/bybit/deposit/schema.mjs';
 
 /**
- * Value of `chain` param must from `CURRENCY_ALL` endpoint must be used for `chainType`.
- * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/sub-deposit-addr
- * @param {string} subMemberId
- * @param {string} coin
- * @param {string} chainType
- * @returns {Promise<object>} JSON data from response.
+ * Custodial sub account deposit address cannot be obtained.
+ * @param {string} subMemberId Sub UID.
+ * @param {string} coin Currency name.
+ * @param {string} chainType Value of `chain` parameter from `CURRENCY_ALL` endpoint must be used for this.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const depositNewSub = (subMemberId, coin, chainType) => {
+const depositNewSub = async (subMemberId, coin, chainType) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { DEPOSIT_NEW_SUB },
@@ -34,7 +34,7 @@ const depositNewSub = (subMemberId, coin, chainType) => {
     data = validate(DEPOSIT_NEW_SUB, defaults, {
       warnOptional: { chainType, coin, subMemberId },
     }),
-    json = get(DEPOSIT_NEW_SUB, schema, security, data);
+    json = await get(DEPOSIT_NEW_SUB, schema, security, data);
 
   return json;
 };

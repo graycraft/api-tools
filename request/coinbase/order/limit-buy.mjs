@@ -12,7 +12,7 @@ import validateParams from '../../validate.mjs';
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
  */
-const orderMarketBuy = (qty, price, symbol, {} = {}) => {
+const orderLimitBuy = (qty, price, symbol, {} = {}) => {
   const { config, settings } = global.apiTools,
     {
       ORDER,
@@ -20,7 +20,7 @@ const orderMarketBuy = (qty, price, symbol, {} = {}) => {
       TRADE,
     } = config,
     {
-      authentication: { sign },
+      authentication: { security },
       currency: { base, quote },
     } = settings,
     defaults = {
@@ -43,7 +43,7 @@ const orderMarketBuy = (qty, price, symbol, {} = {}) => {
       { warnOptional: { symbol } },
     );
 
-  return coinbasePost(sign, ORDER_PLACE, data);
+  return coinbasePost(ORDER_PLACE, {}, security, data);
 };
 
-export default orderMarketBuy;
+export default orderLimitBuy;

@@ -1,7 +1,8 @@
 /**
- * Handle Bybit API deposit new master endpoint.
+ * Handle Bybit API endpoint, with new deposit address information of a master account.
  *
- * @module request/bybit/new-master
+ * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/master-deposit-addr
+ * @module request/bybit/deposit/new-master
  */
 
 import get from '../get.mjs';
@@ -9,11 +10,11 @@ import validate from '../validate.mjs';
 import { depositNewMaster as schema } from '../../../response/bybit/deposit/schema.mjs';
 
 /**
- * Value of `chain` param from `CURRENCY_ALL` endpoint must be used for `chainType`.
- * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/master-deposit-addr
- * @returns {Promise<object>} JSON data from response.
+ * @param {string} coin Currency name.
+ * @param {string} chainType Value of `chain` parameter from `CURRENCY_ALL` endpoint must be used for this.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const depositNewMaster = (coin, chainType) => {
+const depositNewMaster = async (coin, chainType) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { DEPOSIT_NEW_MASTER },
@@ -27,7 +28,7 @@ const depositNewMaster = (coin, chainType) => {
       coin: base,
     },
     data = validate(DEPOSIT_NEW_MASTER, defaults, { warnOptional: { coin, chainType } }),
-    json = get(DEPOSIT_NEW_MASTER, schema, security, data);
+    json = await get(DEPOSIT_NEW_MASTER, schema, security, data);
 
   return json;
 };
