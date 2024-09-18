@@ -1,6 +1,7 @@
 /**
  * Handle Bybit API key information endpoint.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/user/apikey-info
  * @module request/bybit/key/information
  */
 
@@ -8,10 +9,9 @@ import get from '../get.mjs';
 import { keyInformation as schema } from '../../../response/bybit/key/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/user/apikey-info
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const keyInformation = () => {
+const keyInformation = async () => {
   const { config, settings } = global.apiTools,
     {
       PATH: { KEY_INFORMATION },
@@ -19,7 +19,7 @@ const keyInformation = () => {
     {
       authentication: { security },
     } = settings,
-    json = get(KEY_INFORMATION, schema, security);
+    json = await get(KEY_INFORMATION, schema, security);
 
   return json;
 };

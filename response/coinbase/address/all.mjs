@@ -13,6 +13,6 @@ const {
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  */
-const currencyAll = () => bybitAggregate(ADDRESS_ALL, '2024-08-17T15:29:51.146Z.json');
+const addressAll = () => bybitAggregate(ADDRESS_ALL, '2024-08-17T15:29:51.146Z.json');
 
-export default currencyAll;
+export default addressAll;

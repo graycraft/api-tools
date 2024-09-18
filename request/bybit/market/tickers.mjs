@@ -1,6 +1,8 @@
 /**
- * Handle Bybit API market tickers endpoint.
+ * Handle Bybit API market tickers endpoint, with latest price snapshot,
+ * best bid/ask price and trading volume in the last 24 hours.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/market/tickers
  * @module request/bybit/market/tickers
  */
 
@@ -9,28 +11,32 @@ import validate from '../validate.mjs';
 import { marketTickers as schema } from '../../../response/bybit/market/schema.mjs';
 
 /**
- * Note: limit is not available for this endpoint.
- * @see https://bybit-exchange.github.io/docs/v5/market/tickers
- * @param {string} symbol
+ * Parameter `limit` is not available for this endpoint.
+ * For category `option`, `baseCoin` and `symbol` are required.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} symbol Symbol name.
  * @param {{ baseCoin?, category?, expDate? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const marketTickers = (symbol, { baseCoin, category, expDate } = {}) => {
+const marketTickers = async (symbol, { baseCoin, category, expDate } = {}) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { MARKET_TICKERS },
     } = config,
-    { account } = settings,
+    { account, currency } = settings,
+    { base, quote } = currency,
     defaults = {
       category: account.category,
+      symbol: base + quote,
     },
     data = validate(
       MARKET_TICKERS,
       defaults,
-      { warnOptional: { category } },
-      { warnRequired: { baseCoin, expDate, symbol } },
+      { warnOptional: { category, symbol } },
+      { warnRequired: { baseCoin, expDate } },
     ),
-    json = get(MARKET_TICKERS, schema, null, data);
+    json = await get(MARKET_TICKERS, schema, null, data);
 
   return json;
 };

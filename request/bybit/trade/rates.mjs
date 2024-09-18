@@ -1,6 +1,7 @@
 /**
  * Handle Bybit API trade fee rates endpoint.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
  * @module request/bybit/trade/rates
  */
 
@@ -9,12 +10,13 @@ import validate from '../validate.mjs';
 import { tradeRates as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
- * @param {string} symbol
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} symbol Symbol name.
  * @param {{ baseCoin?, category? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const tradeRates = (symbol, { baseCoin, category } = {}) => {
+const tradeRates = async (symbol, { baseCoin, category } = {}) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { TRADE_RATES },
@@ -32,7 +34,7 @@ const tradeRates = (symbol, { baseCoin, category } = {}) => {
       { warnOptional: { category } },
       { warnRequired: { baseCoin, symbol } },
     ),
-    json = get(TRADE_RATES, schema, security, data);
+    json = await get(TRADE_RATES, schema, security, data);
 
   return json;
 };

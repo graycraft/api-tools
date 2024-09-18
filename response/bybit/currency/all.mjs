@@ -4,7 +4,7 @@
  * @module response/bybit/currency/all
  */
 
-import bybitAggregate from '../aggregate.mjs';
+import aggregate from '../aggregate.mjs';
 import { fileNameNewest } from '../../../lib/file_system.mjs';
 import { obtainName } from '../../../lib/utility.mjs';
 
@@ -19,7 +19,7 @@ const currencyAll = () => {
     path = obtainName(CURRENCY_ALL, config.PATH).toLowerCase(),
     file = fileNameNewest('response/bybit/snapshot/' + path);
 
-  bybitAggregate(CURRENCY_ALL, file.name);
+  aggregate(CURRENCY_ALL, file.name);
 };
 
 export default currencyAll;

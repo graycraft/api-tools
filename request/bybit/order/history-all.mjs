@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API history all endpoint.
+ * Handle Bybit API all order history endpoint.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/order/order-list
  * @module request/bybit/order/history-all
  */
 
@@ -9,16 +10,21 @@ import validate from '../validate.mjs';
 import { orderHistoryAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/order-list
- * @param {string} symbol
- * @param {string} limit
+ * Because order creation and cancellation is asynchronous, the data returned from this endpoint may delay.
+ * To get real-time order information, it is better to request `ORDER_ALL` endpoint or rely on the web socket stream.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#orderstatus
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} [symbol] Symbol name.
+ * @param {string} [limit] Limit data per page (default is 20, maximum 50)
  * @param {{
- *   baseCoin?, category?, cursor?, endTime?, openOnly?, orderFilter?, orderId?, orderLinkId?, orderStatus?,
- *   settleCoin?, startTime?
+ *   baseCoin?, category?, cursor?, endTime?, openOnly?, orderFilter?, orderId?,
+ *   orderLinkId?, orderStatus?, settleCoin?, startTime?
  * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const orderHistoryAll = (
+const orderHistoryAll = async (
   symbol,
   limit,
   {
@@ -66,7 +72,7 @@ const orderHistoryAll = (
         },
       },
     ),
-    json = get(ORDER_HISTORY_ALL, schema, security, data);
+    json = await get(ORDER_HISTORY_ALL, schema, security, data);
 
   return json;
 };

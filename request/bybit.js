@@ -16,6 +16,7 @@
  */
 
 import config from '../configuration/bybit.json' with { type: 'json' };
+import { NUMBER } from '../lib/constants.mjs';
 import { optional } from '../lib/template.mjs';
 import { parseArguments } from '../lib/utility.mjs';
 import settings from '../settings/bybit.json' with { type: 'json' };
@@ -25,6 +26,8 @@ import balanceAll from './bybit/balance/all.mjs';
 import balanceInformation from './bybit/balance/information.mjs';
 import balanceOne from './bybit/balance/one.mjs';
 import currencyAll from './bybit/currency/all.mjs';
+import currencyNetworkAll from './bybit/currency/network-all.mjs';
+import currencyNetworkOne from './bybit/currency/network-one.mjs';
 import currencyOne from './bybit/currency/one.mjs';
 import depositAll from './bybit/deposit/all.mjs';
 import depositNewMaster from './bybit/deposit/new-master.mjs';
@@ -34,8 +37,6 @@ import keyInformation from './bybit/key/information.mjs';
 import marketHistory from './bybit/market/history.mjs';
 import marketInformation from './bybit/market/information.mjs';
 import marketTickers from './bybit/market/tickers.mjs';
-import networkAll from './bybit/network/all.mjs';
-import networkOne from './bybit/network/one.mjs';
 import orderAll from './bybit/order/all.mjs';
 import orderBook from './bybit/order/book.mjs';
 import orderCancelAll from './bybit/order/cancel-all.mjs';
@@ -59,12 +60,17 @@ import withdrawOne from './bybit/withdraw/one.mjs';
 
 const { ACCOUNT, TRADE } = config,
   {
-    currency: { base, network },
+    account: { SPOT, UNIFIED },
+    address: { cursor, deposit, withdraw },
   } = settings,
   requestBybit = () => {
-    const { handler, options, params } = parseArguments();
+    const { handler, options, params, scenario } = parseArguments(),
+      {
+        DATE: { DAY },
+      } = NUMBER,
+      timestamp = Date.now();
 
-    global.apiTools = { config, options, settings };
+    global.apiTools = { config, options, output: {}, settings, timestamp };
     if (handler) {
       switch (handler) {
         case 'account':
@@ -79,9 +85,15 @@ const { ACCOUNT, TRADE } = config,
         case 'balanceInformation':
           return balanceInformation(...params);
         case 'balance':
+        case 'balanceOne':
           return balanceOne(...params);
         case 'currencyAll':
           return currencyAll(...params);
+        case 'currencyNetworkAll':
+          return currencyNetworkAll(...params);
+        case 'currencyNetwork':
+        case 'currencyNetworkOne':
+          return currencyNetworkOne(...params);
         case 'currency':
         case 'currencyOne':
           return currencyOne(...params);
@@ -107,11 +119,6 @@ const { ACCOUNT, TRADE } = config,
           return marketInformation(...params);
         case 'marketTickers':
           return marketTickers(...params);
-        case 'networkAll':
-          return networkAll(...params);
-        case 'network':
-        case 'networkOne':
-          return networkOne(...params);
         case 'orderAll':
           return orderAll(...params);
         case 'orderBook':
@@ -164,33 +171,105 @@ const { ACCOUNT, TRADE } = config,
           throw new Error(requestBybit.name + ': ' + optional(handler));
       }
     } else {
-      Promise.resolve()
-        .then((response) => accountWallets())
-        .then((response) => depositNewSub(base, network, response.result.accounts[0].uid))
-        .then((response) => depositNewMaster())
-        .then((response) => accountBalanceWallet())
-        .then((response) => accountBalanceWallet(base))
-        .then((response) => accountInfo(ACCOUNT.WALLET[0]))
-        .then((response) => accountInfo(ACCOUNT.WALLET[1]))
-        .then((response) => accountInfo(ACCOUNT.WALLET[2]))
-        .then((response) => accountInfo(ACCOUNT.WALLET[3]))
-        .then((response) => accountInfo(ACCOUNT.WALLET[4]))
-        .then((response) => currencyAll())
-        .then((response) => currencyOne())
-        .then((response) => marketHistory())
-        .then((response) => marketInformation())
-        .then((response) => marketTickers())
-        .then((response) => orderBook())
-        .then((response) => orderLimitSell('0.0002', '10000', TRADE.BUY))
-        .then((response) => orderAll())
-        .then((response) => orderOne(response.result.list[0]?.orderId))
-        .then((response) => orderCancelOne(response.result.list[0]?.orderId))
-        .then((response) => orderPlaceMarket('1', TRADE.BUY))
-        .then((response) => tradeHistoryOne(response.result.list[0]?.orderId))
-        .then((response) => orderPlaceMarket('1', TRADE.SELL))
-        .then((response) => tradeHistoryOne(response.result.list[0]?.orderId))
-        .then((response) => orderCancelAll())
-        .catch(console.log.bind(console));
+      switch (scenario) {
+        case 'orders':
+          Promise.resolve()
+            .then((response) => orderAll('NOTUSDT', 'Buy', '2'))
+            .then((response) => orderBook('NOTUSDT', 'inverse', '2'))
+            .then((response) => orderHistoryAll('NOTUSDT', '2'))
+            .then((response) => orderHistoryOne(response.result.list[0]?.orderId))
+            .then((response) => orderLimitBuy('100', '0.002'))
+            .then((response) => orderOne(response.result.orderId))
+            .then((response) => orderLimitSell('100', '2'))
+            .then((response) => orderCancelOne(response.result.orderId))
+            .then((response) => orderMarketBuy('1'))
+            .then((response) => orderMarketSell('1'))
+            .then((response) => orderCancelAll('NOTUSDT'))
+            .catch(console.log.bind(console));
+          break;
+        default:
+          Promise.resolve()
+            .then((response) => accountInformation())
+            .then((response) => accountWallets([SPOT, UNIFIED].join()))
+            .then((response) => balanceAll('UNIFIED', UNIFIED, { coin: 'SHIB', withBonus: '1' }))
+            .then((response) => balanceInformation('UNIFIED', 'USDT'))
+            .then((response) => balanceOne('USDT', 'FUND', SPOT, { withBonus: '1' }))
+            .then((response) => currencyAll())
+            .then((response) => currencyNetworkAll())
+            .then((response) => currencyNetworkOne('AVAX', 'CAVAX'))
+            .then((response) => currencyOne('AVAX'))
+            .then((response) =>
+              depositAll('USDC', {
+                cursor,
+                endTime: timestamp,
+                limit: 1,
+                startTime: timestamp - DAY * 30,
+              }),
+            )
+            .then((response) => depositNewMaster('USDC', 'CAVAX'))
+            .then((response) => depositNewSub('219021948', 'USDC', 'CAVAX'))
+            .then((response) =>
+              depositOne(deposit, {
+                coin: 'USDC',
+                cursor,
+                endTime: timestamp,
+                limit: 1,
+                startTime: timestamp - DAY * 30,
+              }),
+            )
+            .then((response) => keyInformation())
+            .then((response) =>
+              marketHistory('SHIBUSDT', '2', {
+                baseCoin: 'SHIB',
+                category: 'option',
+                optionType: 'Call',
+              }),
+            )
+            .then((response) =>
+              marketInformation('linear', {
+                baseCoin: 'BTC',
+                cursor: 'first%3DBTC-04OCT24%26last%3DBTC-20SEP24',
+                limit: '2',
+                status: 'Trading',
+                symbol: 'BTC-25OCT24',
+              }),
+            )
+            .then((response) =>
+              marketTickers('BTC-25OCT24', {
+                baseCoin: 'BTC',
+                category: 'option',
+                expDate: '27DEC24',
+              }),
+            )
+            .then((response) => orderAll('NOTUSDT', 'Buy', '2'))
+            .then((response) => orderBook('NOTUSDT', 'inverse', '2'))
+            .then((response) => orderHistoryAll('NOTUSDT', '2'))
+            .then((response) =>
+              orderHistoryOne(response.result.list[0]?.orderId ?? '0000000000000000000'),
+            )
+            .then((response) => orderMarketBuy('1000'))
+            .then((response) => orderMarketSell('100'))
+            .then((response) => orderOne(response.result.orderId))
+            .then((response) => orderLimitBuy('100', '0.002'))
+            .then((response) => orderLimitSell('100', '2'))
+            .then((response) => orderCancelOne(response.result.orderId))
+            .then((response) => orderCancelAll('NOTUSDT'))
+            .then((response) => tradeHistoryAll())
+            .then((response) => tradeHistoryOne(response.result.list[0]?.orderId))
+            .then((response) => tradeRates('NOTUSDT'))
+            .then((response) => transferAll('FUND'))
+            .then((response) => transferInternal('FUND', '1'))
+            .then((response) => transferOne('FUND', 'NOT'))
+            .then((response) => withdrawAll())
+            .then((response) =>
+              withdrawOne(
+                response.result.rows[0]?.txID ??
+                  '0x0000000000000000000000000000000000000000000000000000000000000000',
+              ),
+            )
+            .then((response) => withdrawNew('1', 'NOT'))
+            .catch(console.log.bind(console));
+      }
     }
   };
 

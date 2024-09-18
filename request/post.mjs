@@ -6,7 +6,7 @@
 
 import { HTTP } from '../lib/constants.mjs';
 import { fetchData } from '../lib/fetch.mjs';
-import { dirObject } from '../lib/output.mjs';
+import analyze from '../response/analyze.mjs';
 import validate from '../response/validate.mjs';
 
 /**
@@ -15,34 +15,30 @@ import validate from '../response/validate.mjs';
  * @param {object} headers Headers to send with request.
  * @param {object} schema JSON-schema to validate response with.
  * @param {{
- *   analyze: function,
  *   parse: function,
  *   snapshot: function
  * }} utilities Utility functions to process response data.
  * @param {object} [data] Data to send with request.
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const requestPost = async (
-  url,
-  template,
-  headers,
-  schema,
-  { analyze, parse, snapshot },
-  data = {},
-) => {
+const requestPost = async (url, template, headers, schema, { parse, snapshot }, data = {}) => {
   const {
     METHOD: { POST },
   } = HTTP;
   let response = await fetchData(POST, url, data, headers),
     { json, statusText } = response,
-    { isCodeDescribed, isCodeKnown, isSuccessful } = analyze(response),
+    { isCodeDescribed, isCodeKnown, isSuccessful } = analyze(response, 0),
     isValid = validate(json, schema);
 
+  global.apiTools.output[statusText] = {
+    headers: response.headers,
+    data: json,
+  };
   if (isSuccessful) {
     if (isValid) {
       const parsed = parse(response, template, data);
 
-      snapshot(json, template);
+      snapshot(global.apiTools.output, template);
       json = parsed.json;
       statusText = parsed.statusText;
     } else {
@@ -58,10 +54,6 @@ const requestPost = async (
     console.info('Snapshot:', 'response is not successful.');
     console.info('Parse:', 'response is not successful.');
   }
-  dirObject(statusText, {
-    headers: response.headers,
-    data: json,
-  });
 
   return json;
 };

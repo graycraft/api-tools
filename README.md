@@ -39,9 +39,9 @@ $ npm -v
 
 ## Setup
 
-### Clone
+### Git
 
-Clone Git repository:
+Clone the Git repository:
 
 ```bash
 $ git clone <gh|https|ssh>graycraft/api-tools.git
@@ -55,7 +55,7 @@ Use appropriate Node.js version:
 $ nvm use
 ```
 
-### Install
+### NPM
 
 Install modules for usage:
 
@@ -104,7 +104,7 @@ To run a scenario related to an API request, change directory:
 $ cd request
 ```
 
-Run scenario for **all requests**:
+Run scenario for **all requests** of a **specific API**:
 
 ```bash
 $ node bybit
@@ -126,9 +126,9 @@ Run scenario for **all responses** of **all APIs** (option `--aggr[egate]` is re
 $ node response --aggr
 $ node response --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_all".
-  Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/network_all".
+  Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_network_all".
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/coinbase/currency_all".
-  Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/coinbase/network_all".
+  Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/coinbase/currency_network_all".
 ```
 
 To run a scenario related to an API response, change directory:
@@ -137,13 +137,12 @@ To run a scenario related to an API response, change directory:
 $ cd response
 ```
 
-Run scenario for **all responses** (option `--aggr[egate]` is required if not enabled in settings):
+Run scenario for **all responses** of a **specific API**:
 
 ```bash
-$ node response --aggr
-$ node response --aggregate
+$ node bybit
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_all".
-  Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/network_all".
+  Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_network_all".
 ```
 
 Run **single response** aggregation (option `--aggr[egate]` is required if not enabled in settings):

@@ -5,12 +5,10 @@
  */
 
 import config from '../configuration/coinbase.json' with { type: 'json' };
+import { NUMBER } from '../lib/constants.mjs';
 import { optional } from '../lib/template.mjs';
 import { parseArguments } from '../lib/utility.mjs';
 import settings from '../settings/coinbase.json' with { type: 'json' };
-import accountAll from './coinbase/account/all.mjs';
-import accountBalance from './coinbase/account/balance.mjs';
-import accountWallets from './coinbase/account/wallets.mjs';
 import addressAll from './coinbase/address/all.mjs';
 import currencyAll from './coinbase/currency/all.mjs';
 import depositNew from './coinbase/deposit/new.mjs';
@@ -23,31 +21,31 @@ import orderLimitBuy from './coinbase/order/limit-buy.mjs';
 import orderLimitSell from './coinbase/order/limit-sell.mjs';
 import orderMarketBuy from './coinbase/order/market-buy.mjs';
 import orderOne from './coinbase/order/one.mjs';
+import userAccountAll from './coinbase/user/account-all.mjs';
+import userAccountOne from './coinbase/user/account-one.mjs';
+import userPortfolioAll from './coinbase/user/portfolio-all.mjs';
+import userPortfolioOne from './coinbase/user/portfolio-one.mjs';
 
 const { ACCOUNT, TRADE } = config,
   {
     currency: { base, network },
   } = settings,
   requestCoinbase = () => {
-    const { handler, params } = parseArguments();
+    const { handler, options, params } = parseArguments(),
+      {
+        DATE: { DAY },
+      } = NUMBER,
+      timestamp = Date.now();
 
-    global.apiTools = { config, settings };
+    global.apiTools = { config, options, output: {}, settings, timestamp };
     if (handler) {
       switch (handler) {
-        case 'accountAll':
-          return accountAll(...params);
-        case 'accountBalance':
-          return accountBalance(...params);
-        case 'accountWallets':
-          return accountWallets(...params);
         case 'addressAll':
           return addressAll(...params);
         case 'currencyAll':
           return currencyAll(...params);
         case 'depositNew':
           return depositNew(...params);
-        case 'level2':
-          return level2(...params);
         case 'marketHistory':
           return marketHistory(...params);
         case 'market':
@@ -72,6 +70,16 @@ const { ACCOUNT, TRADE } = config,
         case 'order':
         case 'orderOne':
           return orderOne(...params);
+        case 'userAccountAll':
+          return userAccountAll(...params);
+        case 'userAccount':
+        case 'userAccountOne':
+          return userAccountOne(...params);
+        case 'userPortfolioAll':
+          return userPortfolioAll(...params);
+        case 'userPortfolio':
+        case 'userPortfolioOne':
+          return userPortfolioOne(...params);
         default:
           throw new Error(requestCoinbase.name + ': ' + optional(handler));
       }

@@ -1,6 +1,7 @@
 /**
- * Handle Bybit API currency all endpoint.
+ * Handle Bybit API all currencies endpoint.
  *
+ * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  * @module request/bybit/currency/all
  */
 
@@ -8,10 +9,9 @@ import get from '../get.mjs';
 import { currencyAll as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
-const currencyAll = () => {
+const currencyAll = async () => {
   const { config, settings } = global.apiTools,
     {
       PATH: { CURRENCY_ALL },
@@ -19,7 +19,7 @@ const currencyAll = () => {
     {
       authentication: { security },
     } = settings,
-    json = get(CURRENCY_ALL, schema, security);
+    json = await get(CURRENCY_ALL, schema, security);
 
   return json;
 };

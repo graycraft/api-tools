@@ -1,7 +1,7 @@
 /**
  * Test API response by validating the structure of an API response against a JSON-schema.
  *
- * @module request/validate
+ * @module response/validate
  * @see https://ajv.js.org/guide/schema-language.html#draft-2019-09-and-draft-2020-12
  */
 

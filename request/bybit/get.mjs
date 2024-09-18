@@ -7,12 +7,12 @@
  * @module request/bybit/get
  */
 
-import sign from './sign.mjs';
+import { bybitKey, bybitSign } from './sign.mjs';
 import get from '../get.mjs';
 import { HTTP } from '../../lib/constants.mjs';
-import { componentsGet } from '../../lib/fetch.mjs';
-import { infoPath } from '../../lib/output.mjs';
-import analyze from '../../response/bybit/analyze.mjs';
+import { endpointGet } from '../../lib/fetch.mjs';
+import { dirObject } from '../../lib/output.mjs';
+import { obtainName } from '../../lib/utility.mjs';
 import parse from '../../response/bybit/parse.mjs';
 import snapshot from '../../response/bybit/snapshot.mjs';
 
@@ -21,34 +21,37 @@ import snapshot from '../../response/bybit/snapshot.mjs';
  * @param {object} schema JSON-schema to validate response with.
  * @param {"HMAC" | "RSA" | null} [security] Authentication signature security.
  * @param {object} [data] Data to send with request.
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<Object>} JSON data from response.
  */
 const bybitGet = async (template, schema, security, data = {}) => {
-  const {
+  const { config, settings } = global.apiTools,
+    {
       METHOD: { GET },
     } = HTTP,
-    { config, settings } = global.apiTools,
     { PATH } = config,
-    { authentication } = settings,
-    { delay } = authentication,
-    { key, query, timestamp, url } = componentsGet(template, data),
+    {
+      authentication: { delay },
+    } = settings,
+    { query, url } = endpointGet(template, data),
+    { key, timestamp } = bybitKey(),
     payload = timestamp + key + delay + query.slice(1);
 
-  infoPath(template, PATH, url);
+  global.apiTools.output = { [obtainName(template, PATH)]: url };
 
-  const headers = sign(GET, security, key, timestamp, payload, data),
-    json = get(
+  const headers = bybitSign(GET, security, key, payload, data),
+    json = await get(
       url,
       template,
       headers,
       schema,
       {
-        analyze,
         parse,
         snapshot,
       },
       data,
     );
+
+  dirObject('JSON', global.apiTools.output);
 
   return json;
 };

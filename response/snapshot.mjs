@@ -1,5 +1,5 @@
 /**
- * Snapshot an API response to a file with current ISO timestamp.
+ * Snapshot an API response to a file with current UTC ISO timestamp.
  *
  * @module response/snapshot
  */
@@ -27,7 +27,9 @@ const responseSnapshot = (json, path, target) => {
 
       nodeFs.mkdirSync(filePath, { recursive: true });
       nodeFs.writeFileSync(filePathFull, fileData);
-      console.info(`Snapped "${fileName}" to "${path2}"`);
+      console.info(`Snapped "${fileName}" to "${path2}".`);
+
+      return { fileData, fileName };
     } else console.info(`Snapshot: endpoint "${name}" is not enabled is settings.`);
   } else console.info(`Snapshot: not enabled is settings.`);
 };

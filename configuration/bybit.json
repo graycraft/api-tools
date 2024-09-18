@@ -1,18 +1,39 @@
 {
   "ACCOUNT": {
-    "CATEGORY": ["linear", "inverse", "option", "spot"],
+    "CATEGORY": ["inverse", "linear", "option", "spot"],
     "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
-  },
-  "CURRENCY": {
-    "BASE": ["BTC", "ETH", "KCS", "SPELL", "USDC", "USDT"],
-    "NETWORK": ["BTC", "CAVAX"],
-    "QUOTE": ["USDC", "USDT"]
   },
   "ENCODING": "hex",
   "HOSTNAME": "api.bybit.com",
+  "OPTION": ["Call", "Put"],
   "ORDER": {
     "LIMIT": "Limit",
-    "MARKET": "Market"
+    "MARKET": "Market",
+    "STOP": [
+      "BidirectionalTpslOrder",
+      "MmRateClose",
+      "OcoOrder",
+      "Order",
+      "PartialStopLoss",
+      "PartialTakeProfit",
+      "Stop",
+      "StopLoss",
+      "StopOrder",
+      "TakeProfit",
+      "TrailingStop",
+      "tpslOrder"
+    ],
+    "STATUS": [
+      "Cancelled",
+      "Deactivated",
+      "Filled",
+      "New",
+      "PartiallyFilled",
+      "PartiallyFilledCanceled",
+      "Rejected",
+      "Triggered",
+      "Untriggered"
+    ]
   },
   "PATH": {
     "ACCOUNT_INFORMATION": "account/info",
@@ -21,6 +42,8 @@
     "BALANCE_INFORMATION": "account/wallet-balance",
     "BALANCE_ONE": "asset/transfer/query-account-coins-balance?coin",
     "CURRENCY_ALL": "asset/coin/query-info",
+    "CURRENCY_NETWORK_ALL": "asset/coin/query-info?chain",
+    "CURRENCY_NETWORK_ONE": "asset/coin/query-info?chain&coin",
     "CURRENCY_ONE": "asset/coin/query-info?coin",
     "DEPOSIT_ALL": "asset/deposit/query-record",
     "DEPOSIT_NEW_MASTER": "asset/deposit/query-address",
@@ -30,8 +53,6 @@
     "MARKET_HISTORY": "market/recent-trade",
     "MARKET_INFORMATION": "market/instruments-info",
     "MARKET_TICKERS": "market/tickers",
-    "NETWORK_ALL": "asset/coin/query-info",
-    "NETWORK_ONE": "asset/coin/query-info?chain",
     "ORDER_ALL": "order/realtime",
     "ORDER_BOOK": "market/orderbook",
     "ORDER_CANCEL_ALL": "order/cancel-all",
@@ -52,7 +73,21 @@
   },
   "PREFIX": "/v5/",
   "TRADE": {
-    "BUY": "Buy",
-    "SELL": "Sell"
+    "EXEC": [
+      "UNKNOWN",
+      "AdlTrade",
+      "BlockTrade",
+      "BustTrade",
+      "Delivery",
+      "Funding",
+      "MovePosition",
+      "Settle",
+      "Trade"
+    ],
+    "SIDE": {
+      "BUY": "Buy",
+      "SELL": "Sell"
+    },
+    "STATUS": ["Closed", "Delivering", "PreLaunch", "Trading"]
   }
 }
