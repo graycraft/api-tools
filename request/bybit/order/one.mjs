@@ -18,7 +18,7 @@ import { orderOne as schema } from '../../../response/bybit/order/schema.mjs';
  * @param {{
  *   baseCoin?, category?, cursor?, limit?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, side?, symbol?
  * }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const orderOne = async (
   orderId,
@@ -43,30 +43,26 @@ const orderOne = async (
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      ORDER_ONE,
-      defaults,
-      { throwRequired: { orderId } },
-      { warnOptional: { category, symbol } },
-      {
-        warnRequired: {
-          baseCoin,
-          category,
-          cursor,
-          limit,
-          openOnly,
-          orderFilter,
-          orderId,
-          orderLinkId,
-          settleCoin,
-          side,
-          symbol,
-        },
+    data = validate(ORDER_ONE, {
+      defaults: {
+        category: account.category,
       },
-    ),
+      optional: { category, symbol },
+      required: {
+        baseCoin,
+        category,
+        cursor,
+        limit,
+        openOnly,
+        orderFilter,
+        orderId,
+        orderLinkId,
+        settleCoin,
+        side,
+        symbol,
+      },
+      throw: { orderId },
+    }),
     json = await get(ORDER_ONE, schema, security, data);
 
   return json;

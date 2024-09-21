@@ -16,7 +16,7 @@ import { AUTH } from '../../lib/constants.mjs';
 import settings from '../../settings/coinbase.json' with { type: 'json' };
 
 /**
- * @returns {Promise<Object>}
+ * @returns {Promise<object>}
  */
 const coinbaseUnsubscribe = async (data, socket) => {
   const { timestamp } = global.apiTools,

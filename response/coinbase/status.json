@@ -1,5 +1,5 @@
 {
-  "000": {
+  "_": {
     "BRACKET_LIMIT_PRICE_OUT_OF_BOUNDS": "",
     "BRACKET_ORDER_NOT_SUPPORTED": "",
     "COMMANDER_REJECTED_NEW_ORDER": "",
@@ -46,22 +46,37 @@
     "UNSUPPORTED_ORDER_CONFIGURATION": "",
     "UNTRADABLE_PRODUCT": ""
   },
-  "200": {
-    "OK": "OK"
-  },
-  "401": {},
-  "400": {
+  "BAD_REQUEST": {
     "INVALID_ARGUMENT": [
       "Invalid account uuid",
       "Invalid product_id",
       "start and end argument is invalid - number of candles requested should be less than 350 "
-    ]
+    ],
+    "unknown": "parsing field \"product_type\": \"[object Object]\" is not a valid value"
   },
-  "403": {
+  "CREATED": {
+    "OK": "OK"
+  },
+  "FORBIDDEN": {
     "PERMISSION_DENIED": "User does not have access to portfolio"
   },
-  "404": { "NOT_FOUND": "Could not find user's account information" },
-  "500": {
+  "INTERNAL_SERVER_ERROR": {
     "INTERNAL": "The service is unavailable"
-  }
+  },
+  "NOT_FOUND": {
+    "NOT_FOUND": [
+      "Could not find user's account information",
+      "ProductID \"${product_id}\" could not be found."
+    ]
+  },
+  "NOT_IMPLEMENTED": {
+    "unknown": [
+      "Method Not Allowed",
+      "proto: syntax error (line 1:14): unexpected token \"${order_ids}\""
+    ]
+  },
+  "OK": {
+    "OK": "OK"
+  },
+  "UNAUTHORIZED": {}
 }

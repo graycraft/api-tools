@@ -9,7 +9,7 @@ import get from '../get.mjs';
 import { accountInformation as schema } from '../../../response/bybit/account/schema.mjs';
 
 /**
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const accountInformation = async () => {
   const { config, settings } = global.apiTools,

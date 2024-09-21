@@ -11,7 +11,7 @@ import { withdrawAll as schema } from '../../../response/bybit/withdraw/schema.m
 
 /**
  * @param {{ coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const withdrawAll = async ({
   coin,
@@ -30,9 +30,8 @@ const withdrawAll = async ({
     {
       authentication: { security },
     } = settings,
-    defaults = {},
-    data = validate(WITHDRAW_ALL, defaults, {
-      warnRequired: { coin, cursor, endTime, limit, startTime, txID, withdrawID, withdrawType },
+    data = validate(WITHDRAW_ALL, {
+      required: { coin, cursor, endTime, limit, startTime, txID, withdrawID, withdrawType },
     }),
     json = await get(WITHDRAW_ALL, schema, security, data);
 

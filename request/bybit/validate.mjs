@@ -4,23 +4,27 @@
  * @module request/bybit/validate
  */
 
-import requestValidate from '../validate.mjs';
+import { hasSome, requestValidate } from '../validate.mjs';
 import { withinRange } from '../../lib/boolean.mjs';
 import { NUMBER, REGEXP } from '../../lib/constants.mjs';
 import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
-const bybitValidate = (path, defaults, ...options) => {
-  const data = requestValidate(path, isValid, defaults, ...options);
+/**
+ * @param {string} path
+ * @param {{
+ *   defaults?: { [key: string]: string },
+ *   optional?: { [key: string]: string },
+ *   required?: { [key: string]: string },
+ *   throw?: { [key: string]: string },
+ * }} options
+ * @returns
+ */
+const bybitValidate = (path, options) => requestValidate(path, isValid, options);
 
-  return data;
-};
-/** @todo */
-const hasSome = (path, defaults, ...options) => {
-  const data = requestValidate(path, isValid, defaults, ...options);
-
-  return data;
-};
-
+/**
+ * @param {{ [key: string]: value }} param
+ * @returns {boolean}
+ */
 const isValid = (param) => {
   const { EVM_TXID, INTEGER, UUID } = REGEXP,
     { config } = global.apiTools,
@@ -41,28 +45,28 @@ const isValid = (param) => {
     case 'accountType':
     case 'fromAccountType':
     case 'toAccountType':
-      return ACCOUNT.WALLET.some((item) => item === value);
+      return hasSome(ACCOUNT.WALLET, value);
     case 'amount':
       return INTEGER.test(value);
     case 'baseCoin':
-      return currencyAll.some((item) => item === value);
-    case 'category':
-      return ACCOUNT.CATEGORY.some((item) => item === value);
-    case 'chain':
-      return networkAll.some((item) => item.chain === value);
-    case 'chainType':
-      return networkAll.some((item) => item.chainType === value);
-    case 'settleCoin':
     case 'coin':
-      return currencyAll.some((item) => item === value);
+      return hasSome(currencyAll, value);
+    case 'category':
+      return hasSome(ACCOUNT.CATEGORY, value);
+    case 'chain':
+      return hasSome(networkAll, value, 'chain');
+    case 'chainType':
+      return hasSome(networkAll, value, 'chainType');
+    case 'settleCoin':
     case 'endTime':
       return withinDays(1, value, 31);
     case 'execType':
-      return TRADE.EXEC.some((item) => item === value);
+      return hasSome(TRADE.EXEC, value);
     case 'feeType':
-      return ['0', '1'].some((item) => item === value);
+      return hasSome(['0', '1'], value);
     case 'forceChain':
-      return ['0', '1', '2'].some((item) => item === value);
+    case 'openOnly':
+      return hasSome(['0', '1', '2'], value);
     case 'limit':
       return withinRange(1, value, 1_000);
     case 'memberId':
@@ -70,22 +74,19 @@ const isValid = (param) => {
       return withinUint32(value);
     case 'memberIds':
       return withinUint32(value) || value.split(',').every((member) => withinUint32(member));
-    case 'openOnly':
-      return ['0', '1', '2'].some((item) => item === value);
     case 'optionType':
-      return OPTION.some((item) => item === value);
+      return hasSome(OPTION, value);
     case 'orderFilter':
-      return ORDER.STOP.some((item) => item === value);
+      return hasSome(ORDER.STOP, value);
     case 'orderStatus':
-      return ORDER.STATUS.some((item) => item === value);
+      return hasSome(ORDER.STATUS, value);
     case 'orderId':
       return INTEGER.test(value);
     case 'price':
-      return Number(value);
     case 'qty':
-      return Number(value);
+      return Boolean(Number(value));
     case 'side':
-      return Object.values(TRADE.SIDE).some((side) => side === value);
+      return hasSome(Object.values(TRADE.SIDE), value);
     case 'startTime':
       return withinDays(1, value, 31);
     case 'status':

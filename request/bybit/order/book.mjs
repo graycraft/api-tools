@@ -19,7 +19,7 @@ import { orderBook as schema } from '../../../response/bybit/order/schema.mjs';
  *   for `option` default is 1, maximum 25;
  *   for `spot` default is 1, maximum 200
  * ).
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const orderBook = async (symbol, category, limit) => {
   const { config, settings } = global.apiTools,
@@ -31,17 +31,15 @@ const orderBook = async (symbol, category, limit) => {
       authentication: { security },
       currency: { base, quote },
     } = settings,
-    defaults = {
-      category: account.category,
-      symbol: base + quote,
-    },
-    data = validate(
-      ORDER_BOOK,
-      defaults,
-      { throwRequired: { symbol } },
-      { warnOptional: { category } },
-      { warnRequired: { limit } },
-    ),
+    data = validate(ORDER_BOOK, {
+      defaults: {
+        category: account.category,
+        symbol: base + quote,
+      },
+      optional: { category },
+      required: { limit },
+      throw: { symbol },
+    }),
     json = await get(ORDER_BOOK, schema, security, data);
 
   return json;

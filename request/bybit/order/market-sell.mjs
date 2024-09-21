@@ -25,7 +25,7 @@ import { orderMarketSell as schema } from '../../../response/bybit/order/schema.
  *   reduceOnly?, slLimitPrice?, slOrderType?, slTriggerBy?, smpType?, stopLoss?, takeProfit?, timeInForce?,
  *   tpLimitPrice?, tpOrderType?, tpTriggerBy?, tpslMode?, triggerDirection?, triggerPrice?, triggerBy?
  * }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const orderMarketSell = async (
   qty,
@@ -69,45 +69,41 @@ const orderMarketSell = async (
       authentication: { security },
       currency: { base, quote },
     } = settings,
-    defaults = {
-      category: account.category,
-      orderType: ORDER.MARKET,
-      side: SIDE.SELL,
-      symbol: base + quote,
-    },
-    data = validate(
-      ORDER_PLACE,
-      defaults,
-      { throwRequired: { qty } },
-      { warnOptional: { category, symbol } },
-      {
-        warnRequired: {
-          closeOnTrigger,
-          isLeverage,
-          marketUnit,
-          mmp,
-          orderFilter,
-          orderIv,
-          orderLinkId,
-          positionIdx,
-          reduceOnly,
-          slLimitPrice,
-          slOrderType,
-          slTriggerBy,
-          smpType,
-          stopLoss,
-          takeProfit,
-          timeInForce,
-          tpLimitPrice,
-          tpOrderType,
-          tpTriggerBy,
-          tpslMode,
-          triggerDirection,
-          triggerPrice,
-          triggerBy,
-        },
+    data = validate(ORDER_PLACE, {
+      defaults: {
+        category: account.category,
+        orderType: ORDER.MARKET,
+        side: SIDE.SELL,
+        symbol: base + quote,
       },
-    ),
+      optional: { category, symbol },
+      required: {
+        closeOnTrigger,
+        isLeverage,
+        marketUnit,
+        mmp,
+        orderFilter,
+        orderIv,
+        orderLinkId,
+        positionIdx,
+        reduceOnly,
+        slLimitPrice,
+        slOrderType,
+        slTriggerBy,
+        smpType,
+        stopLoss,
+        takeProfit,
+        timeInForce,
+        tpLimitPrice,
+        tpOrderType,
+        tpTriggerBy,
+        tpslMode,
+        triggerDirection,
+        triggerPrice,
+        triggerBy,
+      },
+      throw: { qty },
+    }),
     json = await post(ORDER_PLACE, schema, security, data);
 
   return json;

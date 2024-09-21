@@ -72,6 +72,12 @@
     "WITHDRAW_ONE": "asset/withdraw/query-record?txID"
   },
   "PREFIX": "/v5/",
+  "RESPONSE": {
+    "CODE": "retCode",
+    "DESCRIPTION": "retMsg",
+    "OK": 0,
+    "SUCCESS": "OK"
+  },
   "TRADE": {
     "EXEC": [
       "UNKNOWN",

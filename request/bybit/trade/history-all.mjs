@@ -17,7 +17,7 @@ import { tradeHistoryAll as schema } from '../../../response/bybit/trade/schema.
  * @param {string} [symbol] Symbol name.
  * @param {string} [limit] Limit data per page (default is 50, maximum 100).
  * @param {{ baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const tradeHistoryAll = async (
   side,
@@ -33,28 +33,24 @@ const tradeHistoryAll = async (
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      TRADE_HISTORY_ALL,
-      defaults,
-      { warnOptional: { category } },
-      {
-        warnRequired: {
-          baseCoin,
-          category,
-          cursor,
-          endTime,
-          execType,
-          limit,
-          orderLinkId,
-          side,
-          startTime,
-          symbol,
-        },
+    data = validate(TRADE_HISTORY_ALL, {
+      defaults: {
+        category: account.category,
       },
-    ),
+      optional: { category },
+      required: {
+        baseCoin,
+        category,
+        cursor,
+        endTime,
+        execType,
+        limit,
+        orderLinkId,
+        side,
+        startTime,
+        symbol,
+      },
+    }),
     json = await get(TRADE_HISTORY_ALL, schema, security, data);
 
   return json;

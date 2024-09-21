@@ -1,38 +1,84 @@
 /**
- * Handle Coinbase Advanced API order all endpoint.
+ * Handle Coinbase Advanced API all orders endpoint.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
  * @module request/coinbase/order/all
  */
 
-import coinbaseGet from '../get.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { orderAll as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
+ * If `has_next` in response data is `true`, more pages are available to fetch.
+ * The parameters start_date and end_date don’t apply to open orders.
+ * @param {string} limit Pagination limit (default: no, maximum: 1000).
+ * @param {{
+ *   asset_filters?, contract_expiry_type?, cursor?, end_date?, order_ids?,
+ *   order_placement_source?, order_side?, order_status?, order_types?, product_ids?,
+ *   product_type?, retail_portfolio_id?, sort_by?, start_date?, time_in_forces?
+ * }} rest
+ * @returns {Promise<{ orders: [{ order_id: string, product_id: string }] }>}
  */
-const orderAll = (product_id, product_type, limit, { order_side } = {}) => {
+const orderAll = async (
+  limit,
+  {
+    asset_filters,
+    contract_expiry_type,
+    cursor,
+    end_date,
+    order_ids,
+    order_placement_source,
+    order_side,
+    order_status,
+    order_types,
+    /* product_id, */
+    product_ids,
+    product_type,
+    retail_portfolio_id,
+    sort_by,
+    start_date,
+    time_in_forces,
+  } = {},
+) => {
   const { config, settings } = global.apiTools,
     {
+      ORDER,
       PATH: { ORDER_ALL },
+      PRODUCT,
     } = config,
     {
-      authentication: { sign },
+      authentication: { security },
     } = settings,
-    defaults = {
-      /** @todo Constants. */
-      order_status: 'OPEN',
-      product_type: 'SPOT',
-    },
-    data = validateParams(
-      ORDER_ALL,
-      isValidParams,
-      defaults,
-      { warnOptional: { order_side, product_id, product_type } },
-      { warnRequired: { limit } },
-    );
+    data = validate(ORDER_ALL, {
+      defaults: {
+        order_status: ORDER.STATUS[5],
+        product_type: PRODUCT.SPOT,
+      },
+      optional: { order_status, product_type },
+      required: {
+        asset_filters,
+        contract_expiry_type,
+        cursor,
+        end_date,
+        limit,
+        order_ids,
+        order_placement_source,
+        order_side,
+        order_status,
+        order_types,
+        /* product_id, */
+        product_ids,
+        product_type,
+        retail_portfolio_id,
+        sort_by,
+        start_date,
+        time_in_forces,
+      },
+    }),
+    json = await get(ORDER_ALL, schema, security, data);
 
-  return coinbaseGet(sign, ORDER_ALL, data);
+  return json;
 };
 
 export default orderAll;

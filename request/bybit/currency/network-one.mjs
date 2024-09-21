@@ -14,7 +14,7 @@ import { currencyNetworkOne as schema } from '../../../response/bybit/currency/s
  * Value of `chain` parameter must from `CURRENCY_ALL` endpoint must be used.
  * @param {string} coin Currency name.
  * @param {string} chain Not supported by the API, must be filtered while parsing.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const currencyNetworkOne = async (coin, chain) => {
   const { config, settings } = global.apiTools,
@@ -25,11 +25,13 @@ const currencyNetworkOne = async (coin, chain) => {
       authentication: { security },
       currency: { base, network },
     } = settings,
-    defaults = {
-      coin: base,
-      chain: network,
-    },
-    data = validate(CURRENCY_NETWORK_ONE, defaults, { warnOptional: { chain, coin } }),
+    data = validate(CURRENCY_NETWORK_ONE, {
+      defaults: {
+        chain: network,
+        coin: base,
+      },
+      optional: { chain, coin },
+    }),
     json = await get(CURRENCY_NETWORK_ONE, schema, security, data);
 
   return json;

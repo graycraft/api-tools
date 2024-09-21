@@ -1,6 +1,7 @@
 /**
- * Handle Coinbase Advanced API endpoint for all addresses.
+ * Handle Coinbase Advanced API all account addresses endpoint.
  *
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
  * @module request/coinbase/address/all
  */
 
@@ -9,24 +10,27 @@ import validate from '../validate.mjs';
 import { addressAll as schema } from '../../../response/coinbase/address/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
+ * @param {string} account_uuid Account UUID.
+ * @param {string} [limit] Pagination limit (default is 25). Not described in documentation.
+ * @returns {Promise<{ data: [{ id: string }] }>}
  */
-const addressAll = (account_uuid) => {
+const addressAll = async (account_uuid, limit) => {
   const { config, settings } = global.apiTools,
     {
-      PATH: { ADDRESS_ALL },
+      PATH: { ADDRESS },
     } = config,
     {
+      account: { uuid },
       authentication: { security },
-      currency: { uuid },
     } = settings,
-    defaults = {
-      account_uuid: uuid,
-    },
-    data = validate(ADDRESS_ALL, defaults, {
-      warnOptional: { account_uuid },
+    data = validate(ADDRESS, {
+      defaults: {
+        account_uuid: uuid,
+      },
+      optional: { account_uuid },
+      required: { limit },
     }),
-    json = get(ADDRESS_ALL, schema, security, data);
+    json = await get(ADDRESS, schema, security, data);
 
   return json;
 };

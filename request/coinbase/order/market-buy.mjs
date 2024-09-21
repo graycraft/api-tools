@@ -1,44 +1,53 @@
 /**
- * Handle Coinbase Advanced API order market buy endpoint.
+ * Handle Coinbase Advanced API place market buy order endpoint.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
  * @module request/coinbase/order/market-buy
  */
 
-import coinbasePost from '../post.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import nodeCrypto from 'node:crypto';
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { orderMarketBuy as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
+ * The maximum number of open orders allowed per `product_id` is 500.
+ * A buy Order will execute at or lower than the market price.
+ * A sell Order will execute at or higher than the market price.
+ * @param {string} quote_size Size of the first asset in a trading pair.
+ * @param {string} [product_id] Trading pair (e.g. "BTC-USD").
+ * @param {{ client_order_id? }} rest
+ * @returns {Promise<{ success: boolean, success_response: { order_id: string, product_id: string } }>}
  */
-const orderMarketBuy = (qty, symbol, {} = {}) => {
+const orderMarketBuy = async (quote_size, product_id, { client_order_id /* , side */ } = {}) => {
   const { config, settings } = global.apiTools,
     {
-      CURRENCY,
       ORDER,
       PATH: { ORDER_PLACE },
-      TRADE,
+      TRADE: { SIDE },
     } = config,
     {
-      account: { category },
-      authentication: { sign },
+      authentication: { security },
       currency: { base, quote },
     } = settings,
-    defaults = {
-      category,
-      orderType: ORDER.MARKET,
-      side: TRADE.BUY,
-      symbol: base + quote,
-    },
-    data = validateParams(
-      ORDER_PLACE,
-      isValidParams,
-      defaults,
-      { throwRequired: { qty } },
-      { warnOptional: { symbol } },
-    );
+    data = validate(ORDER_PLACE, {
+      defaults: {
+        client_order_id: nodeCrypto.randomUUID(),
+        product_id: base + '-' + quote,
+        side: SIDE.BUY,
+      },
+      optional: { client_order_id, product_id },
+      throw: {
+        order_configuration: {
+          [ORDER.MARKET]: {
+            quote_size,
+          },
+        },
+      },
+    }),
+    json = await post(ORDER_PLACE, schema, security, data);
 
-  return coinbasePost(sign, ORDER_PLACE, data);
+  return json;
 };
 
 export default orderMarketBuy;

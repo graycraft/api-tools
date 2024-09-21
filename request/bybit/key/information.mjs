@@ -9,7 +9,7 @@ import get from '../get.mjs';
 import { keyInformation as schema } from '../../../response/bybit/key/schema.mjs';
 
 /**
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const keyInformation = async () => {
   const { config, settings } = global.apiTools,

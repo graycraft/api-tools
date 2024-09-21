@@ -10,7 +10,7 @@ import validate from '../validate.mjs';
 import { currencyOne as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const currencyOne = async (coin) => {
   const { config, settings } = global.apiTools,
@@ -21,10 +21,12 @@ const currencyOne = async (coin) => {
       authentication: { security },
       currency: { base },
     } = settings,
-    defaults = {
-      coin: base,
-    },
-    data = validate(CURRENCY_ONE, defaults, { warnOptional: { coin } }),
+    data = validate(CURRENCY_ONE, {
+      defaults: {
+        coin: base,
+      },
+      optional: { coin },
+    }),
     json = await get(CURRENCY_ONE, schema, security, data);
 
   return json;

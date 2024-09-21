@@ -22,7 +22,7 @@ import { orderHistoryAll as schema } from '../../../response/bybit/order/schema.
  *   baseCoin?, category?, cursor?, endTime?, openOnly?, orderFilter?, orderId?,
  *   orderLinkId?, orderStatus?, settleCoin?, startTime?
  * }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const orderHistoryAll = async (
   symbol,
@@ -49,29 +49,25 @@ const orderHistoryAll = async (
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      ORDER_HISTORY_ALL,
-      defaults,
-      { warnOptional: { category } },
-      {
-        warnRequired: {
-          baseCoin,
-          cursor,
-          endTime,
-          limit,
-          openOnly,
-          orderFilter,
-          orderLinkId,
-          orderStatus,
-          settleCoin,
-          startTime,
-          symbol,
-        },
+    data = validate(ORDER_HISTORY_ALL, {
+      defaults: {
+        category: account.category,
       },
-    ),
+      optional: { category },
+      required: {
+        baseCoin,
+        cursor,
+        endTime,
+        limit,
+        openOnly,
+        orderFilter,
+        orderLinkId,
+        orderStatus,
+        settleCoin,
+        startTime,
+        symbol,
+      },
+    }),
     json = await get(ORDER_HISTORY_ALL, schema, security, data);
 
   return json;

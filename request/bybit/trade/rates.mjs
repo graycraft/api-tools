@@ -14,7 +14,7 @@ import { tradeRates as schema } from '../../../response/bybit/trade/schema.mjs';
  * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} symbol Symbol name.
  * @param {{ baseCoin?, category? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const tradeRates = async (symbol, { baseCoin, category } = {}) => {
   const { config, settings } = global.apiTools,
@@ -25,15 +25,13 @@ const tradeRates = async (symbol, { baseCoin, category } = {}) => {
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      TRADE_RATES,
-      defaults,
-      { warnOptional: { category } },
-      { warnRequired: { baseCoin, symbol } },
-    ),
+    data = validate(TRADE_RATES, {
+      defaults: {
+        category: account.category,
+      },
+      optional: { category },
+      required: { baseCoin, symbol },
+    }),
     json = await get(TRADE_RATES, schema, security, data);
 
   return json;

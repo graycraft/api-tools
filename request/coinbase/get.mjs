@@ -15,7 +15,6 @@ import { HTTP } from '../../lib/constants.mjs';
 import { endpointGet } from '../../lib/fetch.mjs';
 import { dirObject } from '../../lib/output.mjs';
 import { obtainName } from '../../lib/utility.mjs';
-import analyze from '../../response/coinbase/analyze.mjs';
 import parse from '../../response/coinbase/parse.mjs';
 import snapshot from '../../response/coinbase/snapshot.mjs';
 
@@ -24,10 +23,10 @@ import snapshot from '../../response/coinbase/snapshot.mjs';
  * @param {object} schema JSON-schema to validate response with.
  * @param {"JWT" | null} [security] Authentication signature security.
  * @param {object} [data] Data to send with request.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const coinbaseGet = async (template, schema, security, data = {}) => {
-  const { config, settings, timestamp } = global.apiTools,
+  const { config, settings } = global.apiTools,
     {
       METHOD: { GET },
     } = HTTP,
@@ -36,7 +35,7 @@ const coinbaseGet = async (template, schema, security, data = {}) => {
       authentication: { delay },
     } = settings,
     { path, url } = endpointGet(template, data),
-    key = coinbaseKey(),
+    { key, timestamp } = coinbaseKey(),
     payload = {
       exp: Math.floor(timestamp / delay) + 120,
       iss: 'cdp',
@@ -45,7 +44,7 @@ const coinbaseGet = async (template, schema, security, data = {}) => {
       uri: GET + ' ' + HOSTNAME + PREFIX + path,
     };
 
-  global.apiTools.output[obtainName(template, PATH)] = url;
+  global.apiTools.output = { [obtainName(template, PATH)]: url };
 
   const headers = coinbaseSign(GET, security, key, payload, data),
     json = await get(
@@ -54,7 +53,6 @@ const coinbaseGet = async (template, schema, security, data = {}) => {
       headers,
       schema,
       {
-        analyze,
         parse,
         snapshot,
       },

@@ -14,7 +14,7 @@ import { balanceAll as schema } from '../../../response/bybit/balance/schema.mjs
  * @param {string} accountType Account type.
  * @param {string} memberId UID, required with master API keys.
  * @param {{ coin?, withBonus? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const balanceAll = async (accountType, memberId, { coin, withBonus } = {}) => {
   const { config, settings } = global.apiTools,
@@ -26,16 +26,14 @@ const balanceAll = async (accountType, memberId, { coin, withBonus } = {}) => {
       account: { wallet },
       authentication: { security },
     } = settings,
-    defaults = {
-      accountType: account.wallet,
-      memberId: account[wallet],
-    },
-    data = validate(
-      BALANCE_ALL,
-      defaults,
-      { warnOptional: { accountType, memberId } },
-      { warnRequired: { coin, withBonus } },
-    ),
+    data = validate(BALANCE_ALL, {
+      defaults: {
+        accountType: account.wallet,
+        memberId: account[wallet],
+      },
+      optional: { accountType, memberId },
+      required: { coin, withBonus },
+    }),
     json = await get(BALANCE_ALL, schema, security, data);
 
   return json;

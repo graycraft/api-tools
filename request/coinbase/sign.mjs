@@ -8,6 +8,11 @@
 import { blind, signJwt } from '../../lib/authentication.mjs';
 import { AUTH } from '../../lib/constants.mjs';
 
+let timestamp;
+
+/**
+ * @returns {{ key: string, timestamp: number }}
+ */
 export const coinbaseKey = () => {
   const { settings } = global.apiTools,
     { authentication, user } = settings,
@@ -15,9 +20,15 @@ export const coinbaseKey = () => {
     { keys } = authentication,
     key = keys[user[portfolio]];
 
-  return key;
+  /** Timestamp must be fresh for every request from an API flow. */
+  timestamp = Date.now();
+
+  return { key, timestamp };
 };
 
+/**
+ * @returns {string}
+ */
 export const coinbaseSecret = () => {
   const { settings } = global.apiTools,
     { authentication, user } = settings,
@@ -29,12 +40,13 @@ export const coinbaseSecret = () => {
 };
 
 /**
+ * Sign a request for Coinbase Advanced API by specified authentication security method.
  * @param {"GET" | "POST"} method HTTP method to submit the request with.
  * @param {"JWT" | null} security Authentication signature security.
  * @param {string} key Path template to be interpolated.
  * @param {object} payload JSON-schema to validate response with.
  * @param {object} [data] Data to send with request.
- * @returns {object} JSON data from response.
+ * @returns {object}
  */
 export const coinbaseSign = (method, security, key, payload, data = {}) => {
   const { config } = global.apiTools,

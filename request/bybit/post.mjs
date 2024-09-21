@@ -21,7 +21,7 @@ import snapshot from '../../response/bybit/snapshot.mjs';
  * @param {object} schema JSON-schema to validate response with.
  * @param {"HMAC" | "RSA" | null} [security] Authentication signature security.
  * @param {object} [data] Data to send with request.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const bybitPost = async (template, schema, security, data = {}) => {
   const { config, settings } = global.apiTools,

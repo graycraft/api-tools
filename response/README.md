@@ -12,7 +12,7 @@ $ node bybit currency --snap
 
 ## Bybit
 
-Run scenario for full Bybit API response aggregation:
+Run flow for full Bybit API response aggregation:
 
 ```bash
 $ node bybit
@@ -22,7 +22,7 @@ $ node bybit
 
 ### Currency
 
-Run scenario for all currencies Bybit API response aggregation:
+Run flow for all currencies Bybit API response aggregation:
 
 ```bash
 $ node bybit currency
@@ -32,7 +32,7 @@ $ node bybit currencyAll
 
 ### Network
 
-Run scenario for all networks Bybit API response aggregation:
+Run flow for all networks Bybit API response aggregation:
 
 ```bash
 $ node bybit network
@@ -43,7 +43,7 @@ $ node bybit networkAll
 
 ## Coinbase Advanced
 
-Run scenario for full Coinbase Advanced API response aggregation:
+Run flow for full Coinbase Advanced API response aggregation:
 
 ```bash
 $ node coinbase
@@ -53,7 +53,7 @@ $ node coinbase
 
 ### Currency
 
-Run scenario for all currencies Coinbase Advanced API response aggregation:
+Run flow for all currencies Coinbase Advanced API response aggregation:
 
 ```bash
 $ node coinbase currency
@@ -63,7 +63,7 @@ $ node coinbase currencyAll
 
 ### Network
 
-Run scenario for all networks Coinbase Advanced API response aggregation:
+Run flow for all networks Coinbase Advanced API response aggregation:
 
 ```bash
 $ node coinbase network
