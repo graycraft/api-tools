@@ -16,7 +16,7 @@ import { transferInternal as schema } from '../../../response/bybit/transfer/sch
  * @param {string} amount Currency amount to transfer.
  * @param {string} [coin] Currency name.
  * @param {{ fromAccountType?, transferId? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const transferInternal = async (
   toAccountType,
@@ -33,17 +33,15 @@ const transferInternal = async (
       authentication: { security },
       currency: { base },
     } = settings,
-    defaults = {
-      coin: base,
-      fromAccountType: account.wallet,
-      transferId: nodeCrypto.randomUUID(),
-    },
-    data = validate(
-      TRANSFER_INTERNAL,
-      defaults,
-      { throwRequired: { amount, toAccountType } },
-      { warnOptional: { coin, fromAccountType, transferId } },
-    ),
+    data = validate(TRANSFER_INTERNAL, {
+      defaults: {
+        coin: base,
+        fromAccountType: account.wallet,
+        transferId: nodeCrypto.randomUUID(),
+      },
+      optional: { coin, fromAccountType, transferId },
+      throw: { amount, toAccountType },
+    }),
     json = await post(TRANSFER_INTERNAL, schema, security, data);
 
   return json;

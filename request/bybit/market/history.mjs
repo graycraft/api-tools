@@ -18,7 +18,7 @@ import { marketHistory as schema } from '../../../response/bybit/market/schema.m
  *   for other product types default is 500, maximum 1000
  * ).
  * @param {{ baseCoin?, category?, optionType? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const marketHistory = async (symbol, limit, { baseCoin, category, optionType } = {}) => {
   const { config, settings } = global.apiTools,
@@ -29,16 +29,14 @@ const marketHistory = async (symbol, limit, { baseCoin, category, optionType } =
       account,
       currency: { base, quote },
     } = settings,
-    defaults = {
-      category: account.category,
-      symbol: base + quote,
-    },
-    data = validate(
-      MARKET_HISTORY,
-      defaults,
-      { warnOptional: { category, symbol } },
-      { warnRequired: { baseCoin, limit, optionType } },
-    ),
+    data = validate(MARKET_HISTORY, {
+      defaults: {
+        category: account.category,
+        symbol: base + quote,
+      },
+      optional: { category, symbol },
+      required: { baseCoin, limit, optionType },
+    }),
     json = await get(MARKET_HISTORY, schema, null, data);
 
   return json;

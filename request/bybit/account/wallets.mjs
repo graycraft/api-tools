@@ -16,7 +16,7 @@ import { accountWallets as schema } from '../../../response/bybit/account/schema
  * "CONTRACT", "SPOT" - classic account and Funding wallet is never operated.
  * "CONTRACT", "UNIFIED" - UTA account and Funding wallet is never operated.
  * @param {string} memberIds Multiple sub UIDs can be supplied, separated by commas.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const accountWallets = async (memberIds) => {
   const { config, settings } = global.apiTools,
@@ -28,11 +28,11 @@ const accountWallets = async (memberIds) => {
       account: { wallet },
       authentication: { security },
     } = settings,
-    defaults = {
-      memberIds: [account[wallet]].join(),
-    },
-    data = validate(ACCOUNT_WALLETS, defaults, {
-      warnOptional: { memberIds },
+    data = validate(ACCOUNT_WALLETS, {
+      defaults: {
+        memberIds: [account[wallet]].join(),
+      },
+      optional: { memberIds },
     }),
     json = await get(ACCOUNT_WALLETS, schema, security, data);
 

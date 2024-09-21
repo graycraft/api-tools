@@ -13,11 +13,12 @@ const responseSnapshot = (json, path, target) => {
     { PATH } = config,
     { enabled, snapshot } = settings,
     name = obtainName(path, PATH),
-    isSnapshot = Boolean(enabled.find((item) => item === 'snapshot')),
-    isSnapshotEndpoint = Boolean(snapshot.find((item) => item === name));
+    isSnapshot = enabled.some((item) => item === 'snapshot'),
+    isVerbose = enabled.some((item) => item === 'verbose'),
+    isSnapshotEndpoint = snapshot.some((item) => item === name);
 
   if (isSnapshot) {
-    if (isSnapshotEndpoint ?? options.isSnapshot) {
+    if (isSnapshotEndpoint || options.isSnapshot) {
       const dirName = import.meta.dirname,
         fileData = JSON.stringify(json, null, 2),
         fileName = new Date().toISOString() + '.json',
@@ -27,7 +28,9 @@ const responseSnapshot = (json, path, target) => {
 
       nodeFs.mkdirSync(filePath, { recursive: true });
       nodeFs.writeFileSync(filePathFull, fileData);
-      console.info(`Snapped "${fileName}" to "${path2}".`);
+      console.info(
+        `Snapped "${fileName}" to "${path2}"` + (isVerbose || options.isVerbose ? ':' : '.'),
+      );
 
       return { fileData, fileName };
     } else console.info(`Snapshot: endpoint "${name}" is not enabled is settings.`);

@@ -57,20 +57,20 @@ import transferOne from './bybit/transfer/one.mjs';
 import withdrawAll from './bybit/withdraw/all.mjs';
 import withdrawNew from './bybit/withdraw/new.mjs';
 import withdrawOne from './bybit/withdraw/one.mjs';
+import status from '../response/bybit/status.json' with { type: 'json' };
 
-const { ACCOUNT, TRADE } = config,
-  {
+const {
     account: { SPOT, UNIFIED },
-    address: { cursor, deposit, withdraw },
+    address: { cursor, deposit },
   } = settings,
   requestBybit = () => {
-    const { handler, options, params, scenario } = parseArguments(),
+    const { flow, handler, options, params } = parseArguments(),
       {
         DATE: { DAY },
       } = NUMBER,
       timestamp = Date.now();
 
-    global.apiTools = { config, options, output: {}, settings, timestamp };
+    global.apiTools = { config, options, output: {}, settings, status, timestamp };
     if (handler) {
       switch (handler) {
         case 'account':
@@ -171,7 +171,7 @@ const { ACCOUNT, TRADE } = config,
           throw new Error(requestBybit.name + ': ' + optional(handler));
       }
     } else {
-      switch (scenario) {
+      switch (flow) {
         case 'orders':
           Promise.resolve()
             .then((response) => orderAll('NOTUSDT', 'Buy', '2'))
@@ -193,7 +193,7 @@ const { ACCOUNT, TRADE } = config,
             .then((response) => accountWallets([SPOT, UNIFIED].join()))
             .then((response) => balanceAll('UNIFIED', UNIFIED, { coin: 'SHIB', withBonus: '1' }))
             .then((response) => balanceInformation('UNIFIED', 'USDT'))
-            .then((response) => balanceOne('USDT', 'FUND', SPOT, { withBonus: '1' }))
+            .then((response) => balanceOne('FUND', 'USDT', SPOT, { withBonus: '1' }))
             .then((response) => currencyAll())
             .then((response) => currencyNetworkAll())
             .then((response) => currencyNetworkOne('AVAX', 'CAVAX'))
@@ -247,6 +247,7 @@ const { ACCOUNT, TRADE } = config,
             .then((response) =>
               orderHistoryOne(response.result.list[0]?.orderId ?? '0000000000000000000'),
             )
+            .then((response) => orderCancelAll())
             .then((response) => orderMarketBuy('1000'))
             .then((response) => orderMarketSell('100'))
             .then((response) => orderOne(response.result.orderId))

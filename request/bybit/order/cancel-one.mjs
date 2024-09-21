@@ -15,7 +15,7 @@ import { orderCancelOne as schema } from '../../../response/bybit/order/schema.m
  * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} orderId Order identifier.
  * @param {{ category?, orderFilter?, orderLinkId?, symbol? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const orderCancelOne = async (orderId, { category, orderFilter, orderLinkId, symbol } = {}) => {
   const { config, settings } = global.apiTools,
@@ -26,15 +26,13 @@ const orderCancelOne = async (orderId, { category, orderFilter, orderLinkId, sym
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      ORDER_CANCEL_ONE,
-      defaults,
-      { throwRequired: { orderId } },
-      { warnRequired: { category, orderFilter, orderLinkId, symbol } },
-    ),
+    data = validate(ORDER_CANCEL_ONE, {
+      defaults: {
+        category: account.category,
+      },
+      required: { category, orderFilter, orderLinkId, symbol },
+      throw: { orderId },
+    }),
     json = await post(ORDER_CANCEL_ONE, schema, security, data);
 
   return json;

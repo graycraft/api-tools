@@ -4,20 +4,25 @@
  * @module response/analyze
  */
 
-import status from './bybit/status.json' with { type: 'json' };
 import { HTTP } from '../lib/constants.mjs';
 
-const responseAnalyze = (response, ok) => {
+const responseAnalyze = (response) => {
   const { STATUS } = HTTP,
-    { json, statusText } = response,
-    code = json.retCode ?? ok,
-    message = json.retMsg ?? ok,
-    description = status[statusText][code] ?? '',
+    { config, status } = global.apiTools,
+    {
+      RESPONSE: { CODE, DESCRIPTION, OK, SUCCESS },
+    } = config,
+    { json, statusText } = response;
+
+  const code = json[CODE] ?? OK,
+    message = json[DESCRIPTION] ?? SUCCESS,
+    description = status[statusText]?.[code] ?? '',
     isCodeKnown =
       description === message ||
       (description instanceof Array && description.some((desc) => desc === message)),
     isCodeDescribed = Boolean(description),
-    isSuccessful = code === ok && response.status === STATUS.OK,
+    isSuccessful =
+      code === OK && (response.status === STATUS.CREATED || response.status === STATUS.OK),
     report = {
       isCodeDescribed,
       isCodeKnown,

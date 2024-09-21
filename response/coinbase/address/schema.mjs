@@ -9,8 +9,40 @@ export const addressAll = {
   // "$schema": "https://json-schema.org/draft/2020-12/schema",
   additionalProperties: false,
   properties: {
-    breakdown: { type: 'object' },
+    data: { type: 'array' },
+    pagination: { type: 'object' },
   },
-  required: ['breakdown'],
+  required: ['data', 'pagination'],
+  type: 'object',
+};
+
+export const addressNew = {
+  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  additionalProperties: false,
+  properties: {
+    data: { type: 'object' },
+  },
+  required: ['data'],
+  type: 'object',
+};
+
+export const addressOne = {
+  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  additionalProperties: false,
+  properties: {
+    data: { type: 'object' },
+  },
+  required: ['data'],
+  type: 'object',
+};
+
+export const addressTransactions = {
+  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  additionalProperties: false,
+  properties: {
+    data: { type: 'array' },
+    pagination: { type: 'object' },
+  },
+  required: ['data'],
   type: 'object',
 };

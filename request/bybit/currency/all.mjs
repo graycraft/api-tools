@@ -9,7 +9,7 @@ import get from '../get.mjs';
 import { currencyAll as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const currencyAll = async () => {
   const { config, settings } = global.apiTools,

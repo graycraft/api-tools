@@ -4,7 +4,7 @@
 $ cd request
 ```
 
-Run scenario for testing full request flow:
+Run flow for testing full request flow:
 
 ```bash
 $ node request.mjs
@@ -12,7 +12,7 @@ $ node request.mjs
 
 ## Account
 
-Run scenario for testing full request flow:
+Run flow for testing full request flow:
 
 ```bash
 $ node bybit.mjs account
@@ -26,7 +26,7 @@ $ node bybit.mjs account
 cd response
 ```
 
-Run scenario related to response processing for an API, e.g. Bybit:
+Run flow related to response processing for an API, e.g. Bybit:
 
 ```bash
 node bybit.mjs

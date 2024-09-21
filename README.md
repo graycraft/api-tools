@@ -77,12 +77,16 @@ Optionally `NODE_NO_WARNINGS` can be exported from `.env` file to silence proces
 $ export $(cat .env | xargs)
 ```
 
+## Settings
+
+Open settings file of an API and set appropriate fields in `account`, `address` and `authentication` sections.
+
 ## Usage
 
 General syntax of commands:
 
 ```bash
-$ node <request|response|socket>[ --<option>]
+$ node <request|response|socket>[ --<option|optionKey=optionValue>]
 $ node <api>[ <handler>][ <parameter>][ <paramKey=paramValue>][ --<option>]
 ```
 
@@ -92,22 +96,23 @@ See detailed syntax and command examples in **sub directory readme** files.
 
 ### Request
 
-Run scenario for **all requests** of **all APIs**:
+Run flow for **all requests** of **all APIs**:
 
 ```bash
 $ node request
 ```
 
-To run a scenario related to an API request, change directory:
+To run a flow related to an API request, change directory:
 
 ```bash
 $ cd request
 ```
 
-Run scenario for **all requests** of a **specific API**:
+Run flow for **all requests** of a **specific API**:
 
 ```bash
 $ node bybit
+$ node bybit --flow=orders
 ```
 
 Run **single request** with snapshot (option `--snap[shot]` is required if not enabled in settings):
@@ -120,7 +125,7 @@ $ node bybit currencyAll --snapshot
 
 ### Response
 
-Run scenario for **all responses** of **all APIs** (option `--aggr[egate]` is required if not enabled in settings):
+Run flow for **all responses** of **all APIs** (option `--aggr[egate]` is required if not enabled in settings):
 
 ```bash
 $ node response --aggr
@@ -131,13 +136,13 @@ $ node response --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/coinbase/currency_network_all".
 ```
 
-To run a scenario related to an API response, change directory:
+To run a flow related to an API response, change directory:
 
 ```bash
 $ cd response
 ```
 
-Run scenario for **all responses** of a **specific API**:
+Run flow for **all responses** of a **specific API**:
 
 ```bash
 $ node bybit

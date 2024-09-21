@@ -14,7 +14,7 @@ import { depositNewSub as schema } from '../../../response/bybit/deposit/schema.
  * @param {string} subMemberId Sub UID.
  * @param {string} coin Currency name.
  * @param {string} chainType Value of `chain` parameter from `CURRENCY_ALL` endpoint must be used for this.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const depositNewSub = async (subMemberId, coin, chainType) => {
   const { config, settings } = global.apiTools,
@@ -26,13 +26,13 @@ const depositNewSub = async (subMemberId, coin, chainType) => {
       authentication: { security },
       currency: { base, network },
     } = settings,
-    defaults = {
-      chainType: network,
-      coin: base,
-      subMemberId: Object.entries(account).find((entry) => !entry[1].main)[0],
-    },
-    data = validate(DEPOSIT_NEW_SUB, defaults, {
-      warnOptional: { chainType, coin, subMemberId },
+    data = validate(DEPOSIT_NEW_SUB, {
+      defaults: {
+        chainType: network,
+        coin: base,
+        subMemberId: Object.entries(account).find((entry) => !entry[1].main)[0],
+      },
+      optional: { chainType, coin, subMemberId },
     }),
     json = await get(DEPOSIT_NEW_SUB, schema, security, data);
 

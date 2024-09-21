@@ -1,61 +1,92 @@
 {
-    "account": {
-        "000000001": {
-            "main": true,
-            "permissions": []
-        },
-        "000000002": {
-            "main": false,
-            "permissions": []
-        },
-        "SPOT": "000000002",
-        "UNIFIED": "000000001",
-        "category": "spot",
-        "wallet": "SPOT"
+  "account": {
+    "000000001": {
+      "main": true,
+      "permissions": []
     },
-    "address": {
-        "withdraw": "0x0000000000000000000000000000000000000000"
+    "000000002": {
+      "main": false,
+      "permissions": []
     },
-    "aggregate": [
-        "CURRENCY_ALL",
-        "NETWORK_ALL"
-    ],
-    "authentication": {
-        "delay": 1e4,
-        "hidden": "mask",
-        "keys": {
-            "000000001": "********",
-            "000000002": "********"
-        },
-        "secrets": {
-            "000000001": "********",
-            "000000002": "********"
-        },
-        "sign": "HMAC"
+    "000000003": {
+      "main": false,
+      "permissions": []
     },
-    "currency": {
-        "base": "ETH",
-        "network": "MATIC",
-        "quote": "USDT"
+    "FUND": "000000003",
+    "SPOT": "000000002",
+    "UNIFIED": "000000001",
+    "category": "spot",
+    "wallet": "UNIFIED"
+  },
+  "address": {
+    "cursor": "00000000000000000000000000000000000000000000000000==",
+    "deposit": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "withdraw": "0x0000000000000000000000000000000000000000"
+  },
+  "aggregate": ["CURRENCY_ALL", "NETWORK_ALL"],
+  "authentication": {
+    "delay": 1e4,
+    "keys": {
+      "000000001": "******************",
+      "000000002": "******************",
+      "000000003": "******************"
     },
-    "enabled": [
-        "aggregate",
-        "parse",
-        "snapshot"
-    ],
-    "snapshot": [
-        "CURRENCY_ALL",
-        "KEY_INFORMATION",
-        "MARKET_HISTORY",
-        "NETWORK_ALL"
-    ],
-    "parse": [
-        "ACCOUNT_BALANCE_CURRENCIES",
-        "CURRENCY_ALL",
-        "MARKET_HISTORY",
-        "MARKET_INFO",
-        "MARKET_TICKERS",
-        "NETWORK_ALL",
-        "ORDER_ALL"
-    ]
+    "secrets": {
+      "000000001": "************************************",
+      "000000002": "************************************",
+      "000000003": "************************************"
+    },
+    "security": "HMAC"
+  },
+  "currency": {
+    "base": "AAA",
+    "network": "BBB",
+    "quote": "CCC"
+  },
+  "enabled": ["aggregate", "parse", "snapshot"],
+  "parse": [
+    "ACCOUNT_BALANCE_CURRENCIES",
+    "CURRENCY_ALL",
+    "MARKET_HISTORY",
+    "MARKET_INFO",
+    "MARKET_TICKERS",
+    "NETWORK_ALL",
+    "TRANSFER_ONE"
+  ],
+  "snapshot": [
+    "ACCOUNT_INFORMATION",
+    "ACCOUNT_WALLETS",
+    "BALANCE_ALL",
+    "BALANCE_INFORMATION",
+    "BALANCE_ONE",
+    "CURRENCY_ALL",
+    "CURRENCY_NETWORK_ALL",
+    "CURRENCY_NETWORK_ONE",
+    "CURRENCY_ONE",
+    "DEPOSIT_ALL",
+    "DEPOSIT_NEW_MASTER",
+    "DEPOSIT_NEW_SUB",
+    "DEPOSIT_ONE",
+    "KEY_INFORMATION",
+    "MARKET_HISTORY",
+    "MARKET_INFORMATION",
+    "MARKET_TICKERS",
+    "ORDER_ALL",
+    "ORDER_BOOK",
+    "ORDER_CANCEL_ALL",
+    "ORDER_CANCEL_ONE",
+    "ORDER_HISTORY_ALL",
+    "ORDER_HISTORY_ONE",
+    "ORDER_PLACE",
+    "ORDER_ONE",
+    "TRADE_HISTORY_ALL",
+    "TRADE_HISTORY_ONE",
+    "TRADE_RATES",
+    "TRANSFER_ALL",
+    "TRANSFER_INTERNAL",
+    "TRANSFER_ONE",
+    "WITHDRAW_ALL",
+    "WITHDRAW_NEW",
+    "WITHDRAW_ONE"
+  ]
 }

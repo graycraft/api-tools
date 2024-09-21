@@ -11,7 +11,7 @@ import { userPortfolioAll as schema } from '../../../response/coinbase/user/sche
 /**
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfolios
  * @param {"CONSUMER" | "DEFAULT" | "INTX" | "UNDEFINED"} portfolio_type
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<{ portfolios: [{ uuid: string }] }>} JSON data from response.
  */
 const userPortfolioAll = (portfolio_type) => {
   const { config, settings } = global.apiTools,
@@ -21,9 +21,8 @@ const userPortfolioAll = (portfolio_type) => {
     {
       authentication: { security },
     } = settings,
-    defaults = {},
-    data = validate(USER_PORTFOLIO_ALL, defaults, {
-      warnRequired: { portfolio_type },
+    data = validate(USER_PORTFOLIO_ALL, {
+      required: { portfolio_type },
     }),
     json = get(USER_PORTFOLIO_ALL, schema, security, data);
 

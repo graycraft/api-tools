@@ -19,7 +19,7 @@ import validate from '../response/validate.mjs';
  *   snapshot: function
  * }} utilities Utility functions to process response data.
  * @param {object} [data] Data to send with request.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const requestGet = async (url, template, headers, schema, { parse, snapshot }, data = {}) => {
   const {
@@ -27,7 +27,7 @@ const requestGet = async (url, template, headers, schema, { parse, snapshot }, d
   } = HTTP;
   let response = await fetchData(GET, url, data, headers),
     { json, statusText } = response,
-    { isCodeDescribed, isCodeKnown, isSuccessful } = analyze(response, 0),
+    { isCodeDescribed, isCodeKnown, isSuccessful } = analyze(response),
     isValid = validate(json, schema);
 
   global.apiTools.output[statusText] = {

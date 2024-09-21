@@ -11,11 +11,17 @@ import config from '../../configuration/coinbase.json' with { type: 'json' };
 import { obtainName } from '../../lib/utility.mjs';
 import settings from '../../settings/coinbase.json' with { type: 'json' };
 
+/**
+ * @param {{ json: object, statusText: string }} response
+ * @param {string} path
+ * @param {object} data
+ * @returns {{ json: object, statusText: string }}
+ */
 const responseParse = (response, path, data) => {
+  /** @type {{ PATH: { [key: string]: string } }} */
+  const { PATH } = config;
   const {
-      PATH,
       PATH: {
-        ACCOUNT_BALANCE,
         CURRENCY_ALL,
         MARKET_HISTORY,
         MARKET_INFORMATION,
@@ -56,7 +62,7 @@ const responseParse = (response, path, data) => {
       default:
         isFiltered = false;
     }
-    switch (path) {
+    /* switch (path) {
       case ACCOUNT_BALANCE:
         json = find(json, {
           criterion: data.asset ?? base,
@@ -66,7 +72,7 @@ const responseParse = (response, path, data) => {
         break;
       default:
         isFound = false;
-    }
+    } */
     switch (path) {
       case CURRENCY_ALL:
         json = map(json, {

@@ -14,7 +14,7 @@ import { depositAll as schema } from '../../../response/bybit/deposit/schema.mjs
  * Defference between `endTime` and `startTime` should be less than 30 days (30 days is default).
  * @param {string} coin Currency name.
  * @param {{ cursor?, endTime?, limit?, startTime?, txID? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const depositAll = async (coin, { cursor, endTime, limit, startTime /* , txID */ } = {}) => {
   const { config, settings } = global.apiTools,
@@ -24,9 +24,8 @@ const depositAll = async (coin, { cursor, endTime, limit, startTime /* , txID */
     {
       authentication: { security },
     } = settings,
-    defaults = {},
-    data = validate(DEPOSIT_ALL, defaults, {
-      warnRequired: { coin, cursor, endTime, limit, startTime },
+    data = validate(DEPOSIT_ALL, {
+      required: { coin, cursor, endTime, limit, startTime },
     }),
     json = await get(DEPOSIT_ALL, schema, security, data);
 

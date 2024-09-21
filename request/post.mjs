@@ -19,7 +19,7 @@ import validate from '../response/validate.mjs';
  *   snapshot: function
  * }} utilities Utility functions to process response data.
  * @param {object} [data] Data to send with request.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const requestPost = async (url, template, headers, schema, { parse, snapshot }, data = {}) => {
   const {

@@ -12,7 +12,7 @@ import { withdrawOne as schema } from '../../../response/bybit/withdraw/schema.m
 /**
  * @param {string} txID Transaction identifier.
  * @param {{ coin?, cursor?, endTime?, limit?, startTime?, withdrawID?, withdrawType? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const withdrawOne = async (
   txID,
@@ -25,10 +25,9 @@ const withdrawOne = async (
     {
       authentication: { security },
     } = settings,
-    defaults = {},
-    data = validate(WITHDRAW_ONE, defaults, {
-      throwRequired: { txID },
-      warnRequired: { coin, cursor, endTime, limit, startTime, withdrawID, withdrawType },
+    data = validate(WITHDRAW_ONE, {
+      required: { coin, cursor, endTime, limit, startTime, withdrawID, withdrawType },
+      throw: { txID },
     }),
     json = await get(WITHDRAW_ONE, schema, security, data);
 

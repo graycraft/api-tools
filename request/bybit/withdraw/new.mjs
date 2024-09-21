@@ -28,7 +28,7 @@ import { withdrawNew as schema } from '../../../response/bybit/withdraw/schema.m
  *   accountType?, beneficiary?, beneficiaryName?, feeType?, forceChain?,
  *   requestId?, tag?, timestamp?, vaspEntityId?
  * }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const withdrawNew = async (
   amount,
@@ -56,30 +56,26 @@ const withdrawNew = async (
       authentication: { security },
       currency: { base, network },
     } = settings,
-    defaults = {
-      address: withdraw,
-      chain: network,
-      coin: base,
-      timestamp: now,
-    },
-    data = await validate(
-      WITHDRAW_NEW,
-      defaults,
-      { throwRequired: { amount } },
-      { warnOptional: { address, chain, coin, timestamp } },
-      {
-        warnRequired: {
-          accountType,
-          beneficiary,
-          beneficiaryName,
-          feeType,
-          forceChain,
-          requestId,
-          tag,
-          vaspEntityId,
-        },
+    data = await validate(WITHDRAW_NEW, {
+      defaults: {
+        address: withdraw,
+        chain: network,
+        coin: base,
+        timestamp: now,
       },
-    ),
+      optional: { address, chain, coin, timestamp },
+      required: {
+        accountType,
+        beneficiary,
+        beneficiaryName,
+        feeType,
+        forceChain,
+        requestId,
+        tag,
+        vaspEntityId,
+      },
+      throw: { amount },
+    }),
     json = post(WITHDRAW_NEW, schema, security, data);
 
   return json;

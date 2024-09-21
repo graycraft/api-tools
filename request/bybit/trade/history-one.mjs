@@ -18,7 +18,7 @@ import { tradeHistoryOne as schema } from '../../../response/bybit/trade/schema.
  *   baseCoin?, category?, cursor?, endTime?, execType?, limit?, orderLinkId?,
  *   side?, startTime?, symbol?
  * }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const tradeHistoryOne = async (
   orderId,
@@ -43,29 +43,25 @@ const tradeHistoryOne = async (
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      TRADE_HISTORY_ONE,
-      defaults,
-      { throwRequired: { orderId } },
-      { warnOptional: { category } },
-      {
-        warnRequired: {
-          baseCoin,
-          category,
-          cursor,
-          endTime,
-          execType,
-          limit,
-          orderLinkId,
-          side,
-          startTime,
-          symbol,
-        },
+    data = validate(TRADE_HISTORY_ONE, {
+      defaults: {
+        category: account.category,
       },
-    ),
+      optional: { category },
+      required: {
+        baseCoin,
+        category,
+        cursor,
+        endTime,
+        execType,
+        limit,
+        orderLinkId,
+        side,
+        startTime,
+        symbol,
+      },
+      throw: { orderId },
+    }),
     json = await get(TRADE_HISTORY_ONE, schema, security, data);
 
   return json;

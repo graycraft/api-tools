@@ -1,18 +1,21 @@
 /**
- * Handle Coinbase Advanced API market tickers endpoint.
+ * Handle Coinbase Advanced API endpoint, with information about the last trades (ticks) and best bid/ask.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicmarkettrades
  * @module request/coinbase/market/tickers
  */
 
-import coinbaseGet from '../get.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { marketTickers as schema } from '../../../response/coinbase/market/schema.mjs';
 
 /**
- * Note: returns data in same format as `MARKET_INFORMATION` but without `products` array.
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproduct
+ * @param {string} product_id Trading pair (e.g. "BTC-USD").
+ * @param {string} [limit] Number of trades to be returned. Not required, despite what is stated in documentation.
+ * @param {{ end?, start? }} rest
+ * @returns {Promise<{ data: { trades: [{ trade_id: string }] } }>}
  */
-const marketTickers = (product_id, limit) => {
+const marketTickers = async (product_id, limit, { end, start } = {}) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { MARKET_TICKERS },
@@ -20,19 +23,17 @@ const marketTickers = (product_id, limit) => {
     {
       currency: { base, quote },
     } = settings,
-    defaults = {
-      /** @todo Formatter. */
-      product_id: base + '-' + quote,
-    },
-    data = validateParams(
-      MARKET_TICKERS,
-      isValidParams,
-      defaults,
-      { warnOptional: { product_id } },
-      { warnRequired: { limit } },
-    );
+    data = validate(MARKET_TICKERS, {
+      defaults: {
+        /** @todo Formatter. */
+        product_id: base + '-' + quote,
+      },
+      optional: { product_id },
+      required: { end, limit, start },
+    }),
+    json = await get(MARKET_TICKERS, schema, null, data);
 
-  return coinbaseGet(null, MARKET_TICKERS, data);
+  return json;
 };
 
 export default marketTickers;

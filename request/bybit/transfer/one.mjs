@@ -13,7 +13,7 @@ import { transferOne as schema } from '../../../response/bybit/transfer/schema.m
  * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
  * @param {string} toAccountType To account type.
  * @param {string} coin Not supported by the API, must be filtered while parsing.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const transferOne = async (toAccountType, coin) => {
   const { config, settings } = global.apiTools,
@@ -25,12 +25,12 @@ const transferOne = async (toAccountType, coin) => {
       authentication: { security },
       currency: { base },
     } = settings,
-    defaults = {
-      fromAccountType: account.wallet,
-      coin: base,
-    },
-    data = validate(TRANSFER_ONE, defaults, {
-      throwRequired: { coin, toAccountType },
+    data = validate(TRANSFER_ONE, {
+      defaults: {
+        coin: base,
+        fromAccountType: account.wallet,
+      },
+      throw: { coin, toAccountType },
     }),
     json = await get(TRANSFER_ONE, schema, security, data);
 

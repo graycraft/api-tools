@@ -1,30 +1,32 @@
 /**
- * Handle Coinbase Advanced API order one endpoint.
+ * Handle Coinbase Advanced API one orders endpoint.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
  * @module request/coinbase/order/one
  */
 
-import coinbaseGet from '../get.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { orderOne as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorder
+ * @param {string} order_uuid Order UUID.
+ * @returns {Promise<{ order: { order_id: string, product_id: string } }>}
  */
-const orderOne = (order_id, { client_order_id, user_native_currency } = {}) => {
+const orderOne = async (order_uuid) => {
   const { config, settings } = global.apiTools,
     {
       PATH: { ORDER_ONE },
     } = config,
     {
-      authentication: { sign },
+      authentication: { security },
     } = settings,
-    defaults = {},
-    data = validateParams(ORDER_ONE, isValidParams, defaults, {
-      throwRequired: { order_id },
-    });
+    data = validate(ORDER_ONE, {
+      throw: { order_uuid },
+    }),
+    json = await get(ORDER_ONE, schema, security, data);
 
-  return coinbaseGet(sign, ORDER_ONE, data);
+  return json;
 };
 
 export default orderOne;

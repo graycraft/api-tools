@@ -19,7 +19,7 @@ import { marketInformation as schema } from '../../../response/bybit/market/sche
  * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {"inverse" | "linear" | "option" | "spot"} category Product type.
  * @param {{ baseCoin?, cursor?, limit?, status?, symbol? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const marketInformation = async (category, { baseCoin, cursor, limit, status, symbol } = {}) => {
   const { config, settings } = global.apiTools,
@@ -28,16 +28,14 @@ const marketInformation = async (category, { baseCoin, cursor, limit, status, sy
     } = config,
     { account, currency } = settings,
     { base, quote } = currency,
-    defaults = {
-      category: account.category,
-      symbol: base + quote,
-    },
-    data = validate(
-      MARKET_INFORMATION,
-      defaults,
-      { warnOptional: { category, symbol } },
-      { warnRequired: { baseCoin, category, cursor, limit, status } },
-    ),
+    data = validate(MARKET_INFORMATION, {
+      defaults: {
+        category: account.category,
+        symbol: base + quote,
+      },
+      optional: { category, symbol },
+      required: { baseCoin, category, cursor, limit, status },
+    }),
     json = await get(MARKET_INFORMATION, schema, null, data);
 
   return json;

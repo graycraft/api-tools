@@ -19,7 +19,7 @@ export const bybitKey = () => {
     { keys } = authentication,
     key = keys[account[wallet]];
 
-  /** Timestamp must be fresh for every request from an API scenario. */
+  /** Timestamp must be fresh for every request from an API flow. */
   timestamp = Date.now();
 
   return { key, timestamp };

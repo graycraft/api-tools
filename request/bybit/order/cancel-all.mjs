@@ -15,7 +15,7 @@ import { orderCancelAll as schema } from '../../../response/bybit/order/schema.m
  * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} [symbol] Symbol name.
  * @param {{ baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const orderCancelAll = async (
   symbol,
@@ -29,24 +29,20 @@ const orderCancelAll = async (
       account,
       authentication: { security },
     } = settings,
-    defaults = {
-      category: account.category,
-    },
-    data = validate(
-      ORDER_CANCEL_ALL,
-      defaults,
-      {
-        warnOptional: {
-          baseCoin,
-          category,
-          orderFilter,
-          orderLinkId,
-          settleCoin,
-          stopOrderType,
-        },
+    data = validate(ORDER_CANCEL_ALL, {
+      defaults: {
+        category: account.category,
       },
-      { warnRequired: { symbol } },
-    ),
+      optional: {
+        baseCoin,
+        category,
+        orderFilter,
+        orderLinkId,
+        settleCoin,
+        stopOrderType,
+      },
+      required: { symbol },
+    }),
     json = await post(ORDER_CANCEL_ALL, schema, security, data);
 
   return json;

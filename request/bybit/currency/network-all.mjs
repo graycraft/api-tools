@@ -10,7 +10,7 @@ import { currencyNetworkAll as schema } from '../../../response/bybit/currency/s
 
 /**
  * Uses the same endpoint as `currencyAll`.
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const currencyNetworkAll = async () => {
   const { config, settings } = global.apiTools,

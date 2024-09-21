@@ -1,49 +1,60 @@
 /**
- * Handle Coinbase Advanced API order market buy endpoint.
+ * Handle Coinbase Advanced API place limit sell order endpoint.
  *
- * @module request/coinbase/order/market-buy
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
+ * @module request/coinbase/order/limit-sell
  */
 
 import nodeCrypto from 'node:crypto';
-import coinbasePost from '../post.mjs';
-import isValidParams from '../validate.mjs';
-import validateParams from '../../validate.mjs';
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { orderLimitSell as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
+ * The maximum number of open orders allowed per `product_id` is 500.
+ * A buy Order will execute at or lower than the limit price.
+ * A sell Order will execute at or higher than the limit price.
+ * @param {string} base_size Size of the first asset in a trading pair.
+ * @param {string} limit_price Price, that an order should be executed at.
+ * @param {string} [product_id] Trading pair (e.g. "BTC-USD").
+ * @param {{ client_order_id? }} rest
+ * @returns {Promise<{ success: boolean, success_response: { order_id: string, product_id: string } }>}
  */
-const orderMarketBuy = (qty, price, symbol, {} = {}) => {
+const orderLimitSell = async (
+  base_size,
+  limit_price,
+  product_id,
+  { client_order_id /* , side */ } = {},
+) => {
   const { config, settings } = global.apiTools,
     {
       ORDER,
       PATH: { ORDER_PLACE },
-      TRADE,
+      TRADE: { SIDE },
     } = config,
     {
-      authentication: { sign },
+      authentication: { security },
       currency: { base, quote },
     } = settings,
-    defaults = {
-      client_order_id: nodeCrypto.randomUUID(),
-      order_configuration: {
-        [ORDER.LIMIT]: {
-          base_size: qty,
-          limit_price: price,
+    data = validate(ORDER_PLACE, {
+      defaults: {
+        client_order_id: nodeCrypto.randomUUID(),
+        product_id: base + '-' + quote,
+        side: SIDE.SELL,
+      },
+      optional: { client_order_id, product_id },
+      throw: {
+        order_configuration: {
+          [ORDER.LIMIT]: {
+            base_size,
+            limit_price,
+          },
         },
       },
-      product_id: base + '-' + quote,
-      side: TRADE.SELL,
-    },
-    data = validateParams(
-      ORDER_PLACE,
-      isValidParams,
-      defaults,
-      /** @todo Fix proto: (line 1:124): unknown field "qty" */
-      //{ throwRequired: { qty, price } },
-      { warnOptional: { symbol } },
-    );
+    }),
+    json = await post(ORDER_PLACE, schema, security, data);
 
-  return coinbasePost(sign, ORDER_PLACE, data);
+  return json;
 };
 
-export default orderMarketBuy;
+export default orderLimitSell;

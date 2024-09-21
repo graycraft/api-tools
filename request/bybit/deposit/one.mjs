@@ -14,7 +14,7 @@ import { depositOne as schema } from '../../../response/bybit/deposit/schema.mjs
  * Defference between `endTime` and `startTime` should be less than 30 days (30 days is default).
  * @param {string} txID Transaction identifier.
  * @param {{ coin?, cursor?, endTime?, limit?, startTime? }} rest
- * @returns {Promise<Object>} JSON data from response.
+ * @returns {Promise<object>} JSON data from response.
  */
 const depositOne = async (txID, { coin, cursor, endTime, limit, startTime } = {}) => {
   const { config, settings } = global.apiTools,
@@ -24,13 +24,10 @@ const depositOne = async (txID, { coin, cursor, endTime, limit, startTime } = {}
     {
       authentication: { security },
     } = settings,
-    defaults = {},
-    data = validate(
-      DEPOSIT_ONE,
-      defaults,
-      { throwRequired: { txID } },
-      { warnOptional: { coin, cursor, endTime, limit, startTime } },
-    ),
+    data = validate(DEPOSIT_ONE, {
+      optional: { coin, cursor, endTime, limit, startTime },
+      required: { txID },
+    }),
     json = await get(DEPOSIT_ONE, schema, security, data);
 
   return json;
