@@ -1,6 +1,6 @@
 {
   "name": "api-tools",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "Tools to work with a REST API.",
   "main": "request.mjs",
   "directories": {

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "checkJs": true,
+    "lib": ["es2021", "dom", "dom.iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "paths": {
+      "types/*": ["./types/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "target": "ES6"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.js", "**/*.mjs"]
+}

@@ -1,41 +1,74 @@
 /**
  * Validate parameters for a Coinbase Advanced API request.
- * 
+ *
  * @module request/coinbase/validate
  */
 
-//import currencyAll from "../../collection/coinbase/currency_all.json" with { type: "json" };
-//import networkAll from "../../collection/coinbase/network_all.json" with { type: "json" };
-import config from "../../configuration/coinbase.json" with { type: "json" };
-import settings from "../../settings/coinbase.json" with { type: "json" };
+import { hasSome, requestValidate } from '../validate.mjs';
+import { REGEXP } from '../../lib/constants.mjs';
+import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
-const {
-    ACCOUNT,
-    CURRENCY
-  } = config,
-  {} = settings;
+/**
+ * @param {string} path
+ * @param {object} options
+ * @returns
+ */
+const coinbaseValidate = (path, options) => requestValidate(path, isValid, options);
 
+/**
+ * @param {{ [key: string]: value }} param
+ * @returns {boolean}
+ */
 const isValid = (param) => {
-  const [key, value] = Object.entries(param)[0];
+  const { UUID } = REGEXP,
+    { config } = global.apiTools,
+    {
+      ORDER,
+      USER: { PORTFOLIO },
+    } = config,
+    [key, value] = Object.entries(param)[0],
+    currencyDir = 'collection/coinbase/currency_all',
+    currencyFile = fileNameNewest(currencyDir),
+    currencyAll = fileReadJson(currencyDir, currencyFile.name);
+  /* networkDir = 'collection/coinbase/network_all',
+    networkFile = fileNameNewest(networkDir),
+    networkAll = fileReadJson(networkDir, networkFile.name) */
 
+  /**
+   * @todo `contract_expiry_type`.
+   * @todo `expiring_contract_status`.
+   * @todo `get_all_products`.
+   * @todo `offset`.
+   * @todo `product_id`.
+   * @todo `product_ids`.
+   * @todo `product_type`.
+   * `name` as address label, random string.
+   */
   switch (key) {
-    case "accountType": return ACCOUNT.WALLET.some(account => account === value);
-    //case "chainType": return networkAll.some(currency => currency === value);
-    //case "coin": return currencyAll.some(currency => currency === value);
-    case "memberId": return Number(value);
-    case "memberIds": return Number(value) || value.split(",").every(member => Number(member));
-    /**
-     * @todo Iterate over full list from collection.
-     */
-    case "symbol": return Object.values(CURRENCY.BASE).some(currency1 => 
-      Object.values(CURRENCY.QUOTE).some(currency2 =>
-        (currency1 + currency2 === value) && currency1 !== currency2
-      )
-    );
-    case "txID": return /^0x[0-9A-Fa-f]{64}$/.test(value);
-    case "withBonus": return Number(value);
-    default: return typeof value === "string";
+    case 'account_uuid':
+    case 'address_uuid':
+    case 'next_starting_after':
+    case 'portfolio_uuid':
+    case 'previous_ending_before':
+    case 'retail_portfolio_id':
+      return UUID.test(value);
+    case 'limit':
+      return Boolean(Number(value));
+    case 'order_ids':
+      return value instanceof Array;
+    case 'order_configuration':
+      const order = value[ORDER.LIMIT] ?? value[ORDER.MARKET];
+
+      if (value[ORDER.MARKET]) {
+        return typeof order.base_size === 'string' || typeof order.quote_size === 'string';
+      }
+
+      return typeof order.base_size === 'string' && typeof order.limit_price === 'string';
+    case 'portfolio_type':
+      return PORTFOLIO.some((portfolio) => portfolio === value);
+    default:
+      return typeof value === 'string';
   }
 };
 
-export default isValid
+export default coinbaseValidate;

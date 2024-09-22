@@ -1,63 +1,40 @@
 /**
- * Bybit API trade history endpoint.
- * 
- * @module request/bybit/trade/history
+ * Handle Bybit API trade fee rates endpoint.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
+ * @module request/bybit/trade/rates
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnOptional } from "../../../lib/output.mjs";
-import bybitGet from "../get.mjs";
-
-const {
-    CURRENCY,
-    PATH: {
-      TRADE_FEES
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { tradeRates as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/execution
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} symbol Symbol name.
+ * @param {{ baseCoin?, category? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const tradeRates = (symbol, {
-  baseCoin
-} = {}) => {
-  const data = {
-    // baseCoin: base,
-    // cursor,
-    category,
-    // endTime,
-    // execType,
-    // limit,
-    // orderId,
-    // orderLinkId,
-    // startTime,
-    symbol: base + quote,
-  };
+const tradeRates = async (symbol, { baseCoin, category } = {}) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { TRADE_RATES },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(TRADE_RATES, {
+      defaults: {
+        category: account.category,
+      },
+      optional: { category },
+      required: { baseCoin, symbol },
+    }),
+    json = await get(TRADE_RATES, schema, security, data);
 
-  if (symbol) {
-    if (
-      Object.values(CURRENCY.BASE).some(currency1 => 
-        Object.values(CURRENCY.QUOTE).some(currency2 => currency1 + currency2 === symbol)
-      )
-    ) {
-      data.symbol = symbol
-    } else warnOptional(PATH, TRADE_FEES, "symbol", data.symbol);
-  }
-
-  return bybitGet(sign, TRADE_FEES, data)
+  return json;
 };
 
 export default tradeRates;

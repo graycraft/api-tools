@@ -1,61 +1,71 @@
 /**
- * Bybit API order all endpoint.
- * 
- * @module request/bybit/order/all
+ * Handle Bybit API one order endpoint, with unfilled or partially filled orders by order identifier.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/order/open-order
+ * @module request/bybit/order/one
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional } from "../../../lib/output.mjs";
-import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      ORDER_ALL
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    /* currency: {
-      base,
-      quote
-    } */
-  } = settings;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { orderOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/open-order
+ * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} orderId Order identifier.
+ * @param {{
+ *   baseCoin?, category?, cursor?, limit?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, side?, symbol?
+ * }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const orderOne = (orderId, {
-  baseCoin, cursor, openOnly, orderFilter, orderLinkId, settleCoin, symbol,
-} = {}) => {
-  const data = {
-    // baseCoin,
+const orderOne = async (
+  orderId,
+  {
+    baseCoin,
     category,
-    // cursor,
-    // limit,
-    openOnly: 2,
-    // orderFilter,
-    // orderId,
-    // orderLinkId,
-    // settleCoin,
-    // symbol: base + quote,
-  };
+    cursor,
+    limit,
+    openOnly,
+    orderFilter,
+    orderLinkId,
+    settleCoin,
+    side,
+    symbol,
+  } = {},
+) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { ORDER_ONE },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(ORDER_ONE, {
+      defaults: {
+        category: account.category,
+      },
+      optional: { category, symbol },
+      required: {
+        baseCoin,
+        category,
+        cursor,
+        limit,
+        openOnly,
+        orderFilter,
+        orderId,
+        orderLinkId,
+        settleCoin,
+        side,
+        symbol,
+      },
+      throw: { orderId },
+    }),
+    json = await get(ORDER_ONE, schema, security, data);
 
-  if (Number(orderId))
-    data.orderId = orderId
-  else throwRequired(PATH, ORDER_ALL, "orderId");
-  if (symbol) {
-    if (typeof symbol === "string") {
-      data.symbol = symbol
-    } else warnOptional(PATH, ORDER_ALL, "symbol", data.symbol);
-  }
-
-  return bybitGet(sign, ORDER_ALL, data)
+  return json;
 };
 
 export default orderOne;

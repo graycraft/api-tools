@@ -1,70 +1,59 @@
 /**
- * Request a Bybit API endpoint by POST method.
- * 
- * @module request/bybit/post
+ * Request a Bybit API endpoint by `POST` method.
+ *
  * @see https://bybit-exchange.github.io/docs/v5/guide
  * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.js
  * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.ts
+ * @module request/bybit/post
  */
 
-import config from "../../configuration/bybit.json" with { type: "json" };
-import settings from "../../settings/bybit.json" with { type: "json" };
-import { fetchData } from "../../lib/fetch.mjs";
-import { signHmac } from "../../lib/authentication.mjs";
-import { dirObject, infoName } from "../../lib/output.mjs";
-import responseAnalyze from "../../response/bybit/analyze.mjs";
-import responseParse from "../../response/bybit/parse.mjs";
+import { bybitKey, bybitSign } from './sign.mjs';
+import post from '../post.mjs';
+import { HTTP } from '../../lib/constants.mjs';
+import { endpointPost } from '../../lib/fetch.mjs';
+import { dirObject } from '../../lib/output.mjs';
+import { obtainName } from '../../lib/utility.mjs';
+import parse from '../../response/bybit/parse.mjs';
+import snapshot from '../../response/bybit/snapshot.mjs';
 
-const bybitPost = async (sign, pathTemplate, data = {}) => {
-    const { ENCODING, HOSTNAME, PATH, PREFIX } = config,
-      { account, authentication } = settings,
-      { wallet } = account,
-      { delay, hidden, keys, secrets } = authentication,
-      key = keys[account[wallet]],
-      body = JSON.stringify(data),
-      method = "POST",
-      secret = secrets[account[wallet]],
-      timestamp = Date.now(),
-      path = interpolate(pathTemplate, data).split("?")[0],
-      payload = timestamp + key + delay + body,
-      url = "https://" + HOSTNAME + PREFIX + path;
-    let headers = {
-      "Content-Type": "application/json; charset=utf-8"
-    };
+/**
+ * @param {string} template Path template to be interpolated.
+ * @param {object} schema JSON-schema to validate response with.
+ * @param {"HMAC" | "RSA" | null} [security] Authentication signature security.
+ * @param {object} [data] Data to send with request.
+ * @returns {Promise<object>} JSON data from response.
+ */
+const bybitPost = async (template, schema, security, data = {}) => {
+  const { config, settings } = global.apiTools,
+    {
+      METHOD: { POST },
+    } = HTTP,
+    { PATH } = config,
+    {
+      authentication: { delay },
+    } = settings,
+    { body, url } = endpointPost(template, data),
+    { key, timestamp } = bybitKey(),
+    payload = timestamp + key + delay + body;
 
-    infoName(PATH, pathTemplate);
-    if (sign === "HMAC") {
-      const digest = signHmac(ENCODING, payload, secret, hidden);
+  global.apiTools.output = { [obtainName(template, PATH)]: url };
 
-      headers = {
-        ...headers,
-        "X-BAPI-API-KEY": key,
-        "X-BAPI-RECV-WINDOW": delay,
-        "X-BAPI-SIGN": digest,
-        "X-BAPI-SIGN-TYPE": 2,
-        "X-BAPI-TIMESTAMP": timestamp
-      };
-    };
+  const headers = bybitSign(POST, security, key, payload, data),
+    json = await post(
+      url,
+      template,
+      headers,
+      schema,
+      {
+        parse,
+        snapshot,
+      },
+      data,
+    );
 
-    let { json, status } = await fetchData(method, url, data, headers),
-      report = responseAnalyze(json, status);
+  dirObject('JSON', global.apiTools.output);
 
-    if (report.isResponseSuccessful) {
-      /* responseSnapshot(
-        responseParse(json, status, path, data), path
-      ) */
-      responseParse(json, status, pathTemplate, data)
-      responseSnapshot(json, pathTemplate)
-    } else {
-    /** 
-     * @todo Status synchronization with `status.json`.
-       */
-      dirObject(status, json);
-      console.info(`Could not parse and snapshot. Response is not successful.`)
-    };
-    console.info({ report })
-
-    return json;
-  };
+  return json;
+};
 
 export default bybitPost;

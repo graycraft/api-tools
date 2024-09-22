@@ -1,27 +1,25 @@
 /**
- * Handle Bybit API currency all endpoint.
- * 
+ * Handle Bybit API currency all response aggregation.
+ *
  * @module response/bybit/currency/all
  */
 
-import responseAggregate from "../aggregate.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      CURRENCY_ALL,
-    }
-  } = config,
-  {
-    authentication: {
-      sign
-    }
-  } = settings;
+import aggregate from '../aggregate.mjs';
+import { fileNameNewest } from '../../../lib/file_system.mjs';
+import { obtainName } from '../../../lib/utility.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  */
-const currencyAll = () => responseAggregate(CURRENCY_ALL, "2024-08-17T15:29:51.146Z");
+const currencyAll = () => {
+  const { config } = global.apiTools,
+    {
+      PATH: { CURRENCY_ALL },
+    } = config,
+    path = obtainName(CURRENCY_ALL, config.PATH).toLowerCase(),
+    file = fileNameNewest('response/bybit/snapshot/' + path);
+
+  aggregate(CURRENCY_ALL, file.name);
+};
 
 export default currencyAll;

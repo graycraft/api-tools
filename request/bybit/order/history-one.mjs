@@ -1,61 +1,78 @@
 /**
- * Bybit API order all endpoint.
- * 
- * @module request/bybit/order/all
+ * Handle Bybit API one order history endpoint by order identifier.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/order/order-list
+ * @module request/bybit/order/history-one
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional } from "../../../lib/output.mjs";
-import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      ORDER_HISTORY_ONE
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    /* currency: {
-      base,
-      quote
-    } */
-  } = settings;;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { orderHistoryOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/order-list
+ * Because order creation and cancellation is asynchronous, the data returned from this endpoint may delay.
+ * To get real-time order information, it is better to request `ORDER_ALL` or rely on the web socket stream.
+ * Limit data per page - default is 20, maximum 50.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#orderstatus
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} orderId Order identifier.
+ * @param {{
+ *   baseCoin?, category?, cursor?, endTime?, limit?,openOnly?, orderFilter?, orderLinkId?,
+ *   orderStatus?, settleCoin?, startTime?, symbol?
+ * }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const orderOne = (orderId, symbol, {
-  baseCoin, cursor, openOnly, orderFilter, orderLinkId, settleCoin
-} = {}) => {
-  const data = {
-    // baseCoin,
+const orderHistoryOne = async (
+  orderId,
+  {
+    baseCoin,
     category,
-    // cursor,
-    // limit,
-    // openOnly: 2,
-    // orderFilter,
-    // orderId,
-    // orderLinkId,
-    // settleCoin,
-    // symbol: base + quote,
-  };
+    cursor,
+    endTime,
+    limit,
+    openOnly,
+    orderFilter,
+    orderLinkId,
+    orderStatus,
+    settleCoin,
+    startTime,
+    symbol,
+  } = {},
+) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { ORDER_HISTORY_ONE },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(ORDER_HISTORY_ONE, {
+      defaults: {
+        category: account.category,
+      },
+      optional: { category },
+      required: {
+        baseCoin,
+        cursor,
+        endTime,
+        limit,
+        openOnly,
+        orderFilter,
+        orderId,
+        orderLinkId,
+        orderStatus,
+        settleCoin,
+        startTime,
+        symbol,
+      },
+      throw: { orderId },
+    }),
+    json = await get(ORDER_HISTORY_ONE, schema, security, data);
 
-  if (Number(orderId))
-    data.orderId = orderId
-  else throwRequired(PATH, ORDER_HISTORY_ONE, "orderId");
-  if (symbol) {
-    if (typeof symbol === "string") {
-      data.symbol = symbol
-    } else warnOptional(PATH, ORDER_HISTORY_ONE, "symbol", data.symbol);
-  }
-
-  return bybitGet(sign, ORDER_HISTORY_ONE, data)
+  return json;
 };
 
-export default orderOne;
+export default orderHistoryOne;

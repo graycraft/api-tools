@@ -1,38 +1,42 @@
 /**
  * Handle Bybit API account wallet types endpoint.
- * 
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
  * @module request/bybit/account/wallets
  */
 
-import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/bybit/validate.mjs";
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      ACCOUNT_WALLETS,
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-  } = settings;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { accountWallets as schema } from '../../../response/bybit/account/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
- * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
+ * "FUND" - never deposited or transfered capital. This wallet type absent in the array, but account has this wallet.
+ * "CONTRACT", "FUND", "SPOT" - classic account and Funding wallet was operated before.
+ * "CONTRACT", "FUND", "UNIFIED" - UTA account and Funding wallet was operated before.
+ * "CONTRACT", "SPOT" - classic account and Funding wallet is never operated.
+ * "CONTRACT", "UNIFIED" - UTA account and Funding wallet is never operated.
+ * @param {string} memberIds Multiple sub UIDs can be supplied, separated by commas.
+ * @returns {Promise<object>} JSON data from response.
  */
-const accountTypes = (memberIds) => {
-  const defaults = {},
-    data = validate(
-      ACCOUNT_WALLETS, isValid, defaults,
-      { warnRequired: { memberIds } },
-    );
+const accountWallets = async (memberIds) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { ACCOUNT_WALLETS },
+    } = config,
+    {
+      account,
+      account: { wallet },
+      authentication: { security },
+    } = settings,
+    data = validate(ACCOUNT_WALLETS, {
+      defaults: {
+        memberIds: [account[wallet]].join(),
+      },
+      optional: { memberIds },
+    }),
+    json = await get(ACCOUNT_WALLETS, schema, security, data);
 
-  return bybitGet(sign, ACCOUNT_WALLETS, data)
+  return json;
 };
 
-export default accountTypes;
+export default accountWallets;

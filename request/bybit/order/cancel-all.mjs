@@ -1,54 +1,51 @@
 /**
- * Bybit API order cancel all endpoint.
- * 
- * @module request/bybit/order/cancel
+ * Handle Bybit API endpoint, with cancel all open orders.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/order/cancel-all
+ * @module request/bybit/order/cancel-all
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnRequired } from "../../../lib/output.mjs";
-import bybitPost from "../post.mjs";
-
-const {
-    PATH: {
-      ORDER_CANCEL_ALL
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    /* currency: {
-      base,
-      quote
-    } */
-  } = settings;
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { orderCancelAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/cancel-all
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} [symbol] Symbol name.
+ * @param {{ baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const orderCancelAll = (symbol, {
-  baseCoin, orderFilter, settleCoin, stopOrderType
-} = {}) => {
-  const data = {
-    // baseCoin,
-    category,
-    // orderFilter,
-    // settleCoin,
-    // stopOrderType,
-    // symbol: base + quote,
-  };
+const orderCancelAll = async (
+  symbol,
+  { baseCoin, category, orderFilter, orderLinkId, settleCoin, stopOrderType } = {},
+) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { ORDER_CANCEL_ALL },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(ORDER_CANCEL_ALL, {
+      defaults: {
+        category: account.category,
+      },
+      optional: {
+        baseCoin,
+        category,
+        orderFilter,
+        orderLinkId,
+        settleCoin,
+        stopOrderType,
+      },
+      required: { symbol },
+    }),
+    json = await post(ORDER_CANCEL_ALL, schema, security, data);
 
-  if (symbol) {
-    if (typeof symbol === "string") {
-      data.symbol = symbol
-    } else warnRequired(PATH, ORDER_CANCEL_ALL, "symbol");
-  }
-
-  return bybitPost(sign, ORDER_CANCEL_ALL, data)
+  return json;
 };
 
 export default orderCancelAll;

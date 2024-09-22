@@ -1,44 +1,57 @@
 {
-    "account": {
-        "00000000-0000-0000-0000-000000000000": {
-            "permissions": []
-        },
-        "DEFAULT": "00000000-0000-0000-0000-000000000000",
-        "wallet": "DEFAULT"
+  "account": {
+    "uuid": "00000000-0000-0000-0000-000000000000"
+  },
+  "address": {
+    "withdraw": ""
+  },
+  "aggregate": ["CURRENCY_ALL"],
+  "authentication": {
+    "delay": 1e3,
+    "hidden": "full",
+    "keys": {
+      "00000000-0000-0000-0000-000000000000": "organizations/00000000-0000-0000-0000-000000000000/apiKeys/00000000-0000-0000-0000-000000000000"
     },
-    "address": {
-        "withdraw": ""
+    "secrets": {
+      "00000000-0000-0000-0000-000000000000": "-----BEGIN EC PRIVATE KEY-----\n000000000000000000000000000000000000000000/000000000000000000000\n00000000000000/00000000000000000000+0000000000000000000000+00000\n0000000000000000000000000000000000==\n-----END EC PRIVATE KEY-----"
     },
-    "aggregate": [
-        "CURRENCY_ALL"
-    ],
-    "authentication": {
-        "delay": 1e3,
-        "hidden": "full",
-        "keys": {
-            "00000000-0000-0000-0000-000000000000": "********"
-        },
-        "secrets": {
-            "00000000-0000-0000-0000-000000000000": "********"
-        },
-        "sign": "JWT"
+    "security": "JWT"
+  },
+  "currency": {
+    "base": "AAA",
+    "network": "BBB",
+    "quote": "CCC",
+    "uuid": "00000000-0000-0000-0000-000000000000"
+  },
+  "enabled": ["aggregate", "parse", "snapshot", "verbose"],
+  "parse": ["ACCOUNT_BALANCE"],
+  "snapshot": [
+    "ADDRESS",
+    "ADDRESS_ONE",
+    "ADDRESS_TRANSACTIONS",
+    "CURRENCY_ALL",
+    "CURRENCY_ONE",
+    "MARKET_ALL",
+    "MARKET_ONE",
+    "MARKET_TICKERS",
+    "ORDER_ALL",
+    "ORDER_CANCEL",
+    "ORDER_ONE",
+    "ORDER_PLACE",
+    "TRANSACTION_ALL",
+    "TRANSACTION_ONE",
+    "USER_ACCOUNT_ALL",
+    "USER_ACCOUNT_ONE",
+    "USER_PORTFOLIO_ALL",
+    "USER_PORTFOLIO_ONE"
+  ],
+  "user": {
+    "00000000-0000-0000-0000-000000000000": {
+      "main": true,
+      "permissions": []
     },
-    "currency": {
-        "base": "ETH",
-        "network": "MATIC",
-        "quote": "USDT",
-        "uuid": "00000000-0000-0000-0000-000000000000"
-    },
-    "enabled": [
-        "aggregate",
-        "parse",
-        "snapshot"
-    ],
-    "parse": [
-        "ACCOUNT_BALANCE",
-        "CURRENCY_ALL"
-    ],
-    "snapshot": [
-        "CURRENCY_ALL"
-    ]
+    "DEFAULT": "00000000-0000-0000-0000-000000000000",
+    "account": "00000000-0000-0000-0000-000000000000",
+    "portfolio": "DEFAULT"
+  }
 }

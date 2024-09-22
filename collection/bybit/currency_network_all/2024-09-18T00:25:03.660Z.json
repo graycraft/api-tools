@@ -1,0 +1,474 @@
+[
+  {
+    "chain": "ACA",
+    "chainType": "ACA"
+  },
+  {
+    "chain": "ADA",
+    "chainType": "ADA"
+  },
+  {
+    "chain": "ALGO",
+    "chainType": "ALGO"
+  },
+  {
+    "chain": "APTOS",
+    "chainType": "APTOS"
+  },
+  {
+    "chain": "AR",
+    "chainType": "AR"
+  },
+  {
+    "chain": "ARBI",
+    "chainType": "Arbitrum One"
+  },
+  {
+    "chain": "ARBI.E",
+    "chainType": "Arbitrum One (Bridged)"
+  },
+  {
+    "chain": "ARBINOVA",
+    "chainType": "Arbitrum Nova"
+  },
+  {
+    "chain": "ATOM",
+    "chainType": "ATOM"
+  },
+  {
+    "chain": "AVAIL",
+    "chainType": "AVAIL"
+  },
+  {
+    "chain": "AXL",
+    "chainType": "AXL"
+  },
+  {
+    "chain": "BASE",
+    "chainType": "BASE"
+  },
+  {
+    "chain": "BCH",
+    "chainType": "Bitcoin Cash"
+  },
+  {
+    "chain": "BLAST",
+    "chainType": "BLAST"
+  },
+  {
+    "chain": "BNB",
+    "chainType": "BNB (BEP2)"
+  },
+  {
+    "chain": "BOUNCEBIT",
+    "chainType": "BounceBit"
+  },
+  {
+    "chain": "BSC",
+    "chainType": "BSC"
+  },
+  {
+    "chain": "BTC",
+    "chainType": "BRC20 - unisat"
+  },
+  {
+    "chain": "BTG",
+    "chainType": "BTG"
+  },
+  {
+    "chain": "CAVAX",
+    "chainType": "CAVAX"
+  },
+  {
+    "chain": "CELESTIA",
+    "chainType": "Celestia"
+  },
+  {
+    "chain": "CELO",
+    "chainType": "CELO"
+  },
+  {
+    "chain": "CHILIZ",
+    "chainType": "Chiliz Chain"
+  },
+  {
+    "chain": "CMP",
+    "chainType": "Caduceus"
+  },
+  {
+    "chain": "CORE",
+    "chainType": "CORE"
+  },
+  {
+    "chain": "CSPR",
+    "chainType": "Casper"
+  },
+  {
+    "chain": "DCR",
+    "chainType": "DCR"
+  },
+  {
+    "chain": "DGB",
+    "chainType": "DGB"
+  },
+  {
+    "chain": "DOGE",
+    "chainType": "Dogecoin"
+  },
+  {
+    "chain": "DOT",
+    "chainType": "DOT"
+  },
+  {
+    "chain": "DYDX",
+    "chainType": "DYDX"
+  },
+  {
+    "chain": "DYM",
+    "chainType": "Dymension Chain-Cosmos"
+  },
+  {
+    "chain": "DYMEVM",
+    "chainType": "Dymension Chain-EVM"
+  },
+  {
+    "chain": "EGLD",
+    "chainType": "EGLD"
+  },
+  {
+    "chain": "ENJIN",
+    "chainType": "Enjin Relay Chain"
+  },
+  {
+    "chain": "EOS",
+    "chainType": "EOS"
+  },
+  {
+    "chain": "ETC",
+    "chainType": "Ethereum Classic"
+  },
+  {
+    "chain": "ETH",
+    "chainType": "ERC20"
+  },
+  {
+    "chain": "ETHF",
+    "chainType": "ETHF"
+  },
+  {
+    "chain": "ETHW",
+    "chainType": "ETHW"
+  },
+  {
+    "chain": "FIL",
+    "chainType": "Filecoin"
+  },
+  {
+    "chain": "FITFI",
+    "chainType": "STEP"
+  },
+  {
+    "chain": "FLOW",
+    "chainType": "FLOW"
+  },
+  {
+    "chain": "FLR",
+    "chainType": "FLR"
+  },
+  {
+    "chain": "FTM",
+    "chainType": "FTM"
+  },
+  {
+    "chain": "GLMR",
+    "chainType": "GLMR"
+  },
+  {
+    "chain": "HBAR",
+    "chainType": "HBAR"
+  },
+  {
+    "chain": "HVH",
+    "chainType": "HVH"
+  },
+  {
+    "chain": "ICP",
+    "chainType": "ICP"
+  },
+  {
+    "chain": "ICX",
+    "chainType": "ICX"
+  },
+  {
+    "chain": "INJ",
+    "chainType": "INJ"
+  },
+  {
+    "chain": "KAS",
+    "chainType": "Kaspa"
+  },
+  {
+    "chain": "KAVA",
+    "chainType": "KAVA"
+  },
+  {
+    "chain": "KAVAEVM",
+    "chainType": "KAVAEVM"
+  },
+  {
+    "chain": "KDA",
+    "chainType": "KDA"
+  },
+  {
+    "chain": "KLAY",
+    "chainType": "KLAY"
+  },
+  {
+    "chain": "KON",
+    "chainType": "KON"
+  },
+  {
+    "chain": "KSM",
+    "chainType": "KSM"
+  },
+  {
+    "chain": "LINEA",
+    "chainType": "LINEA"
+  },
+  {
+    "chain": "LTC",
+    "chainType": "LTC"
+  },
+  {
+    "chain": "LUK",
+    "chainType": "Luniverse"
+  },
+  {
+    "chain": "LUNA",
+    "chainType": "Terra Classic"
+  },
+  {
+    "chain": "LUNANEW",
+    "chainType": "Terra"
+  },
+  {
+    "chain": "MANTA",
+    "chainType": "Manta Pacific Mainnet"
+  },
+  {
+    "chain": "MANTLE",
+    "chainType": "Mantle Network"
+  },
+  {
+    "chain": "MATIC",
+    "chainType": "Polygon PoS"
+  },
+  {
+    "chain": "MATIC.E",
+    "chainType": "Polygon(bridged)"
+  },
+  {
+    "chain": "MERLIN",
+    "chainType": "Merlin Chain"
+  },
+  {
+    "chain": "MINA",
+    "chainType": "MINA"
+  },
+  {
+    "chain": "MODE",
+    "chainType": "Mode"
+  },
+  {
+    "chain": "MOVR",
+    "chainType": "MOVR"
+  },
+  {
+    "chain": "NEAR",
+    "chainType": "NEAR"
+  },
+  {
+    "chain": "NEM",
+    "chainType": "NEM"
+  },
+  {
+    "chain": "NEON",
+    "chainType": "Neon EVM"
+  },
+  {
+    "chain": "NIBI",
+    "chainType": "Nibiru Chain"
+  },
+  {
+    "chain": "OAS",
+    "chainType": "OAS"
+  },
+  {
+    "chain": "OMEGA",
+    "chainType": "OMEGA"
+  },
+  {
+    "chain": "ONE",
+    "chainType": "ONE"
+  },
+  {
+    "chain": "OP",
+    "chainType": "OP Mainnet"
+  },
+  {
+    "chain": "OP.E",
+    "chainType": "OP Mainnet(bridged) "
+  },
+  {
+    "chain": "POKT",
+    "chainType": "POKT"
+  },
+  {
+    "chain": "QTUM",
+    "chainType": "QTUM"
+  },
+  {
+    "chain": "ROSE",
+    "chainType": "ROSE"
+  },
+  {
+    "chain": "RUNE",
+    "chainType": "THORChain"
+  },
+  {
+    "chain": "RVN",
+    "chainType": "RVN"
+  },
+  {
+    "chain": "SC",
+    "chainType": "SC"
+  },
+  {
+    "chain": "SCRT",
+    "chainType": "SCRT"
+  },
+  {
+    "chain": "SEI",
+    "chainType": "SEI"
+  },
+  {
+    "chain": "SOL",
+    "chainType": "Solana"
+  },
+  {
+    "chain": "STARKNET",
+    "chainType": "Starknet"
+  },
+  {
+    "chain": "STX",
+    "chainType": "STX"
+  },
+  {
+    "chain": "SUI",
+    "chainType": "SUI"
+  },
+  {
+    "chain": "TAIKO",
+    "chainType": "TAIKO"
+  },
+  {
+    "chain": "TENET",
+    "chainType": "TENET"
+  },
+  {
+    "chain": "THETA",
+    "chainType": "THETA"
+  },
+  {
+    "chain": "TON",
+    "chainType": "TON"
+  },
+  {
+    "chain": "TRX",
+    "chainType": "TRC20"
+  },
+  {
+    "chain": "VENOM",
+    "chainType": "VENOM"
+  },
+  {
+    "chain": "VIC",
+    "chainType": "Viction"
+  },
+  {
+    "chain": "WAVES",
+    "chainType": "Waves"
+  },
+  {
+    "chain": "WAXP",
+    "chainType": "WAX"
+  },
+  {
+    "chain": "WEMIX",
+    "chainType": "WEMIX"
+  },
+  {
+    "chain": "XAI",
+    "chainType": "XAi"
+  },
+  {
+    "chain": "XAVAX",
+    "chainType": "AVAX"
+  },
+  {
+    "chain": "XDC",
+    "chainType": "XDC"
+  },
+  {
+    "chain": "XEC",
+    "chainType": "XEC"
+  },
+  {
+    "chain": "XLM",
+    "chainType": "Stellar Lumens"
+  },
+  {
+    "chain": "XRP",
+    "chainType": "XRP"
+  },
+  {
+    "chain": "XTZ",
+    "chainType": "XTZ"
+  },
+  {
+    "chain": "XYM",
+    "chainType": "XYM"
+  },
+  {
+    "chain": "ZEN",
+    "chainType": "ZEN"
+  },
+  {
+    "chain": "ZETA",
+    "chainType": "ZetaChain-Cosmos"
+  },
+  {
+    "chain": "ZETAEVM",
+    "chainType": "ZetaChain EVM"
+  },
+  {
+    "chain": "ZIL",
+    "chainType": "ZIL"
+  },
+  {
+    "chain": "ZKFAIR",
+    "chainType": "ZKFair"
+  },
+  {
+    "chain": "ZKLINKNOVA",
+    "chainType": "zk Link Nova"
+  },
+  {
+    "chain": "ZKSYNC",
+    "chainType": "zkSync Lite"
+  },
+  {
+    "chain": "ZKV2",
+    "chainType": "zkSync Era"
+  }
+]

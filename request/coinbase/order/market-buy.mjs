@@ -1,68 +1,53 @@
 /**
- * Bybit API order place limit endpoint.
- * 
- * @module request/bybit/order/place_limit
+ * Handle Coinbase Advanced API place market buy order endpoint.
+ *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
+ * @module request/coinbase/order/market-buy
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnOptional, warnRequired } from "../../../lib/output.mjs";
-import bybitPost from "../post.mjs";
-
-const {
-    CURRENCY,
-    ORDER,
-    PATH: {
-      ORDER_PLACE
-    },
-    TRADE,
-  } = config,
-  {
-    // account,
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import nodeCrypto from 'node:crypto';
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { orderMarketBuy as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
- * @see https://bybit-exchange.github.io/docs/v5/order/create-order
- * @see https://bybit-exchange.github.io/docs/v5/smp
+ * The maximum number of open orders allowed per `product_id` is 500.
+ * A buy Order will execute at or lower than the market price.
+ * A sell Order will execute at or higher than the market price.
+ * @param {string} quote_size Size of the first asset in a trading pair.
+ * @param {string} [product_id] Trading pair (e.g. "BTC-USD").
+ * @param {{ client_order_id? }} rest
+ * @returns {Promise<{ success: boolean, success_response: { order_id: string, product_id: string } }>}
  */
-const orderMarketBuy = (qty, symbol, {} = {}) => {
-  const data = {
-    category,
-    orderType: ORDER.MARKET,
-    side: TRADE.BUY,
-    symbol: base + quote
-  };
+const orderMarketBuy = async (quote_size, product_id, { client_order_id /* , side */ } = {}) => {
+  const { config, settings } = global.apiTools,
+    {
+      ORDER,
+      PATH: { ORDER_PLACE },
+      TRADE: { SIDE },
+    } = config,
+    {
+      authentication: { security },
+      currency: { base, quote },
+    } = settings,
+    data = validate(ORDER_PLACE, {
+      defaults: {
+        client_order_id: nodeCrypto.randomUUID(),
+        product_id: base + '-' + quote,
+        side: SIDE.BUY,
+      },
+      optional: { client_order_id, product_id },
+      throw: {
+        order_configuration: {
+          [ORDER.MARKET]: {
+            quote_size,
+          },
+        },
+      },
+    }),
+    json = await post(ORDER_PLACE, schema, security, data);
 
-  if (marketUnit/*  && account.wallet === "UNIFIED" */) {
-    if (marketUnit)
-      data.marketUnit = marketUnit
-    else warnRequired(PATH, ORDER_PLACE, "marketUnit");
-  }
-  if (Number(qty))
-    data.qty = qty
-  else throwRequired(PATH, ORDER_PLACE, "qty");
-  if (symbol) {
-    if (
-      Object.values(CURRENCY.BASE).some(currency1 => 
-        Object.values(CURRENCY.QUOTE).some(currency2 => currency1 + currency2 === symbol)
-      )
-    ) {
-      data.symbol = symbol
-    } else warnOptional(PATH, ORDER_PLACE, "symbol", data.symbol);
-  }
-
-  return bybitPost(sign, ORDER_PLACE, data)
+  return json;
 };
 
 export default orderMarketBuy;

@@ -1,33 +1,33 @@
 /**
  * Filter items from a Bybit API response array by strict equality comparison or a criterion function.
- * 
+ *
  * @module response/bybit/parse/filter
  */
 
-const filter = (json, {
-  criterion,
-  key,
-  list,
-}) => {
+/**
+ * @param {object} json
+ * @param {{
+ *   criterion: string | ((item: object) => number),
+ *   key?: string,
+ *   list: string,
+ * }} options
+ * @returns
+ */
+const filter = (json, { criterion, key, list }) => {
   if (criterion) {
-    const items = json.result[list].filter(item =>
-        key ?
-          item[key] === criterion :
-          criterion(item)
-      );
+    const items = json.result[list].filter((item) =>
+      key ? item[key] === criterion : typeof criterion === 'function' && criterion(item),
+    );
 
     json = {
       ...json,
       result: {
-        [list]: [
-          items,
-          `... ${json.result[list].length - items.length} more items`
-        ]
-      }
+        [list]: [items, `... ${json.result[list].length - items.length} more items`],
+      },
     };
 
-    return json
-  };
-}
+    return json;
+  }
+};
 
 export default filter;

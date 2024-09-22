@@ -1,62 +1,65 @@
 {
-    "0": [
-        "",
-        "OK",
-        "success"
-    ],
+  "OK": {
+    "0": ["", "OK", "success"],
     "10001": [
-        "Illegal category",
-        "Not supported symbols",
-        "Parameter symbol [string] missing!",
-        "Request parameter error.",
-        "The number of contracts exceeds minimum limit allowed",
-        "accountType only support UNIFIED and CONTRACT.",
-        "empty value: apiTimestamp[] apiKey[] apiSignature[]",
-        "openapi params error! req_timestamp invalid",
-        "params error: symbol invalid"
+      "Illegal category",
+      "Not supported symbols",
+      "Parameter symbol [string] missing!",
+      "Request parameter error.",
+      "The number of contracts exceeds minimum limit allowed",
+      "accountType only support UNIFIED and CONTRACT.",
+      "empty value: apiTimestamp[] apiKey[] apiSignature[]",
+      "openapi params error! req_timestamp invalid",
+      "params error: symbol invalid"
     ],
     "10002": [
-        "Timestamp for this request is outside of the recvWindow.",
-        "invalid request, please check your server timestamp or recv_window param. req_timestamp[1719601596479],server_timestamp[1719601601866],recv_window[5000]"
+      "Timestamp for this request is outside of the recvWindow.",
+      "invalid request, please check your server timestamp or recv_window param. req_timestamp[${timestamp}],server_timestamp[${timestamp}],recv_window[${delay}]"
     ],
     "10004": [
-        "Signature for this request is not valid.",
-        "error sign! origin_string[${timestamp}${key}]"
+      "Signature for this request is not valid.",
+      "error sign! origin_string[${timestamp}${key}]"
     ],
     "10005": "Permission denied, please check your API key permissions.",
     "10006": "Too many visits. Exceeded the API Rate Limit (Too many visits. Exceeded the API Rate Limit.",
     "10010": "Unmatched IP, please check your API key's bound IP addresses.",
     "131001": [
-        "Please wait at least 10 seconds between withdrawals.",
-        "Withdrawal amount must larger than 1",
-        "openapi svc error"
+      "Please wait at least 10 seconds between withdrawals.",
+      "Withdrawal amount must larger than 1",
+      "openapi svc error"
     ],
     "131002": [
-        "Withdraw address chain or destination tag are not equal",
-        "params error",
-        "withdraw address is invalid"
+      "Cursor Decode Error",
+      "Withdraw address chain or destination tag are not equal",
+      "The interval between the startTime and endTime is incorrect",
+      "params error",
+      "withdraw address is invalid"
     ],
     "131003": [
-        "Invalid Member Relationship",
-        "Not Support Sub Account",
-        "This type of sub-account cannot obtain a deposit address."
+      "Invalid Member Relationship",
+      "Not Support Sub Account",
+      "This type of sub-account cannot obtain a deposit address."
     ],
     "131081": "Do not input memo/tag,please.",
+    "131200": "server err ",
     "131203": [
-        "cannot be transfer",
-        "request parameter err",
-        "request parameter err: accountType is invalid for current user",
-        "request parameter err: amount invalid",
-        "request parameter err: fromAccountType can't be toAccountType",
-        "request parameter err: toAccountType",
-        "request parameter err: transferId"
+      "cannot be transfer",
+      "request parameter err",
+      "request parameter err: accountType is invalid for current user",
+      "request parameter err: amount invalid",
+      "request parameter err: fromAccountType can't be toAccountType",
+      "request parameter err: memberId invalid",
+      "request parameter err: toAccountType",
+      "request parameter err: transferId"
     ],
     "131206": "cannot be transfer",
+    "131212": "user insufficient balance",
+    "141001": "param error",
     "170003": "An unknown parameter was sent.",
     "170130": [
-        "Data sent for paramter 'qty' is not valid.",
-        "Data sent for paramter 'side' is not valid.",
-        "Data sent for paramter 'symbol' is not valid."
+      "Data sent for paramter 'qty' is not valid.",
+      "Data sent for paramter 'side' is not valid.",
+      "Data sent for paramter 'symbol' is not valid."
     ],
     "170131": "Insufficient balance.",
     "170133": "Order price exceeded lower limit.",
@@ -64,5 +67,10 @@
     "170137": "Order quantity has too many decimals.",
     "170140": "Order value exceeded lower limit.",
     "170142": "Order has been canceled.",
+    "170194": "Sell order price cannot be lower than 2USDT.",
     "170213": "Order does not exist."
+  },
+  "UNAUTHORIZED": {
+    "0": "not support auth type: Request parameter error."
+  }
 }

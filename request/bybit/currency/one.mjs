@@ -1,42 +1,35 @@
 /**
- * Handle Bybit API currency one endpoint.
- * 
+ * Handle Bybit API currency endpoint, with one entry by currency name.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  * @module request/bybit/currency/one
  */
 
-import bybitGet from "../get.mjs";
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import validate from "../../../lib/validation.mjs";
-import isValid from "../../../request/bybit/validate.mjs";
-import settings from "../../../settings/bybit.json" with { type: "json" };
-
-const {
-    PATH: {
-      CURRENCY_ONE,
-    },
-  } = config,
-  {
-    authentication: {
-      sign
-    },
-    currency: {
-      base
-    }
-  } = settings;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { currencyOne as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @returns {Promise<object>} JSON data from response.
  */
-const currencyOne = (coin) => {
-  const defaults = {
-    coin: base
-  },
-  data = validate(
-    CURRENCY_ONE, isValid, defaults,
-    { warnOptional: { coin } },
-  )
+const currencyOne = async (coin) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { CURRENCY_ONE },
+    } = config,
+    {
+      authentication: { security },
+      currency: { base },
+    } = settings,
+    data = validate(CURRENCY_ONE, {
+      defaults: {
+        coin: base,
+      },
+      optional: { coin },
+    }),
+    json = await get(CURRENCY_ONE, schema, security, data);
 
-  return bybitGet(sign, CURRENCY_ONE, data);
+  return json;
 };
 
 export default currencyOne;

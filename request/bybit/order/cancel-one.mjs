@@ -1,56 +1,41 @@
 /**
- * Bybit API order cancel one endpoint.
- * 
- * @module request/bybit/order/cancel_one
+ * Handle Bybit API endpoint, with cancel one order by order identifier or `orderLinkId`.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
+ * @module request/bybit/order/cancel-one
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { throwRequired, warnRequired } from "../../../lib/output.mjs";
-import bybitPost from "../post.mjs";
-
-const {
-    PATH: {
-      ORDER_CANCEL_ONE
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    /* currency: {
-      base,
-      quote
-    } */
-  } = settings;
+import post from '../post.mjs';
+import validate from '../validate.mjs';
+import { orderCancelOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} orderId Order identifier.
+ * @param {{ category?, orderFilter?, orderLinkId?, symbol? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const orderCancelOne = (orderId, {
-  orderFilter, orderLinkId, symbol
-} = {}) => {
-  const data = {
-    category,
-    // orderFilter,
-    // orderId,
-    // orderLinkId
-    // symbol: base + quote,
-  };
+const orderCancelOne = async (orderId, { category, orderFilter, orderLinkId, symbol } = {}) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { ORDER_CANCEL_ONE },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(ORDER_CANCEL_ONE, {
+      defaults: {
+        category: account.category,
+      },
+      required: { category, orderFilter, orderLinkId, symbol },
+      throw: { orderId },
+    }),
+    json = await post(ORDER_CANCEL_ONE, schema, security, data);
 
-  if (Number(orderId))
-    data.orderId = orderId
-  else throwRequired(PATH, ORDER_CANCEL_ONE, "orderId");
-  if (symbol) {
-    if (typeof symbol === "string") {
-      data.symbol = symbol
-    } else warnRequired(PATH, ORDER_CANCEL_ONE, "symbol");
-  }
-
-  return bybitPost(sign, ORDER_CANCEL_ONE, data)
+  return json;
 };
 
 export default orderCancelOne;

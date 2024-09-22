@@ -1,69 +1,70 @@
 /**
- * Bybit API order all endpoint.
- * 
+ * Handle Bybit API all order endpoint, with unfilled or partially filled orders.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/order/open-order
  * @module request/bybit/order/all
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnOptional, warnRequired } from "../../../lib/output.mjs";
-import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      ORDER_ALL
-    },
-    TRADE,
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { orderAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/open-order
+ * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} symbol Symbol name.
+ * @param {string} side Not supported by the API, must be filtered while parsing.
+ * @param {string} limit Limit for data size per page (default is 20, maximum 50).
+ * @param {{
+ *   baseCoin?, category?, cursor?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
+ * }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const orderAll = (symbol, side, limit, {
-  baseCoin, cursor, openOnly, orderFilter, orderId, orderLinkId, settleCoin
-} = {}) => {
-  const data = {
-    // baseCoin,
+const orderAll = async (
+  symbol,
+  side,
+  limit,
+  {
+    baseCoin,
     category,
-    // cursor,
-    // limit,
-    // openOnly,
-    // orderFilter,
-    // orderId,
-    // orderLinkId,
-    // settleCoin,
-    symbol: base + quote,
-  };
+    cursor,
+    openOnly,
+    orderFilter /* , orderId */,
+    orderLinkId,
+    settleCoin,
+  } = {},
+) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { ORDER_ALL },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(ORDER_ALL, {
+      defaults: {
+        category: account.category,
+      },
+      optional: { category },
+      required: {
+        baseCoin,
+        category,
+        cursor,
+        limit,
+        openOnly,
+        orderFilter,
+        orderLinkId,
+        settleCoin,
+        side,
+        symbol,
+      },
+    }),
+    json = await get(ORDER_ALL, schema, security, data);
 
-  if (limit) {
-    if (Number(limit))
-      data.limit = limit
-    else warnRequired(PATH, ORDER_ALL, "limit");
-  }
-  if (side) {
-    if (Object.values(TRADE).some(trade => trade === side))
-      data.side = side
-    else warnOptional(PATH, ORDER_ALL, "side", data.side);
-  }
-  if (symbol) {
-    if (typeof symbol === "string") {
-      data.symbol = symbol
-    } else warnOptional(PATH, ORDER_ALL, "symbol", data.symbol);
-  }
-
-  return bybitGet(sign, ORDER_ALL, data);
+  return json;
 };
 
 export default orderAll;

@@ -1,27 +1,24 @@
 /**
- * Handle Coinbase Advanced API currency all endpoint.
- * 
+ * Handle Coinbase Advanced API endpoint, with list of all known cryptocurrencies.
+ *
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
  * @module request/coinbase/currency/all
  */
 
-import coinbaseGet from "../get.mjs";
-import config from "../../../configuration/coinbase.json" with { type: "json" };
-import settings from "../../../settings/coinbase.json" with { type: "json" };
-
-const {
-    PATH: {
-      CURRENCY_ALL,
-    }
-  } = config,
-  {
-    authentication: {
-      sign
-    }
-  } = settings;
+import get from '../get.mjs';
+import { currencyAll as schema } from '../../../response/coinbase/currency/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
+ * @returns {Promise<{ data: [{ asset_id: string }] }>}
  */
-const currencyAll = () => coinbaseGet(sign, CURRENCY_ALL);
+const currencyAll = () => {
+  const { config } = global.apiTools,
+    {
+      PATH: { CURRENCY_ALL },
+    } = config,
+    json = get(CURRENCY_ALL, schema, null);
+
+  return json;
+};
 
 export default currencyAll;

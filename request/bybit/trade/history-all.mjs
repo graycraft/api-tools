@@ -1,72 +1,59 @@
 /**
- * Bybit API trade history endpoint.
- * 
- * @module request/bybit/trade/history
+ * Handle Bybit API endpoint, with all trade history.
+ *
+ * @see https://bybit-exchange.github.io/docs/v5/order/execution
+ * @module request/bybit/trade/history-all
  */
 
-import config from "../../../configuration/bybit.json" with { type: "json" };
-import settings from "../../../settings/bybit.json" with { type: "json" };
-import { warnOptional } from "../../../lib/output.mjs";
-import bybitGet from "../get.mjs";
-
-const {
-    PATH: {
-      TRADE_HISTORY_ALL
-    },
-  } = config,
-  {
-    account: {
-      category,
-    },
-    authentication: {
-      sign
-    },
-    currency: {
-      base,
-      quote
-    }
-  } = settings;
+import get from '../get.mjs';
+import validate from '../validate.mjs';
+import { tradeHistoryAll as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/order/execution
+ * @see https://bybit-exchange.github.io/docs/v5/enum#category
+ * @see https://bybit-exchange.github.io/docs/v5/enum#exectype
+ * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
+ * @param {string} [side] Not supported by the API, must be filtered while parsing.
+ * @param {string} [symbol] Symbol name.
+ * @param {string} [limit] Limit data per page (default is 50, maximum 100).
+ * @param {{ baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime? }} rest
+ * @returns {Promise<object>} JSON data from response.
  */
-const tradeHistory = (side, symbol, limit, {
-  baseCoin, cursor, endTime, execType, orderId, orderLinkId, startTime
-} = {}) => {
-  const data = {
-    // baseCoin,
-    // cursor,
-    category,
-    // endTime,
-    // execType,
-    // limit,
-    // orderId,
-    // orderLinkId,
-    // startTime,
-    symbol: base + quote,
-  };
+const tradeHistoryAll = async (
+  side,
+  symbol,
+  limit,
+  { baseCoin, category, cursor, endTime, execType /* , orderId */, orderLinkId, startTime } = {},
+) => {
+  const { config, settings } = global.apiTools,
+    {
+      PATH: { TRADE_HISTORY_ALL },
+    } = config,
+    {
+      account,
+      authentication: { security },
+    } = settings,
+    data = validate(TRADE_HISTORY_ALL, {
+      defaults: {
+        category: account.category,
+      },
+      optional: { category },
+      required: {
+        baseCoin,
+        category,
+        cursor,
+        endTime,
+        execType,
+        limit,
+        orderLinkId,
+        side,
+        startTime,
+        symbol,
+      },
+    }),
+    json = await get(TRADE_HISTORY_ALL, schema, security, data);
 
-  if (limit) {
-    if (Number(limit))
-      data.limit = limit
-    else warnRequired(PATH, TRADE_HISTORY_ALL, "limit");
-  }
-  if (side) {
-    if (Object.values(TRADE).some(trade => trade === side))
-      data.side = side
-    else warnOptional(PATH, ORDER_ALL, "side", data.side);
-  }
-  if (symbol) {
-    if (
-      Object.values(CURRENCY.BASE).some(currency1 => 
-        Object.values(CURRENCY.QUOTE).some(currency2 => currency1 + currency2 === symbol)
-      )
-    ) {
-      data.symbol = symbol
-    } else warnOptional(PATH, TRADE_HISTORY_ALL, "symbol", data.symbol);
-  }
-
-  return bybitGet(sign, TRADE_HISTORY_ALL, data)
+  return json;
 };
 
-export default tradeHistory;
+export default tradeHistoryAll;

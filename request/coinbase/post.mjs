@@ -11,77 +11,67 @@
  *     }
  *   ]
  * }
- * 
- * @module request/coinbase/get
+ *
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth/
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders/
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/error-response/
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/status-codes/
+ * @module request/coinbase/post
  */
 
-import config from "../../configuration/coinbase.json" with { type: "json" };
-import { signJwt } from "../../lib/authentication.mjs";
-import { fetchData } from "../../lib/fetch.mjs";
-import { dirObject, infoName } from "../../lib/output.mjs";
-import { interpolate } from "../../lib/string.mjs";
-import responseAnalyze from "../../response/coinbase/analyze.mjs";
-import responseSnapshot from "../../response/coinbase/snapshot.mjs";
-import responseParse from "../../response/coinbase/parse.mjs";
-import settings from "../../settings/coinbase.json" with { type: "json" };
+import { coinbaseKey, coinbaseSign } from './sign.mjs';
+import post from '../post.mjs';
+import { HTTP } from '../../lib/constants.mjs';
+import { endpointPost } from '../../lib/fetch.mjs';
+import { dirObject } from '../../lib/output.mjs';
+import { obtainName } from '../../lib/utility.mjs';
+import parse from '../../response/coinbase/parse.mjs';
+import snapshot from '../../response/coinbase/snapshot.mjs';
 
-const coinbaseGet = async (sign, pathTemplate, data = {}) => {
-    const { ENCODING, HOSTNAME, PATH, PREFIX } = config,
-      { account, authentication } = settings,
-      { wallet } = account,
-      { delay, keys, secrets } = authentication,
-      key = keys[account[wallet]],
-      //body = JSON.stringify(data),
-      method = "POST",
-      secret = secrets[account[wallet]],
-      timestamp = Date.now(),
-      path = interpolate(pathTemplate, data).split("?")[0],
-      payload = {
-        exp: Math.floor(timestamp / delay) + 120,
-        iss: "cdp",
-        nbf: Math.floor(timestamp / delay),
-        sub: key,
-        uri: method + " " + HOSTNAME + PREFIX + path,
+/**
+ * @param {string} template Path template to be interpolated.
+ * @param {object} schema JSON-schema to validate response with.
+ * @param {"JWT" | null} [security] Authentication signature security.
+ * @param {object} [data] Data to send with request.
+ * @returns {Promise<object>} JSON data from response.
+ */
+const coinbasePost = async (template, schema, security, data = {}) => {
+  const { config, settings } = global.apiTools,
+    {
+      METHOD: { POST },
+    } = HTTP,
+    { HOSTNAME, PATH, PREFIX } = config,
+    {
+      authentication: { delay },
+    } = settings,
+    { path, url } = endpointPost(template, data),
+    { key, timestamp } = coinbaseKey(),
+    payload = {
+      exp: Math.floor(timestamp / delay) + 120,
+      iss: 'cdp',
+      nbf: Math.floor(timestamp / delay),
+      sub: key,
+      uri: POST + ' ' + HOSTNAME + PREFIX + path,
+    };
+
+  global.apiTools.output = { [obtainName(template, PATH)]: url };
+
+  const headers = coinbaseSign(POST, security, key, payload, data),
+    json = await post(
+      url,
+      template,
+      headers,
+      schema,
+      {
+        parse,
+        snapshot,
       },
-      url = "https://" + HOSTNAME + PREFIX + path;
-    let headers = {
-      "CB-VERSION": "2024-08-20",
-      "Content-Type": "application/json; charset=utf-8"
-    };
+      data,
+    );
 
-    infoName(PATH, pathTemplate);
-    if (sign === "JWT") {
-      const token = signJwt(ENCODING, payload, secret, key);
+  dirObject('JSON', global.apiTools.output);
 
-      headers = {
-        ...headers,
-        Authorization: "Bearer " + token,
-      };
-    };
+  return json;
+};
 
-    let { json, status } = await fetchData(method, url, data, headers),
-      report = responseAnalyze(json, status);
-
-    if (report.isResponseSuccessful) {
-      /* responseSnapshot(
-        responseParse(json, status, path, data), path
-      ) */
-      responseParse(json, status, pathTemplate, data);
-      responseSnapshot(json, pathTemplate);
-    } else {
-      /** 
-       * @todo Status synchronization with `status.json`.
-       */
-      dirObject(status, json);
-      console.info(`Could not parse and snapshot. Response is not successful.`)
-    };
-    console.info({ report })
-
-    return json;
-  };
-
-export default coinbaseGet;
+export default coinbasePost;
