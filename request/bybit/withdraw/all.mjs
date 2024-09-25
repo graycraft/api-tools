@@ -5,9 +5,9 @@
  * @module request/bybit/withdraw/all
  */
 
+import { withdrawAll as schema } from '#res/bybit/withdraw/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { withdrawAll as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
  * @param {{ coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType? }} rest

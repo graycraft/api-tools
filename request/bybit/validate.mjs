@@ -4,10 +4,11 @@
  * @module request/bybit/validate
  */
 
+import { withinRange } from '#lib/boolean.mjs';
+import { NUMBER, REGEXP } from '#lib/constants.mjs';
+import { fileNameNewest, fileReadJson } from '#lib/file_system.mjs';
+
 import { hasSome, requestValidate } from '../validate.mjs';
-import { withinRange } from '../../lib/boolean.mjs';
-import { NUMBER, REGEXP } from '../../lib/constants.mjs';
-import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
 /**
  * @param {string} path

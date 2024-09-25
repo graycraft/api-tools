@@ -18,6 +18,16 @@ export const orderAll = {
   type: 'object',
 };
 
+export const orderBook = {
+  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  additionalProperties: false,
+  properties: {
+    pricebook: { type: 'object' },
+  },
+  required: ['pricebook'],
+  type: 'object',
+};
+
 export const orderCancel = {
   // "$schema": "https://json-schema.org/draft/2020-12/schema",
   additionalProperties: false,

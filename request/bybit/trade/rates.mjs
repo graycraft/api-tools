@@ -5,9 +5,9 @@
  * @module request/bybit/trade/rates
  */
 
+import { tradeRates as schema } from '#res/bybit/trade/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { tradeRates as schema } from '../../../response/bybit/trade/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#category

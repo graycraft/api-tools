@@ -6,11 +6,8 @@
  */
 
 import Ajv2019 from 'ajv/dist/2019.js';
-import { dirObject } from '../lib/output.mjs';
+import { dirObject } from '#lib/output.mjs';
 
-/**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicmarkettrades
- */
 const responseValidate = (json, schema) => {
   const ajv = new Ajv2019({ allErrors: true }),
     validate = ajv.compile(schema),

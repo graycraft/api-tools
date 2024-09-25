@@ -4,15 +4,16 @@
  * @module request/coinbase
  */
 
-import config from '../configuration/coinbase.json' with { type: 'json' };
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/coinbase.json' with { type: 'json' };
+import config from '#config/coinbase.json' with { type: 'json' };
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import settings from '#settings/coinbase.json' with { type: 'json' };
+
 import level2 from './coinbase/level2.mjs';
 
-const { ACCOUNT, TRADE } = config,
+const { TRADE } = config,
   {
-    currency: { base, network },
+    asset: { base },
   } = settings,
   requestCoinbase = () => {
     const { handler, params } = parseArguments();

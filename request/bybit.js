@@ -15,11 +15,12 @@
  * @module request/bybit
  */
 
-import config from '../configuration/bybit.json' with { type: 'json' };
-import { NUMBER } from '../lib/constants.mjs';
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/bybit.json' with { type: 'json' };
+import config from '#config/bybit.json' with { type: 'json' };
+import { NUMBER } from '#lib/constants.mjs';
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import settings from '#settings/bybit.json' with { type: 'json' };
+
 import accountInformation from './bybit/account/information.mjs';
 import accountWallets from './bybit/account/wallets.mjs';
 import balanceAll from './bybit/balance/all.mjs';
@@ -60,220 +61,305 @@ import withdrawOne from './bybit/withdraw/one.mjs';
 import status from '../response/bybit/status.json' with { type: 'json' };
 
 const {
+    DATE: { DAY },
+  } = NUMBER,
+  {
     account: { SPOT, UNIFIED },
     address: { cursor, deposit },
   } = settings,
-  requestBybit = () => {
-    const { flow, handler, options, params } = parseArguments(),
-      {
-        DATE: { DAY },
-      } = NUMBER,
-      timestamp = Date.now();
+  timestamp = Date.now();
 
-    global.apiTools = { config, options, output: {}, settings, status, timestamp };
-    if (handler) {
-      switch (handler) {
-        case 'account':
-        case 'accountInfo':
-        case 'accountInformation':
-          return accountInformation();
-        case 'accountWallets':
-          return accountWallets(...params);
-        case 'balanceAll':
-          return balanceAll(...params);
-        case 'balanceInfo':
-        case 'balanceInformation':
-          return balanceInformation(...params);
-        case 'balance':
-        case 'balanceOne':
-          return balanceOne(...params);
-        case 'currencyAll':
-          return currencyAll(...params);
-        case 'currencyNetworkAll':
-          return currencyNetworkAll(...params);
-        case 'currencyNetwork':
-        case 'currencyNetworkOne':
-          return currencyNetworkOne(...params);
-        case 'currency':
-        case 'currencyOne':
-          return currencyOne(...params);
-        case 'depositAll':
-          return depositAll(...params);
-        case 'depositNew':
-        case 'depositNewMaster':
-          return depositNewMaster(...params);
-        case 'depositNewSub':
-          return depositNewSub(...params);
-        case 'deposit':
-        case 'depositOne':
-          return depositOne(...params);
-        case 'key':
-        case 'keyInfo':
-        case 'keyInformation':
-          return keyInformation(...params);
-        case 'marketHistory':
-          return marketHistory(...params);
-        case 'market':
-        case 'marketInfo':
-        case 'marketInformation':
-          return marketInformation(...params);
-        case 'marketTickers':
-          return marketTickers(...params);
-        case 'orderAll':
-          return orderAll(...params);
-        case 'orderBook':
-          return orderBook(...params);
-        case 'orderCancelAll':
-          return orderCancelAll(...params);
-        case 'orderCancel':
-        case 'orderCancelOne':
-          return orderCancelOne(...params);
-        case 'orderHistoryAll':
-          return orderHistoryAll(...params);
-        case 'orderHistory':
-        case 'orderHistoryOne':
-          return orderHistoryOne(...params);
-        case 'order':
-        case 'orderOne':
-          return orderOne(...params);
-        case 'orderLimit':
-        case 'orderLimitBuy':
-          return orderLimitBuy(...params);
-        case 'orderLimitSell':
-          return orderLimitSell(...params);
-        case 'orderMarket':
-        case 'orderMarketBuy':
-          return orderMarketBuy(...params);
-        case 'orderMarketSell':
-          return orderMarketSell(...params);
-        case 'tradeRates':
-          return tradeRates(...params);
-        case 'tradeHistoryAll':
-          return tradeHistoryAll(...params);
-        case 'tradeHistory':
-        case 'tradeHistoryOne':
-          return tradeHistoryOne(...params);
-        case 'transferAll':
-          return transferAll(...params);
-        case 'transfer':
-        case 'transferOne':
-          return transferOne(...params);
-        case 'transferInternal':
-          return transferInternal(...params);
-        case 'withdrawAll':
-          return withdrawAll(...params);
-        case 'withdraw':
-        case 'withdrawOne':
-          return withdrawOne(...params);
-        case 'withdrawNew':
-          return withdrawNew(...params);
-        default:
-          throw new Error(requestBybit.name + ': ' + optional(handler));
-      }
-    } else {
-      switch (flow) {
-        case 'orders':
-          Promise.resolve()
-            .then((response) => orderAll('NOTUSDT', 'Buy', '2'))
-            .then((response) => orderBook('NOTUSDT', 'inverse', '2'))
-            .then((response) => orderHistoryAll('NOTUSDT', '2'))
-            .then((response) => orderHistoryOne(response.result.list[0]?.orderId))
-            .then((response) => orderLimitBuy('100', '0.002'))
-            .then((response) => orderOne(response.result.orderId))
-            .then((response) => orderLimitSell('100', '2'))
-            .then((response) => orderCancelOne(response.result.orderId))
-            .then((response) => orderMarketBuy('1'))
-            .then((response) => orderMarketSell('1'))
-            .then((response) => orderCancelAll('NOTUSDT'))
-            .catch(console.log.bind(console));
-          break;
-        default:
-          Promise.resolve()
-            .then((response) => accountInformation())
-            .then((response) => accountWallets([SPOT, UNIFIED].join()))
-            .then((response) => balanceAll('UNIFIED', UNIFIED, { coin: 'SHIB', withBonus: '1' }))
-            .then((response) => balanceInformation('UNIFIED', 'USDT'))
-            .then((response) => balanceOne('FUND', 'USDT', SPOT, { withBonus: '1' }))
-            .then((response) => currencyAll())
-            .then((response) => currencyNetworkAll())
-            .then((response) => currencyNetworkOne('AVAX', 'CAVAX'))
-            .then((response) => currencyOne('AVAX'))
-            .then((response) =>
-              depositAll('USDC', {
-                cursor,
-                endTime: timestamp,
-                limit: 1,
-                startTime: timestamp - DAY * 30,
-              }),
-            )
-            .then((response) => depositNewMaster('USDC', 'CAVAX'))
-            .then((response) => depositNewSub('219021948', 'USDC', 'CAVAX'))
-            .then((response) =>
-              depositOne(deposit, {
-                coin: 'USDC',
-                cursor,
-                endTime: timestamp,
-                limit: 1,
-                startTime: timestamp - DAY * 30,
-              }),
-            )
-            .then((response) => keyInformation())
-            .then((response) =>
-              marketHistory('SHIBUSDT', '2', {
-                baseCoin: 'SHIB',
-                category: 'option',
-                optionType: 'Call',
-              }),
-            )
-            .then((response) =>
-              marketInformation('linear', {
-                baseCoin: 'BTC',
-                cursor: 'first%3DBTC-04OCT24%26last%3DBTC-20SEP24',
-                limit: '2',
-                status: 'Trading',
-                symbol: 'BTC-25OCT24',
-              }),
-            )
-            .then((response) =>
-              marketTickers('BTC-25OCT24', {
-                baseCoin: 'BTC',
-                category: 'option',
-                expDate: '27DEC24',
-              }),
-            )
-            .then((response) => orderAll('NOTUSDT', 'Buy', '2'))
-            .then((response) => orderBook('NOTUSDT', 'inverse', '2'))
-            .then((response) => orderHistoryAll('NOTUSDT', '2'))
-            .then((response) =>
-              orderHistoryOne(response.result.list[0]?.orderId ?? '0000000000000000000'),
-            )
-            .then((response) => orderCancelAll())
-            .then((response) => orderMarketBuy('1000'))
-            .then((response) => orderMarketSell('100'))
-            .then((response) => orderOne(response.result.orderId))
-            .then((response) => orderLimitBuy('100', '0.002'))
-            .then((response) => orderLimitSell('100', '2'))
-            .then((response) => orderCancelOne(response.result.orderId))
-            .then((response) => orderCancelAll('NOTUSDT'))
-            .then((response) => tradeHistoryAll())
-            .then((response) => tradeHistoryOne(response.result.list[0]?.orderId))
-            .then((response) => tradeRates('NOTUSDT'))
-            .then((response) => transferAll('FUND'))
-            .then((response) => transferInternal('FUND', '1'))
-            .then((response) => transferOne('FUND', 'NOT'))
-            .then((response) => withdrawAll())
-            .then((response) =>
-              withdrawOne(
-                response.result.rows[0]?.txID ??
-                  '0x0000000000000000000000000000000000000000000000000000000000000000',
-              ),
-            )
-            .then((response) => withdrawNew('1', 'NOT'))
-            .catch(console.log.bind(console));
-      }
+const requestBybit = () => {
+  const { flow, handler, options, params } = parseArguments();
+
+  global.apiTools.options = options;
+  if (handler) {
+    switch (handler) {
+      case 'account':
+      case 'accountInfo':
+      case 'accountInformation':
+        return accountInformation();
+      case 'accountWallets':
+        return accountWallets(...params);
+      case 'balanceAll':
+        return balanceAll(...params);
+      case 'balanceInfo':
+      case 'balanceInformation':
+        return balanceInformation(...params);
+      case 'balance':
+      case 'balanceOne':
+        return balanceOne(...params);
+      case 'currencyAll':
+        return currencyAll(...params);
+      case 'currencyNetworkAll':
+        return currencyNetworkAll(...params);
+      case 'currencyNetwork':
+      case 'currencyNetworkOne':
+        return currencyNetworkOne(...params);
+      case 'currency':
+      case 'currencyOne':
+        return currencyOne(...params);
+      case 'depositAll':
+        return depositAll(...params);
+      case 'depositNew':
+      case 'depositNewMaster':
+        return depositNewMaster(...params);
+      case 'depositNewSub':
+        return depositNewSub(...params);
+      case 'deposit':
+      case 'depositOne':
+        return depositOne(...params);
+      case 'key':
+      case 'keyInfo':
+      case 'keyInformation':
+        return keyInformation(...params);
+      case 'marketHistory':
+        return marketHistory(...params);
+      case 'market':
+      case 'marketInfo':
+      case 'marketInformation':
+        return marketInformation(...params);
+      case 'marketTickers':
+        return marketTickers(...params);
+      case 'orderAll':
+        return orderAll(...params);
+      case 'orderBook':
+        return orderBook(...params);
+      case 'orderCancelAll':
+        return orderCancelAll(...params);
+      case 'orderCancel':
+      case 'orderCancelOne':
+        return orderCancelOne(...params);
+      case 'orderHistoryAll':
+        return orderHistoryAll(...params);
+      case 'orderHistory':
+      case 'orderHistoryOne':
+        return orderHistoryOne(...params);
+      case 'order':
+      case 'orderOne':
+        return orderOne(...params);
+      case 'orderLimit':
+      case 'orderLimitBuy':
+        return orderLimitBuy(...params);
+      case 'orderLimitSell':
+        return orderLimitSell(...params);
+      case 'orderMarket':
+      case 'orderMarketBuy':
+        return orderMarketBuy(...params);
+      case 'orderMarketSell':
+        return orderMarketSell(...params);
+      case 'tradeRates':
+        return tradeRates(...params);
+      case 'tradeHistoryAll':
+        return tradeHistoryAll(...params);
+      case 'tradeHistory':
+      case 'tradeHistoryOne':
+        return tradeHistoryOne(...params);
+      case 'transferAll':
+        return transferAll(...params);
+      case 'transfer':
+      case 'transferOne':
+        return transferOne(...params);
+      case 'transferInternal':
+        return transferInternal(...params);
+      case 'withdrawAll':
+        return withdrawAll(...params);
+      case 'withdraw':
+      case 'withdrawOne':
+        return withdrawOne(...params);
+      case 'withdrawNew':
+        return withdrawNew(...params);
+      default:
+        throw new Error(requestBybit.name + ': ' + optional(handler));
     }
-  };
+  } else {
+    switch (flow) {
+      case 'account':
+        accountFlow();
+        break;
+      case 'balance':
+        balanceFlow();
+        break;
+      case 'currency':
+        currencyFlow();
+        break;
+      case 'deposit':
+        depositFlow();
+        break;
+      case 'key':
+        keyInformation();
+        break;
+      case 'market':
+        marketFlow();
+        break;
+      case 'order':
+        orderFlow();
+        break;
+      case 'trade':
+        tradeFlow();
+        break;
+      case 'transfer':
+        transferFlow();
+        break;
+      case 'withdraw':
+        withdrawFlow();
+        break;
+      default:
+        Promise.resolve()
+          .then((response) => accountFlow())
+          .then((response) => balanceFlow())
+          .then((response) => currencyFlow())
+          .then((response) => depositFlow())
+          .then((response) => keyInformation())
+          .then((response) => marketFlow())
+          .then((response) => orderFlow())
+          .then((response) => tradeFlow())
+          .then((response) => transferFlow())
+          .then((response) => withdrawFlow())
+          .catch(console.log.bind(console));
+    }
+  }
+};
 
+/**
+ * @returns {Promise<object>}
+ */
+const accountFlow = () =>
+  Promise.resolve()
+    .then((response) => accountInformation())
+    .then((response) => accountWallets([SPOT, UNIFIED].join()))
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const balanceFlow = () =>
+  Promise.resolve()
+    .then((response) => balanceAll('UNIFIED', UNIFIED, { coin: 'SHIB', withBonus: '1' }))
+    .then((response) => balanceInformation('UNIFIED', 'USDT'))
+    .then((response) => balanceOne('FUND', 'USDT', SPOT, { withBonus: '1' }))
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const currencyFlow = () =>
+  Promise.resolve()
+    .then((response) => currencyAll())
+    .then((response) => currencyNetworkAll())
+    .then((response) => currencyNetworkOne('AVAX', 'CAVAX'))
+    .then((response) => currencyOne('AVAX'))
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const depositFlow = () =>
+  Promise.resolve()
+    .then((response) =>
+      depositAll('USDC', {
+        cursor,
+        endTime: timestamp,
+        limit: 1,
+        startTime: timestamp - DAY * 30,
+      }),
+    )
+    .then((response) => depositNewMaster('USDC', 'CAVAX'))
+    .then((response) => depositNewSub('219021948', 'USDC', 'CAVAX'))
+    .then((response) =>
+      depositOne(deposit, {
+        coin: 'USDC',
+        cursor,
+        endTime: timestamp,
+        limit: 1,
+        startTime: timestamp - DAY * 30,
+      }),
+    )
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const marketFlow = () =>
+  Promise.resolve()
+    .then((response) =>
+      marketHistory('SHIBUSDT', '2', {
+        baseCoin: 'SHIB',
+        category: 'spot',
+        optionType: 'Call',
+      }),
+    )
+    .then((response) =>
+      marketInformation('spot', {
+        baseCoin: 'BTC',
+        cursor: 'first%3DBTC-04OCT24%26last%3DBTC-20SEP24',
+        limit: '2',
+        status: 'Trading',
+        symbol: 'SHIBUSDT',
+      }),
+    )
+    .then((response) =>
+      marketTickers('BONKUSDT', {
+        baseCoin: 'BTC',
+        category: 'spot',
+      }),
+    )
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const orderFlow = () =>
+  Promise.resolve()
+    .then((response) => orderAll('NOTUSDT', 'Buy', '2'))
+    .then((response) => orderBook('NOTUSDT', 'inverse', '2'))
+    .then((response) => orderHistoryAll('NOTUSDT', '2'))
+    .then((response) => orderHistoryOne(response.result.list[0]?.orderId ?? '0000000000000000000'))
+    .then((response) => orderCancelAll())
+    .then((response) => orderMarketBuy('1000'))
+    .then((response) => orderMarketSell('100'))
+    .then((response) => orderLimitBuy('100', '0.002'))
+    .then((response) => orderOne(response.result.orderId))
+    .then((response) => orderLimitSell('100', '2'))
+    .then((response) => orderCancelOne(response.result.orderId))
+    .then((response) => orderCancelAll('NOTUSDT'))
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const tradeFlow = () =>
+  Promise.resolve()
+    .then((response) => tradeHistoryAll())
+    .then((response) => tradeHistoryOne(response.result.list[0]?.orderId))
+    .then((response) => tradeRates('NOTUSDT'))
+    .catch(console.log.bind(console));
+
+/**
+ * @returns {Promise<object>}
+ */
+const transferFlow = () =>
+  Promise.resolve()
+    .then((response) => transferAll('FUND'))
+    .then((response) => transferInternal('FUND', '1'))
+    .then((response) => transferOne('FUND', 'NOT'))
+    .catch(console.log.bind(console));
+/**
+ * @returns {Promise<object>}
+ */
+const withdrawFlow = () =>
+  Promise.resolve()
+    .then((response) => withdrawAll())
+    .then((response) =>
+      withdrawOne(
+        response.result.rows[0]?.txID ??
+          '0x0000000000000000000000000000000000000000000000000000000000000000',
+      ),
+    )
+    .then((response) => withdrawNew('1', 'NOT'))
+    .catch(console.log.bind(console));
+
+global.apiTools = { config, output: {}, settings, status, timestamp };
 requestBybit();
 
 export default null;

@@ -1,32 +1,33 @@
 /**
  * Request a Coinbase Advanced API endpoint by POST method.
  * Some methods, e.g. `/v2/accounts/${account_uuid}/addresses` suggests to supply additional header:
- * '201': {
- *   ...,
- *   warnings: [
- *     {
- *       id: 'missing_version',
- *       message: 'Please supply API version (YYYY-MM-DD) as CB-VERSION header',
- *       url: 'https://developers.coinbase.com/api#versioning'
- *     }
- *   ]
+ * {
+ *   CREATED: {
+ *     ...,
+ *     warnings: [
+ *       {
+ *         id: 'missing_version',
+ *         message: 'Please supply API version (YYYY-MM-DD) as CB-VERSION header',
+ *         url: 'https://developers.coinbase.com/api#versioning'
+ *       }
+ *     ]
+ *   }
  * }
- *
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth/
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders/
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/error-response/
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/status-codes/
  * @module request/coinbase/post
  */
 
+import { HTTP } from '#lib/constants.mjs';
+import { endpointPost } from '#lib/fetch.mjs';
+import { dirObject } from '#lib/output.mjs';
+import { obtainName } from '#lib/utility.mjs';
+import parse from '#res/coinbase/parse.mjs';
+import snapshot from '#res/coinbase/snapshot.mjs';
+
 import { coinbaseKey, coinbaseSign } from './sign.mjs';
 import post from '../post.mjs';
-import { HTTP } from '../../lib/constants.mjs';
-import { endpointPost } from '../../lib/fetch.mjs';
-import { dirObject } from '../../lib/output.mjs';
-import { obtainName } from '../../lib/utility.mjs';
-import parse from '../../response/coinbase/parse.mjs';
-import snapshot from '../../response/coinbase/snapshot.mjs';
 
 /**
  * @param {string} template Path template to be interpolated.
@@ -43,6 +44,7 @@ const coinbasePost = async (template, schema, security, data = {}) => {
     { HOSTNAME, PATH, PREFIX } = config,
     {
       authentication: { delay },
+      verbose,
     } = settings,
     { path, url } = endpointPost(template, data),
     { key, timestamp } = coinbaseKey(),
@@ -69,7 +71,7 @@ const coinbasePost = async (template, schema, security, data = {}) => {
       data,
     );
 
-  dirObject('JSON', global.apiTools.output);
+  if (verbose) dirObject('Snapshot', global.apiTools.output);
 
   return json;
 };

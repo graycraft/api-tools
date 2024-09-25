@@ -1,6 +1,6 @@
 {
   "name": "api-tools",
-  "version": "0.2.0-alpha",
+  "version": "0.2.1-alpha",
   "description": "Tools to work with a REST API.",
   "main": "request.mjs",
   "directories": {
@@ -44,5 +44,11 @@
     "node": "22.7.0",
     "npm": "10.8.3"
   },
-  "type": "module"
+  "type": "module",
+  "imports": {
+    "#config/*": "./configuration/*",
+    "#lib/*": "./library/*",
+    "#res/*": "./response/*",
+    "#settings/*": "./settings/*"
+  }
 }

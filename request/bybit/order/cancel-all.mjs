@@ -5,9 +5,9 @@
  * @module request/bybit/order/cancel-all
  */
 
+import { orderCancelAll as schema } from '#res/bybit/order/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { orderCancelAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#category

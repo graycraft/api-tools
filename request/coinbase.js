@@ -1,13 +1,16 @@
 /**
  * Request Coinbase Advanced API spot endpoints.
  *
+ * @typedef {import('#types/request/coinbase/address/transactions.d').T} AddressTransactions
  * @module request/coinbase
  */
 
-import config from '../configuration/coinbase.json' with { type: 'json' };
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/coinbase.json' with { type: 'json' };
+import config from '#config/coinbase.json' with { type: 'json' };
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import status from '#res/coinbase/status.json' with { type: 'json' };
+import settings from '#settings/coinbase.json' with { type: 'json' };
+
 import addressAll from './coinbase/address/all.mjs';
 import addressOne from './coinbase/address/one.mjs';
 import addressNew from './coinbase/address/new.mjs';
@@ -18,6 +21,7 @@ import marketAll from './coinbase/market/all.mjs';
 import marketOne from './coinbase/market/one.mjs';
 import marketTickers from './coinbase/market/tickers.mjs';
 import orderAll from './coinbase/order/all.mjs';
+import orderBook from './coinbase/order/book.mjs';
 import orderCancel from './coinbase/order/cancel.mjs';
 import orderLimitBuy from './coinbase/order/limit-buy.mjs';
 import orderLimitSell from './coinbase/order/limit-sell.mjs';
@@ -30,23 +34,29 @@ import userAccountAll from './coinbase/user/account-all.mjs';
 import userAccountOne from './coinbase/user/account-one.mjs';
 import userPortfolioAll from './coinbase/user/portfolio-all.mjs';
 import userPortfolioOne from './coinbase/user/portfolio-one.mjs';
-import status from '../response/coinbase/status.json' with { type: 'json' };
+
+const {
+    user,
+    user: { portfolio },
+  } = settings,
+  account = user[portfolio].account,
+  timestamp = Date.now();
 
 const requestCoinbase = () => {
-  const { flow, handler, options, params } = parseArguments(),
-    { account } = settings,
-    timestamp = Date.now();
+  const { flow, handler, options, params } = parseArguments();
 
-  global.apiTools = { config, options, output: {}, settings, status, timestamp };
+  global.apiTools.options = options;
   if (handler) {
     switch (handler) {
       case 'addressAll':
         return addressAll(...params);
       case 'addressNew':
         return addressNew(...params);
+      case 'address':
       case 'addressOne':
         return addressOne(...params);
       case 'addressTransactions':
+      case 'addressTxs':
         return addressTransactions(...params);
       case 'currencyAll':
         return currencyAll(...params);
@@ -62,6 +72,8 @@ const requestCoinbase = () => {
         return marketTickers(...params);
       case 'orderAll':
         return orderAll(...params);
+      case 'orderBook':
+        return orderBook(...params);
       case 'orderCancel':
         return orderCancel(...params);
       case 'orderLimit':
@@ -95,31 +107,31 @@ const requestCoinbase = () => {
   } else {
     switch (flow) {
       case 'address':
-        address(account);
+        addressFlow(account);
         break;
       case 'currency':
-        currency();
+        currencyFlow();
         break;
       case 'market':
-        market();
+        marketFlow();
         break;
       case 'order':
-        order();
+        orderFlow();
         break;
       case 'transaction':
-        transaction(account);
+        transactionFlow(account);
         break;
       case 'user':
-        user();
+        userFlow();
         break;
       default:
         Promise.resolve()
-          .then(() => address(account))
-          .then(() => currency())
-          .then(() => market())
-          .then(() => order())
-          .then(() => transaction(account))
-          .then(() => user())
+          .then(() => addressFlow(account))
+          .then(() => currencyFlow())
+          .then(() => marketFlow())
+          .then(() => orderFlow())
+          .then(() => transactionFlow(account))
+          .then(() => userFlow())
           .catch(console.log.bind(console));
     }
   }
@@ -127,20 +139,20 @@ const requestCoinbase = () => {
 
 /**
  * @param {{ uuid: string }} account
- * @returns {Promise<{ data: { id: string; } }>}
+ * @returns {Promise<AddressTransactions>}
  */
-const address = (account) =>
+const addressFlow = (account) =>
   Promise.resolve()
-    .then((response) => addressNew(account.uuid))
+    .then((response) => addressNew('abc', account.uuid))
     .then((response) => addressOne(response.data.id, account.uuid))
-    .then((response) => addressAll(account.uuid, '2'))
-    .then((response) => addressTransactions(response.data[0].id, account.uuid, '2'))
+    .then((response) => addressAll('2', account.uuid))
+    .then((response) => addressTransactions(response.data[0].id, '2', account.uuid))
     .catch(console.log.bind(console));
 
 /**
- * @returns {Promise<{ data: { asset_id: string; } }>}
+ * @returns {Promise<{ data: [{ asset_id: string; }] }>}
  */
-const currency = () =>
+const currencyFlow = () =>
   Promise.resolve()
     .then((response) => currencyAll())
     .then((response) => currencyOne(response.data[0].asset_id))
@@ -149,18 +161,19 @@ const currency = () =>
 /**
  * @returns {Promise<{ data: { trades: [{ trade_id: string }] } }>}
  */
-const market = () =>
+const marketFlow = () =>
   Promise.resolve()
-    .then((response) => marketAll('BTC-EUR', '2'))
+    .then((response) => marketAll('2'))
     .then((response) => marketOne(response.products[0].product_id))
-    .then((response) => marketTickers('BTC-EUR', '2'))
+    .then((response) => marketTickers('BTC-USDT', '2'))
     .catch(console.log.bind(console));
 
 /**
  * @returns {Promise<{ results: { order_id: string, success: boolean } }>}
  */
-const order = () =>
+const orderFlow = () =>
   Promise.resolve()
+    .then((response) => orderBook('SHIB-USDT', '2'))
     .then((response) => orderMarketBuy('1'))
     .then((response) => orderMarketSell('0.0001'))
     .then((response) => orderLimitBuy('0.0001', '1000'))
@@ -174,7 +187,7 @@ const order = () =>
  * @param {{ uuid: string }} account
  * @returns {Promise<{ data: [{ id: string; }] }>}
  */
-const transaction = (account) =>
+const transactionFlow = (account) =>
   Promise.resolve()
     .then((response) => transactionAll(account.uuid, '2'))
     .then((response) => transactionOne(account.uuid, response.data[0].id))
@@ -183,7 +196,7 @@ const transaction = (account) =>
 /**
  * @returns {Promise<{ breakdown: object; }>}
  */
-const user = () =>
+const userFlow = () =>
   Promise.resolve()
     .then((response) => userAccountAll('2'))
     .then((response) => userAccountOne(response.accounts[0].uuid))
@@ -191,6 +204,7 @@ const user = () =>
     .then((response) => userPortfolioOne(response.portfolios[0].uuid))
     .catch(console.log.bind(console));
 
+global.apiTools = { config, output: {}, settings, status, timestamp };
 requestCoinbase();
 
 export default null;

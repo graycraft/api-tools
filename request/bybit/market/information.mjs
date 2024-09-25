@@ -5,9 +5,9 @@
  * @module request/bybit/market/information
  */
 
+import { marketInformation as schema } from '#res/bybit/market/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { marketInformation as schema } from '../../../response/bybit/market/schema.mjs';
 
 /**
  * Pagination is not supported for category spot, so `cursor` and `limit` cannot be used in this case.

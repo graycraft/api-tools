@@ -5,9 +5,9 @@
  * @module request/bybit/order/history-one
  */
 
+import { orderHistoryOne as schema } from '#res/bybit/order/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { orderHistoryOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * Because order creation and cancellation is asynchronous, the data returned from this endpoint may delay.

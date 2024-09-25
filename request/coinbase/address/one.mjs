@@ -1,18 +1,26 @@
 /**
- * Handle Coinbase Advanced API endpoint, with one address for an account.
+ * Handle Coinbase Advanced API one account addresses endpoint.
  *
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#show-address
  * @module request/coinbase/address/all
  */
 
+import { addressOne as schema } from '#res/coinbase/address/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { addressOne as schema } from '../../../response/coinbase/address/schema.mjs';
 
 /**
  * @param {string} address_uuid Address UUID. Also regular cryptocurrency address can be used here.
  * @param {string} [account_uuid] Account UUID.
- * @returns {Promise<{ data: { id: string } }>}
+ * @returns {Promise<{
+ *   data: [
+ *     {
+ *       address: string,
+ *       id: string,
+ *       network: string
+ *     }
+ *   ]
+ * }>} JSON data from response.
  */
 const addressOne = async (address_uuid, account_uuid) => {
   const { config, settings } = global.apiTools,
@@ -20,15 +28,16 @@ const addressOne = async (address_uuid, account_uuid) => {
       PATH: { ADDRESS_ONE },
     } = config,
     {
-      account: { uuid },
       authentication: { security },
+      user,
+      user: { portfolio },
     } = settings,
     data = validate(ADDRESS_ONE, {
       defaults: {
-        account_uuid: uuid,
+        account_uuid: user[portfolio].account.uuid,
       },
       optional: { account_uuid },
-      required: { address_uuid },
+      throw: { address_uuid },
     }),
     json = await get(ADDRESS_ONE, schema, security, data);
 

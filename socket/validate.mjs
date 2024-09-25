@@ -4,7 +4,7 @@
  * @module socket/validate
  */
 
-import { throwRequired, warnOptional, warnRequired } from '../lib/output.mjs';
+import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 const socketValidate = (path, isValidParams, defaults, ...options) => {
   const data = { ...defaults },

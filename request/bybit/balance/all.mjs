@@ -5,9 +5,9 @@
  * @module request/bybit/balance/all
  */
 
+import { balanceAll as schema } from '#res/bybit/balance/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { balanceAll as schema } from '../../../response/bybit/balance/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype

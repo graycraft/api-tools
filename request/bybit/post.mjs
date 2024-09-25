@@ -7,14 +7,15 @@
  * @module request/bybit/post
  */
 
+import { HTTP } from '#lib/constants.mjs';
+import { endpointPost } from '#lib/fetch.mjs';
+import { dirObject } from '#lib/output.mjs';
+import { obtainName } from '#lib/utility.mjs';
+import parse from '#res/bybit/parse.mjs';
+import snapshot from '#res/bybit/snapshot.mjs';
+
 import { bybitKey, bybitSign } from './sign.mjs';
 import post from '../post.mjs';
-import { HTTP } from '../../lib/constants.mjs';
-import { endpointPost } from '../../lib/fetch.mjs';
-import { dirObject } from '../../lib/output.mjs';
-import { obtainName } from '../../lib/utility.mjs';
-import parse from '../../response/bybit/parse.mjs';
-import snapshot from '../../response/bybit/snapshot.mjs';
 
 /**
  * @param {string} template Path template to be interpolated.
@@ -31,6 +32,7 @@ const bybitPost = async (template, schema, security, data = {}) => {
     { PATH } = config,
     {
       authentication: { delay },
+      verbose,
     } = settings,
     { body, url } = endpointPost(template, data),
     { key, timestamp } = bybitKey(),
@@ -51,7 +53,7 @@ const bybitPost = async (template, schema, security, data = {}) => {
       data,
     );
 
-  dirObject('JSON', global.apiTools.output);
+  if (verbose) dirObject('Snapshot', global.apiTools.output);
 
   return json;
 };

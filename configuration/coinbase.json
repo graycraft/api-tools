@@ -1,9 +1,19 @@
 {
+  "CONTRACT": {
+    "EXPIRY": ["EXPIRING", "PERPETUAL", "UNKNOWN_CONTRACT_EXPIRY_TYPE"],
+    "STATUS": [
+      "STATUS_ALL",
+      "STATUS_EXPIRED",
+      "STATUS_UNEXPIRED",
+      "UNKNOWN_EXPIRING_CONTRACT_STATUS"
+    ]
+  },
   "ENCODING": "hex",
   "HOSTNAME": "api.coinbase.com",
   "ORDER": {
     "LIMIT": "limit_limit_gtc",
     "MARKET": "market_market_ioc",
+    "PLACEMENT": ["RETAIL_ADVANCED", "RETAIL_SIMPLE", "UNKNOWN_PLACEMENT_SOURCE"],
     "STATUS": [
       "CANCEL_QUEUED",
       "CANCELLED",
@@ -14,7 +24,15 @@
       "PENDING",
       "QUEUED",
       "UNKNOWN_ORDER_STATUS"
-    ]
+    ],
+    "TIME_IN_FORCES": [
+      "FILL_OR_KILL",
+      "GOOD_UNTIL_CANCELLED",
+      "GOOD_UNTIL_DATE_TIME",
+      "IMMEDIATE_OR_CANCEL",
+      "UNKNOWN_TIME_IN_FORCE"
+    ],
+    "TYPE": ["BRACKET", "LIMIT", "MARKET", "STOP", "STOP_LIMIT", "UNKNOWN_ORDER_TYPE"]
   },
   "PATH": {
     "ADDRESS": "/v2/accounts/${account_uuid}/addresses",
@@ -27,6 +45,7 @@
     "MARKET_TICKERS": "/api/v3/brokerage/market/products/${product_id}/ticker",
     "NETWORK_ALL": "/api/v2/currencies/crypto?network",
     "ORDER_ALL": "/api/v3/brokerage/orders/historical/batch",
+    "ORDER_BOOK": "/api/v3/brokerage/market/product_book",
     "ORDER_CANCEL": "/api/v3/brokerage/orders/batch_cancel",
     "ORDER_ONE": "/api/v3/brokerage/orders/historical/${order_uuid}",
     "ORDER_PLACE": "/api/v3/brokerage/orders",
@@ -40,7 +59,8 @@
   "PREFIX": "",
   "PRODUCT": {
     "FUTURE": "FUTURE",
-    "SPOT": "SPOT"
+    "SPOT": "SPOT",
+    "UNKNOWN": "UNKNOWN_PRODUCT_TYPE"
   },
   "SOCKET": {
     "CHANNEL": {
@@ -58,11 +78,12 @@
     "UNSUBSCRIBE": "unsubscribe",
     "URL": "wss://advanced-trade-ws.coinbase.com"
   },
+  "SORT": ["LAST_FILL_TIME", "LIMIT_PRICE", "UNKNOWN_SORT_BY"],
   "RESPONSE": {
     "CODE": "error",
     "DESCRIPTION": "message",
-    "OK": "OK",
-    "SUCCESS": "OK"
+    "OK": "0",
+    "SUCCESSFUL": "Successful."
   },
   "TRADE": {
     "SIDE": {

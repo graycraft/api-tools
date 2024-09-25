@@ -4,10 +4,11 @@
  * @module response/bybit
  */
 
-import config from '../configuration/bybit.json' with { type: 'json' };
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/bybit.json' with { type: 'json' };
+import config from '#config/bybit.json' with { type: 'json' };
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import settings from '#settings/bybit.json' with { type: 'json' };
+
 import currencyAll from './bybit/currency/all.mjs';
 import currencyNetworkAll from './bybit/currency/network-all.mjs';
 

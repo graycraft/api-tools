@@ -6,9 +6,15 @@
 
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
-import { obtainName } from '../lib/utility.mjs';
+import { obtainName } from '#lib/utility.mjs';
 
-const responseAggregate = (target, path, data, key) => {
+/**
+ * @param {string} target
+ * @param {string} path
+ * @param {array} data
+ * @param {{ id, key, name }} properties
+ */
+const responseAggregate = (target, path, data, { id, key, name }) => {
   const { config, settings } = global.apiTools,
     pathName = obtainName(path, config.PATH),
     isEnabled = settings.enabled.includes('aggregate');
@@ -23,9 +29,13 @@ const responseAggregate = (target, path, data, key) => {
       let array, fileData2;
 
       if (pathName === 'CURRENCY_ALL') {
-        const currencies = data.map((item) => item[key]);
+        const currencies = data.map((item) => ({
+          [id]: item[id],
+          [key]: item[key],
+          [name]: item[name],
+        }));
 
-        array = currencies.sort((a, b) => a.localeCompare(b));
+        array = currencies.sort((a, b) => a[key].localeCompare(b[key]));
       }
       if (pathName === 'CURRENCY_NETWORK_ALL') {
         const networks = data.map((row) =>

@@ -5,6 +5,13 @@
  * @module response/coinbase/market/schema
  */
 
+import config from '#config/coinbase.json' with { type: 'json' };
+
+const {
+  PRODUCT,
+  TRADE: { SIDE },
+} = config;
+
 export const marketAll = {
   // "$schema": "https://json-schema.org/draft/2020-12/schema",
   additionalProperties: false,
@@ -40,7 +47,7 @@ export const marketOne = {
     post_only: { type: 'boolean' },
     price_increment: { type: 'string' },
     product_id: { type: 'string' },
-    product_type: { type: 'string' },
+    product_type: { enum: Object.values(PRODUCT), type: 'string' },
     product_venue: { type: 'string' },
     price: { type: 'string' },
     price_percentage_change_24h: { type: 'string' },
@@ -104,8 +111,20 @@ export const marketTickers = {
   properties: {
     best_ask: { type: 'string' },
     best_bid: { type: 'string' },
-    trades: { type: 'array' },
+    trades: {
+      items: {
+        properties: {
+          product_id: { type: 'string' },
+          side: { enum: Object.values(SIDE), type: 'string' },
+          trade_id: { type: 'string' },
+        },
+        required: ['product_id', 'side', 'trade_id'],
+        type: 'object',
+      },
+      minItems: 1,
+      type: 'array',
+    },
   },
-  required: ['best_ask', 'best_bid'],
+  required: ['best_ask', 'best_bid', 'trades'],
   type: 'object',
 };

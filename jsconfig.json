@@ -2,14 +2,18 @@
   "compilerOptions": {
     "baseUrl": ".",
     "checkJs": true,
+    "esModuleInterop": true,
     "lib": ["es2021", "dom", "dom.iterable"],
     "module": "ESNext",
     "moduleResolution": "Node",
     "paths": {
-      "types/*": ["./types/*"]
+      "#config/*": ["./configuration/*"],
+      "#lib/*": ["./library/*"],
+      "#settings/*": ["./settings/*"],
+      "#res/*": ["./response/*"],
+      "#types/*": ["./types/*"]
     },
     "resolveJsonModule": true,
-    "esModuleInterop": true,
     "target": "ES6"
   },
   "exclude": ["node_modules"],

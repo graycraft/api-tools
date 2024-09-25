@@ -4,8 +4,8 @@
  * @module request/coinbase/validate
  */
 
+import { fileNameNewest, fileReadJson } from '#lib/file_system.mjs';
 import requestValidate from '../validate.mjs';
-import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
 const isValid = (param) => {
   const { config } = global.apiTools,

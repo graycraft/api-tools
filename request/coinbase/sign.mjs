@@ -5,8 +5,8 @@
  * @module request/coinbase/sign
  */
 
-import { blind, signJwt } from '../../lib/authentication.mjs';
-import { AUTH } from '../../lib/constants.mjs';
+import { blind, signJwt } from '#lib/authentication.mjs';
+import { AUTH } from '#lib/constants.mjs';
 
 let timestamp;
 
@@ -18,7 +18,7 @@ export const coinbaseKey = () => {
     { authentication, user } = settings,
     { portfolio } = user,
     { keys } = authentication,
-    key = keys[user[portfolio]];
+    key = keys[user[portfolio].uuid];
 
   /** Timestamp must be fresh for every request from an API flow. */
   timestamp = Date.now();
@@ -34,7 +34,7 @@ export const coinbaseSecret = () => {
     { authentication, user } = settings,
     { portfolio } = user,
     { secrets } = authentication,
-    secret = secrets[user[portfolio]];
+    secret = secrets[user[portfolio].uuid];
 
   return secret;
 };
