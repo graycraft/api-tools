@@ -5,9 +5,9 @@
  * @module request/bybit/market/history
  */
 
+import { marketHistory as schema } from '#res/bybit/market/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { marketHistory as schema } from '../../../response/bybit/market/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#category

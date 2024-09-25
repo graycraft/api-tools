@@ -4,9 +4,9 @@
  * @module response/bybit/aggregate
  */
 
+import { fileReadJson } from '#lib/file_system.mjs';
+import { obtainName } from '#lib/utility.mjs';
 import aggregate from '../aggregate.mjs';
-import { fileReadJson } from '../../lib/file_system.mjs';
-import { obtainName } from '../../lib/utility.mjs';
 
 const bybitAggregate = (path, fileName) => {
   const { config } = global.apiTools,

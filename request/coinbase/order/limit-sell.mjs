@@ -6,9 +6,9 @@
  */
 
 import nodeCrypto from 'node:crypto';
+import { orderLimitSell as schema } from '#res/coinbase/order/schema.mjs';
 import post from '../post.mjs';
-import validate from '../validate.mjs';
-import { orderLimitSell as schema } from '../../../response/coinbase/order/schema.mjs';
+import validate, { pair } from '../validate.mjs';
 
 /**
  * The maximum number of open orders allowed per `product_id` is 500.
@@ -17,14 +17,47 @@ import { orderLimitSell as schema } from '../../../response/coinbase/order/schem
  * @param {string} base_size Size of the first asset in a trading pair.
  * @param {string} limit_price Price, that an order should be executed at.
  * @param {string} [product_id] Trading pair (e.g. "BTC-USD").
- * @param {{ client_order_id? }} rest
- * @returns {Promise<{ success: boolean, success_response: { order_id: string, product_id: string } }>}
+ * @param {{
+ *   client_order_id?, end_time?, leverage?, limit_limit_fok?, limit_limit_gtc?,
+ *   limit_limit_gtd?, market_market_ioc?, margin_type?, post_only?, preview_id?,
+ *   quote_size?, sor_limit_ioc?, stop_direction?, stop_limit_stop_limit_gtc?,
+ *   stop_limit_stop_limit_gtd?, stop_price?, stop_trigger_price?,
+ *   trigger_bracket_gtc?, trigger_bracket_gtd?
+ * }} rest
+ * @returns {Promise<{
+ *   success: boolean,
+ *   success_response: {
+ *     order_id: string,
+ *     product_id: string
+ *   }
+ * }>} JSON data from response.
  */
 const orderLimitSell = async (
   base_size,
   limit_price,
   product_id,
-  { client_order_id /* , side */ } = {},
+  {
+    client_order_id,
+    end_time,
+    leverage,
+    limit_limit_fok,
+    limit_limit_gtc,
+    limit_limit_gtd,
+    market_market_ioc,
+    margin_type,
+    post_only,
+    preview_id,
+    quote_size,
+    /* side, */
+    sor_limit_ioc,
+    stop_direction,
+    stop_limit_stop_limit_gtc,
+    stop_limit_stop_limit_gtd,
+    stop_price,
+    stop_trigger_price,
+    trigger_bracket_gtc,
+    trigger_bracket_gtd,
+  } = {},
 ) => {
   const { config, settings } = global.apiTools,
     {
@@ -34,12 +67,12 @@ const orderLimitSell = async (
     } = config,
     {
       authentication: { security },
-      currency: { base, quote },
+      asset: { base, quote },
     } = settings,
     data = validate(ORDER_PLACE, {
       defaults: {
         client_order_id: nodeCrypto.randomUUID(),
-        product_id: base + '-' + quote,
+        product_id: pair(base.code, quote.code),
         side: SIDE.SELL,
       },
       optional: { client_order_id, product_id },

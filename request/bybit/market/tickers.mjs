@@ -6,9 +6,9 @@
  * @module request/bybit/market/tickers
  */
 
+import { marketTickers as schema } from '#res/bybit/market/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { marketTickers as schema } from '../../../response/bybit/market/schema.mjs';
 
 /**
  * Parameter `limit` is not available for this endpoint.

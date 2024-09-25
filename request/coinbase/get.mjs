@@ -2,21 +2,21 @@
  * Request a Coinbase Advanced API endpoint by `GET` method.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth/
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders/
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/error-response/
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/status-codes/
  * @see https://developers.coinbase.com/api#versioning
  * @module request/coinbase/get
  */
 
+import { HTTP } from '#lib/constants.mjs';
+import { endpointGet } from '#lib/fetch.mjs';
+import { dirObject } from '#lib/output.mjs';
+import { obtainName } from '#lib/utility.mjs';
+import parse from '#res/coinbase/parse.mjs';
+import snapshot from '#res/coinbase/snapshot.mjs';
+
 import { coinbaseKey, coinbaseSign } from './sign.mjs';
 import get from '../get.mjs';
-import { HTTP } from '../../lib/constants.mjs';
-import { endpointGet } from '../../lib/fetch.mjs';
-import { dirObject } from '../../lib/output.mjs';
-import { obtainName } from '../../lib/utility.mjs';
-import parse from '../../response/coinbase/parse.mjs';
-import snapshot from '../../response/coinbase/snapshot.mjs';
 
 /**
  * @param {string} template Path template to be interpolated.
@@ -33,6 +33,7 @@ const coinbaseGet = async (template, schema, security, data = {}) => {
     { HOSTNAME, PATH, PREFIX } = config,
     {
       authentication: { delay },
+      verbose,
     } = settings,
     { path, url } = endpointGet(template, data),
     { key, timestamp } = coinbaseKey(),
@@ -59,7 +60,7 @@ const coinbaseGet = async (template, schema, security, data = {}) => {
       data,
     );
 
-  dirObject('JSON', global.apiTools.output);
+  if (verbose) dirObject('Snapshot', global.apiTools.output);
 
   return json;
 };

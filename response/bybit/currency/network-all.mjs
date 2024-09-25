@@ -4,9 +4,9 @@
  * @module response/bybit/network/all
  */
 
+import { fileNameNewest } from '#lib/file_system.mjs';
+import { obtainName } from '#lib/utility.mjs';
 import aggregate from '../aggregate.mjs';
-import { fileNameNewest } from '../../../lib/file_system.mjs';
-import { obtainName } from '../../../lib/utility.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info

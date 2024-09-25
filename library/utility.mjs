@@ -21,15 +21,17 @@ export const obtainName = (path, PATH) => {
 /**
  * Parse process argument vectors to usable handler, parameters, options and flow.
  * @typedef Result
- * @type {object}
- * @property {string} handler API request handler.
- * @property {object} options Options to apply while executing API request handler.
- * @property {(string | { [key: string]: string; })[]} params Parameters to execute API request handler with.
- * @property {string} flow flow for multiple API request handlers.
+ * @prop {string} handler API request handler.
+ * @prop {object} options Options to apply while executing API request handler.
+ * @prop {(string | { [key: string]: string; })[]} params Parameters to execute API request handler with.
+ * @prop {string} flow flow for multiple API request handlers.
  * @returns {Result}
  */
 export const parseArguments = () => {
-  const options = {},
+  const {
+      settings: { debug },
+    } = global.apiTools,
+    options = {},
     args = process.argv.slice(3).map((param) => {
       /** A param with defined value. */
       if (param.includes('=')) {
@@ -42,6 +44,9 @@ export const parseArguments = () => {
         return { [key]: value };
       }
       /** Options. */
+      if (param.includes('--debug')) {
+        options.isDebug = true;
+      }
       if (param.includes('--head')) {
         options.isHeaders = true;
       }
@@ -65,6 +70,7 @@ export const parseArguments = () => {
   let handler = process.argv[2] ?? '',
     flow = '';
 
+  /** Options. */
   if (handler.includes('--flow')) {
     const value = handler.split('=')[1];
 
@@ -80,7 +86,7 @@ export const parseArguments = () => {
     params,
   };
 
-  dirObject('arguments', result);
+  if (debug) dirObject('Arguments', { result });
 
   return result;
 };

@@ -1,18 +1,32 @@
 /**
- * Handle Coinbase Advanced API endpoint, with one portfolio breakdown of a user by portfolio UUID.
+ * Handle Coinbase Advanced API endpoint, with portfolio breakdown of a user by portfolio UUID.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfoliobreakdown
  * @module request/coinbase/user/portfolio-one
  */
 
+import { userPortfolioOne as schema } from '#res/coinbase/user/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { userPortfolioOne as schema } from '../../../response/coinbase/user/schema.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfoliobreakdown
+ * This endpoint requires the "view" permission (for that portfolio).
  * @param {string} portfolio_uuid Portfolio UUID.
  * @param {string} [currency] Calculate values in specified currency.
- * @returns {Promise<{ breakdown: object }>} JSON data from response.
+ * @returns {Promise<{
+ *   breakdown: {
+ *     portfolio: {
+ *       type: "CONSUMER" | "DEFAULT" | "INTX" | "UNDEFINED",
+ *       uuid: string
+ *     },
+ *     portfolio_balances: object
+ *     spot_positions: {
+ *       account_uuid: string,
+ *       asset: string,
+ *       asset_uuid: string,
+ *     }
+ *   }
+ * }>} JSON data from response.
  */
 const userPortfolioOne = async (portfolio_uuid, currency) => {
   const { config, settings } = global.apiTools,
@@ -26,7 +40,7 @@ const userPortfolioOne = async (portfolio_uuid, currency) => {
     } = settings,
     data = validate(USER_PORTFOLIO_ONE, {
       defaults: {
-        portfolio_uuid: user[portfolio],
+        portfolio_uuid: user[portfolio].uuid,
       },
       optional: { portfolio_uuid },
       required: { currency },

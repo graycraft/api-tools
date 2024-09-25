@@ -4,6 +4,10 @@
  * @module socket/coinbase
  */
 
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import settings from '#settings/coinbase.json' with { type: 'json' };
+
 import candles from './coinbase/channel/candles.mjs';
 import futuresBalance from './coinbase/channel/futures_balance.mjs';
 import heartbeats from './coinbase/channel/heartbeats.mjs';
@@ -14,9 +18,6 @@ import ticker from './coinbase/channel/ticker.mjs';
 import tickerBatch from './coinbase/channel/ticker_batch.mjs';
 import user from './coinbase/channel/user.mjs';
 import config from '../configuration/coinbase.json' with { type: 'json' };
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/coinbase.json' with { type: 'json' };
 
 const requestCoinbase = () => {
   const { handler, params } = parseArguments();

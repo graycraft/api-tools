@@ -76,7 +76,7 @@
     "CODE": "retCode",
     "DESCRIPTION": "retMsg",
     "OK": 0,
-    "SUCCESS": "OK"
+    "SUCCESSFUL": "OK"
   },
   "TRADE": {
     "EXEC": [

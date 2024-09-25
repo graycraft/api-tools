@@ -10,10 +10,10 @@
  * @module socket/coinbase/unsubscribe
  */
 
-import config from '../../configuration/coinbase.json' with { type: 'json' };
-import { signJwt } from '../../lib/authentication.mjs';
-import { AUTH } from '../../lib/constants.mjs';
-import settings from '../../settings/coinbase.json' with { type: 'json' };
+import config from '#config/coinbase.json' with { type: 'json' };
+import { signJwt } from '#lib/authentication.mjs';
+import { AUTH } from '#lib/constants.mjs';
+import settings from '#settings/coinbase.json' with { type: 'json' };
 
 /**
  * @returns {Promise<object>}
@@ -43,7 +43,7 @@ const coinbaseUnsubscribe = async (data, socket) => {
 
   console.log('coinbaseUnsubscribe', message);
   if (security === AUTH.SECURITY.JWT) {
-    message.jwt = signJwt(ENCODING, payload, secret, key);
+    message.jwt = signJwt(/** @type {"hex"}*/ (ENCODING), payload, secret, key);
   }
   socket.send(JSON.stringify(message));
 

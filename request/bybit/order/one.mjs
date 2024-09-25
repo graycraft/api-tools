@@ -5,9 +5,9 @@
  * @module request/bybit/order/one
  */
 
+import { orderOne as schema } from '#res/bybit/order/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { orderOne as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.

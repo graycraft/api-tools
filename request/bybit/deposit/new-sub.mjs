@@ -5,9 +5,9 @@
  * @module request/bybit/new-sub
  */
 
+import { depositNewSub as schema } from '#res/bybit/deposit/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { depositNewSub as schema } from '../../../response/bybit/deposit/schema.mjs';
 
 /**
  * Custodial sub account deposit address cannot be obtained.

@@ -6,13 +6,13 @@
  */
 
 import nodeCrypto from 'node:crypto';
+import { transferInternal as schema } from '#res/bybit/transfer/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { transferInternal as schema } from '../../../response/bybit/transfer/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
- * @param {string} toAccountType To account type.
+ * @param {string} toAccountType Account type to transfer.
  * @param {string} amount Currency amount to transfer.
  * @param {string} [coin] Currency name.
  * @param {{ fromAccountType?, transferId? }} rest

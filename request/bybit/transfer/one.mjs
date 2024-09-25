@@ -5,9 +5,9 @@
  * @module request/bybit/transfer/one
  */
 
+import { transferOne as schema } from '#res/bybit/transfer/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { transferOne as schema } from '../../../response/bybit/transfer/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype

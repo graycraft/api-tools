@@ -7,8 +7,8 @@
  * @module request/bybit/sign
  */
 
-import { blind, signHmac } from '../../lib/authentication.mjs';
-import { AUTH } from '../../lib/constants.mjs';
+import { blind, signHmac } from '#lib/authentication.mjs';
+import { AUTH } from '#lib/constants.mjs';
 
 let timestamp;
 

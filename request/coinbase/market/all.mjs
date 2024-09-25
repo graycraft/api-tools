@@ -1,44 +1,53 @@
 /**
- * Coinbase Advanced API endpoint, with all available currency pairs (products) for trading.
+ * Handle Coinbase Advanced API endpoint, listing all products available for trading.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproducts
- * @module request/coinbase/market/information
+ * @module request/coinbase/market/all
  */
 
+import { marketAll as schema } from '#res/coinbase/market/schema.mjs';
 import get from '../get.mjs';
-import validate from '../validate.mjs';
-import { marketAll as schema } from '../../../response/coinbase/market/schema.mjs';
+import validate, { pairs } from '../validate.mjs';
 
 /**
- * @param {string} product_ids List of trading pairs (e.g. "BTC-USD").
- * @param {string} limit Pagination limit.
- * @param {{ contract_expiry_type?, expiring_contract_status?, get_all_products?, offset?, product_type? }} rest
- * @returns {Promise<{ products: [{ product_id: string }] }>}
+ * @param {string} limit Pagination limit (default > 668, maximum unknown).
+ * @param {{
+ *   contract_expiry_type?, expiring_contract_status?, get_all_products?,
+ *   offset?, product_ids?, product_type?
+ * }} rest
+ * @returns {Promise<{ products: [{ product_id: string }] }>} JSON data from response.
  */
 const marketAll = (
-  product_ids,
   limit,
-  { contract_expiry_type, expiring_contract_status, get_all_products, offset, product_type } = {},
+  {
+    contract_expiry_type,
+    expiring_contract_status,
+    get_all_products,
+    offset,
+    product_ids,
+    product_type,
+  } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config } = global.apiTools,
     {
       PATH: { MARKET_ALL },
       PRODUCT,
     } = config,
-    {
-      authentication: { security },
-      currency: { base, quote },
-    } = settings,
     data = validate(MARKET_ALL, {
       defaults: {
-        /** @todo Pass array ?product_ids=BTC-USDT&product_ids=ETH-USDT instead of ?product_ids=ETH-USDT%2CBTC-USDT. */
-        product_ids: [base + '-' + quote /* , "BTC-USDT" */],
         product_type: PRODUCT.SPOT,
       },
-      optional: { product_ids },
-      required: { limit },
+      optional: { product_type },
+      required: {
+        contract_expiry_type,
+        expiring_contract_status,
+        get_all_products,
+        limit,
+        offset,
+        product_ids: pairs(product_ids),
+      },
     }),
-    json = get(MARKET_ALL, schema, security, data);
+    json = get(MARKET_ALL, schema, null, data);
 
   return json;
 };

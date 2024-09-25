@@ -5,9 +5,9 @@
  * @module request/bybit/order/book
  */
 
+import { orderBook as schema } from '#res/bybit/order/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { orderBook as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#category

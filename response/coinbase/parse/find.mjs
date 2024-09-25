@@ -4,20 +4,13 @@
  * @module response/coinbase/parse/find
  */
 
-const data = 'breakdown';
-
 const find = (json, { criterion, key, list }) => {
   if (criterion) {
-    const items = json[data][list].find((item) =>
-      key ? item[key] === criterion : criterion(item),
-    );
+    const items = json[list].find((item) => (key ? item[key] === criterion : criterion(item)));
 
     json = {
       ...json,
-      [data]: {
-        ...json[data],
-        [list]: [items, `... ${json[data][list].length - 1} more items`],
-      },
+      [list]: [items, `... ${json[list].length - 1} more items`],
     };
 
     return json;

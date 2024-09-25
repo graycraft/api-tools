@@ -5,8 +5,8 @@
  * @module request/bybit/currency/network-all
  */
 
+import { currencyNetworkAll as schema } from '#res/bybit/currency/schema.mjs';
 import get from '../get.mjs';
-import { currencyNetworkAll as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
  * Uses the same endpoint as `currencyAll`.

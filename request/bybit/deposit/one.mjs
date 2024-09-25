@@ -5,9 +5,9 @@
  * @module request/bybit/deposit/one
  */
 
+import { depositOne as schema } from '#res/bybit/deposit/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { depositOne as schema } from '../../../response/bybit/deposit/schema.mjs';
 
 /**
  * Documentation do not describe `txID`, but another endpoint `WITHDRAW_ONE` also has this parameter.

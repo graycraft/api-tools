@@ -1,7 +1,7 @@
 /**
  * Map items from a Coinbase Advanced API response array by object key.
  *
- * @module response/bybit/parse/map
+ * @module response/coinbase/parse/map
  */
 
 const map = (json, { key, list }) => {
@@ -10,6 +10,16 @@ const map = (json, { key, list }) => {
   if (typeof key === 'string' && typeof list === 'string') {
     items = json[list].map((item) => ({
       [key]: item[key],
+    }));
+    data = {
+      ...json,
+      [list]: items,
+    };
+  } else if (key instanceof Array && typeof list === 'string') {
+    items = json[list].map((item) => ({
+      [key[0]]: item[key[0]],
+      [key[1]]: item[key[1]],
+      [key[2]]: item[key[2]],
     }));
     data = {
       ...json,

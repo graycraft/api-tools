@@ -4,10 +4,11 @@
  * @module response/coinbase
  */
 
-import config from '../configuration/coinbase.json' with { type: 'json' };
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/coinbase.json' with { type: 'json' };
+import config from '#config/coinbase.json' with { type: 'json' };
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import settings from '#settings/coinbase.json' with { type: 'json' };
+
 import currencyAll from './coinbase/currency/all.mjs';
 // import networkAll from './coinbase/network/all.mjs';
 

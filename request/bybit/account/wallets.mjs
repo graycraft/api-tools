@@ -5,9 +5,9 @@
  * @module request/bybit/account/wallets
  */
 
+import { accountWallets as schema } from '#res/bybit/account/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { accountWallets as schema } from '../../../response/bybit/account/schema.mjs';
 
 /**
  * "FUND" - never deposited or transfered capital. This wallet type absent in the array, but account has this wallet.

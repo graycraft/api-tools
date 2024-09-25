@@ -5,20 +5,21 @@
  * @module request/coinbase/order/all
  */
 
+import { orderAll as schema } from '#res/coinbase/order/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { orderAll as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
  * If `has_next` in response data is `true`, more pages are available to fetch.
- * The parameters start_date and end_date don’t apply to open orders.
+ * The parameters `start_date` and `end_date` don't apply to open orders.
+ * `assetFilters` parameter not applicable for open orders
  * @param {string} limit Pagination limit (default: no, maximum: 1000).
  * @param {{
  *   asset_filters?, contract_expiry_type?, cursor?, end_date?, order_ids?,
  *   order_placement_source?, order_side?, order_status?, order_types?, product_ids?,
  *   product_type?, retail_portfolio_id?, sort_by?, start_date?, time_in_forces?
  * }} rest
- * @returns {Promise<{ orders: [{ order_id: string, product_id: string }] }>}
+ * @returns {Promise<{ orders: [{ order_id: string, product_id: string }] }>} JSON data from response.
  */
 const orderAll = async (
   limit,
@@ -65,7 +66,6 @@ const orderAll = async (
         order_ids,
         order_placement_source,
         order_side,
-        order_status,
         order_types,
         /* product_id, */
         product_ids,

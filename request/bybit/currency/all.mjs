@@ -5,8 +5,8 @@
  * @module request/bybit/currency/all
  */
 
+import { currencyAll as schema } from '#res/bybit/currency/schema.mjs';
 import get from '../get.mjs';
-import { currencyAll as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
  * @returns {Promise<object>} JSON data from response.

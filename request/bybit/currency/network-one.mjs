@@ -5,9 +5,9 @@
  * @module request/bybit/currency/network-one
  */
 
+import { currencyNetworkOne as schema } from '#res/bybit/currency/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { currencyNetworkOne as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
  * Uses the same endpoint as `currencyOne`.

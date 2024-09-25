@@ -43,10 +43,12 @@
     "network": "BBB",
     "quote": "CCC"
   },
+  "debug": false,
   "enabled": ["aggregate", "parse", "snapshot"],
   "parse": [
     "ACCOUNT_BALANCE_CURRENCIES",
     "CURRENCY_ALL",
+    "CURRENCY_NETWORK_ALL",
     "MARKET_HISTORY",
     "MARKET_INFO",
     "MARKET_TICKERS",
@@ -88,5 +90,6 @@
     "WITHDRAW_ALL",
     "WITHDRAW_NEW",
     "WITHDRAW_ONE"
-  ]
+  ],
+  "verbose": false
 }

@@ -5,9 +5,9 @@
  * @module request/bybit/currency/one
  */
 
+import { currencyOne as schema } from '#res/bybit/currency/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { currencyOne as schema } from '../../../response/bybit/currency/schema.mjs';
 
 /**
  * @returns {Promise<object>} JSON data from response.

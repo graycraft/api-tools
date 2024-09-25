@@ -5,9 +5,9 @@
  * @module request/bybit/withdraw/new
  */
 
+import { withdrawNew as schema } from '#res/bybit/withdraw/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { withdrawNew as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
  * API key pair must have "*Withdrawal" permission.

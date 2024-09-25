@@ -4,18 +4,32 @@
  * @module request/validate
  */
 
-import { throwRequired, warnOptional, warnRequired } from '../lib/output.mjs';
+import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 /**
  * @param {array} list
  * @param {string} value
  * @param {string} [prop]
- * @returns
+ * @returns {boolean}
  */
 export const hasSome = (list, value, prop) => {
-  const data = list.some((item) => (prop ? item[prop] === value : item === value));
+  const boolean = list.some((item) => (prop ? item[prop] === value : item === value));
 
-  return data;
+  return boolean;
+};
+
+/**
+ * @param {array} list
+ * @param {string} value
+ * @param {function} pair
+ * @returns {boolean}
+ */
+export const isPair = (list, value, pair) => {
+  const boolean = list.some((item1) =>
+    list.some((item2) => pair(item1, item2) === value && item1 !== item2),
+  );
+
+  return boolean;
 };
 
 /**

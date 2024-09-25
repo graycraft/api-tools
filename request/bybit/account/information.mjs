@@ -5,8 +5,8 @@
  * @module request/bybit/account/information
  */
 
+import { accountInformation as schema } from '#res/bybit/account/schema.mjs';
 import get from '../get.mjs';
-import { accountInformation as schema } from '../../../response/bybit/account/schema.mjs';
 
 /**
  * @returns {Promise<object>} JSON data from response.

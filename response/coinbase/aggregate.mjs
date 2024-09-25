@@ -6,8 +6,8 @@
 
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
+import { obtainName } from '#lib/utility.mjs';
 import responseAggregate from '../aggregate.mjs';
-import { obtainName } from '../../lib/utility.mjs';
 
 const coinbaseAggregate = (path, fileName) => {
   const { config } = global.apiTools,
@@ -17,10 +17,9 @@ const coinbaseAggregate = (path, fileName) => {
     filePathFull = nodePath.join(filePath, fileName),
     fileData = nodeFs.readFileSync(filePathFull),
     json = JSON.parse(String(fileData)),
-    data = json.data,
-    key = 'code';
+    data = json.data;
 
-  responseAggregate('coinbase', path, data, key);
+  responseAggregate('coinbase', path, data, { id: 'asset_id', key: 'code', name: 'name' });
 };
 
 export default coinbaseAggregate;

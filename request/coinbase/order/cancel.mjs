@@ -1,18 +1,18 @@
 /**
- * Handle Coinbase Advanced API cancel all orders endpoint.
+ * Handle Coinbase Advanced API cancel order endpoint by one or more order identifiers.
  *
- * @see https://coinbase-exchange.github.io/docs/v5/order/cancel-order
- * @module request/coinbase/order/cancel-all
+ * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_cancelorders
+ * @module request/coinbase/order/cancel
  */
 
+import { orderCancel as schema } from '#res/coinbase/order/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { orderCancel as schema } from '../../../response/coinbase/order/schema.mjs';
 
 /**
  * The maximum number of order_ids that can be cancelled per request is 100.
- * @param {string} order_ids
- * @returns {Promise<{ results: { order_id: string, success: boolean } }>}
+ * @param {string} order_ids The order identifiers that cancel requests should be initiated for.
+ * @returns {Promise<{ results: { order_id: string, success: boolean } }>} JSON data from response.
  */
 const orderCancel = async (order_ids) => {
   const { config, settings } = global.apiTools,
@@ -23,7 +23,7 @@ const orderCancel = async (order_ids) => {
       authentication: { security },
     } = settings,
     data = validate(ORDER_CANCEL, {
-      throw: { order_ids: [order_ids] },
+      throw: { order_ids: order_ids.split(',') },
     }),
     json = await post(ORDER_CANCEL, schema, security, data);
 

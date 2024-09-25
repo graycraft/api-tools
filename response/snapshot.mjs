@@ -6,7 +6,7 @@
 
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
-import { obtainName } from '../lib/utility.mjs';
+import { obtainName } from '#lib/utility.mjs';
 
 const responseSnapshot = (json, path, target) => {
   const { config, options, settings } = global.apiTools,

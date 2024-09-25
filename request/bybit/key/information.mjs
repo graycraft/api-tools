@@ -5,8 +5,8 @@
  * @module request/bybit/key/information
  */
 
+import { keyInformation as schema } from '#res/bybit/key/schema.mjs';
 import get from '../get.mjs';
-import { keyInformation as schema } from '../../../response/bybit/key/schema.mjs';
 
 /**
  * @returns {Promise<object>} JSON data from response.

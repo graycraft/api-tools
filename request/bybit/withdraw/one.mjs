@@ -5,9 +5,9 @@
  * @module request/bybit/withdraw/one
  */
 
+import { withdrawOne as schema } from '#res/bybit/withdraw/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { withdrawOne as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
  * @param {string} txID Transaction identifier.

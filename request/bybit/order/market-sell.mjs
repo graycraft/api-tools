@@ -5,9 +5,9 @@
  * @module request/bybit/order/market-sell
  */
 
+import { orderMarketSell as schema } from '#res/bybit/order/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { orderMarketSell as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * @see https://bybit-exchange.github.io/docs/v5/enum#category

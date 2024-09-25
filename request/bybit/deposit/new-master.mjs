@@ -5,9 +5,9 @@
  * @module request/bybit/deposit/new-master
  */
 
+import { depositNewMaster as schema } from '#res/bybit/deposit/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { depositNewMaster as schema } from '../../../response/bybit/deposit/schema.mjs';
 
 /**
  * @param {string} coin Currency name.
