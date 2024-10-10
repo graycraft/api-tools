@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API endpoint, listing transactions that have been done by address UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-transactions
- * @typedef {import('types/request/coinbase/address/transactions.d').T} AddressTransactions
+ * @typedef {import('#types/response/coinbase/address/transactions.d.js').default} AddressTransactions
  * @module request/coinbase/address/transactions
  */
 
@@ -17,7 +17,7 @@ import validate from '../validate.mjs';
  * @returns {Promise<AddressTransactions>} JSON data from response.
  */
 const addressTransactions = async (address_uuid, limit, account_uuid) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { ADDRESS_TRANSACTIONS },
     } = config,

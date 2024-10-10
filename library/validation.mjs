@@ -1,16 +1,24 @@
 /**
  * Validate parameters for a request.
  *
- * @module lib/validation
+ * @typedef {Object<string, string>} Dict
+ * @module library/validation
  */
 
 import { throwRequired, warnOptional, warnRequired } from './output.mjs';
 
-const validate = (path, isValid, defaults, ...options) => {
+/**
+ * Validate request parameters.
+ * @param {{ PATH: Dict }} config
+ * @param {string} path
+ * @param {(Dict) => {}} isValid
+ * @param {Dict} defaults
+ * @param {...Dict[]} options
+ * @returns {Dict}
+ */
+const validate = (config, path, isValid, defaults, ...options) => {
   const data = defaults,
-    {
-      config: { PATH },
-    } = global.apiTools;
+    { PATH } = config;
   let index = options.length,
     category,
     key;
@@ -25,7 +33,7 @@ const validate = (path, isValid, defaults, ...options) => {
           const value = option[category][key];
 
           if (isValid({ [key]: value })) data[key] = value;
-          else throwRequired(PATH, path, key);
+          else throwRequired(path, PATH, key);
         }
       }
       if (category === 'warnOptional') {
@@ -34,7 +42,7 @@ const validate = (path, isValid, defaults, ...options) => {
 
           if (value) {
             if (isValid({ [key]: value })) data[key] = value;
-            else warnOptional(PATH, path, key, data[key]);
+            else warnOptional(path, PATH, key, data[key]);
           }
         }
       }
@@ -44,7 +52,7 @@ const validate = (path, isValid, defaults, ...options) => {
 
           if (value) {
             if (isValid({ [key]: value })) data[key] = value;
-            else warnRequired(PATH, path, key);
+            else warnRequired(path, PATH, key);
           }
         }
       }

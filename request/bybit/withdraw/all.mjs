@@ -2,6 +2,7 @@
  * Handle Bybit API all wallet withdraw entries endpoint.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
+ * @typedef {import("#types/response/bybit/withdraw/all.d.js").default} WithdrawAll
  * @module request/bybit/withdraw/all
  */
 
@@ -10,8 +11,8 @@ import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
- * @param {{ coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @param {{ coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType? }} options
+ * @returns {Promise<WithdrawAll>} JSON data from response.
  */
 const withdrawAll = async ({
   coin,
@@ -23,7 +24,7 @@ const withdrawAll = async ({
   withdrawID,
   withdrawType,
 } = {}) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { WITHDRAW_ALL },
     } = config,

@@ -1,6 +1,14 @@
 /**
  * Analyze an API response by comparing its code and description with known values.
  *
+ * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("./parse.mjs").RParse} RParse
+ * @typedef {import("./parse.mjs").RParseStatus} RParseStatus
+ * @typedef {import("./parse.mjs").ResponseParse} ResponseParse
+ * @typedef Result
+ * @prop {boolean} isKnown Whether response status code is known in `status.json` or not.
+ * @prop {boolean} isSaved Whether response status description is saved in `status.json` or not.
+ * @prop {boolean} isSuccessful Whether response status code and description considered successful or not.
  * @module response/analyze
  */
 
@@ -9,20 +17,17 @@ import { dirObject } from '#lib/output.mjs';
 
 /**
  * Analyze response and decide whether it is successful for further processing.
- * @param {{ code, description, jsonParsed, status, statusText }} response Parsed response data.
- * @typedef Result
- * @prop {boolean} isKnown Whether response status code is known in `status.json` or not.
- * @prop {boolean} isSaved Whether response status description is saved in `status.json` or not.
- * @prop {boolean} isSuccessful Whether response status code and description considered successful or not.
- * @returns {Result}
+ * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {ResponseParse & RParseStatus} response Parsed response data.
+ * @returns {Result} Information about the analysis.
  */
-const responseAnalyze = (response) => {
+const responseAnalyze = (api, response) => {
   const { STATUS } = HTTP,
     {
       config,
       status: statusKnown,
-      settings: { debug },
-    } = global.apiTools,
+      prefs: { debug },
+    } = api,
     {
       RESPONSE: { CODE, DESCRIPTION, OK },
     } = config,

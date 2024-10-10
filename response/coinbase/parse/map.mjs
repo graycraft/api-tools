@@ -1,9 +1,18 @@
 /**
  * Map items from a Coinbase Advanced API response array by object key.
  *
+ * @typedef {import("#types/response/bybit.d.js").default} Response
  * @module response/coinbase/parse/map
  */
 
+/**
+ * @param {Response} json
+ * @param {{
+ *   key: string | string[],
+ *   list: string | string[],
+ * }} options
+ * @returns {Response}
+ */
 const map = (json, { key, list }) => {
   let data, items;
 

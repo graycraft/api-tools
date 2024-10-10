@@ -6,7 +6,7 @@
  */
 
 export const orderAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     cursor: { type: 'string' },
@@ -19,7 +19,7 @@ export const orderAll = {
 };
 
 export const orderBook = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     pricebook: { type: 'object' },
@@ -29,7 +29,7 @@ export const orderBook = {
 };
 
 export const orderCancel = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     results: { type: 'array' },
@@ -39,7 +39,7 @@ export const orderCancel = {
 };
 
 export const orderLimitBuy = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     order_configuration: { type: 'object' },
@@ -51,7 +51,7 @@ export const orderLimitBuy = {
 };
 
 export const orderLimitSell = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     order_configuration: { type: 'object' },
@@ -63,7 +63,7 @@ export const orderLimitSell = {
 };
 
 export const orderMarketBuy = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     order_configuration: { type: 'object' },
@@ -75,7 +75,7 @@ export const orderMarketBuy = {
 };
 
 export const orderMarketSell = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     order_configuration: { type: 'object' },
@@ -87,7 +87,7 @@ export const orderMarketSell = {
 };
 
 export const orderOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     order: { type: 'object' },

@@ -4,5 +4,7 @@
  * @module response
  */
 
-import './response/bybit.js';
-import './response/coinbase.js';
+import responseBybit from './response/bybit/index.mjs';
+import responseCoinbase from './response/coinbase/index.mjs';
+
+Promise.resolve().then(responseBybit).then(responseCoinbase);

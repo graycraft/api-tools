@@ -5,16 +5,14 @@
  * Subscribing to the heartbeats channel ensures that all subscriptions stay open when updates are sparse.
  * This is useful, for example, when fetching market data for illiquid pairs.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#heartbeats-channel
  * @module socket/coinbase/channel/heartbeats
  */
 
 import coinbaseSubscribe from '../subscribe.mjs';
 
-/**
- * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#heartbeats-channel
- */
 const heartbeats = () => {
-  const { config } = global.apiTools,
+  const { config } = global.apiTools.coinbase,
     {
       SOCKET: {
         CHANNEL: { HEARTBEATS },

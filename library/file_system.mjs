@@ -1,15 +1,24 @@
 /**!
  * File system related methods, such as for reading and writing files.
  *
- * @module lib/file_system
+ * @typedef {{
+ *   name: string;
+ *   time: number;
+ * }} RFile
+ * @module library/file_system
  */
 
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
 
-export const fileNameNewest = (dir) => {
+/**
+ * Find newest file in a specified directory by its creation timestamp.
+ * @param {string} directory Directory to search file in.
+ * @returns {RFile} File data.
+ */
+export const fileNewest = (directory) => {
   const dirName = import.meta.dirname,
-    fileDir = nodePath.join(dirName, '../' + dir),
+    fileDir = nodePath.join(dirName, '../' + directory),
     fileAll = nodeFs
       .readdirSync(fileDir)
       .map((name) => ({
@@ -19,16 +28,22 @@ export const fileNameNewest = (dir) => {
       .sort((a, b) => b.time - a.time),
     file = fileAll[0];
 
-  if (!file) throw new Error(fileNameNewest.name + ': directory is empty.');
+  if (!file) throw new Error(fileNewest.name + ': directory is empty.');
 
   return file;
 };
 
-export const fileReadJson = (path, fileName) => {
+/**
+ * Read JSON data from the file in a specified directory.
+ * @param {string} directory Directory where file is.
+ * @param {string} fileName Name of the file with extension.
+ * @returns {object} JSON data.
+ */
+export const fileReadJson = (directory, fileName) => {
   const dirName = import.meta.dirname,
-    filePath = nodePath.join(dirName, '../' + path),
-    filePathFull = nodePath.join(filePath, fileName),
-    fileData = nodeFs.readFileSync(filePathFull),
+    fileDir = nodePath.join(dirName, '../' + directory),
+    filePath = nodePath.join(fileDir, fileName),
+    fileData = nodeFs.readFileSync(filePath),
     json = JSON.parse(String(fileData));
 
   return json;

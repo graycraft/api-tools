@@ -2,6 +2,7 @@
  * Handle Bybit API all balances endpoint.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
+ * @typedef {import("#types/response/bybit/balance/all.d.js").default} BalanceAll
  * @module request/bybit/balance/all
  */
 
@@ -10,14 +11,13 @@ import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
  * @param {string} accountType Account type.
  * @param {string} memberId UID, required with master API keys.
- * @param {{ coin?, withBonus? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @param {{ coin?, withBonus? }} options
+ * @returns {Promise<BalanceAll>} JSON data from response.
  */
 const balanceAll = async (accountType, memberId, { coin, withBonus } = {}) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { BALANCE_ALL },
     } = config,
@@ -28,7 +28,7 @@ const balanceAll = async (accountType, memberId, { coin, withBonus } = {}) => {
     } = settings,
     data = validate(BALANCE_ALL, {
       defaults: {
-        accountType: account.wallet,
+        accountType: wallet,
         memberId: account[wallet],
       },
       optional: { accountType, memberId },

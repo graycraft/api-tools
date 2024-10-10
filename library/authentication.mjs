@@ -1,55 +1,62 @@
 /**!
- * Sign a request by the specified method.
+ * Sign a request by the specified method with blinding confidential data from output.
  *
  * @see https://nodejs.org/api/buffer.html#buffers-and-character-encodings
  * @see https://nodejs.org/api/crypto.html#cryptocreatehmacalgorithm-key-options
  * @see https://nodejs.org/api/crypto.html#hmacdigestencoding
  * @see https://nodejs.org/api/crypto.html#hmacupdatedata-inputencoding
  * @see https://www.npmjs.com/package/jsonwebtoken
- * @module lib/authentication
+ * @typedef {NodeJS.ArrayBufferView | string} BinaryLike
+ * @typedef {Object<string, string>} Dict
+ * @module library/authentication
  */
 
-import nodeCrypto from 'node:crypto';
 import jsonwebtoken from 'jsonwebtoken';
+import nodeCrypto from 'node:crypto';
 import { AUTH } from './constants.mjs';
 
+const { ALGORITHM, SECURITY } = AUTH;
+
 /**
- * Replace characters in a confidential data (key, secret, etc.).
- * @param {string} confidential
- * @param {string} hidden
- * @param {number} visibility
- * @returns {string}
+ * Replace characters in a confidential data (key, secret, etc.) with asterisks.
+ * @param {string} confidential Confidential data string.
+ * @param {number} [visibility] Amount of characters leave to be visible at both sides of string.
+ * @returns {string} Blinded confidential data.
  */
-export const blind = (confidential, hidden = 'full', visibility = 2) => {
-  const output = {
-    full: '****************',
-    mask:
+export const blind = (confidential, visibility = 2) => {
+  let blinded;
+
+  if (visibility) {
+    blinded =
       confidential.slice(0, visibility) +
       confidential.slice(visibility, -visibility).replace(/.|\n/g, '*') +
-      confidential.slice(-visibility),
-    none: confidential,
-  }[hidden];
+      confidential.slice(-visibility);
+  } else {
+    blinded = '*'.repeat(16);
+  }
 
-  return output;
+  return blinded;
 };
 
 /**
  * Sign a request by Hash-based Message Authentication Code.
- * @param {"hex"} encoding
- * @param {string} payload
- * @param {string} secret
- * @param {string} key
- * @returns {string}
+ * @param {"hex"} encoding Encoding of signature.
+ * @param {string} payload Payload to sign.
+ * @param {string} secret Private key.
+ * @param {string} key Public key.
+ * @returns {string} HMAC digest.
  */
 export const signHmac = (encoding, payload, secret, key) => {
-  const nonce = nodeCrypto.createHmac('sha256', secret).update(payload),
+  const nonce = nodeCrypto
+      .createHmac(ALGORITHM.SHA256, secret)
+      .update(/** @type {BinaryLike} */ (payload)),
     digest = nonce.digest(encoding);
 
-  global.apiTools.output[AUTH.SECURITY.HMAC] = {
-    digest: blind(digest, 'mask'),
+  global.apiTools.output[SECURITY.HMAC] = {
+    digest: blind(digest),
     encoding,
-    payload: payload.split(key).join(blind(key, 'mask')),
-    secret: blind(secret, 'mask'),
+    payload: payload.split(key).join(blind(key)),
+    secret: blind(secret),
   };
 
   return digest;
@@ -57,28 +64,34 @@ export const signHmac = (encoding, payload, secret, key) => {
 
 /**
  * Sign a request by JSON Web Token.
- * @param {"hex"} encoding
- * @param {object} payload
- * @param {string} secret
- * @param {string} key
- * @returns {string}
+ * @param {"hex"} encoding Encoding of signature.
+ * @param {{
+ *   exp: number;
+ *   iss: string;
+ *   nbf: number;
+ *   sub: string;
+ *   uri?: string;
+ * }} payload Payload to sign.
+ * @param {string} secret Private key.
+ * @param {string} key Public key.
+ * @returns {string} JSON Web Token.
  */
 export const signJwt = (encoding, payload, secret, key) => {
   const nonce = nodeCrypto.randomBytes(16).toString(encoding),
     token = jsonwebtoken.sign(payload, secret, {
-      algorithm: 'ES256',
+      algorithm: ALGORITHM.ES256,
       header: {
         kid: key,
         nonce,
       },
     });
 
-  global.apiTools.output[AUTH.SECURITY.JWT] = {
+  global.apiTools.output[SECURITY.JWT] = {
     encoding,
-    key: blind(key, 'mask'),
+    key: blind(key),
     payload: {
       ...payload,
-      sub: blind(key, 'mask'),
+      sub: blind(key),
     },
     secret: blind(secret),
     token: blind(token),

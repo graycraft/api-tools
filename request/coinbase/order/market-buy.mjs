@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API place market buy order endpoint.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
+ * @typedef {import("#types/response/coinbase/order/market-buy.d.js").default} OrderMarketBuy
  * @module request/coinbase/order/market-buy
  */
 
@@ -22,14 +23,8 @@ import validate, { pair } from '../validate.mjs';
  *   sor_limit_ioc?, stop_direction?, stop_limit_stop_limit_gtc?,
  *   stop_limit_stop_limit_gtd?, stop_price?, stop_trigger_price?,
  *   trigger_bracket_gtc?, trigger_bracket_gtd?
- * }} rest
- * @returns {Promise<{
- *   success: boolean,
- *   success_response: {
- *     order_id: string,
- *     product_id: string
- *   }
- * }>} JSON data from response.
+ * }} options
+ * @returns {Promise<OrderMarketBuy>} JSON data from response.
  */
 const orderMarketBuy = async (
   quote_size,
@@ -56,7 +51,7 @@ const orderMarketBuy = async (
     trigger_bracket_gtd,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       ORDER,
       PATH: { ORDER_PLACE },
@@ -74,11 +69,11 @@ const orderMarketBuy = async (
       },
       optional: { client_order_id, product_id },
       throw: {
-        order_configuration: {
+        order_configuration: /** @type {any} */ ({
           [ORDER.MARKET]: {
             quote_size,
           },
-        },
+        }),
       },
     }),
     json = await post(ORDER_PLACE, schema, security, data);

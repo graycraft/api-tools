@@ -1,6 +1,6 @@
 # API Tools
 
-Tools to work with a REST API (WebSocket and GraphQL support is on the way).
+Tools to work with a REST API and WebSocket.
 
 This package allows to:
 
@@ -71,7 +71,9 @@ $ npm i
 
 ### Environment
 
-Optionally `NODE_NO_WARNINGS` can be exported from `.env` file to silence process warnings regarding experimental features:
+Optionally `NODE_NO_WARNINGS` can be exported from `.env` file to silence process warnings regarding experimental features.
+
+This command also enables `--experimental-vm-modules` option for running [Jest with ESM](https://jestjs.io/docs/ecmascript-modules):
 
 ```bash
 $ export $(cat .env | xargs)
@@ -86,13 +88,66 @@ Open settings file of an API and set appropriate fields in `account`, `address` 
 General syntax of commands:
 
 ```bash
-$ node <request|response|socket>[ --<option|optionKey=optionValue>]
-$ node <api>[ <handler>][ <parameter>][ <paramKey=paramValue>][ --<option>]
+$ node request|response|socket[ <option>]
+$ node <api>[ <handler>[ <parameter>[ <option>]]]
 ```
 
-Full list of commands, parameters and options depends on API implementation.
+Run all flows for all APIs:
 
-See detailed syntax and command examples in **sub directory readme** files.
+```bash
+$ node request
+```
+
+Run `currency` flow for all APIs:
+
+```bash
+$ node request --flow=currency
+```
+
+`<api>` is an API name implemented in API Tools:
+
+```bash
+$ node bybit
+$ node coinbase
+```
+
+`<handler>` is an API request handler:
+
+```bash
+$ node bybit currencyAll
+$ node bybit networkAll
+```
+
+`<implicit>` is implicit parameter (without value):
+
+```bash
+$ node bybit currencyAll 10
+$ node bybit currencyAll ETHUSDT
+```
+
+`<explicit>` is explicit parameter (with a value):
+
+```bash
+$ node bybit currencyAll limit=10
+$ node bybit currencyAll pair=ETHUSDT
+```
+
+`<option>` is option to apply while executing an API request handler or flow:
+
+```bash
+$ node bybit --flow=order
+$ node bybit --verbose
+$ node bybit currencyAll  --verbose
+$ node bybit currencyAll 10
+$ node bybit currencyAll limit=10 --verbose
+```
+
+- --auth[entication] - output authentication information from internal variables.
+- --debug[ging] - output debugging information from internal variables.
+- --head[ers] - output request and response headers.
+- --verb[ose] - output verbose information about executed request.
+
+Full list of handlers, parameters and options depends on API implementation.
 
 ### Request
 

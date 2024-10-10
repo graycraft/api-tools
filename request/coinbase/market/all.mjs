@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API endpoint, listing all products available for trading.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproducts
+ * @typedef {import("#types/response/coinbase/market/all.d.js").default} MarketAll
  * @module request/coinbase/market/all
  */
 
@@ -14,10 +15,10 @@ import validate, { pairs } from '../validate.mjs';
  * @param {{
  *   contract_expiry_type?, expiring_contract_status?, get_all_products?,
  *   offset?, product_ids?, product_type?
- * }} rest
- * @returns {Promise<{ products: [{ product_id: string }] }>} JSON data from response.
+ * }} options
+ * @returns {Promise<MarketAll>} JSON data from response.
  */
-const marketAll = (
+const marketAll = async (
   limit,
   {
     contract_expiry_type,
@@ -28,7 +29,7 @@ const marketAll = (
     product_type,
   } = {},
 ) => {
-  const { config } = global.apiTools,
+  const { config } = global.apiTools.coinbase,
     {
       PATH: { MARKET_ALL },
       PRODUCT,
@@ -47,7 +48,7 @@ const marketAll = (
         product_ids: pairs(product_ids),
       },
     }),
-    json = get(MARKET_ALL, schema, null, data);
+    json = await get(MARKET_ALL, schema, null, data);
 
   return json;
 };

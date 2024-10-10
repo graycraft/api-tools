@@ -8,7 +8,7 @@
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-auth
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
- * @typedef {import('types/socket/message.d').Message} WebSocketMessage
+ * @typedef {import('#types/socket/message.d.js').default} WebSocketMessage
  * @module socket/coinbase/subscribe
  */
 
@@ -46,7 +46,7 @@ const coinbaseSubscribe = async (security, channel, data = {}) => {
     };
 
   if (security === AUTH.SECURITY.JWT) {
-    message.jwt = signJwt(/** @type {"hex"}*/ (ENCODING), payload, secret, key);
+    message.jwt = signJwt(/** @type {"hex"} */ (ENCODING), payload, secret, key);
   }
 
   const socket = socketData(URL, message);

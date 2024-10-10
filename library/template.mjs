@@ -1,7 +1,7 @@
 /**!
  * Commonly used template literals for dynamic filling.
  *
- * @module lib/template
+ * @module library/template
  */
 
 export const fallback = (param) => `Falling back to "${param}". `;

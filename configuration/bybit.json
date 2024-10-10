@@ -80,7 +80,6 @@
   },
   "TRADE": {
     "EXEC": [
-      "UNKNOWN",
       "AdlTrade",
       "BlockTrade",
       "BustTrade",
@@ -88,7 +87,8 @@
       "Funding",
       "MovePosition",
       "Settle",
-      "Trade"
+      "Trade",
+      "UNKNOWN"
     ],
     "SIDE": {
       "BUY": "Buy",

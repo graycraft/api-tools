@@ -3,27 +3,25 @@
  * Real-time updates on product candles.
  * Candles are grouped into buckets (granularities) of five minutes.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#candles-channel
  * @module socket/coinbase/channel/candles
  */
 
 import coinbaseSubscribe from '../subscribe.mjs';
 import coinbaseValidate from '../validate.mjs';
 
-/**
- * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#candles-channel
- */
 const candles = (product_ids) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       SOCKET: {
         CHANNEL: { CANDLES },
       },
     } = config,
     {
-      currency: { base, quote },
+      asset: { base, quote },
     } = settings,
     defaults = {
-      product_ids: [base + '-' + quote],
+      product_ids: [base.code + '-' + quote.code],
     },
     data = coinbaseValidate(CANDLES, defaults, { warnOptional: { product_ids } });
 

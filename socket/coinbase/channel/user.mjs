@@ -10,32 +10,30 @@
  * Subscribing to the User channel returns all `OPEN` orders, batched by 50, in the first few messages of the stream.
  * To know when all of your open orders are returned, look for the first message with less than 50 orders.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#user-channel
  * @module socket/coinbase/channel/user
  */
 
 import coinbaseSubscribe from '../subscribe.mjs';
 import coinbaseValidate from '../validate.mjs';
 
-/**
- * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#user-channel
- */
 const user = (product_ids) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       SOCKET: {
         CHANNEL: { USER },
       },
     } = config,
     {
-      authentication: { sign },
-      currency: { base, quote },
+      asset: { base, quote },
+      authentication: { security },
     } = settings,
     defaults = {
-      product_ids: [base + '-' + quote],
+      product_ids: [base.code + '-' + quote.code],
     },
     data = coinbaseValidate(USER, defaults, { warnOptional: { product_ids } });
 
-  return coinbaseSubscribe(sign, USER, data);
+  return coinbaseSubscribe(security, USER, data);
 };
 
 export default user;

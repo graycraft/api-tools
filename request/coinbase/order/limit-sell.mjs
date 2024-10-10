@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API place limit sell order endpoint.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
+ * @typedef {import("#types/response/coinbase/order/limit-sell.d.js").default} OrderLimitSell
  * @module request/coinbase/order/limit-sell
  */
 
@@ -23,14 +24,8 @@ import validate, { pair } from '../validate.mjs';
  *   quote_size?, sor_limit_ioc?, stop_direction?, stop_limit_stop_limit_gtc?,
  *   stop_limit_stop_limit_gtd?, stop_price?, stop_trigger_price?,
  *   trigger_bracket_gtc?, trigger_bracket_gtd?
- * }} rest
- * @returns {Promise<{
- *   success: boolean,
- *   success_response: {
- *     order_id: string,
- *     product_id: string
- *   }
- * }>} JSON data from response.
+ * }} options
+ * @returns {Promise<OrderLimitSell>} JSON data from response.
  */
 const orderLimitSell = async (
   base_size,
@@ -59,7 +54,7 @@ const orderLimitSell = async (
     trigger_bracket_gtd,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       ORDER,
       PATH: { ORDER_PLACE },
@@ -77,12 +72,12 @@ const orderLimitSell = async (
       },
       optional: { client_order_id, product_id },
       throw: {
-        order_configuration: {
+        order_configuration: /** @type {any} */ ({
           [ORDER.LIMIT]: {
             base_size,
             limit_price,
           },
-        },
+        }),
       },
     }),
     json = await post(ORDER_PLACE, schema, security, data);

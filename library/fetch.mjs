@@ -1,50 +1,76 @@
 /**!
  * Fetch data from a REST API endpoint with parameters.
  *
- * @module lib/fetch
+ * @typedef {import("./constants.mjs").HttpStatusCode} HttpStatusCode
+ * @typedef {import("./constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {Object<string, string>} Dict
+ * @typedef RFetch
+ * @prop {Dict} headers Response headers.
+ * @prop {object} json Response JSON.
+ * @prop {HttpStatusCode} status HTTP status code.
+ * @prop {HttpStatusText} statusText HTTP status text.
+ * @module library/fetch
  */
 
 import { HTTP } from './constants.mjs';
 import { interpolate, supplementary, toPascalCase } from './string.mjs';
+import { obtainName } from './utility.mjs';
 
 /**
- * @param {string} template
- * @param {string} data
- * @returns {{ path: string, query: string, url: string }}
+ * Assemble endpoint parts for a `GET` request.
+ * @param {{ HOSTNAME: string, PATH: Dict, PREFIX: string }} config A specific API configuration.
+ * @param {string} template Endpoint path template to be interpolated.
+ * @param {Dict} data Data to embed in path and build query string from.
+ * @returns {{
+ *   endpoint: string;
+ *   path: string;
+ *   query: string;
+ *   url: string;
+ * }} Endpoint parts.
  */
-export const endpointGet = (template, data) => {
-  const { config } = global.apiTools,
-    { HOSTNAME, PREFIX } = config,
+export const endpointGet = (config, template, data) => {
+  const { PROTOCOL } = HTTP,
+    { HOSTNAME, PATH, PREFIX } = config,
+    endpoint = obtainName(template, PATH),
     query = stringifyQuery(template, data),
     path = stringifyPath(template, data),
-    url = 'https://' + HOSTNAME + PREFIX + path + query;
+    url = PROTOCOL + HOSTNAME + PREFIX + path + query;
 
-  return { path, query, url };
+  return { endpoint, path, query, url };
 };
 
 /**
- * @param {string} template
- * @param {string} data
- * @returns {{ body: string, path: string, url: string }}
+ * Assemble endpoint parts for a `POST` request.
+ * @param {{ HOSTNAME: string, PATH: Dict, PREFIX: string }} config A specific API configuration.
+ * @param {string} template Endpoint path template to be interpolated.
+ * @param {Dict} data Data to embed in path and build request body string from.
+ * @returns {{
+ *   body: string;
+ *   endpoint: string;
+ *   path: string;
+ *   url: string;
+ * }} Endpoint parts.
  */
-export const endpointPost = (template, data) => {
-  const { config } = global.apiTools,
-    { HOSTNAME, PREFIX } = config,
+export const endpointPost = (config, template, data) => {
+  const { PROTOCOL } = HTTP,
+    { HOSTNAME, PATH, PREFIX } = config,
     body = JSON.stringify(data),
+    endpoint = obtainName(template, PATH),
     path = stringifyPath(template, data),
-    url = 'https://' + HOSTNAME + PREFIX + path;
+    url = PROTOCOL + HOSTNAME + PREFIX + path;
 
-  return { body, path, url };
+  return { body, endpoint, path, url };
 };
 
 /**
- * @param {"GET" | "POST"} method
- * @param {string} url
- * @param {object} data
- * @param {{ "Content-Type"?: string }} headers
- * @returns
+ * Fetch data from an endpoint.
+ * @param {"GET" | "POST"} method HTTP request method.
+ * @param {string} url Endpoint URL.
+ * @param {Dict} headers Request headers.
+ * @param {Dict} data Data to send. For a `GET` request, this must be embedded in the URL.
+ * @returns {Promise<RFetch>} Response data.
  */
-export const fetchData = (method, url, data, headers) => {
+export const fetchData = (method, url, headers, data) => {
   const { METHOD, STATUS } = HTTP,
     timeStart = Date.now(),
     intervalId = global.setInterval(() => {
@@ -63,8 +89,8 @@ export const fetchData = (method, url, data, headers) => {
   }
 
   return global.fetch(url, options).then(async (response) => {
-    const { status, statusText } = response,
-      statusTextUpperCase = statusText.replaceAll(' ', '_').toUpperCase(),
+    const { status, statusText } = /** @type {{ status: HttpStatusCode; statusText }} */ (response),
+      statusTextUpperCase = statusText.replace(' ', '_').toUpperCase(),
       timeEnd = Date.now(),
       done = ` done in ${timeEnd - timeStart} ms.`,
       eraser = ' '.repeat(intervalCount > done.length ? intervalCount - done.length : 0),
@@ -80,8 +106,8 @@ export const fetchData = (method, url, data, headers) => {
     }
 
     return {
-      json,
       headers: entryHeaders(response.headers.entries()),
+      json,
       status,
       statusText:
         statusTextUpperCase in STATUS
@@ -93,8 +119,9 @@ export const fetchData = (method, url, data, headers) => {
 };
 
 /**
- * @param {object} entries
- * @returns {{ "Content-Type"?: string }}
+ * Transform Headers iterator object to a plain request headers object.
+ * @param {HeadersIterator<[string, string]>} entries Headers iterator object.
+ * @returns {Dict} Plain request headers object.
  */
 export const entryHeaders = (entries) => {
   /**
@@ -107,9 +134,10 @@ export const entryHeaders = (entries) => {
 };
 
 /**
- * @param {string} template
- * @param {object} data
- * @returns {string}
+ * Embed appropriate request data to a path template.
+ * @param {string} template Endpoint path template to be interpolated.
+ * @param {object} data Request data.
+ * @returns {string} Interpolated endpoint path.
  */
 export const stringifyPath = (template, data) => {
   const path = interpolate(template, data).split('?')[0];
@@ -118,9 +146,10 @@ export const stringifyPath = (template, data) => {
 };
 
 /**
- * @param {string} template
- * @param {object} data
- * @returns {string}
+ * Build URL query string from a request data.
+ * @param {string} template Endpoint path template to be interpolated.
+ * @param {object} data Request data.
+ * @returns {string} Query string with search parameters.
  */
 export const stringifyQuery = (template, data) => {
   const params = supplementary(template, data),

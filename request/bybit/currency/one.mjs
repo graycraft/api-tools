@@ -2,6 +2,7 @@
  * Handle Bybit API currency endpoint, with one entry by currency name.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @typedef {import("#types/response/bybit/currency/one.d.js").default} CurrencyOne
  * @module request/bybit/currency/one
  */
 
@@ -10,16 +11,19 @@ import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
- * @returns {Promise<object>} JSON data from response.
+ * @param {string} coin Currency name.
+ * @returns {Promise<CurrencyOne>} JSON data from response.
  */
 const currencyOne = async (coin) => {
-  const { config, settings } = global.apiTools,
+  const { config, prefs, settings } = global.apiTools.bybit,
     {
       PATH: { CURRENCY_ONE },
     } = config,
     {
-      authentication: { security },
       currency: { base },
+    } = prefs,
+    {
+      authentication: { security },
     } = settings,
     data = validate(CURRENCY_ONE, {
       defaults: {

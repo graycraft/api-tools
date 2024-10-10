@@ -2,6 +2,7 @@
  * Handle Bybit API all order history endpoint.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/order-list
+ * @typedef {import("#types/response/bybit/order/history-all.d.js").default} OrderHistoryAll
  * @module request/bybit/order/history-all
  */
 
@@ -12,17 +13,13 @@ import validate from '../validate.mjs';
 /**
  * Because order creation and cancellation is asynchronous, the data returned from this endpoint may delay.
  * To get real-time order information, it is better to request `ORDER_ALL` endpoint or rely on the web socket stream.
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#orderstatus
- * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} [symbol] Symbol name.
  * @param {string} [limit] Limit data per page (default is 20, maximum 50)
  * @param {{
  *   baseCoin?, category?, cursor?, endTime?, openOnly?, orderFilter?, orderId?,
  *   orderLinkId?, orderStatus?, settleCoin?, startTime?
- * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * }} options
+ * @returns {Promise<OrderHistoryAll>} JSON data from response.
  */
 const orderHistoryAll = async (
   symbol,
@@ -41,7 +38,7 @@ const orderHistoryAll = async (
     startTime,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { ORDER_HISTORY_ALL },
     } = config,

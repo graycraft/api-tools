@@ -1,14 +1,14 @@
 /**!
  * String related methods for common application use cases.
  *
- * @module lib/string
+ * @module library/string
  */
 
 /**
  * Find complementary expressions (found in a template).
  * @param {string} template String as template literal.
- * @param {object} expressions Expressions to be embedded within a template.
- * @returns {object} Complementary expressions.
+ * @param {{}} expressions Expressions to be embedded within a template.
+ * @returns {{}} Complementary expressions.
  */
 export const complementary = (template, expressions) => {
   const result = Object.keys(expressions).reduce(
@@ -27,7 +27,7 @@ export const complementary = (template, expressions) => {
 /**
  * Interpolate a string as template literal.
  * @param {string} template String as template literal.
- * @param {object} expressions Expressions to be embedded within a template.
+ * @param {{}} expressions Expressions to be embedded within a template.
  * @returns {string} Interpolated string.
  */
 export const interpolate = (template, expressions) => {
@@ -39,8 +39,8 @@ export const interpolate = (template, expressions) => {
 /**
  * Find supplementary expressions (not found in a template).
  * @param {string} template String as template literal.
- * @param {object} expressions Expressions to be embedded within a template.
- * @returns {object} Supplementary expressions.
+ * @param {{}} expressions Expressions to be embedded within a template.
+ * @returns {{}} Supplementary expressions.
  */
 export const supplementary = (template, expressions) => {
   const result = Object.keys(expressions).reduce(

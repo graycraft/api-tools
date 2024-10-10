@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API all orders endpoint.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
+ * @typedef {import("#types/response/coinbase/order/all.d.js").default} OrderAll
  * @module request/coinbase/order/all
  */
 
@@ -18,8 +19,8 @@ import validate from '../validate.mjs';
  *   asset_filters?, contract_expiry_type?, cursor?, end_date?, order_ids?,
  *   order_placement_source?, order_side?, order_status?, order_types?, product_ids?,
  *   product_type?, retail_portfolio_id?, sort_by?, start_date?, time_in_forces?
- * }} rest
- * @returns {Promise<{ orders: [{ order_id: string, product_id: string }] }>} JSON data from response.
+ * }} options
+ * @returns {Promise<OrderAll>} JSON data from response.
  */
 const orderAll = async (
   limit,
@@ -42,7 +43,7 @@ const orderAll = async (
     time_in_forces,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       ORDER,
       PATH: { ORDER_ALL },

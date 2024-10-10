@@ -13,7 +13,7 @@ const {
 } = config;
 
 export const marketAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     num_products: { type: 'number' },
@@ -24,7 +24,7 @@ export const marketAll = {
 };
 
 export const marketOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     alias: { type: 'string' },
@@ -106,7 +106,7 @@ export const marketOne = {
 };
 
 export const marketTickers = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     best_ask: { type: 'string' },

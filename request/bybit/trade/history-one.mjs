@@ -2,6 +2,7 @@
  * Handle Bybit API endpoint, with one trade history entry by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
+ * @typedef {import("#types/response/bybit/trade/history-one.d.js").default} TradeHistoryOne
  * @module request/bybit/trade/history-one
  */
 
@@ -10,15 +11,12 @@ import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#exectype
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} orderId Order identifier.
  * @param {{
  *   baseCoin?, category?, cursor?, endTime?, execType?, limit?, orderLinkId?,
  *   side?, startTime?, symbol?
- * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * }} options
+ * @returns {Promise<TradeHistoryOne>} JSON data from response.
  */
 const tradeHistoryOne = async (
   orderId,
@@ -35,7 +33,7 @@ const tradeHistoryOne = async (
     symbol,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { TRADE_HISTORY_ONE },
     } = config,

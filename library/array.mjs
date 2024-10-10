@@ -1,18 +1,17 @@
 /**!
  * Array related methods for common application use cases.
  *
- * @module lib/array
+ * @module library/array
  */
 
 /**
  * Append new item to array.
- * Same as native push but return target array.
- * @param {Array} array
- * @param {any} item
- * @returns {Array}
- * @example
- * append(["a", "b"], "c");
+ * Same as native push but returns target array.
+ * @example append(["a", "b"], "c");
  *   ["a", "b", "c"]
+ * @param {array} array
+ * @param {any} item
+ * @returns {array}
  */
 export const append = (array, item) => {
   array.push(item);
@@ -20,6 +19,11 @@ export const append = (array, item) => {
   return array;
 };
 
+/**
+ * Check whether an array has duplicate items or not.
+ * @param {Array<bigint | boolean | number | string | symbol>} array
+ * @returns
+ */
 export const hasDuplicates = (array) => {
   const { length } = array,
     { size } = new Set(array),
@@ -30,34 +34,15 @@ export const hasDuplicates = (array) => {
 
 /**
  * Prepend new item to array.
- * Same as native unshift but return target array.
- * @param {Array} array
- * @param {any} item
- * @returns {Array}
- * @example
- * prepend(["b", "c"], "a");
+ * Same as native unshift but returns target array.
+ * @example prepend(["b", "c"], "a");
  *   ["a", "b", "c"]
+ * @param {array} array
+ * @param {any} item
+ * @returns {array}
  */
 export const prepend = (array, item) => {
   array.unshift(item);
 
   return array;
-};
-
-/**
- * Stack two arrays to one.
- * Same as native concat but modify and return target array.
- * @param {Array} array1
- * @param {Array} array2
- * @returns {Array}
- * @example
- * stack(["a", "b"], ["c"]);
- *   ["a", "b", "c"]
- */
-export const stack = (array1, array2) => {
-  array2.forEach(function (v) {
-    array1[array1.length] = v;
-  });
-
-  return array1;
 };
