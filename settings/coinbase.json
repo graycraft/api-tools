@@ -1,5 +1,4 @@
 {
-  "aggregate": ["CURRENCY_ALL"],
   "asset": {
     "base": {
       "code": "AAA",
@@ -23,30 +22,6 @@
     },
     "security": "JWT"
   },
-  "debug": false,
-  "enabled": ["aggregate", "parse", "snapshot", "verbose"],
-  "parse": ["CURRENCY_ALL", "CURRENCY_ONE"],
-  "snapshot": [
-    "ADDRESS",
-    "ADDRESS_ONE",
-    "ADDRESS_TRANSACTIONS",
-    "CURRENCY_ALL",
-    "CURRENCY_ONE",
-    "MARKET_ALL",
-    "MARKET_ONE",
-    "MARKET_TICKERS",
-    "ORDER_ALL",
-    "ORDER_BOOK",
-    "ORDER_CANCEL",
-    "ORDER_ONE",
-    "ORDER_PLACE",
-    "TRANSACTION_ALL",
-    "TRANSACTION_ONE",
-    "USER_ACCOUNT_ALL",
-    "USER_ACCOUNT_ONE",
-    "USER_PORTFOLIO_ALL",
-    "USER_PORTFOLIO_ONE"
-  ],
   "user": {
     "DEFAULT": {
       "account": {
@@ -57,6 +32,5 @@
       "uuid": "00000000-0000-0000-0000-000000000000"
     },
     "portfolio": "DEFAULT"
-  },
-  "verbose": false
+  }
 }

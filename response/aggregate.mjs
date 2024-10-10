@@ -1,63 +1,87 @@
 /**
  * Aggregate a response snapshot, usually for extracting arrays of data.
  *
+ * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {{
+ *   currencies: (item) => object;
+ *   networks: (row) => object[];
+ *   sort: (item1: {}, item2: {}) => number;
+ * }} Callback
  * @module response/aggregate
  */
 
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
-import { obtainName } from '#lib/utility.mjs';
 
 /**
- * @param {string} target
- * @param {string} path
- * @param {array} data
- * @param {{ id, key, name }} properties
+ * Aggregate a response.
+ * @param {string} name A specific API name.
+ * @param {string} endpoint Endpoint name.
+ * @param {{}[]} data An array from JSON response to map and sort.
+ * @param {Callback} callback Callbacks for mapping and sorting arrays.
+ * @returns {RSnapshot} Aggregated file data to write in the collection directory.
  */
-const responseAggregate = (target, path, data, { id, key, name }) => {
-  const { config, settings } = global.apiTools,
-    pathName = obtainName(path, config.PATH),
-    isEnabled = settings.enabled.includes('aggregate');
+const aggregateJson = (name, endpoint, data, callback) => {
+  const dirName = import.meta.dirname,
+    fileName = new Date().toISOString() + '.json',
+    path = `../collection/${name}/${endpoint.toLowerCase()}`,
+    filePath = nodePath.join(dirName, path),
+    filePathFull = nodePath.join(filePath, fileName);
+  let array, fileData;
 
-  if (isEnabled) {
-    if (pathName) {
-      const dirName = import.meta.dirname,
-        fileName2 = new Date().toISOString() + '.json',
-        path2 = `../collection/${target}/${pathName.toLowerCase()}`,
-        filePath2 = nodePath.join(dirName, path2),
-        filePathFull2 = nodePath.join(filePath2, fileName2);
-      let array, fileData2;
+  if (endpoint === 'CURRENCY_ALL') {
+    const currencies = data.map(callback.currencies);
 
-      if (pathName === 'CURRENCY_ALL') {
-        const currencies = data.map((item) => ({
-          [id]: item[id],
-          [key]: item[key],
-          [name]: item[name],
-        }));
+    array = currencies.sort(callback.sort);
+  }
+  if (endpoint === 'CURRENCY_NETWORK_ALL') {
+    const networks = data.map(callback.networks),
+      arrayDupes = networks.reduce((accum, chain) => accum.concat(chain), []),
+      arrayUnique = arrayDupes.filter(
+        (item1, index, array) => array.findIndex((item2) => item2.chain === item1.chain) === index,
+      );
 
-        array = currencies.sort((a, b) => a[key].localeCompare(b[key]));
-      }
-      if (pathName === 'CURRENCY_NETWORK_ALL') {
-        const networks = data.map((row) =>
-            row.chains.map((item) => ({
-              chain: item.chain,
-              chainType: item.chainType,
-            })),
-          ),
-          arrayDupes = networks.reduce((accum, chain) => accum.concat(chain)),
-          arrayUnique = arrayDupes.filter(
-            (item1, index, array) =>
-              array.findIndex((item2) => item2.chain === item1.chain) === index,
-          );
+    array = arrayUnique.sort((a, b) => a.chain.localeCompare(b.chain));
+  }
+  fileData = JSON.stringify(array, null, 2);
+  nodeFs.mkdirSync(filePath, { recursive: true });
+  nodeFs.writeFileSync(filePathFull, fileData);
+  console.info(`Aggregated "${fileName}" to "${path}".`);
 
-        array = arrayUnique.sort((a, b) => a.chain.localeCompare(b.chain));
-      }
-      fileData2 = JSON.stringify(array, null, 2);
-      nodeFs.mkdirSync(filePath2, { recursive: true });
-      nodeFs.writeFileSync(filePathFull2, fileData2);
-      console.info(`Aggregated "${fileName2}" to "${path2}".`);
-    } else console.info(`Aggregate: ${pathName} is not enabled is settings.`);
-  } else console.info(`Aggregate is not enabled is settings.`);
+  return { fileData, fileName };
+};
+
+/**
+ * Determine if there is a need to aggregate a response.
+ * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {string} endpoint Endpoint name.
+ * @param {{}[]} data An array from JSON response to map.
+ * @param {Callback} callback Callbacks for mapping and sorting arrays.
+ * @returns {RSnapshot} Aggregated file data to write in the collection directory.
+ */
+const responseAggregate = (api, endpoint, data, callback) => {
+  const { options } = global.apiTools,
+    { prefs } = api,
+    isEnabled = prefs.enabled.includes('aggregate'),
+    isAggregate = prefs.aggregate.includes(endpoint),
+    { aggregate } = options;
+
+  if (typeof aggregate === 'boolean') {
+    if (aggregate) {
+      const { fileData, fileName } = aggregateJson(api.name, endpoint, data, callback);
+
+      return { fileData, fileName };
+    }
+  } else {
+    if (isEnabled) {
+      if (isAggregate) {
+        const { fileData, fileName } = aggregateJson(api.name, endpoint, data, callback);
+
+        return { fileData, fileName };
+      } else console.info(`Aggregate: endpoint "${endpoint}" is not enabled is settings.`);
+    } else console.info(`Aggregate: not enabled is settings.`);
+  }
 };
 
 export default responseAggregate;

@@ -1,40 +1,132 @@
 /**!
  * Utility methods for common application use cases.
  *
- * @module lib/utility
+ * @typedef {Object<string, string>} Dict
+ * @typedef {{
+ *   aggregate?: boolean;
+ *   authentication?: boolean;
+ *   debug?: boolean;
+ *   flow?: string;
+ *   headers?: boolean;
+ *   snapshot?: boolean;
+ *   verbose?: boolean;
+ * }} Options
+ * @module library/utility
  */
 
-import { dirObject } from './output.mjs';
+const OPTIONS = {
+  aggr: 'aggregate',
+  auth: 'authentication',
+  debu: 'debug',
+  flow: 'flow',
+  head: 'headers',
+  snap: 'snapshot',
+  verb: 'verbose',
+};
 
 /**
- * Obtain path name key from paths object by value.
- * @param {string} path
- * @param {{ [key: string]: string}} PATH
- * @returns {string}
+ * Obtain key name from a dictionary by value.
+ * @param {string} value A dictionary entry value.
+ * @param {Dict} dictionary Dictionary to search.
+ * @returns {string} Key name.
  */
-export const obtainName = (path, PATH) => {
-  const name = Object.entries(PATH).find((entry) => entry[1] === path)[0];
+export const obtainName = (value, dictionary) => {
+  const name = Object.entries(dictionary).find((entry) => entry[1] === value)?.[0];
 
   return name;
 };
 
 /**
- * Parse process argument vectors to usable handler, parameters, options and flow.
- * @typedef Result
+ * Parse process argument vectors from CLI to usable handler, parameters and options.
+ * @param {NodeJS.Process["argv"]} [argv] Process argument vectors from CLI.
+ * @typedef Arguments
+ * @prop {Dict} explicit Explicit parameters to execute API request handler with.
  * @prop {string} handler API request handler.
- * @prop {object} options Options to apply while executing API request handler.
- * @prop {(string | { [key: string]: string; })[]} params Parameters to execute API request handler with.
- * @prop {string} flow flow for multiple API request handlers.
- * @returns {Result}
+ * @prop {string[]} implicit Implicit parameters to execute API request handler with.
+ * @prop {Options} options Options to apply while executing API request handler or flow.
+ * @prop {(string | Dict)[]} params Parameters to execute API request handler with.
+ * @returns {Arguments} Usable handler, parameters and options.
  */
-export const parseArguments = () => {
-  const {
-      settings: { debug },
-    } = global.apiTools,
-    options = {},
-    args = process.argv.slice(3).map((param) => {
-      /** A param with defined value. */
-      if (param.includes('=')) {
+export const parseArguments = (argv = []) => {
+  const arg2 = argv[2] ?? '',
+    { optionsExplicit, optionsImplicit } = parseOptions(argv),
+    { paramsExplicit, paramsImplicit } = parseParameters(argv),
+    params = Object.keys(paramsExplicit).length
+      ? [...paramsImplicit, paramsExplicit]
+      : paramsImplicit;
+  let handler = arg2;
+
+  if (arg2.includes('--')) {
+    handler = '';
+  }
+
+  return {
+    explicit: paramsExplicit,
+    handler,
+    implicit: paramsImplicit,
+    options: { ...optionsExplicit, ...optionsImplicit },
+    params,
+  };
+};
+
+/**
+ * Parse process argument vectors from CLI to usable options.
+ * @param {NodeJS.Process["argv"]} argv Process argument vectors from CLI.
+ * @returns {{
+ *   optionsExplicit: Options,
+ *   optionsImplicit: Options
+ * }} Usable options.
+ */
+export const parseOptions = (argv) => {
+  const options = argv
+      .slice(2)
+      .filter(
+        (option) =>
+          option.includes('--aggr') ||
+          option.includes('--auth') ||
+          option.includes('--debu') ||
+          option.includes('--flow') ||
+          option.includes('--head') ||
+          option.includes('--snap') ||
+          option.includes('--verb'),
+      ),
+    optionsExplicit = options
+      .filter((option) => option.includes('='))
+      .map((option) => {
+        let [key, value] = option.split('='),
+          flag;
+
+        key = OPTIONS[key.slice(2, 6)];
+        if (key !== 'flow') {
+          flag = value === 'off' ? false : Boolean(value);
+
+          return { [key]: flag };
+        }
+
+        return { [key]: value };
+      }, {})
+      .reduce((accum, option) => Object.assign(accum, option), {}),
+    optionsImplicit = options
+      .filter((param) => !param.includes('='))
+      .map((option) => OPTIONS[option.slice(2, 6)], {})
+      .reduce((accum, option) => ((accum[option] = true), accum), {});
+
+  return { optionsExplicit, optionsImplicit };
+};
+
+/**
+ * Parse process argument vectors from CLI to usable parameters.
+ * @param {NodeJS.Process["argv"]} argv Process argument vectors from CLI.
+ * @returns {{
+ *   paramsExplicit: Dict,
+ *   paramsImplicit: string[]
+ * }} Usable parameters.
+ */
+export const parseParameters = (argv) => {
+  const params = argv.slice(3).filter((param) => !param.includes('--')),
+    paramsExplicit = params
+      .filter((param) => param.includes('='))
+      .map((param) => {
         /**
          * Regular expression instead of '=' ensures that only first occurrence of separator splits string, e.g.:
          * `node bybit depositAll USDT cursor=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx==`
@@ -42,51 +134,9 @@ export const parseArguments = () => {
         const [key, value] = param.split(/=(.*)/);
 
         return { [key]: value };
-      }
-      /** Options. */
-      if (param.includes('--debug')) {
-        options.isDebug = true;
-      }
-      if (param.includes('--head')) {
-        options.isHeaders = true;
-      }
-      if (param.includes('--snap')) {
-        options.isSnapshot = true;
-      }
-      if (param.includes('--verb')) {
-        options.isVerbose = true;
-      }
+      })
+      .reduce((accum, param) => Object.assign(accum, param), {}),
+    paramsImplicit = params.filter((param) => !param.includes('='));
 
-      return param;
-    }),
-    /** Params without a value. */
-    params = args.filter((arg) => typeof arg === 'string' && !arg.includes('--')),
-    /** Params with defined value. */
-    paramsDefined = args.reduce(
-      (accum, arg) => (typeof arg === 'object' ? Object.assign(accum, arg) : accum),
-      {},
-    );
-
-  let handler = process.argv[2] ?? '',
-    flow = '';
-
-  /** Options. */
-  if (handler.includes('--flow')) {
-    const value = handler.split('=')[1];
-
-    flow = value;
-    handler = '';
-  }
-  if (Object.keys(paramsDefined).length) params.push(paramsDefined);
-
-  const result = {
-    flow,
-    handler,
-    options,
-    params,
-  };
-
-  if (debug) dirObject('Arguments', { result });
-
-  return result;
+  return { paramsExplicit, paramsImplicit };
 };

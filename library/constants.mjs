@@ -1,10 +1,14 @@
 /**!
  * Constants library for common usage.
  *
- * @module lib/constants
+ * @typedef {keyof AUTH["SECURITY"]} AuthSecurity
+ * @typedef {keyof HTTP["METHOD"]} HttpMethod
+ * @typedef {keyof HTTP["STATUS"]} HttpStatusText
+ * @typedef {HTTP["STATUS"][HttpStatusText]} HttpStatusCode
+ * @module library/constants
  */
 
-const SECOND = /** @type {1_000} */ 1000,
+const SECOND = /** @type {1_000} */ (1000),
   MINUTE = /** @type {60_000} */ (60 * SECOND),
   HOUR = /** @type {3_600_000} */ (60 * MINUTE),
   DAY = /** @type {86_400_000} */ (24 * HOUR);
@@ -15,14 +19,22 @@ const UINT32_MAX = /** @type {4_294_967_296} */ (2 ** 32),
 
 /**
  * @type {{
+ *   ALGORITHM: {
+ *     ES256: "ES256";
+ *     SHA256: "sha256";
+ *   },
  *   SECURITY: {
- *     HMAC: 'HMAC',
- *     JWT: 'JWT',
- *     RSA: 'RSA',
+ *     HMAC: "HMAC";
+ *     JWT: "JWT";
+ *     RSA: "RSA";
  *   },
  * }}
  */
 export const AUTH = {
+  ALGORITHM: {
+    ES256: 'ES256',
+    SHA256: 'sha256',
+  },
   SECURITY: {
     HMAC: 'HMAC',
     JWT: 'JWT',
@@ -33,23 +45,24 @@ export const AUTH = {
 /**
  * @type {{
  *   METHOD: {
- *     GET: 'GET',
- *     POST: 'POST',
+ *     GET: "GET";
+ *     POST: "POST";
  *   },
+ *   PROTOCOL: "https://";
  *   STATUS: {
- *     BAD_REQUEST: 400,
- *     CREATED: 201,
- *     FORBIDDEN: 403,
- *     INTERNAL_SERVER_ERROR: 500,
- *     NO_CONTENT: 204,
- *     NOT_FOUND: 404,
- *     NOT_IMPLEMENTED: 501,
- *     OK: 200,
- *     PAYMENT_REQUIRED: 402,
- *     SERVICE_UNAVAILABLE: 503,
- *     TOO_MANY_REQUESTS: 429,
- *     UNAUTHORIZED: 401,
- *   },
+ *     BAD_REQUEST: 400;
+ *     CREATED: 201;
+ *     FORBIDDEN: 403;
+ *     INTERNAL_SERVER_ERROR: 500;
+ *     NO_CONTENT: 204;
+ *     NOT_FOUND: 404;
+ *     NOT_IMPLEMENTED: 501;
+ *     OK: 200;
+ *     PAYMENT_REQUIRED: 402;
+ *     SERVICE_UNAVAILABLE: 503;
+ *     TOO_MANY_REQUESTS: 429;
+ *     UNAUTHORIZED: 401;
+ *   };
  * }}
  */
 export const HTTP = {
@@ -57,6 +70,7 @@ export const HTTP = {
     GET: 'GET',
     POST: 'POST',
   },
+  PROTOCOL: 'https://',
   STATUS: {
     BAD_REQUEST: 400,
     CREATED: 201,
@@ -85,7 +99,7 @@ export const NUMBER = {
 };
 
 export const REGEXP = {
-  /** @todo Add regular expression for other currencies transaction identifiers. */
+  /** @todo Add regular expression for transaction identifiers of other currencies. */
   EVM_TXID: /^0x[\dA-Fa-f]{64}$/,
   INTEGER: /^\d{1,21}$/,
   /** @see https://tools.ietf.org/html/rfc3986#appendix-B */

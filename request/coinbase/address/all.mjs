@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API all account addresses endpoint, listing all created addresses.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
+ * @typedef {import("#types/response/coinbase/address/all.d.js").default} AddressAll
  * @module request/coinbase/address/all
  */
 
@@ -13,18 +14,10 @@ import validate from '../validate.mjs';
  * Latest generated address is the first item in the data array.
  * @param {string} limit Pagination limit (default: 25, maximum: 300). Not described in documentation.
  * @param {string} [account_uuid] Account UUID.
- * @returns {Promise<{
- *   data: [
- *     {
- *       address: string,
- *       id: string,
- *       network: string
- *     }
- *   ]
- * }>} JSON data from response.
+ * @returns {Promise<AddressAll>} JSON data from response.
  */
 const addressAll = async (limit = '1', account_uuid) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { ADDRESS },
     } = config,

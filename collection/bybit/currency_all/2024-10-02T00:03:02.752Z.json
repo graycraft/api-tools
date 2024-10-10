@@ -1,0 +1,6068 @@
+[
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "1INCH",
+    "name": "1INCH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "1SOL",
+    "name": "1SOL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "3P",
+    "name": "3P"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "5IRE",
+    "name": "5IRE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "A8",
+    "name": "A8"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "ARBI"
+      }
+    ],
+    "coin": "AARK",
+    "name": "AARK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AAVE",
+    "name": "AAVE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ACA",
+        "chainType": "ACA"
+      }
+    ],
+    "coin": "ACA",
+    "name": "ACA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ACH",
+    "name": "ACH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "ACM",
+    "name": "ACM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "ACS",
+    "name": "ACS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ADA",
+        "chainType": "ADA"
+      }
+    ],
+    "coin": "ADA",
+    "name": "ADA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "AEG",
+    "name": "AEG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AEVO",
+    "name": "AEVO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "AFC",
+    "name": "AFC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "AFG",
+    "name": "AFG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AGI",
+    "name": "AGI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AGIX",
+    "name": "AGIX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "AGLA",
+    "name": "AGLA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AGLD",
+    "name": "AGLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "AIDOGE",
+    "name": "AIDOGE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AIOZ",
+    "name": "AIOZ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "AKI",
+    "name": "AKI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ALEO",
+        "chainType": "ALEO"
+      }
+    ],
+    "coin": "ALEO",
+    "name": "ALEO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ALGO",
+        "chainType": "ALGO"
+      }
+    ],
+    "coin": "ALGO",
+    "name": "ALGO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ALT",
+    "name": "ALT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ANKR",
+    "name": "ANKR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "APE",
+    "name": "APE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "APEX",
+    "name": "APEX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "APP",
+    "name": "APP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "APRS",
+    "name": "APRS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "APTOS",
+        "chainType": "APTOS"
+      }
+    ],
+    "coin": "APT",
+    "name": "APT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "APTR",
+    "name": "APTR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "AR",
+        "chainType": "AR"
+      }
+    ],
+    "coin": "AR",
+    "name": "AR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "ARB",
+    "name": "ARB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ARKM",
+    "name": "ARKM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ARTY",
+    "name": "ARTY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "ATH",
+    "name": "ATH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ATOM",
+        "chainType": "ATOM"
+      }
+    ],
+    "coin": "ATOM",
+    "name": "ATOM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AURORA",
+    "name": "AURORA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "AURY",
+    "name": "AURY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AVA",
+    "name": "AVA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "AVAIL",
+        "chainType": "AVAIL"
+      }
+    ],
+    "coin": "AVAIL",
+    "name": "AVAIL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "AVAOLD",
+    "name": "AVAOLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XAVAX",
+        "chainType": "AVAX"
+      },
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAX C-Chain"
+      }
+    ],
+    "coin": "AVAX",
+    "name": "AVAX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "AXL",
+        "chainType": "AXL"
+      }
+    ],
+    "coin": "AXL",
+    "name": "AXL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "AXS",
+    "name": "AXS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "AZY",
+    "name": "AZY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "BABYDOGE",
+    "name": "BabyDoge"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BANA",
+    "name": "BANA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "BAR",
+    "name": "BAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BAT",
+    "name": "BAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BOUNCEBIT",
+        "chainType": "BounceBit"
+      }
+    ],
+    "coin": "BB",
+    "name": "BB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BBL",
+    "name": "BBL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BCH",
+        "chainType": "Bitcoin Cash"
+      }
+    ],
+    "coin": "BCH",
+    "name": "BCH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "BCUT",
+    "name": "BCUT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BEAM",
+    "name": "BEAM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BEL",
+    "name": "BEL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BICO",
+    "name": "BICO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BIT",
+    "name": "BIT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BLAST",
+        "chainType": "BLAST"
+      }
+    ],
+    "coin": "BLAST",
+    "name": "BLAST"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BLOCK",
+    "name": "BLOCK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BLUR",
+    "name": "BLUR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "BNB",
+    "name": "BNB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BNT",
+    "name": "BNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BOB",
+    "name": "BOB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BOBA",
+    "name": "BOBA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "BOME",
+    "name": "BOME"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "BONK",
+    "name": "BONK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      }
+    ],
+    "coin": "BONUS",
+    "name": "BONUS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "BRAWL",
+    "name": "BRAWL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      }
+    ],
+    "coin": "BRETT",
+    "name": "BRETT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "BRZ",
+    "name": "BRZ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "BRZOLD",
+    "name": "BRZOLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BTC",
+        "chainType": "BTC"
+      }
+    ],
+    "coin": "BTC",
+    "name": "BTC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BTG",
+        "chainType": "BTG"
+      }
+    ],
+    "coin": "BTG",
+    "name": "BTG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "BTT",
+    "name": "BTT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "BUBBLE",
+    "name": "BUBBLE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "C98",
+    "name": "C98"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "CAKE",
+    "name": "CAKE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "CANDY",
+    "name": "CANDY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "CAPO",
+    "name": "CAPO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "CAPS",
+    "name": "CAPS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "CAT",
+    "name": "CAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "MANTLE"
+      }
+    ],
+    "coin": "CATI",
+    "name": "CATI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      }
+    ],
+    "coin": "CATS",
+    "name": "CATS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "CBK",
+    "name": "CBK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CBX",
+    "name": "CBX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CEL",
+    "name": "CEL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CELO",
+        "chainType": "CELO"
+      }
+    ],
+    "coin": "CELO",
+    "name": "CELO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "CGPT",
+    "name": "CGPT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "CHRP",
+    "name": "CHRP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "CHZ",
+    "name": "CHZ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "CITY",
+    "name": "CITY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "CLOUD",
+    "name": "CLOUD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CMP",
+        "chainType": "Caduceus"
+      }
+    ],
+    "coin": "CMP",
+    "name": "CMP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CO",
+    "name": "CO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BTC",
+        "chainType": "BRC20 - unisat"
+      }
+    ],
+    "coin": "COM",
+    "name": "COM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "COMP",
+    "name": "COMP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC"
+      }
+    ],
+    "coin": "COOKIE",
+    "name": "COOKIE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAX-C"
+      }
+    ],
+    "coin": "COQ",
+    "name": "COQ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CORE",
+        "chainType": "CORE"
+      }
+    ],
+    "coin": "CORE",
+    "name": "CORE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "COT",
+    "name": "COT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "CPOOL",
+    "name": "CPOOL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "CRDS",
+    "name": "CRDS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CRV",
+    "name": "CRV"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CSPR",
+        "chainType": "Casper"
+      }
+    ],
+    "coin": "CSPR",
+    "name": "CSPR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CTA",
+    "name": "CTA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CTC",
+    "name": "CTC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "CTT",
+    "name": "CTT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "CULT",
+    "name": "CULT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CELO",
+        "chainType": "CELO"
+      }
+    ],
+    "coin": "CUSD",
+    "name": "CUSD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "CWAR",
+    "name": "CWAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      }
+    ],
+    "coin": "CYBER",
+    "name": "CYBER"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ZKSYNC",
+        "chainType": "zkSync Lite"
+      }
+    ],
+    "coin": "DAI",
+    "name": "DAI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SCROLL",
+        "chainType": "SCROLL"
+      }
+    ],
+    "coin": "DAPP",
+    "name": "DAPP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "DCR",
+        "chainType": "DCR"
+      }
+    ],
+    "coin": "DCR",
+    "name": "DCR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "DECHAT",
+    "name": "DECHAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "DEFI",
+    "name": "DEFI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "DEFY",
+    "name": "DEFY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      }
+    ],
+    "coin": "DEGEN",
+    "name": "DEGEN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "DEVT",
+    "name": "DEVT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "DFI",
+    "name": "DFI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "DGB",
+        "chainType": "DGB"
+      }
+    ],
+    "coin": "DGB",
+    "name": "DGB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KLAY",
+        "chainType": "KLAY"
+      }
+    ],
+    "coin": "DICE",
+    "name": "DICE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "DLC",
+    "name": "DLC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "DMAIL",
+    "name": "DMAIL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "DOGE",
+        "chainType": "Dogecoin"
+      }
+    ],
+    "coin": "DOGE",
+    "name": "DOGE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      }
+    ],
+    "coin": "DOGS",
+    "name": "DOGS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "DOME",
+    "name": "DOME"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "DOP1",
+    "name": "DOP1"
+  },
+  {
+    "chains": [
+      {
+        "chain": "DOT",
+        "chainType": "DOT"
+      }
+    ],
+    "coin": "DOT",
+    "name": "DOT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "DPX",
+    "name": "DPX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "DRIFT",
+    "name": "DRIFT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "DSRUN",
+    "name": "DSRUN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "DUEL",
+    "name": "DUEL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "DYDX",
+        "chainType": "DYDX"
+      }
+    ],
+    "coin": "DYDX",
+    "name": "DYDX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "DYM",
+        "chainType": "Dymension Chain-Cosmos"
+      },
+      {
+        "chain": "DYMEVM",
+        "chainType": "Dymension Chain-EVM"
+      }
+    ],
+    "coin": "DYM",
+    "name": "DYM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "DZOO",
+    "name": "DZOO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ECOX",
+    "name": "ECOX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "EGLD",
+        "chainType": "EGLD"
+      }
+    ],
+    "coin": "EGLD",
+    "name": "EGLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "EGO",
+    "name": "EGO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "ARBI"
+      }
+    ],
+    "coin": "EGP1",
+    "name": "EGP1"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "EIGEN",
+    "name": "EIGEN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ELDA",
+    "name": "ELDA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "ELIX",
+    "name": "ELIX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ELT",
+    "name": "ELT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "ENA",
+    "name": "ENA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ENJIN",
+        "chainType": "Enjin Relay Chain"
+      }
+    ],
+    "coin": "ENJ",
+    "name": "ENJ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ENS",
+    "name": "ENS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "EOS",
+        "chainType": "EOS"
+      }
+    ],
+    "coin": "EOS",
+    "name": "EOS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ERTHA",
+    "name": "ERTHA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ESE",
+    "name": "ESE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETC",
+        "chainType": "Ethereum Classic"
+      }
+    ],
+    "coin": "ETC",
+    "name": "ETC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ZKSYNC",
+        "chainType": "zkSync Lite"
+      },
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network (Bridged)"
+      },
+      {
+        "chain": "ARBINOVA",
+        "chainType": "Arbitrum Nova"
+      },
+      {
+        "chain": "ZKV2",
+        "chainType": "zkSync Era"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      },
+      {
+        "chain": "LINEA",
+        "chainType": "LINEA"
+      }
+    ],
+    "coin": "ETH",
+    "name": "ETH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETHF",
+        "chainType": "ETHF"
+      }
+    ],
+    "coin": "ETHF",
+    "name": "ETHF"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ETHFI",
+    "name": "ETHFI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETHW",
+        "chainType": "ETHW"
+      }
+    ],
+    "coin": "ETHW",
+    "name": "ETHW"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "EUROC",
+    "name": "EUROC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "EVER",
+    "name": "EVER"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      }
+    ],
+    "coin": "EVERY",
+    "name": "EVERY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "EXVG",
+    "name": "EXVG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "FAME",
+    "name": "FAME"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "FAR",
+    "name": "FAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FB",
+    "name": "FB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FET",
+    "name": "FET"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "FIDA",
+    "name": "FIDA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "FIL",
+        "chainType": "Filecoin"
+      }
+    ],
+    "coin": "FIL",
+    "name": "FIL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "FIRE",
+    "name": "FIRE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      },
+      {
+        "chain": "FITFI",
+        "chainType": "STEP"
+      }
+    ],
+    "coin": "FITFI",
+    "name": "FITFI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FLIP",
+    "name": "FLIP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FLOKI",
+    "name": "FLOKI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "FLOW",
+        "chainType": "FLOW"
+      }
+    ],
+    "coin": "FLOW",
+    "name": "FLOW"
+  },
+  {
+    "chains": [
+      {
+        "chain": "FLR",
+        "chainType": "FLR"
+      }
+    ],
+    "coin": "FLR",
+    "name": "FLR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FLT",
+    "name": "FLT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FMB",
+    "name": "FMB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FMC",
+    "name": "FMC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FON",
+    "name": "FON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FORT",
+    "name": "FORT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LINEA",
+        "chainType": "LINEA"
+      }
+    ],
+    "coin": "FOXY",
+    "name": "FOXY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "FTM",
+        "chainType": "FTM"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FTM",
+    "name": "FTM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FTT",
+    "name": "FTT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "FXS",
+    "name": "FXS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC"
+      }
+    ],
+    "coin": "G",
+    "name": "G"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "G3",
+    "name": "G3"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GAL",
+    "name": "GAL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GALA",
+    "name": "GALA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GALAXIS",
+    "name": "GALAXIS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "GALFT",
+    "name": "GALFT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "GCAKE",
+    "name": "GCAKE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "GENE",
+    "name": "GENE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "GG",
+    "name": "GG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "GGM",
+    "name": "GGM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "GLMR",
+        "chainType": "GLMR"
+      }
+    ],
+    "coin": "GLMR",
+    "name": "GLMR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GM",
+    "name": "GM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "GMRX",
+    "name": "GMRX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "GMT",
+    "name": "GMT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      },
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      }
+    ],
+    "coin": "GMX",
+    "name": "GMX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "GNS",
+    "name": "GNS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GODS",
+    "name": "GODS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GPTOLD",
+    "name": "GPTOLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "GRAPE",
+    "name": "GRAPE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "GRT",
+    "name": "GRT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "GST",
+    "name": "GST"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "GSTS",
+    "name": "GSTS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "GSWIFT",
+    "name": "GSWIFT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "GTAI",
+    "name": "GTAI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "GUMMY",
+    "name": "GUMMY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "HBAR",
+        "chainType": "HBAR"
+      }
+    ],
+    "coin": "HBAR",
+    "name": "HBAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "HERO",
+    "name": "HERO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "HFT",
+    "name": "HFT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "HLG",
+    "name": "HLG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      }
+    ],
+    "coin": "HMSTR",
+    "name": "HMSTR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "HNT",
+    "name": "HNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "HON",
+    "name": "HON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "HOOK",
+    "name": "HOOK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "HOT",
+    "name": "HOT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "HTX",
+    "name": "HTX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "HVH",
+        "chainType": "HVH"
+      }
+    ],
+    "coin": "HVH",
+    "name": "HVH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ICP",
+        "chainType": "ICP"
+      }
+    ],
+    "coin": "ICP",
+    "name": "ICP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ICX",
+        "chainType": "ICX"
+      }
+    ],
+    "coin": "ICX",
+    "name": "ICX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ID",
+    "name": "ID"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "IMX",
+    "name": "IMX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "INJ",
+        "chainType": "INJ"
+      }
+    ],
+    "coin": "INJ",
+    "name": "INJ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "INSP",
+    "name": "INSP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "INTER",
+    "name": "INTER"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "INTX",
+    "name": "INTX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "IO",
+    "name": "IO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "IRL",
+    "name": "IRL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "IZI",
+    "name": "IZI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "JASMY",
+    "name": "JASMY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "JEFF",
+    "name": "JEFF"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "JST",
+    "name": "JST"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "JTO",
+    "name": "JTO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "JUP",
+    "name": "JUP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "JUV",
+    "name": "JUV"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "KARATE",
+    "name": "KARATE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KAS",
+        "chainType": "Kaspa"
+      }
+    ],
+    "coin": "KAS",
+    "name": "KAS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "KASTA",
+    "name": "KASTA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KAVA",
+        "chainType": "KAVA"
+      }
+    ],
+    "coin": "KAVA",
+    "name": "KAVA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "FITFI",
+        "chainType": "STEP"
+      }
+    ],
+    "coin": "KCAL",
+    "name": "KCAL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "KCS",
+    "name": "KCS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KDA",
+        "chainType": "KDA"
+      }
+    ],
+    "coin": "KDA",
+    "name": "KDA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KLAY",
+        "chainType": "KLAY"
+      }
+    ],
+    "coin": "KLAY",
+    "name": "KLAY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "KMNO",
+    "name": "KMNO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "KMON",
+    "name": "KMON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "KOK",
+    "name": "KOK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KON",
+        "chainType": "KON"
+      }
+    ],
+    "coin": "KON",
+    "name": "KON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "KRL",
+    "name": "KRL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KSM",
+        "chainType": "KSM"
+      }
+    ],
+    "coin": "KSM",
+    "name": "KSM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "KUB",
+    "name": "KUB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "KUNCI",
+    "name": "KUNCI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "L3",
+    "name": "L3"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LADYS",
+    "name": "LADYS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LAI",
+    "name": "LAI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LDO",
+    "name": "LDO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LENDS",
+    "name": "LENDS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LEVER",
+    "name": "LEVER"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "LFT",
+    "name": "LFT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "LFW",
+    "name": "LFW"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "LGX",
+    "name": "LGX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "LING",
+    "name": "LING"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LINK",
+    "name": "LINK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "NEAR",
+        "chainType": "NEAR"
+      }
+    ],
+    "coin": "LIS",
+    "name": "LIS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LL",
+    "name": "LL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LMWR",
+    "name": "LMWR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LOOKS",
+    "name": "LOOKS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "LRC",
+    "name": "LRC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LTC",
+        "chainType": "LTC"
+      }
+    ],
+    "coin": "LTC",
+    "name": "LTC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LUNANEW",
+        "chainType": "Terra"
+      }
+    ],
+    "coin": "LUNA",
+    "name": "LUNA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LUNA",
+        "chainType": "Terra Classic"
+      }
+    ],
+    "coin": "LUNC",
+    "name": "LUNC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "MAGIC",
+    "name": "MAGIC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "MAK",
+    "name": "MAK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MANA",
+    "name": "MANA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTA",
+        "chainType": "Manta Pacific Mainnet"
+      }
+    ],
+    "coin": "MANTA",
+    "name": "MANTA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MASA",
+    "name": "MASA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MASK",
+    "name": "MASK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MATIC",
+    "name": "MATIC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "BASE"
+      }
+    ],
+    "coin": "MAVIA",
+    "name": "MAVIA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MBOX",
+    "name": "MBOX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "MBS",
+    "name": "MBS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KLAY",
+        "chainType": "KLAY"
+      }
+    ],
+    "coin": "MBX",
+    "name": "MBX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "MCG",
+    "name": "MCG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MCRT",
+    "name": "MCRT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MCT",
+    "name": "MCT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MDAO",
+    "name": "MDAO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "MEE",
+    "name": "MEE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MELOS",
+    "name": "MELOS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MEME",
+    "name": "MEME"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MERLIN",
+        "chainType": "Merlin Chain"
+      }
+    ],
+    "coin": "MERL",
+    "name": "MERL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "METH",
+    "name": "METH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "MEW",
+    "name": "MEW"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      }
+    ],
+    "coin": "MFER",
+    "name": "MFER"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "MIBR",
+    "name": "MIBR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MINA",
+        "chainType": "MINA"
+      }
+    ],
+    "coin": "MINA",
+    "name": "MINA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "MINU",
+    "name": "MINU"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MIX",
+    "name": "MIX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MKR",
+    "name": "MKR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LUK",
+        "chainType": "Luniverse"
+      }
+    ],
+    "coin": "MLK",
+    "name": "MLK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MMC",
+    "name": "MMC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "MNT",
+    "name": "MNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MNZ",
+    "name": "MNZ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "MOCA",
+    "name": "MOCA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MODE",
+        "chainType": "Mode"
+      }
+    ],
+    "coin": "MODE",
+    "name": "MODE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "BASE"
+      }
+    ],
+    "coin": "MOG",
+    "name": "MOG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "BASE"
+      }
+    ],
+    "coin": "MOJO",
+    "name": "MOJO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MON",
+    "name": "MON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MONG",
+    "name": "MONG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "MOVEZ",
+    "name": "MOVEZ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MOVR",
+        "chainType": "MOVR"
+      }
+    ],
+    "coin": "MOVR",
+    "name": "MOVR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "MPLX",
+    "name": "MPLX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MERLIN",
+        "chainType": "Merlin Chain"
+      }
+    ],
+    "coin": "MSTAR",
+    "name": "MSTAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "MTK",
+    "name": "MTK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "MUSD",
+    "name": "MUSD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MV",
+    "name": "MV"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MVL",
+    "name": "MVL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MX",
+    "name": "MX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "MXM",
+    "name": "MXM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "MYRIA",
+    "name": "MYRIA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "MYRO",
+    "name": "MYRO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "NAKA",
+    "name": "NAKA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "NEAR",
+        "chainType": "NEAR"
+      }
+    ],
+    "coin": "NEAR",
+    "name": "NEAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "NEIRO",
+    "name": "NEIRO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      },
+      {
+        "chain": "NEON",
+        "chainType": "Neon EVM"
+      }
+    ],
+    "coin": "NEON",
+    "name": "NEON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "NESS",
+    "name": "NESS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "NEXO",
+    "name": "NEXO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "NEXT",
+    "name": "NEXT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "NFT",
+    "name": "NFT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "NGL",
+    "name": "NGL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "NIBI",
+        "chainType": "Nibiru Chain"
+      }
+    ],
+    "coin": "NIBI",
+    "name": "NIBI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "NLK",
+    "name": "NLK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      }
+    ],
+    "coin": "NOT",
+    "name": "NOT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "ARBI"
+      }
+    ],
+    "coin": "NRN",
+    "name": "NRN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "NUTS",
+    "name": "NUTS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "NYAN",
+    "name": "NYAN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "NYM",
+    "name": "NYM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "OAS",
+        "chainType": "OAS"
+      }
+    ],
+    "coin": "OAS",
+    "name": "OAS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "OBX",
+    "name": "OBX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "OKG",
+    "name": "OKG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "OMG",
+    "name": "OMG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "OMEGA",
+        "chainType": "OMEGA"
+      }
+    ],
+    "coin": "OMN",
+    "name": "OMN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "OMNI",
+    "name": "OMNI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "OMNICAT",
+    "name": "OMNICAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ONDO",
+    "name": "ONDO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ONE",
+        "chainType": "ONE"
+      }
+    ],
+    "coin": "ONE",
+    "name": "ONE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      }
+    ],
+    "coin": "OP",
+    "name": "OP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "ORDER",
+    "name": "ORDER"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BTC",
+        "chainType": "BRC20 - unisat"
+      }
+    ],
+    "coin": "ORDI",
+    "name": "ORDI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ORT",
+    "name": "ORT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "PARAM",
+    "name": "PARAM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PAXG",
+    "name": "PAXG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "PBUX",
+    "name": "PBUX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PENDLE",
+    "name": "PENDLE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PEOPLE",
+    "name": "PEOPLE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PEPE",
+    "name": "PEPE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PEPE2NEW",
+    "name": "PEPE2NEW"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PERP",
+    "name": "PERP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "PIP",
+    "name": "PIP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "PIRATE",
+    "name": "PIRATE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "PIXFI",
+    "name": "PIXFI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PLANET",
+    "name": "PLANET"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "PLAY",
+    "name": "PLAY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "PLAYOLD",
+    "name": "PLAYOLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PLT",
+    "name": "PLT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PLY",
+    "name": "PLY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "POKT",
+        "chainType": "POKT"
+      }
+    ],
+    "coin": "POKT",
+    "name": "POKT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "POL",
+    "name": "POL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "PONKE",
+    "name": "PONKE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "POPCAT",
+    "name": "POPCAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PORT3",
+    "name": "PORT3"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PORTAL",
+    "name": "PORTAL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "PPT",
+    "name": "PPT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "PRCL",
+    "name": "PRCL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "FITFI",
+        "chainType": "STEP"
+      }
+    ],
+    "coin": "PRIMAL",
+    "name": "PRIMAL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PRIME",
+    "name": "PRIME"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CHILIZ",
+        "chainType": "Chiliz Chain"
+      }
+    ],
+    "coin": "PSG",
+    "name": "PSG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PSP",
+    "name": "PSP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PSTAKE",
+    "name": "PSTAKE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BLAST",
+        "chainType": "Blast"
+      }
+    ],
+    "coin": "PTC",
+    "name": "PTC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PTU",
+    "name": "PTU"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PUMLX",
+    "name": "PUMLX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "PURSE",
+    "name": "PURSE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "PYTH",
+    "name": "PYTH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "PYUSD",
+    "name": "PYUSD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "QMALL",
+    "name": "QMALL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "QNT",
+    "name": "QNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "QORPO",
+    "name": "QORPO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "QTUM",
+        "chainType": "QTUM"
+      }
+    ],
+    "coin": "QTUM",
+    "name": "QTUM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "RACA",
+    "name": "RACA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "RAIN",
+    "name": "RAIN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BTC",
+        "chainType": "BRC20 - unisat"
+      }
+    ],
+    "coin": "RATS",
+    "name": "RATS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "RDNT",
+    "name": "RDNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "RDNTOLD",
+    "name": "Old RDNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "REAL",
+    "name": "REAL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "REN",
+    "name": "REN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "RENDER",
+    "name": ""
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "RLTM",
+    "name": "RLTM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "ROND",
+    "name": "ROND"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ROOT",
+    "name": "ROOT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ROSE",
+        "chainType": "ROSE"
+      }
+    ],
+    "coin": "ROSE",
+    "name": "ROSE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ROUTE",
+    "name": "ROUTE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "RPK",
+    "name": "RPK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "RPL",
+    "name": "RPL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "RSS3",
+    "name": "RSS3"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "RUBY",
+    "name": "RUBY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BNB",
+        "chainType": "BNB (BEP2)"
+      },
+      {
+        "chain": "RUNE",
+        "chainType": "THORChain"
+      }
+    ],
+    "coin": "RUNE",
+    "name": "RUNE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "RVN",
+        "chainType": "RVN"
+      }
+    ],
+    "coin": "RVN",
+    "name": "RVN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SAFE",
+    "name": "SAFE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SAIL",
+    "name": "SAIL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SALD",
+    "name": "SALD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SAND",
+    "name": "SAND"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "SAROS",
+    "name": "SAROS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BTC",
+        "chainType": "BRC20 - unisat"
+      }
+    ],
+    "coin": "SATS",
+    "name": "SATS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SC",
+        "chainType": "SC"
+      }
+    ],
+    "coin": "SC",
+    "name": "SC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SUI",
+        "chainType": "SUI"
+      }
+    ],
+    "coin": "SCA",
+    "name": "SCA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SCRT",
+        "chainType": "SCRT"
+      }
+    ],
+    "coin": "SCRT",
+    "name": "SCRT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SD",
+    "name": "SD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SEI",
+        "chainType": "SEI"
+      }
+    ],
+    "coin": "SEI",
+    "name": "SEI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "SEILOR",
+    "name": "SEILOR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "SEOR",
+    "name": "SEOR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "SFUND",
+    "name": "SFUND"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "SHARK",
+    "name": "SHARK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "SHIB",
+    "name": "SHIB"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "SHILL",
+    "name": "SHILL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      }
+    ],
+    "coin": "SHRAP",
+    "name": "SHRAP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SIDUS",
+    "name": "SIDUS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SIS",
+    "name": "SIS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SLG",
+    "name": "SLG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SLP",
+    "name": "SLP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SNX",
+    "name": "SNX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BASE",
+        "chainType": "BASE"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "SOCIAL",
+    "name": "SOCIAL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "SOL",
+    "name": "SOL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XRP",
+        "chainType": "XRP"
+      }
+    ],
+    "coin": "SOLO",
+    "name": "SOLO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "SON",
+    "name": "SON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SOS",
+    "name": "SOS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "SPARTA",
+    "name": "SPARTA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SPEC",
+    "name": "SPEC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SPELL",
+    "name": "SPELL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SPONGE",
+    "name": "SPONGE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "SQD",
+    "name": "SQD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "SQR",
+    "name": "SQR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SQT",
+    "name": "SQT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SRM",
+    "name": "SRM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SSV",
+    "name": "SSV"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "STAR",
+    "name": "STAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KLAY",
+        "chainType": "KLAY"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "STAT",
+    "name": "STAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "STC",
+    "name": "STC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "STETH",
+    "name": "STETH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "STG",
+    "name": "STG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "STARKNET",
+        "chainType": "Starknet"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "STRK",
+    "name": "STRK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "STRM",
+    "name": "STRM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "STX",
+        "chainType": "STX"
+      }
+    ],
+    "coin": "STX",
+    "name": "STX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SUI",
+        "chainType": "SUI"
+      }
+    ],
+    "coin": "SUI",
+    "name": "SUI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SUI",
+        "chainType": "SUI"
+      }
+    ],
+    "coin": "SUIA",
+    "name": "SUIA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "SUN",
+    "name": "SUN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRX"
+      }
+    ],
+    "coin": "SUNDOG",
+    "name": "SUNDOG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SUSHI",
+    "name": "SUSHI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "SVL",
+    "name": "SVL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "NEAR",
+        "chainType": "NEAR"
+      }
+    ],
+    "coin": "SWEAT",
+    "name": "SWEAT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "SYNR",
+    "name": "SYNR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "T",
+    "name": "T"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "TAI",
+    "name": "TAI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "TAIKO",
+        "chainType": "TAIKO"
+      }
+    ],
+    "coin": "TAIKO",
+    "name": "TAIKO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "TAMA",
+    "name": "TAMA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "TAP",
+    "name": "TAP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TAVA",
+    "name": "TAVA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TEL",
+    "name": "TEL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TENET",
+        "chainType": "TENET"
+      }
+    ],
+    "coin": "TENET",
+    "name": "TENET"
+  },
+  {
+    "chains": [
+      {
+        "chain": "THETA",
+        "chainType": "THETA"
+      }
+    ],
+    "coin": "THETA",
+    "name": "THETA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "THN",
+    "name": "THN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CELESTIA",
+        "chainType": "Celestia"
+      }
+    ],
+    "coin": "TIA",
+    "name": "TIA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "TIME",
+    "name": "TIME"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "TNSR",
+    "name": "TNSR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TOKEN",
+    "name": "TOKEN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TOMI",
+    "name": "TOMI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TOMS",
+    "name": "TOMS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      }
+    ],
+    "coin": "TON",
+    "name": "TON"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "TRC",
+    "name": "TRC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TRIBE",
+    "name": "TRIBE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TRVL",
+    "name": "TRVL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "TRX",
+    "name": "TRX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "TST",
+    "name": "TST"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TURBO",
+    "name": "TURBO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SUI",
+        "chainType": "SUI"
+      }
+    ],
+    "coin": "TURBOS",
+    "name": "TURBOS"
+  },
+  {
+    "chains": [
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TUSD",
+    "name": "TUSD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "TVK",
+    "name": "TVK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "TWT",
+    "name": "TWT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ULTI",
+    "name": "ULTI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "UMA",
+    "name": "UMA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "UNI",
+    "name": "UNI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ZKSYNC",
+        "chainType": "zkSync Lite"
+      },
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      },
+      {
+        "chain": "ARBI.E",
+        "chainType": "Arbitrum One (Bridged)"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      },
+      {
+        "chain": "OP.E",
+        "chainType": "OP Mainnet(bridged) "
+      },
+      {
+        "chain": "MATIC.E",
+        "chainType": "Polygon(bridged)"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "Base Mainnet"
+      }
+    ],
+    "coin": "USDC",
+    "name": "USDC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      }
+    ],
+    "coin": "USDC.E",
+    "name": "USDC.E"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      }
+    ],
+    "coin": "USDD",
+    "name": "USDD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "USDE",
+    "name": "USDE"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "TRX",
+        "chainType": "TRC20"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      },
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      },
+      {
+        "chain": "ZKSYNC",
+        "chainType": "zkSync Lite"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      },
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      },
+      {
+        "chain": "KAVAEVM",
+        "chainType": "KAVAEVM"
+      },
+      {
+        "chain": "CELO",
+        "chainType": "CELO"
+      },
+      {
+        "chain": "TON",
+        "chainType": "TON"
+      }
+    ],
+    "coin": "USDT",
+    "name": "USDT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      }
+    ],
+    "coin": "USDT.E",
+    "name": "USDT.E"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "USDY",
+    "name": "USDY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LUNA",
+        "chainType": "Terra Classic"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "USTC",
+    "name": "USTC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "ARBI"
+      }
+    ],
+    "coin": "UXLINK",
+    "name": "UXLINK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "VANRY",
+    "name": "VANRY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "VEGA",
+    "name": "VEGA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "VELA",
+    "name": "VELA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "VELAR",
+    "name": "VELAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "VELO",
+    "name": "VELO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "VENOM",
+        "chainType": "VENOM"
+      }
+    ],
+    "coin": "VENOM",
+    "name": "VENOM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      }
+    ],
+    "coin": "VEXT",
+    "name": "VEXT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "VIC",
+        "chainType": "Viction"
+      }
+    ],
+    "coin": "VIC",
+    "name": "VIC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "VINU",
+    "name": "VINU"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "VPAD",
+    "name": "VPAD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "VPR",
+    "name": "VPR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "VRA",
+    "name": "VRA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "VRTX",
+    "name": "VRTX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "VV",
+    "name": "VV"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "W",
+    "name": "W"
+  },
+  {
+    "chains": [
+      {
+        "chain": "WAVES",
+        "chainType": "Waves"
+      }
+    ],
+    "coin": "WAVES",
+    "name": "WAVES"
+  },
+  {
+    "chains": [
+      {
+        "chain": "WAXP",
+        "chainType": "WAX"
+      }
+    ],
+    "coin": "WAXP",
+    "name": "WAXP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "WBTC",
+    "name": "WBTC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "WEETH",
+    "name": "WEETH"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "WELL",
+    "name": "WELL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "KLAY",
+        "chainType": "KLAY"
+      },
+      {
+        "chain": "WEMIX",
+        "chainType": "WEMIX"
+      }
+    ],
+    "coin": "WEMIX",
+    "name": "WEMIX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "WEN",
+    "name": "WEN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "Solana"
+      }
+    ],
+    "coin": "WIF",
+    "name": "WIF"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      }
+    ],
+    "coin": "WLD",
+    "name": "WLD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "WLKN",
+    "name": "WLKN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "MANTLE",
+        "chainType": "Mantle Network"
+      }
+    ],
+    "coin": "WMNT",
+    "name": "WMNT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "WOJAK",
+    "name": "WOJAK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "WOO",
+    "name": "WOO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "WWY",
+    "name": "WWY"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      },
+      {
+        "chain": "XAI",
+        "chainType": "XAi"
+      }
+    ],
+    "coin": "XAI",
+    "name": "XAI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "XAR",
+    "name": "XAR"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      }
+    ],
+    "coin": "XAVA",
+    "name": "XAVA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "XCAD",
+    "name": "XCAD"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XDC",
+        "chainType": "XDC"
+      }
+    ],
+    "coin": "XDC",
+    "name": "XDC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XEC",
+        "chainType": "XEC"
+      }
+    ],
+    "coin": "XEC",
+    "name": "XEC"
+  },
+  {
+    "chains": [
+      {
+        "chain": "NEM",
+        "chainType": "NEM"
+      }
+    ],
+    "coin": "XEM",
+    "name": "XEM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "CAVAX",
+        "chainType": "AVAXC"
+      }
+    ],
+    "coin": "XETA",
+    "name": "XETA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XLM",
+        "chainType": "Stellar Lumens"
+      }
+    ],
+    "coin": "XLM",
+    "name": "XLM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XRP",
+        "chainType": "XRP"
+      }
+    ],
+    "coin": "XRP",
+    "name": "XRP"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XTZ",
+        "chainType": "XTZ"
+      }
+    ],
+    "coin": "XTZ",
+    "name": "XTZ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "XWG",
+    "name": "XWG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "XYM",
+        "chainType": "XYM"
+      }
+    ],
+    "coin": "XYM",
+    "name": "XYM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      }
+    ],
+    "coin": "XZK",
+    "name": "XZK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "YFI",
+    "name": "YFI"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ZAM",
+    "name": "ZAM"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ZEN",
+        "chainType": "ZEN"
+      }
+    ],
+    "coin": "ZEN",
+    "name": "ZEN"
+  },
+  {
+    "chains": [
+      {
+        "chain": "STARKNET",
+        "chainType": "Starknet"
+      }
+    ],
+    "coin": "ZEND",
+    "name": "ZEND"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ZENT",
+    "name": "ZENT"
+  },
+  {
+    "chains": [
+      {
+        "chain": "LINEA",
+        "chainType": "LINEA"
+      }
+    ],
+    "coin": "ZERO",
+    "name": "ZERO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ZETA",
+        "chainType": "ZetaChain-Cosmos"
+      },
+      {
+        "chain": "ZETAEVM",
+        "chainType": "ZetaChain EVM"
+      }
+    ],
+    "coin": "ZETA",
+    "name": "ZETA"
+  },
+  {
+    "chains": [
+      {
+        "chain": "SOL",
+        "chainType": "SOL"
+      }
+    ],
+    "coin": "ZEX",
+    "name": "ZEX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ZIG",
+    "name": "ZIG"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ZIL",
+        "chainType": "ZIL"
+      }
+    ],
+    "coin": "ZIL",
+    "name": "ZIL"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ZKV2",
+        "chainType": "ZKsync Era"
+      }
+    ],
+    "coin": "ZK",
+    "name": "ZK"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "ZKFAIR",
+        "chainType": "ZKFair"
+      }
+    ],
+    "coin": "ZKF",
+    "name": "ZKF"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC (BEP20)"
+      }
+    ],
+    "coin": "ZKJ",
+    "name": "ZKJ"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ZKLINKNOVA",
+        "chainType": "zk Link Nova"
+      },
+      {
+        "chain": "ETH",
+        "chainType": "ETH(ERC20)"
+      }
+    ],
+    "coin": "ZKL",
+    "name": "zkLink"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ETH"
+      },
+      {
+        "chain": "ARBI",
+        "chainType": "ARBI"
+      },
+      {
+        "chain": "OP",
+        "chainType": "OP Mainnet"
+      },
+      {
+        "chain": "MATIC",
+        "chainType": "Polygon PoS"
+      },
+      {
+        "chain": "CAVAX",
+        "chainType": "CAVAX"
+      },
+      {
+        "chain": "BSC",
+        "chainType": "BSC"
+      },
+      {
+        "chain": "BASE",
+        "chainType": "BASE"
+      }
+    ],
+    "coin": "ZRO",
+    "name": "ZRO"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ETH",
+        "chainType": "ERC20"
+      }
+    ],
+    "coin": "ZRX",
+    "name": "ZRX"
+  },
+  {
+    "chains": [
+      {
+        "chain": "ARBI",
+        "chainType": "Arbitrum One"
+      }
+    ],
+    "coin": "ZTX",
+    "name": "ZTX"
+  }
+]

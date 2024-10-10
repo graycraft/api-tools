@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API one account addresses endpoint.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#show-address
+ * @typedef {import("#types/response/coinbase/address/one.d.js").default} AddressOne
  * @module request/coinbase/address/all
  */
 
@@ -12,18 +13,10 @@ import validate from '../validate.mjs';
 /**
  * @param {string} address_uuid Address UUID. Also regular cryptocurrency address can be used here.
  * @param {string} [account_uuid] Account UUID.
- * @returns {Promise<{
- *   data: [
- *     {
- *       address: string,
- *       id: string,
- *       network: string
- *     }
- *   ]
- * }>} JSON data from response.
+ * @returns {Promise<AddressOne>} JSON data from response.
  */
 const addressOne = async (address_uuid, account_uuid) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { ADDRESS_ONE },
     } = config,

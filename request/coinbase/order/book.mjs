@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API order book depth endpoint, listing bids/asks by product identifier.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproductbook
+ * @typedef {import("#types/response/coinbase/order/book.d.js").default} OrderBook
  * @module request/coinbase/order/book
  */
 
@@ -13,10 +14,10 @@ import validate, { pair } from '../validate.mjs';
  * @param {string} product_id The trading pair (e.g. "BTC-USD").
  * @param {string} [limit] Pagination limit (default: no, maximum: 1000).
  * @param {string} [aggregation_price_increment] The minimum price intervals at which buy and sell orders are grouped or combined in the order book.
- * @returns {Promise<{ pricebook: [{ product_id: string }] }>} JSON data from response.
+ * @returns {Promise<OrderBook>} JSON data from response.
  */
 const orderBook = async (product_id, limit, aggregation_price_increment) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { ORDER_BOOK },
     } = config,

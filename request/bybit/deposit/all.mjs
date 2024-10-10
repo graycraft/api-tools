@@ -2,6 +2,7 @@
  * Handle Bybit API endpoint, with all deposit entries.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
+ * @typedef {import("#types/response/bybit/deposit/all.d.js").default} DepositAll
  * @module request/bybit/deposit/all
  */
 
@@ -11,13 +12,13 @@ import validate from '../validate.mjs';
 
 /**
  * Documentation do not describe `txID`, but another endpoint `WITHDRAW_ONE` also has this parameter.
- * Defference between `endTime` and `startTime` should be less than 30 days (30 days is default).
+ * Difference between `endTime` and `startTime` should be less than 30 days (30 days is default).
  * @param {string} coin Currency name.
- * @param {{ cursor?, endTime?, limit?, startTime?, txID? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @param {{ cursor?, endTime?, limit?, startTime? }} options
+ * @returns {Promise<DepositAll>} JSON data from response.
  */
 const depositAll = async (coin, { cursor, endTime, limit, startTime /* , txID */ } = {}) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { DEPOSIT_ALL },
     } = config,

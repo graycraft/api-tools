@@ -16,7 +16,7 @@ const currency = {
 };
 
 export const currencyAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: { items: currency, minItems: 1, type: 'array' },
@@ -26,7 +26,7 @@ export const currencyAll = {
 };
 
 export const currencyOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: { items: currency, minItems: 1, type: 'array' },

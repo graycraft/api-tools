@@ -2,6 +2,7 @@
  * Handle Coinbase Advanced API endpoint, listing transactions of an account.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
+ * @typedef {import("#types/response/coinbase/transaction/all.d.js").default} TransactionAll
  * @module request/coinbase/transaction/all
  */
 
@@ -12,10 +13,10 @@ import validate from '../validate.mjs';
 /**
  * @param {string} account_uuid Account UUID.
  * @param {string} [limit] Pagination limit (default: 25). Not described in documentation.
- * @returns {Promise<{ data: [{ id: string }] }>} JSON data from response.
+ * @returns {Promise<TransactionAll>} JSON data from response.
  */
 const transactionAll = async (account_uuid, limit) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { TRANSACTION_ALL },
     } = config,

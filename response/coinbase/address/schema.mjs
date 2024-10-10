@@ -16,7 +16,7 @@ const address = {
 };
 
 export const addressAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: {
@@ -31,7 +31,7 @@ export const addressAll = {
 };
 
 export const addressNew = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: address,
@@ -41,7 +41,7 @@ export const addressNew = {
 };
 
 export const addressOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: address,
@@ -52,7 +52,7 @@ export const addressOne = {
 };
 
 export const addressTransactions = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: {

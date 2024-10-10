@@ -12,7 +12,7 @@ const {
 } = config;
 
 export const userAccountAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     accounts: { type: 'array' },
@@ -24,7 +24,7 @@ export const userAccountAll = {
   type: 'object',
 };
 export const userAccountOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     account: { type: 'object' },
@@ -34,7 +34,7 @@ export const userAccountOne = {
 };
 
 export const userPortfolioAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     portfolios: { type: 'array' },
@@ -44,7 +44,7 @@ export const userPortfolioAll = {
 };
 
 export const userPortfolioOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     breakdown: {

@@ -1,13 +1,15 @@
 /**
  * Validate parameters for a request.
  *
+ * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.d.js").DictLike} DictLike
  * @module request/validate
  */
 
 import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 /**
- * @param {array} list
+ * @param {(string | Dict)[]} list
  * @param {string} value
  * @param {string} [prop]
  * @returns {boolean}
@@ -19,9 +21,9 @@ export const hasSome = (list, value, prop) => {
 };
 
 /**
- * @param {array} list
+ * @param {string[]} list
  * @param {string} value
- * @param {function} pair
+ * @param {(item1, item2) => {}} pair
  * @returns {boolean}
  */
 export const isPair = (list, value, pair) => {
@@ -33,21 +35,20 @@ export const isPair = (list, value, pair) => {
 };
 
 /**
+ * @param {{ PATH: Dict }} config
  * @param {string} path
- * @param {(param: { [key in string]: any; }) => boolean} isValid
+ * @param {(param: DictLike) => boolean} isValid
  * @param {{
- *   defaults?: { [key: string]: string },
- *   optional?: { [key: string]: string },
- *   required?: { [key: string]: string },
- *   throw?: { [key: string]: string },
+ *   defaults?: DictLike,
+ *   optional?: DictLike,
+ *   required?: DictLike,
+ *   throw?: DictLike,
  * }} options
- * @returns {object}
+ * @returns {{}} Validated request parameters data.
  */
-export const requestValidate = (path, isValid, options) => {
+export const requestValidate = (config, path, isValid, options) => {
   const data = { ...options.defaults },
-    {
-      config: { PATH },
-    } = global.apiTools;
+    { PATH } = config;
   let category, key;
 
   for (category in options) {
@@ -57,7 +58,7 @@ export const requestValidate = (path, isValid, options) => {
 
         if (value) {
           if (isValid({ [key]: value })) data[key] = value;
-          else warnOptional(PATH, path, key, data[key]);
+          else warnOptional(path, PATH, key, data[key]);
         }
       }
     }
@@ -67,7 +68,7 @@ export const requestValidate = (path, isValid, options) => {
 
         if (value) {
           if (isValid({ [key]: value })) data[key] = value;
-          else warnRequired(PATH, path, key);
+          else warnRequired(path, PATH, key);
         }
       }
     }
@@ -76,7 +77,7 @@ export const requestValidate = (path, isValid, options) => {
         const value = options[category][key];
 
         if (isValid({ [key]: value })) data[key] = value;
-        else throwRequired(PATH, path, key);
+        else throwRequired(path, PATH, key);
       }
     }
   }

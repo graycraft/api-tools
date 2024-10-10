@@ -1,23 +1,31 @@
 /**
  * Validate parameters for a Coinbase Advanced API request.
  *
+ * @typedef {import("#types/common.d.js").DictLike} DictLike
  * @module request/coinbase/validate
  */
 
 import { withinRange } from '#lib/boolean.mjs';
 import { NUMBER, REGEXP } from '#lib/constants.mjs';
-import { fileNameNewest, fileReadJson } from '#lib/file_system.mjs';
+import { fileNewest, fileReadJson } from '#lib/file_system.mjs';
 
 import { hasSome, isPair, requestValidate } from '../validate.mjs';
 
 /**
  * @param {string} path
- * @param {object} options
- * @returns {object}
+ * @param {{
+ *   defaults?: DictLike,
+ *   optional?: DictLike,
+ *   required?: DictLike,
+ *   throw?: DictLike,
+ * }} options
+ * @returns
  */
-const coinbaseValidate = (path, options) => requestValidate(path, isValid, options);
+const coinbaseValidate = (path, options) =>
+  requestValidate(global.apiTools.coinbase.config, path, isValid, options);
 
 /**
+ * Validate a request data parameter before send.
  * Coinbase Advanced API does not expose available networks.
  * It is only possible to collect networks by generating a deposit address and aggregating from `ADDRESS`.
  * @param {{ [key: string]: object | string }} param
@@ -25,7 +33,7 @@ const coinbaseValidate = (path, options) => requestValidate(path, isValid, optio
  */
 const isValid = (param) => {
   const { UUID } = REGEXP,
-    { config } = global.apiTools,
+    { config } = global.apiTools.coinbase,
     {
       CONTRACT,
       ORDER,
@@ -36,7 +44,7 @@ const isValid = (param) => {
     } = config,
     [key, value] = Object.entries(param)[0],
     currencyDir = 'collection/coinbase/currency_all',
-    currencyFile = fileNameNewest(currencyDir),
+    currencyFile = fileNewest(currencyDir),
     currencyAll = fileReadJson(currencyDir, currencyFile.name).map((item) => item.code);
 
   /**
@@ -48,6 +56,7 @@ const isValid = (param) => {
   switch (key) {
     case 'account_uuid':
     case 'address_uuid':
+    case 'asset_id':
     case 'next_starting_after':
     case 'portfolio_uuid':
     case 'previous_ending_before':
@@ -128,6 +137,12 @@ export const pairs = (pairs) => {
   return string;
 };
 
+/**
+ * @param {number} min
+ * @param {string} value
+ * @param {number} max
+ * @returns {boolean}
+ */
 const withinDays = (min, value, max) => {
   const {
       DATE: { DAY },

@@ -2,6 +2,8 @@
  * Handle Bybit API market information endpoint, with instrument specification of online trading pairs.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/instrument
+ * @typedef {import("#types/bybit.d.js").category} category
+ * @typedef {import("#types/response/bybit/market/information.d.js").default} MarketInformation
  * @module request/bybit/market/information
  */
 
@@ -14,20 +16,19 @@ import validate from '../validate.mjs';
  * When query by `baseCoin`, regardless of category linear or inverse,
  * the result will have USDT perpetual, USDC contract and Inverse contract symbols.
  * `baseCoin` is applicable to `linear`, `inverse` and `option` category only.
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#status
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
- * @param {"inverse" | "linear" | "option" | "spot"} category Product type.
- * @param {{ baseCoin?, cursor?, limit?, status?, symbol? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @param {category} category Product type.
+ * @param {{ baseCoin?, cursor?, limit?, status?, symbol? }} options
+ * @returns {Promise<MarketInformation>} JSON data from response.
  */
 const marketInformation = async (category, { baseCoin, cursor, limit, status, symbol } = {}) => {
-  const { config, settings } = global.apiTools,
+  const { config, prefs, settings } = global.apiTools.bybit,
     {
       PATH: { MARKET_INFORMATION },
     } = config,
-    { account, currency } = settings,
-    { base, quote } = currency,
+    {
+      currency: { base, quote },
+    } = prefs,
+    { account } = settings,
     data = validate(MARKET_INFORMATION, {
       defaults: {
         category: account.category,

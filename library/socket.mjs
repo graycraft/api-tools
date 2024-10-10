@@ -14,8 +14,8 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
- * @typedef {import('types/socket/message.d').Message} WebSocketMessage
- * @module lib/socket
+ * @typedef {import("#types/socket/message.d.js").default} WebSocketMessage
+ * @module library/socket
  */
 
 import { entryHeaders } from './fetch.mjs';
