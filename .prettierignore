@@ -1,4 +1,5 @@
 # Directories with auto-generated files.
 .vscode
 collection
+coverage
 response/**/snapshot

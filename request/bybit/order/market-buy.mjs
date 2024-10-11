@@ -2,30 +2,24 @@
  * Handle Bybit API endpoint, with placing market buy order.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
+ * @see https://bybit-exchange.github.io/docs/v5/smp
+ * @typedef {import("#types/response/bybit/order/market-buy.d.js").default} OrderMarketBuy
  * @module request/bybit/order/market-buy
  */
 
+import { orderMarketBuy as schema } from '#res/bybit/order/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { orderMarketBuy as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#ordertype
- * @see https://bybit-exchange.github.io/docs/v5/enum#positionidx
- * @see https://bybit-exchange.github.io/docs/v5/enum#smptype
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
- * @see https://bybit-exchange.github.io/docs/v5/enum#timeinforce
- * @see https://bybit-exchange.github.io/docs/v5/enum#triggerby
- * @see https://bybit-exchange.github.io/docs/v5/smp
  * @param {string} qty Quote currency quantity.
  * @param {string} [symbol] Symbol name.
  * @param {{
  *   category?, closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
  *   reduceOnly?, slLimitPrice?, slOrderType?, slTriggerBy?, smpType?, stopLoss?, takeProfit?, timeInForce?,
  *   tpLimitPrice?, tpOrderType?, tpTriggerBy?, tpslMode?, triggerBy?, triggerDirection?, triggerPrice?
- * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * }} options
+ * @returns {Promise<OrderMarketBuy>} JSON data from response.
  */
 const orderMarketBuy = async (
   qty,
@@ -58,16 +52,18 @@ const orderMarketBuy = async (
     triggerPrice,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, prefs, settings } = global.apiTools.bybit,
     {
       ORDER,
       PATH: { ORDER_PLACE },
       TRADE: { SIDE },
     } = config,
     {
+      currency: { base, quote },
+    } = prefs,
+    {
       account,
       authentication: { security },
-      currency: { base, quote },
     } = settings,
     data = validate(ORDER_PLACE, {
       defaults: {

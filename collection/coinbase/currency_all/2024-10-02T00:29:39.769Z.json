@@ -1,0 +1,1247 @@
+[
+  {
+    "asset_id": "ffdece68-6dd9-4783-b778-b11104b2126e",
+    "code": "00",
+    "name": "00 Token"
+  },
+  {
+    "asset_id": "484f30a6-9e06-58df-80b7-e63141e3ca0c",
+    "code": "1INCH",
+    "name": "1inch"
+  },
+  {
+    "asset_id": "b1646860-6b23-5f7d-a506-cba0902f0ca9",
+    "code": "AAVE",
+    "name": "Aave"
+  },
+  {
+    "asset_id": "3e0240e8-b40f-5a1e-9495-1490a122d4bf",
+    "code": "ABT",
+    "name": "Arcblock"
+  },
+  {
+    "asset_id": "045e4fab-f2ca-58a3-ac2b-8c47c5d23968",
+    "code": "ACH",
+    "name": "Alchemy Pay"
+  },
+  {
+    "asset_id": "d14e31fc-06e2-4f0f-a2f9-e6b48acf6b58",
+    "code": "ACS",
+    "name": "Access"
+  },
+  {
+    "asset_id": "c4e5d692-0d9d-4996-a3e7-f66d2b30e192",
+    "code": "ACX",
+    "name": "Across Protocol"
+  },
+  {
+    "asset_id": "63062039-7afb-56ff-8e19-5e3215dc404a",
+    "code": "ADA",
+    "name": "Cardano"
+  },
+  {
+    "asset_id": "4823e87c-2f86-5fb3-81e8-46b6365e83df",
+    "code": "AERGO",
+    "name": "Aergo"
+  },
+  {
+    "asset_id": "9476e3be-b731-47fa-82be-347fabc573d9",
+    "code": "AERO",
+    "name": "Aerodrome Finance"
+  },
+  {
+    "asset_id": "9941a614-00ea-5d1c-bfdf-efdc4c1e58e0",
+    "code": "AGLD",
+    "name": "Adventure Gold"
+  },
+  {
+    "asset_id": "ed556ed5-2805-5511-9f26-bb1c27d1717c",
+    "code": "AIOZ",
+    "name": "AIOZ Network"
+  },
+  {
+    "asset_id": "b52c2df1-06c7-5ac1-81e4-fa69b39599a2",
+    "code": "AKT",
+    "name": "Akash Network"
+  },
+  {
+    "asset_id": "c312e620-7011-59bc-93b5-9c03832ce252",
+    "code": "ALCX",
+    "name": "Alchemix"
+  },
+  {
+    "asset_id": "23cd23c2-ba2c-5343-af47-cb3cefa17f37",
+    "code": "ALEPH",
+    "name": "Aleph.im"
+  },
+  {
+    "asset_id": "9220d47f-bc0a-53ad-9646-ef49918adcf3",
+    "code": "ALGO",
+    "name": "Algorand"
+  },
+  {
+    "asset_id": "e1c4777e-0377-5ccd-be1e-fdb757acb297",
+    "code": "ALICE",
+    "name": "MyNeighborAlice"
+  },
+  {
+    "asset_id": "f3b62870-ddd0-5dea-9d80-5190d8558461",
+    "code": "AMP",
+    "name": "Amp"
+  },
+  {
+    "asset_id": "5d88223d-ce08-529d-b533-e318d6ba4d79",
+    "code": "ANKR",
+    "name": "Ankr"
+  },
+  {
+    "asset_id": "e42fb72f-2d7d-4a2c-803e-a5d87c40963b",
+    "code": "APE",
+    "name": "ApeCoin"
+  },
+  {
+    "asset_id": "4e181288-ccce-562d-8c4f-787afa655204",
+    "code": "API3",
+    "name": "API3"
+  },
+  {
+    "asset_id": "976e5f1e-e419-4eac-990e-76caf525c6af",
+    "code": "APT",
+    "name": "Aptos"
+  },
+  {
+    "asset_id": "c2102278-2bbe-49e1-a115-5e83bffbcead",
+    "code": "ARB",
+    "name": "Arbitrum"
+  },
+  {
+    "asset_id": "639886aa-61b7-44f9-a268-a1d6183a07d3",
+    "code": "ARKM",
+    "name": "Arkham"
+  },
+  {
+    "asset_id": "5fcaa9b6-cea0-52af-bbd4-40c8053ef49f",
+    "code": "ARPA",
+    "name": "ARPA Chain"
+  },
+  {
+    "asset_id": "49e1401a-48a0-58ac-881d-03ef6894a038",
+    "code": "ASM",
+    "name": "Assemble AI"
+  },
+  {
+    "asset_id": "7a1e328d-6acc-560f-9789-bbce4c570f45",
+    "code": "AST",
+    "name": "AirSwap"
+  },
+  {
+    "asset_id": "64c607d2-4663-5649-86e0-3ab06bba0202",
+    "code": "ATOM",
+    "name": "Cosmos"
+  },
+  {
+    "asset_id": "fea50790-50ec-5460-9ea0-b5817de4d17e",
+    "code": "AUCTION",
+    "name": "Bounce Token"
+  },
+  {
+    "asset_id": "79691bcf-5c2d-54d0-bef9-ea0f128a472b",
+    "code": "AUDIO",
+    "name": "Audius"
+  },
+  {
+    "asset_id": "b695018e-a840-42e2-8f1f-db59efd95eb1",
+    "code": "AURORA",
+    "name": "Aurora"
+  },
+  {
+    "asset_id": "9d06e463-b3ba-5abf-9082-8761846b28ab",
+    "code": "AVAX",
+    "name": "Avalanche"
+  },
+  {
+    "asset_id": "b0115e95-4015-5352-9931-da8f6bbf91e6",
+    "code": "AVT",
+    "name": "Aventus"
+  },
+  {
+    "asset_id": "14a1e32e-ca36-426f-83f3-6d8d8e9aa423",
+    "code": "AXL",
+    "name": "Axelar"
+  },
+  {
+    "asset_id": "b76225e9-3cff-5c6f-88a2-2490f70cb02e",
+    "code": "AXS",
+    "name": "Axie Infinity"
+  },
+  {
+    "asset_id": "a198c9fb-15af-500b-9e48-359843aeabd0",
+    "code": "BADGER",
+    "name": "Badger DAO"
+  },
+  {
+    "asset_id": "e0409f05-5a95-5abf-8082-c746da699f82",
+    "code": "BAL",
+    "name": "Balancer"
+  },
+  {
+    "asset_id": "bf3edc12-9feb-556f-a181-ae8a25cf073b",
+    "code": "BAND",
+    "name": "Band Protocol"
+  },
+  {
+    "asset_id": "b8950bef-d61b-53cd-bb66-db436f0f81bc",
+    "code": "BAT",
+    "name": "Basic Attention Token"
+  },
+  {
+    "asset_id": "45f99e13-b522-57d7-8058-c57bf92fe7a3",
+    "code": "BCH",
+    "name": "Bitcoin Cash"
+  },
+  {
+    "asset_id": "5dd73cfd-42bf-4383-8263-af3130198de6",
+    "code": "BICO",
+    "name": "BICONOMY (BICO)"
+  },
+  {
+    "asset_id": "283e4b74-7913-46ff-93f5-8a8274a910c7",
+    "code": "BIGTIME",
+    "name": "Big Time"
+  },
+  {
+    "asset_id": "2abbacb6-524c-5a81-89a4-51c94b36769b",
+    "code": "BIT",
+    "name": "BitDAO"
+  },
+  {
+    "asset_id": "e93ddb9d-1af8-418b-a9d4-3b048cf65331",
+    "code": "BLAST",
+    "name": "Blast"
+  },
+  {
+    "asset_id": "29bb92f9-0020-49f6-af54-9e69f5ead9bb",
+    "code": "BLUR",
+    "name": "Blur"
+  },
+  {
+    "asset_id": "fc728438-099c-55f2-b3bf-e50452e78157",
+    "code": "BLZ",
+    "name": "Bluzelle"
+  },
+  {
+    "asset_id": "1b74d2fd-fa35-558d-a010-38d4481398c6",
+    "code": "BNT",
+    "name": "Bancor Network Token"
+  },
+  {
+    "asset_id": "286c7042-9314-435f-936b-d708ba11a59d",
+    "code": "BOBA",
+    "name": "Boba Network"
+  },
+  {
+    "asset_id": "4def86bf-6bf0-4cd0-9194-aa58e107d38a",
+    "code": "BONK",
+    "name": "Bonk"
+  },
+  {
+    "asset_id": "5b71fc48-3dd3-540c-809b-f8c94d0e68b5",
+    "code": "BTC",
+    "name": "Bitcoin"
+  },
+  {
+    "asset_id": "14364054-394d-5135-a4a8-526e9a8deacd",
+    "code": "BTRST",
+    "name": "Braintrust"
+  },
+  {
+    "asset_id": "ebf4b864-b429-533f-bf13-16e1aa9f49dd",
+    "code": "C98",
+    "name": "Coin98"
+  },
+  {
+    "asset_id": "161f5d0a-1657-4300-b072-3f9cb4d6bdad",
+    "code": "CBETH",
+    "name": "Coinbase Wrapped Staked ETH"
+  },
+  {
+    "asset_id": "322ae040-e3a8-52b8-a5eb-3026ed9b9f71",
+    "code": "CELR",
+    "name": "Celer Network"
+  },
+  {
+    "asset_id": "cfc02e75-e09b-535b-b35c-3c8bb0e63462",
+    "code": "CGLD",
+    "name": "Celo"
+  },
+  {
+    "asset_id": "3b6a0532-d638-58ab-b7f8-16ead09d686d",
+    "code": "CHZ",
+    "name": "Chiliz"
+  },
+  {
+    "asset_id": "453639be-192e-5e36-88e3-38496e542524",
+    "code": "CLV",
+    "name": "Clover Finance"
+  },
+  {
+    "asset_id": "65557d44-082d-50a1-a68b-bc98d961f794",
+    "code": "COMP",
+    "name": "Compound"
+  },
+  {
+    "asset_id": "c8104d28-b0ff-425b-9f16-d7360b61008f",
+    "code": "CORECHAIN",
+    "name": "Core"
+  },
+  {
+    "asset_id": "95c91657-a486-5b3f-a6e4-d0831331dcd1",
+    "code": "COTI",
+    "name": "COTI"
+  },
+  {
+    "asset_id": "2d6b2001-dd44-5f5c-bc33-ed43d3e3c8f0",
+    "code": "CRO",
+    "name": "Cronos"
+  },
+  {
+    "asset_id": "48a63b4a-1024-5cbe-9132-5dcc7792487d",
+    "code": "CRV",
+    "name": "Curve DAO Token"
+  },
+  {
+    "asset_id": "7588d1dc-2aba-5357-85b6-6b728e85ad55",
+    "code": "CTSI",
+    "name": "Cartesi"
+  },
+  {
+    "asset_id": "6e8a50fb-9270-52aa-9261-86bf9fa8b2ec",
+    "code": "CTX",
+    "name": "Cryptex Finance"
+  },
+  {
+    "asset_id": "6b12b7ee-2295-5bd3-b4a2-fe711055d79f",
+    "code": "CVC",
+    "name": "Civic"
+  },
+  {
+    "asset_id": "dc4be333-d4b3-5ba4-94ac-7f8570ed93a2",
+    "code": "CVX",
+    "name": "Convex Finance"
+  },
+  {
+    "asset_id": "01e9e33b-d099-56fb-aa3b-76c19d0b250e",
+    "code": "DAI",
+    "name": "Dai"
+  },
+  {
+    "asset_id": "35d92d60-4175-446c-a796-ae59c54693e4",
+    "code": "DAR",
+    "name": "Mines of Dalarnia"
+  },
+  {
+    "asset_id": "b9c43d61-e77d-5e02-9a0d-800b50eb9d5f",
+    "code": "DASH",
+    "name": "Dash"
+  },
+  {
+    "asset_id": "bcb537fb-eccd-5ada-b482-3037177b1b00",
+    "code": "DESO",
+    "name": "Decentralized Social"
+  },
+  {
+    "asset_id": "6aa3f777-23da-578b-91e6-08a33c5b70b5",
+    "code": "DEXT",
+    "name": "DEXTools"
+  },
+  {
+    "asset_id": "d8d9de8a-d13b-57bc-99cb-b1d546f820d6",
+    "code": "DIA",
+    "name": "DIA"
+  },
+  {
+    "asset_id": "c998b825-ac60-4414-b960-6111abb81a53",
+    "code": "DIMO",
+    "name": "DIMO"
+  },
+  {
+    "asset_id": "8dd8a49c-e75c-5c56-a353-468f6346ed93",
+    "code": "DNT",
+    "name": "district0x"
+  },
+  {
+    "asset_id": "d9a3edfa-1be7-589c-bd20-c034f3830b60",
+    "code": "DOGE",
+    "name": "Dogecoin"
+  },
+  {
+    "asset_id": "ebea861a-c0ae-5323-bbe0-46893a119a39",
+    "code": "DOT",
+    "name": "Polkadot"
+  },
+  {
+    "asset_id": "f7dc9e4c-c2e7-55f8-b35c-bc63e3de689b",
+    "code": "DYP",
+    "name": "Dypius"
+  },
+  {
+    "asset_id": "e584e190-2ea2-5d67-b1b7-15222b94933c",
+    "code": "EGLD",
+    "name": "MultiversX"
+  },
+  {
+    "asset_id": "b8bd76e1-97cf-5c8c-be55-8b26843bd4f9",
+    "code": "ELA",
+    "name": "Elastos"
+  },
+  {
+    "asset_id": "7a35374a-479b-4d5a-b0af-5824224a8743",
+    "code": "ENS",
+    "name": "Ethereum Name Service"
+  },
+  {
+    "asset_id": "8d556883-6c26-5a88-9d8f-fa41fe8ed76e",
+    "code": "EOS",
+    "name": "EOS"
+  },
+  {
+    "asset_id": "016a52e7-91fb-5d8b-84b3-a213a66068cb",
+    "code": "ERN",
+    "name": "Ethernity Chain"
+  },
+  {
+    "asset_id": "c16df856-0345-5358-8a70-2a78c804e61f",
+    "code": "ETC",
+    "name": "Ethereum Classic"
+  },
+  {
+    "asset_id": "d85dce9b-5b73-5c3c-8978-522ce1d1c1b4",
+    "code": "ETH",
+    "name": "Ethereum"
+  },
+  {
+    "asset_id": "674c6343-41a8-4b79-8914-21762877e907",
+    "code": "EURC",
+    "name": "EURC"
+  },
+  {
+    "asset_id": "7ea0bd74-3cab-5bf8-94e2-f0c0b3896f07",
+    "code": "FARM",
+    "name": "Harvest Finance"
+  },
+  {
+    "asset_id": "3672ab4a-25e0-57a8-b029-99239c081958",
+    "code": "FET",
+    "name": "Fetch.ai"
+  },
+  {
+    "asset_id": "3a92fbde-9bb9-51ee-a994-f52c78837be5",
+    "code": "FIDA",
+    "name": "Bonfida"
+  },
+  {
+    "asset_id": "0a5b73d1-a976-5966-b3ff-86be8f9b65d5",
+    "code": "FIL",
+    "name": "Filecoin"
+  },
+  {
+    "asset_id": "c4872eef-36a7-50bf-9450-510a9405edf9",
+    "code": "FIS",
+    "name": "StaFi"
+  },
+  {
+    "asset_id": "77b5b147-5813-535b-a2a5-db712a213715",
+    "code": "FLOW",
+    "name": "Flow"
+  },
+  {
+    "asset_id": "d609dc77-9a9e-4fd7-bcfc-2728acc578f9",
+    "code": "FLR",
+    "name": "Flare"
+  },
+  {
+    "asset_id": "5829e0da-1c40-4c5c-b123-019116d44f10",
+    "code": "FORT",
+    "name": "Forta"
+  },
+  {
+    "asset_id": "a9b7db60-a25f-52c3-9df8-24fdfe16de1d",
+    "code": "FORTH",
+    "name": "Ampleforth Governance Token"
+  },
+  {
+    "asset_id": "17278d3a-ecf4-584f-abe1-903f2b06aad5",
+    "code": "FOX",
+    "name": "Shapeshift FOX Token"
+  },
+  {
+    "asset_id": "a2b48bde-1149-5cb7-9ddb-57563bb4d63b",
+    "code": "FX",
+    "name": "Function X"
+  },
+  {
+    "asset_id": "9811803c-3c98-46a0-9e1c-3ae664677a49",
+    "code": "GAL",
+    "name": "Galxe"
+  },
+  {
+    "asset_id": "b84ad585-cbf9-48a5-91fb-bc35c9dcca14",
+    "code": "GFI",
+    "name": "Goldfinch Protocol"
+  },
+  {
+    "asset_id": "bcb2ab07-bb8a-5e68-a4e9-a7bf971877d3",
+    "code": "GHST",
+    "name": "Aavegotchi"
+  },
+  {
+    "asset_id": "aa0a157e-a9df-4467-9ee8-36eaa99df1c8",
+    "code": "GLM",
+    "name": "Golem"
+  },
+  {
+    "asset_id": "eafbbb96-8d35-4f42-99b6-a4779660442f",
+    "code": "GMT",
+    "name": "STEPN"
+  },
+  {
+    "asset_id": "90f65914-63bf-5101-b9e7-b58bc1f42b5d",
+    "code": "GNO",
+    "name": "Gnosis"
+  },
+  {
+    "asset_id": "c9b055af-2d25-49b3-b449-42bec9846a30",
+    "code": "GODS",
+    "name": "Gods Unchained"
+  },
+  {
+    "asset_id": "3f9b015d-387d-589b-b65d-bd6d24babc96",
+    "code": "GRT",
+    "name": "The Graph"
+  },
+  {
+    "asset_id": "dd391a26-4402-478f-950c-2af0178527b5",
+    "code": "GST",
+    "name": "Green Satoshi Token"
+  },
+  {
+    "asset_id": "19ca00b2-3058-5e4b-a84b-c84b74baed10",
+    "code": "GTC",
+    "name": "Gitcoin"
+  },
+  {
+    "asset_id": "8b3c5910-a926-564d-a7e9-7d694bff0650",
+    "code": "GUSD",
+    "name": "Gemini Dollar"
+  },
+  {
+    "asset_id": "86dc2208-a258-5ea2-b1bc-5039d3767f5b",
+    "code": "GYEN",
+    "name": "GYEN"
+  },
+  {
+    "asset_id": "60eb9c6e-ad04-54d5-bb2a-574f9fdb7786",
+    "code": "HBAR",
+    "name": "Hedera"
+  },
+  {
+    "asset_id": "c8c774bb-6f96-46de-bd05-6f6f9744f21f",
+    "code": "HFT",
+    "name": "Hashflow"
+  },
+  {
+    "asset_id": "6f3a09bb-bd98-4451-bbfa-a4d7604828ea",
+    "code": "HIGH",
+    "name": "Highstreet"
+  },
+  {
+    "asset_id": "e966aebc-34ac-516c-8173-bc6b1e807b8e",
+    "code": "HNT",
+    "name": "Helium"
+  },
+  {
+    "asset_id": "f629b825-84d1-465d-a9c1-9ba88087595a",
+    "code": "HONEY",
+    "name": "Hivemapper"
+  },
+  {
+    "asset_id": "a04e1e05-168c-5726-81fe-6e55d2352b15",
+    "code": "HOPR",
+    "name": "HOPR"
+  },
+  {
+    "asset_id": "8f0fb5e8-9924-50bd-b95c-1d4b88fd20cc",
+    "code": "ICP",
+    "name": "Internet Computer"
+  },
+  {
+    "asset_id": "a1f72e0a-bb57-5504-8ed8-d8362e543b5f",
+    "code": "IDEX",
+    "name": "IDEX"
+  },
+  {
+    "asset_id": "f13ce9c6-617f-5d85-901c-c6affcde9416",
+    "code": "ILV",
+    "name": "Illuvium"
+  },
+  {
+    "asset_id": "1143be59-e5ec-4942-8c39-1c3424499ae0",
+    "code": "IMX",
+    "name": "Immutable"
+  },
+  {
+    "asset_id": "eb7c958f-2f43-5afb-b743-e61a4a90092d",
+    "code": "INDEX",
+    "name": "Index Cooperative"
+  },
+  {
+    "asset_id": "0d150a7d-821e-5ca4-a17e-17f206668ecd",
+    "code": "INJ",
+    "name": "Injective"
+  },
+  {
+    "asset_id": "29f11294-d51f-5f60-8e8b-e5c23ca3ea22",
+    "code": "INV",
+    "name": "Inverse Finance"
+  },
+  {
+    "asset_id": "56f8ea19-7e6a-5e38-ac47-fc9762b955ae",
+    "code": "IOTX",
+    "name": "IoTeX"
+  },
+  {
+    "asset_id": "c0158cc5-1f31-5662-9da5-c06867f2baad",
+    "code": "JASMY",
+    "name": "Jasmy"
+  },
+  {
+    "asset_id": "79542a5a-65c0-42e5-bf00-f5295b1ae615",
+    "code": "JTO",
+    "name": "Jito"
+  },
+  {
+    "asset_id": "5671503a-afbe-406b-834d-94b6e9b3afc2",
+    "code": "KARRAT",
+    "name": "Karrat"
+  },
+  {
+    "asset_id": "1fb6e9bd-293e-547b-909f-dea89d755d4b",
+    "code": "KAVA",
+    "name": "Kava"
+  },
+  {
+    "asset_id": "8c853af0-5071-5dd7-9f70-1a871107f53c",
+    "code": "KNC",
+    "name": "Kyber Network"
+  },
+  {
+    "asset_id": "015db578-d600-5613-8736-0eec500dfc4d",
+    "code": "KRL",
+    "name": "Kryll"
+  },
+  {
+    "asset_id": "b9ec935a-0de3-5071-a28c-6a40104d30b4",
+    "code": "KSM",
+    "name": "Kusama"
+  },
+  {
+    "asset_id": "1fd23f09-07b6-54eb-a200-59b2e7f5d065",
+    "code": "LCX",
+    "name": "LCX"
+  },
+  {
+    "asset_id": "2d658fea-6082-59a2-86f4-b0f79a8bfc72",
+    "code": "LDO",
+    "name": "Lido DAO Token"
+  },
+  {
+    "asset_id": "ea3107c6-416b-5b02-b99f-ded31a0cbdfe",
+    "code": "LINK",
+    "name": "Chainlink"
+  },
+  {
+    "asset_id": "a0882482-a339-569c-a7cc-fa9b1c1122e4",
+    "code": "LIT",
+    "name": "Litentry"
+  },
+  {
+    "asset_id": "bd07f41c-1cc2-4d51-8fa6-d3c957ca0370",
+    "code": "LOKA",
+    "name": "League of Kingdoms Arena"
+  },
+  {
+    "asset_id": "31acd6f6-d560-5a59-b77d-f9fa57c19167",
+    "code": "LPT",
+    "name": "Livepeer"
+  },
+  {
+    "asset_id": "8943ba88-a949-5ba2-b7c0-4e30f8208bac",
+    "code": "LQTY",
+    "name": "Liquity"
+  },
+  {
+    "asset_id": "6ffa1a5b-622b-596b-893a-56cfb152beb2",
+    "code": "LRC",
+    "name": "Loopring"
+  },
+  {
+    "asset_id": "245f9b2e-5c48-4b41-9fe7-40a0c898bbd5",
+    "code": "LRDS",
+    "name": "Blocklords"
+  },
+  {
+    "asset_id": "1a4ff613-d32e-4a44-93a1-4db0b5182296",
+    "code": "LSETH",
+    "name": "Liquid Staked ETH"
+  },
+  {
+    "asset_id": "c9c24c6e-c045-5fde-98a2-00ea7f520437",
+    "code": "LTC",
+    "name": "Litecoin"
+  },
+  {
+    "asset_id": "a8f61947-fb51-462e-b133-6157809faf2c",
+    "code": "MAGIC",
+    "name": "MAGIC"
+  },
+  {
+    "asset_id": "66b98195-0562-586b-8cee-ee7f57923fef",
+    "code": "MANA",
+    "name": "Decentraland"
+  },
+  {
+    "asset_id": "45ce7f01-2962-5576-8dfd-449e4a49b75d",
+    "code": "MASK",
+    "name": "Mask Network"
+  },
+  {
+    "asset_id": "bdf737d1-72d5-553f-b1a1-d70e27dba482",
+    "code": "MATH",
+    "name": "MATH"
+  },
+  {
+    "asset_id": "026bcc1e-9163-591c-a709-34dd18b2e7a1",
+    "code": "MATIC",
+    "name": "Polygon"
+  },
+  {
+    "asset_id": "76989be1-d882-599a-82ac-bb3b2e2a7db3",
+    "code": "MDT",
+    "name": "Measurable Data Token"
+  },
+  {
+    "asset_id": "29418251-9004-5293-9ffe-7bdaa7784f19",
+    "code": "MEDIA",
+    "name": "Media Network"
+  },
+  {
+    "asset_id": "f1d6e426-c6a4-5cf8-b832-a8e877439a3e",
+    "code": "METIS",
+    "name": "Metis"
+  },
+  {
+    "asset_id": "a4ffc575-942c-5e26-b70c-cb3befdd4229",
+    "code": "MINA",
+    "name": "Mina"
+  },
+  {
+    "asset_id": "5553e486-7a85-5433-a5c1-aaeb18a154dd",
+    "code": "MKR",
+    "name": "Maker"
+  },
+  {
+    "asset_id": "15cbd0cf-ac58-512f-87f7-8078fa9a3f2a",
+    "code": "MLN",
+    "name": "Enzyme"
+  },
+  {
+    "asset_id": "222c1961-14c6-428a-afc4-bb2e1ece75e9",
+    "code": "MNDE",
+    "name": "Marinade"
+  },
+  {
+    "asset_id": "17b77e6d-cc36-43d8-83a6-c68dcc74e3c8",
+    "code": "MOBILE",
+    "name": "Helium Mobile"
+  },
+  {
+    "asset_id": "725fefe7-2631-5cf3-8a26-8e94101c3f76",
+    "code": "MPL",
+    "name": "Maple"
+  },
+  {
+    "asset_id": "147c2535-ea2e-472b-8816-ee7305a99b16",
+    "code": "MSOL",
+    "name": "Marinade Staked SOL"
+  },
+  {
+    "asset_id": "6a9b98f5-5902-5379-8adb-7364490e7cdd",
+    "code": "MUSE",
+    "name": "Muse"
+  },
+  {
+    "asset_id": "37b43246-7803-559e-b4b6-5ba73f137d22",
+    "code": "NCT",
+    "name": "PolySwarm"
+  },
+  {
+    "asset_id": "979a75c9-9466-5e6b-9545-930a89a3db8f",
+    "code": "NEAR",
+    "name": "NEAR Protocol"
+  },
+  {
+    "asset_id": "7feef29b-ebee-427f-8a76-6f2a53cb6742",
+    "code": "NEON",
+    "name": "Neon EVM"
+  },
+  {
+    "asset_id": "89cf59a7-afb8-574d-9e37-8ac01e374e7a",
+    "code": "NKN",
+    "name": "NKN"
+  },
+  {
+    "asset_id": "30dac328-eae0-523a-835e-aef52596d0dc",
+    "code": "NMR",
+    "name": "Numeraire"
+  },
+  {
+    "asset_id": "27ade651-5bbc-57d2-b087-60171ae9d337",
+    "code": "OCEAN",
+    "name": "Ocean Protocol"
+  },
+  {
+    "asset_id": "070e2e07-1f4c-5556-9b3c-22f924e9fa1a",
+    "code": "OGN",
+    "name": "Origin Token"
+  },
+  {
+    "asset_id": "48456872-2ff7-4cc3-8fe9-c101d0fb073c",
+    "code": "ONDO",
+    "name": "Ondo Finance"
+  },
+  {
+    "asset_id": "627b8bbb-9908-41be-87a8-1c9c87b6c5e7",
+    "code": "OP",
+    "name": "Optimism"
+  },
+  {
+    "asset_id": "ba24ad7b-0a8b-533d-816b-e693d9f8a871",
+    "code": "ORCA",
+    "name": "Orca"
+  },
+  {
+    "asset_id": "0c275161-fb4b-50c4-926b-d4d7d093b897",
+    "code": "ORN",
+    "name": "Orion Protocol"
+  },
+  {
+    "asset_id": "eb98bd40-6668-4ee1-aaa5-7de8155dd69f",
+    "code": "OSMO",
+    "name": "Osmosis"
+  },
+  {
+    "asset_id": "07525606-a404-5f15-a71d-ba0e40e74eca",
+    "code": "OXT",
+    "name": "Orchid"
+  },
+  {
+    "asset_id": "be4a78af-d300-59b0-9c70-ba42a93caf56",
+    "code": "PAX",
+    "name": "Paxos Standard"
+  },
+  {
+    "asset_id": "830f84b1-ade4-50a7-a33e-e159e136ad45",
+    "code": "PERP",
+    "name": "Perpetual Protocol"
+  },
+  {
+    "asset_id": "b7ecf251-60ee-5aa6-8271-2b946cc58edd",
+    "code": "PLU",
+    "name": "Pluton"
+  },
+  {
+    "asset_id": "9389bdc0-7061-5a8c-97db-3de40cc0a951",
+    "code": "PNG",
+    "name": "Pangolin"
+  },
+  {
+    "asset_id": "963d6e5a-b08c-59d9-9ed0-d616c6c5dd4b",
+    "code": "POLS",
+    "name": "Polkastarter"
+  },
+  {
+    "asset_id": "748257f0-fb9c-5f0d-8a4b-f6402051b7fd",
+    "code": "POND",
+    "name": "Marlin"
+  },
+  {
+    "asset_id": "7e7828ba-1b70-56ce-be2d-0a155c9eff82",
+    "code": "POWR",
+    "name": "Powerledger"
+  },
+  {
+    "asset_id": "3dff392e-5818-405e-8224-553c5ae9bd2c",
+    "code": "PRIME",
+    "name": "Echelon Prime"
+  },
+  {
+    "asset_id": "ba3dd7df-6c9c-52cf-b0ba-829b1dba63c9",
+    "code": "PRO",
+    "name": "Propy"
+  },
+  {
+    "asset_id": "3141897b-ffc4-5c82-a1e3-449f46531d3c",
+    "code": "PRQ",
+    "name": "PARSIQ"
+  },
+  {
+    "asset_id": "347497c3-a460-5324-994b-58a331c64ac0",
+    "code": "PUNDIX",
+    "name": "Pundi X (New)"
+  },
+  {
+    "asset_id": "1ce4c6c4-2f02-5126-b60b-8f839d79f443",
+    "code": "PYR",
+    "name": "Vulcan Forged PYR"
+  },
+  {
+    "asset_id": "080bd13e-ebb2-4e3b-8727-fd5cd4cc7f4c",
+    "code": "PYUSD",
+    "name": "PayPal USD"
+  },
+  {
+    "asset_id": "3ff79649-7c62-5236-8466-0e2207ad43d6",
+    "code": "QI",
+    "name": "BENQI"
+  },
+  {
+    "asset_id": "13a06dc2-f4c7-58c1-91f0-f4ad4a867f82",
+    "code": "QNT",
+    "name": "Quant"
+  },
+  {
+    "asset_id": "aa75e77c-c936-58a2-9d3c-afb7f23886e1",
+    "code": "RAD",
+    "name": "Radworks"
+  },
+  {
+    "asset_id": "431d70b2-be25-551b-83f9-a61e90b5d892",
+    "code": "RARE",
+    "name": "SuperRare"
+  },
+  {
+    "asset_id": "c148e875-86eb-5f25-adcf-a51d01120886",
+    "code": "RARI",
+    "name": "Rarible"
+  },
+  {
+    "asset_id": "c20d46ab-70a2-4c59-81e7-ef3a035e22a3",
+    "code": "RBN",
+    "name": "Ribbon Finance"
+  },
+  {
+    "asset_id": "3de8521a-e98d-48d9-b5ca-503549dddec8",
+    "code": "RENDER",
+    "name": "Render"
+  },
+  {
+    "asset_id": "b8b44189-a54b-526f-b68d-1dbb27b462c3",
+    "code": "REP",
+    "name": "Augur"
+  },
+  {
+    "asset_id": "7c6cf248-e06b-5426-a05d-ac2777159a11",
+    "code": "REQ",
+    "name": "Request"
+  },
+  {
+    "asset_id": "2a3e5cc1-7ef1-5a32-bf56-95aa79983f13",
+    "code": "RLC",
+    "name": "iExec RLC"
+  },
+  {
+    "asset_id": "045e25f3-4756-59c0-8ef9-34b8eaa1cbfd",
+    "code": "RNDR",
+    "name": "Render (ERC-20)"
+  },
+  {
+    "asset_id": "d107da38-6067-4ece-8419-fa87b647153e",
+    "code": "RONIN",
+    "name": "Ronin"
+  },
+  {
+    "asset_id": "bfbc233f-5477-554b-8e9e-fd926406596d",
+    "code": "ROSE",
+    "name": "Oasis Network"
+  },
+  {
+    "asset_id": "79719406-aada-56c0-8194-65ef670e823b",
+    "code": "RPL",
+    "name": "Rocket Pool"
+  },
+  {
+    "asset_id": "ac3738c2-d051-4049-9f71-6760467b131c",
+    "code": "SAFE",
+    "name": "Safe"
+  },
+  {
+    "asset_id": "9c5f6f8e-b912-5516-9ae5-a0670be7f541",
+    "code": "SAND",
+    "name": "The Sandbox"
+  },
+  {
+    "asset_id": "2c6fffe5-5e85-48ae-9e37-fb4dc549d16c",
+    "code": "SD",
+    "name": "Stader"
+  },
+  {
+    "asset_id": "9fcf04ac-a37b-416b-8a87-a4fe5702ae41",
+    "code": "SEAM",
+    "name": "Seamless"
+  },
+  {
+    "asset_id": "64e81cab-1cee-4950-b1fd-773efa4acfa9",
+    "code": "SEI",
+    "name": "Sei"
+  },
+  {
+    "asset_id": "e7f35ea9-d390-4a48-8b8c-212d52131a37",
+    "code": "SHDW",
+    "name": "Shadow Token"
+  },
+  {
+    "asset_id": "d6031388-71ab-59c7-8a15-a56ec20d6080",
+    "code": "SHIB",
+    "name": "SHIBA INU"
+  },
+  {
+    "asset_id": "31e33a5d-2ee0-51ae-b172-51163e486230",
+    "code": "SHPING",
+    "name": "SHPING"
+  },
+  {
+    "asset_id": "af2d755d-6142-57f4-a092-0aa4fe67a9b5",
+    "code": "SKL",
+    "name": "SKALE"
+  },
+  {
+    "asset_id": "3bd5bbea-a525-520c-9d2a-2d842e543caa",
+    "code": "SNX",
+    "name": "Synthetix Network Token"
+  },
+  {
+    "asset_id": "4f039497-3af8-5bb3-951c-6df9afa9be1c",
+    "code": "SOL",
+    "name": "Solana"
+  },
+  {
+    "asset_id": "d32168e6-5e00-583b-995b-f44f1a1579e4",
+    "code": "SPA",
+    "name": "Sperax"
+  },
+  {
+    "asset_id": "43effdcf-ee0b-5b00-bba7-271865f42c33",
+    "code": "SPELL",
+    "name": "Spell Token"
+  },
+  {
+    "asset_id": "dc8930f5-133d-4265-91d5-9e5d2d453013",
+    "code": "STG",
+    "name": "Stargate Finance"
+  },
+  {
+    "asset_id": "a5c6ceac-9226-55a7-a2dc-59d9149083d6",
+    "code": "STORJ",
+    "name": "Storj"
+  },
+  {
+    "asset_id": "9e813e60-2d0f-4e60-a57e-327cecab767f",
+    "code": "STRK",
+    "name": "Starknet Token"
+  },
+  {
+    "asset_id": "25c25663-7d03-5fd5-b8fb-31aa596d5a0d",
+    "code": "STX",
+    "name": "Stacks"
+  },
+  {
+    "asset_id": "26417fbc-f542-417a-9596-5a6065b76b78",
+    "code": "SUI",
+    "name": "SUI"
+  },
+  {
+    "asset_id": "bfb347d2-9510-5a8f-8aed-001fd3e1131d",
+    "code": "SUKU",
+    "name": "SUKU"
+  },
+  {
+    "asset_id": "9f1b558c-cdd3-5ffe-9d69-0e34a62e82a7",
+    "code": "SUPER",
+    "name": "SuperVerse"
+  },
+  {
+    "asset_id": "ac7c7224-ae69-5e46-8923-983b472203ea",
+    "code": "SUSHI",
+    "name": "SushiSwap"
+  },
+  {
+    "asset_id": "63d08c0c-c705-59d9-9cd0-927803fdff7d",
+    "code": "SWFTC",
+    "name": "SwftCoin"
+  },
+  {
+    "asset_id": "57400cc9-2be8-4977-b800-7cc075968590",
+    "code": "SYN",
+    "name": "Synapse"
+  },
+  {
+    "asset_id": "69dd7ce5-6123-4bd0-9f10-1b334198fe87",
+    "code": "T",
+    "name": "Threshold"
+  },
+  {
+    "asset_id": "72ed7be3-3583-48df-b756-e6f1b4c940a2",
+    "code": "TIA",
+    "name": "Celestia"
+  },
+  {
+    "asset_id": "426f088e-76ef-5593-a45f-ff638522fd16",
+    "code": "TIME",
+    "name": "Chrono.tech"
+  },
+  {
+    "asset_id": "20ddf7d2-f3d7-4a65-bb95-7bab3f86b11e",
+    "code": "TNSR",
+    "name": "Tensor"
+  },
+  {
+    "asset_id": "8952b259-c4e1-5947-88c2-7be991270114",
+    "code": "TRAC",
+    "name": "OriginTrail"
+  },
+  {
+    "asset_id": "248f278e-1c74-5b55-a554-4f3ee1aef291",
+    "code": "TRB",
+    "name": "Tellor"
+  },
+  {
+    "asset_id": "248c3984-79c8-5df2-a35d-bbd3a3e16e70",
+    "code": "TRU",
+    "name": "TrueFi"
+  },
+  {
+    "asset_id": "3142459a-c28c-5256-919d-8dcf0c2a4a41",
+    "code": "TVK",
+    "name": "Virtua"
+  },
+  {
+    "asset_id": "003db351-767e-5656-b32d-8ce553310814",
+    "code": "UMA",
+    "name": "UMA"
+  },
+  {
+    "asset_id": "412832ad-59dd-5af8-8d36-99ebda3afb80",
+    "code": "UNI",
+    "name": "Uniswap"
+  },
+  {
+    "asset_id": "2b92315d-eab7-5bef-84fa-089a131333f5",
+    "code": "USDC",
+    "name": "USDC"
+  },
+  {
+    "asset_id": "b26327c1-9a34-51d9-b982-9b29e6012648",
+    "code": "USDT",
+    "name": "Tether"
+  },
+  {
+    "asset_id": "5b944bdc-bb99-486b-8094-cc2c50eb5884",
+    "code": "VARA",
+    "name": "Vara"
+  },
+  {
+    "asset_id": "5defc2a7-682c-41a5-89d4-049044cc00b8",
+    "code": "VELO",
+    "name": "Velodrome Finance"
+  },
+  {
+    "asset_id": "3212e00d-e1c8-5776-89d7-50551b5c42d9",
+    "code": "VET",
+    "name": "vechain"
+  },
+  {
+    "asset_id": "5d0dacd0-0908-4f62-a9c7-670db0c0795d",
+    "code": "VOXEL",
+    "name": "Voxies"
+  },
+  {
+    "asset_id": "e7edd2ae-4098-543a-a7ca-c733404cc788",
+    "code": "VTHO",
+    "name": "VeThor Token"
+  },
+  {
+    "asset_id": "afb7c221-a5f4-4ddd-ba23-61e627dad8b6",
+    "code": "WAXL",
+    "name": "Wrapped Axelar"
+  },
+  {
+    "asset_id": "a52f80f6-c533-593a-aead-a6fc8eea643c",
+    "code": "WBTC",
+    "name": "Wrapped Bitcoin"
+  },
+  {
+    "asset_id": "19f93d90-a629-53d3-b1c1-45b874e9f125",
+    "code": "WCFG",
+    "name": "Wrapped Centrifuge"
+  },
+  {
+    "asset_id": "c7b9f5bb-e4a4-48b2-89df-0be386ed83a6",
+    "code": "XCN",
+    "name": "Onyxcoin"
+  },
+  {
+    "asset_id": "13b83335-5ede-595b-821e-5bcdfa80560f",
+    "code": "XLM",
+    "name": "Stellar Lumens"
+  },
+  {
+    "asset_id": "e17a44c8-6ea1-564f-a02c-2a9ca1d8eec4",
+    "code": "XRP",
+    "name": "XRP"
+  },
+  {
+    "asset_id": "69e559ec-547a-520a-aeb3-01cac23f1826",
+    "code": "XTZ",
+    "name": "Tezos"
+  },
+  {
+    "asset_id": "36d68172-0e1b-5a94-845a-a1e4e1022b75",
+    "code": "XYO",
+    "name": "XYO"
+  },
+  {
+    "asset_id": "8ebe6e4d-8bd6-5be0-8dca-aaa18a188915",
+    "code": "YFI",
+    "name": "yearn.finance"
+  },
+  {
+    "asset_id": "1d3c2625-a8d9-5458-84d0-437d75540421",
+    "code": "ZEC",
+    "name": "Zcash"
+  },
+  {
+    "asset_id": "ef343d07-52fe-5fee-88ad-ddf1a9e2d852",
+    "code": "ZEN",
+    "name": "Horizen"
+  },
+  {
+    "asset_id": "2e0cdd2a-0331-4fec-aefb-eefa25ea593a",
+    "code": "ZETA",
+    "name": "Zetachain"
+  },
+  {
+    "asset_id": "a2a8f5ae-83a6-542e-9064-7d335ae8a58d",
+    "code": "ZRX",
+    "name": "0x Protocol"
+  }
+]

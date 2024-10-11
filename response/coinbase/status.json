@@ -50,8 +50,12 @@
     "INVALID_ARGUMENT": [
       "Invalid account uuid",
       "Invalid product_id",
-      "start and end argument is invalid - number of candles requested should be less than 350 "
+      "assetFilters parameter not enabled for OPEN orders",
+      "cannot pass OPEN, QUEUED or CANCEL_QUEUED status with SortBy param",
+      "start and end argument is invalid - number of candles requested should be less than 350 ",
+      "valid product_id is required"
     ],
+    "invalid_request": "Invalid `page_size` parameter for pagination (must be under 300)",
     "unknown": "parsing field \"product_type\": \"[object Object]\" is not a valid value"
   },
   "CREATED": {
@@ -66,8 +70,10 @@
   "NOT_FOUND": {
     "NOT_FOUND": [
       "Could not find user's account information",
-      "ProductID \"${product_id}\" could not be found."
-    ]
+      "ProductID \"${product_id}\" could not be found.",
+      "valid product_id is required"
+    ],
+    "not_found": "Not found"
   },
   "NOT_IMPLEMENTED": {
     "unknown": [
@@ -76,7 +82,7 @@
     ]
   },
   "OK": {
-    "OK": "OK"
+    "0": "Successful."
   },
   "UNAUTHORIZED": {}
 }

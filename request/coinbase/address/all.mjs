@@ -1,31 +1,34 @@
 /**
- * Handle Coinbase Advanced API all account addresses endpoint.
+ * Handle Coinbase Advanced API all account addresses endpoint, listing all created addresses.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
+ * @typedef {import("#types/response/coinbase/address/all.d.js").default} AddressAll
  * @module request/coinbase/address/all
  */
 
+import { addressAll as schema } from '#res/coinbase/address/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { addressAll as schema } from '../../../response/coinbase/address/schema.mjs';
 
 /**
- * @param {string} account_uuid Account UUID.
- * @param {string} [limit] Pagination limit (default is 25). Not described in documentation.
- * @returns {Promise<{ data: [{ id: string }] }>}
+ * Latest generated address is the first item in the data array.
+ * @param {string} limit Pagination limit (default: 25, maximum: 300). Not described in documentation.
+ * @param {string} [account_uuid] Account UUID.
+ * @returns {Promise<AddressAll>} JSON data from response.
  */
-const addressAll = async (account_uuid, limit) => {
-  const { config, settings } = global.apiTools,
+const addressAll = async (limit = '1', account_uuid) => {
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { ADDRESS },
     } = config,
     {
-      account: { uuid },
       authentication: { security },
+      user,
+      user: { portfolio },
     } = settings,
     data = validate(ADDRESS, {
       defaults: {
-        account_uuid: uuid,
+        account_uuid: user[portfolio].account.uuid,
       },
       optional: { account_uuid },
       required: { limit },

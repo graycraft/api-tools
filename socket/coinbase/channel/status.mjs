@@ -6,27 +6,25 @@
  * If you listen for BTC-USD updates and nothing changes within 60-90 seconds (which is common), the channel closes.
  * To avoid this, subscribe to the heartbeats in addition to your other channels.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#status-channel
  * @module socket/coinbase/channel/status
  */
 
 import coinbaseSubscribe from '../subscribe.mjs';
 import coinbaseValidate from '../validate.mjs';
 
-/**
- * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#status-channel
- */
 const status = (product_ids) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       SOCKET: {
         CHANNEL: { STATUS },
       },
     } = config,
     {
-      currency: { base, quote },
+      asset: { base, quote },
     } = settings,
     defaults = {
-      product_ids: [base + '-' + quote],
+      product_ids: [base.code + '-' + quote.code],
     },
     data = coinbaseValidate(STATUS, defaults, { warnOptional: { product_ids } });
 

@@ -1,33 +1,28 @@
 /**
- * Handle Coinbase Advanced API endpoint, with one cryptocurrency filtered by asset UUID.
+ * Handle Coinbase Advanced API endpoint, finding one cryptocurrency by asset UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
- * @module request/coinbase/currency/all
+ * @typedef {import("#types/response/coinbase/currency/one.d.js").default} CurrencyOne
+ * @module request/coinbase/currency/one
  */
 
+import { currencyOne as schema } from '#res/coinbase/currency/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { currencyOne as schema } from '../../../response/coinbase/currency/schema.mjs';
 
 /**
- * @param {string} asset_uuid Not supported by the API, must be filtered while parsing.
- * @returns {Promise<{ data: { asset_id: string } }>}
+ * @param {string} asset_id Not supported by the API, item is found while parsing.
+ * @returns {Promise<CurrencyOne>} JSON data from response.
  */
-const currencyOne = (asset_uuid) => {
-  const { config, settings } = global.apiTools,
+const currencyOne = async (asset_id) => {
+  const { config } = global.apiTools.coinbase,
     {
       PATH: { CURRENCY_ONE },
     } = config,
-    {
-      currency: { uuid },
-    } = settings,
     data = validate(CURRENCY_ONE, {
-      defaults: {
-        asset_uuid: uuid,
-      },
-      required: { asset_uuid },
+      throw: { asset_id },
     }),
-    json = get(CURRENCY_ONE, schema, null, data);
+    json = await get(CURRENCY_ONE, schema, null, data);
 
   return json;
 };

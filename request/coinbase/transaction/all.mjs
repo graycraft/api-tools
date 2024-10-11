@@ -1,31 +1,33 @@
 /**
- * Handle Coinbase Advanced API endpoint, with transactions list of an account.
+ * Handle Coinbase Advanced API endpoint, listing transactions of an account.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
+ * @typedef {import("#types/response/coinbase/transaction/all.d.js").default} TransactionAll
  * @module request/coinbase/transaction/all
  */
 
+import { transactionAll as schema } from '#res/coinbase/transaction/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { transactionAll as schema } from '../../../response/coinbase/transaction/schema.mjs';
 
 /**
  * @param {string} account_uuid Account UUID.
- * @param {string} [limit] Pagination limit (default is 25). Not described in documentation.
- * @returns {Promise<{ data: [{ id: string }] }>}
+ * @param {string} [limit] Pagination limit (default: 25). Not described in documentation.
+ * @returns {Promise<TransactionAll>} JSON data from response.
  */
 const transactionAll = async (account_uuid, limit) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { TRANSACTION_ALL },
     } = config,
     {
-      account: { uuid },
       authentication: { security },
+      user,
+      user: { portfolio },
     } = settings,
     data = validate(TRANSACTION_ALL, {
       defaults: {
-        account_uuid: uuid,
+        account_uuid: user[portfolio].account.uuid,
       },
       optional: { account_uuid },
       required: { limit },

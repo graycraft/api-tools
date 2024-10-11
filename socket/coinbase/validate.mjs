@@ -4,18 +4,18 @@
  * @module request/coinbase/validate
  */
 
+import { fileNewest, fileReadJson } from '#lib/file_system.mjs';
 import requestValidate from '../validate.mjs';
-import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
 const isValid = (param) => {
-  const { config } = global.apiTools,
+  const { config } = global.apiTools.coinbase,
     { ACCOUNT, CURRENCY, TRADE } = config,
     [key, value] = Object.entries(param)[0],
     currencyDir = 'collection/coinbase/currency_all',
-    currencyFile = fileNameNewest(currencyDir),
+    currencyFile = fileNewest(currencyDir),
     currencyAll = fileReadJson(currencyDir, currencyFile.name),
     networkDir = 'collection/coinbase/network_all',
-    networkFile = fileNameNewest(networkDir),
+    networkFile = fileNewest(networkDir),
     networkAll = fileReadJson(networkDir, networkFile.name);
 
   switch (key) {

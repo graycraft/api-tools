@@ -1,40 +1,44 @@
 /**
  * Validate parameters for a Bybit API request.
  *
+ * @typedef {import("#types/common.d.js").Dict} Dict
  * @module request/bybit/validate
  */
 
+import { withinRange } from '#lib/boolean.mjs';
+import { NUMBER, REGEXP } from '#lib/constants.mjs';
+import { fileNewest, fileReadJson } from '#lib/file_system.mjs';
+
 import { hasSome, requestValidate } from '../validate.mjs';
-import { withinRange } from '../../lib/boolean.mjs';
-import { NUMBER, REGEXP } from '../../lib/constants.mjs';
-import { fileNameNewest, fileReadJson } from '../../lib/file_system.mjs';
 
 /**
  * @param {string} path
  * @param {{
- *   defaults?: { [key: string]: string },
- *   optional?: { [key: string]: string },
- *   required?: { [key: string]: string },
- *   throw?: { [key: string]: string },
+ *   defaults?: Dict,
+ *   optional?: Dict,
+ *   required?: Dict,
+ *   throw?: Dict,
  * }} options
- * @returns
+ * @returns {{}}
  */
-const bybitValidate = (path, options) => requestValidate(path, isValid, options);
+const bybitValidate = (path, options) =>
+  requestValidate(global.apiTools.bybit.config, path, isValid, options);
 
 /**
- * @param {{ [key: string]: value }} param
- * @returns {boolean}
+ * Validate a request data parameter before send.
+ * @param {Dict} param Request parameter to validate.
+ * @returns {boolean} Whether parameter is valid or not.
  */
 const isValid = (param) => {
   const { EVM_TXID, INTEGER, UUID } = REGEXP,
-    { config } = global.apiTools,
+    { config } = global.apiTools.bybit,
     { ACCOUNT, OPTION, ORDER, TRADE } = config,
     [key, value] = Object.entries(param)[0],
     currencyDir = 'collection/bybit/currency_all',
-    currencyFile = fileNameNewest(currencyDir),
-    currencyAll = fileReadJson(currencyDir, currencyFile.name),
+    currencyFile = fileNewest(currencyDir),
+    currencyAll = fileReadJson(currencyDir, currencyFile.name).map((item) => item.coin),
     networkDir = 'collection/bybit/currency_network_all',
-    networkFile = fileNameNewest(networkDir),
+    networkFile = fileNewest(networkDir),
     networkAll = fileReadJson(networkDir, networkFile.name);
 
   /**
@@ -113,6 +117,12 @@ const isValid = (param) => {
   }
 };
 
+/**
+ * @param {number} min
+ * @param {string} value
+ * @param {number} max
+ * @returns {boolean}
+ */
 const withinDays = (min, value, max) => {
   const {
       DATE: { DAY },
@@ -125,6 +135,10 @@ const withinDays = (min, value, max) => {
   return isWithin;
 };
 
+/**
+ * @param {string} value
+ * @returns {boolean}
+ */
 const withinUint32 = (value) => {
   const { UINT32_MAX_SAFE, UINT32_MIN_SAFE } = NUMBER,
     isWithin = withinRange(UINT32_MIN_SAFE, value, UINT32_MAX_SAFE);

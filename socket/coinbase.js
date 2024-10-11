@@ -4,6 +4,14 @@
  * @module socket/coinbase
  */
 
+import { argv } from 'node:process';
+
+import { dirObject } from '#lib/output.mjs';
+import { optional } from '#lib/template.mjs';
+import { parseArguments } from '#lib/utility.mjs';
+import prefs from '#prefs/coinbase.json' with { type: 'json' };
+import settings from '#settings/coinbase.json' with { type: 'json' };
+
 import candles from './coinbase/channel/candles.mjs';
 import futuresBalance from './coinbase/channel/futures_balance.mjs';
 import heartbeats from './coinbase/channel/heartbeats.mjs';
@@ -14,14 +22,26 @@ import ticker from './coinbase/channel/ticker.mjs';
 import tickerBatch from './coinbase/channel/ticker_batch.mjs';
 import user from './coinbase/channel/user.mjs';
 import config from '../configuration/coinbase.json' with { type: 'json' };
-import { optional } from '../lib/template.mjs';
-import { parseArguments } from '../lib/utility.mjs';
-import settings from '../settings/coinbase.json' with { type: 'json' };
+
+const { debug } = prefs,
+  timestamp = Date.now();
 
 const requestCoinbase = () => {
-  const { handler, params } = parseArguments();
+  /**
+   * Global types for each API are defined in `#types/global.d.ts`
+   * @type {any}
+   */
+  const coinbase = {
+      config,
+      name: 'coinbase',
+      prefs,
+      settings,
+      status,
+    },
+    { handler, options, params } = parseArguments(argv);
 
-  global.apiTools = { config, settings };
+  global.apiTools = { coinbase, options, output: {}, timestamp };
+  if (debug || options.debug) dirObject('global.apiTools', global.apiTools);
   if (handler) {
     switch (handler) {
       case 'candles':
@@ -48,7 +68,7 @@ const requestCoinbase = () => {
   } else {
     Promise.resolve()
       .then((response) => level2())
-      .catch(console.log.bind(console));
+      .catch(console.error.bind(console));
   }
 };
 

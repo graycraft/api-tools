@@ -1,22 +1,23 @@
 /**
- * Handle Coinbase Advanced API endpoint, with list of all known cryptocurrencies.
+ * Handle Coinbase Advanced API endpoint, listing all known cryptocurrencies.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
+ * @typedef {import("#types/response/coinbase/currency/all.d.js").default} CurrencyAll
  * @module request/coinbase/currency/all
  */
 
+import { currencyAll as schema } from '#res/coinbase/currency/schema.mjs';
 import get from '../get.mjs';
-import { currencyAll as schema } from '../../../response/coinbase/currency/schema.mjs';
 
 /**
- * @returns {Promise<{ data: [{ asset_id: string }] }>}
+ * @returns {Promise<CurrencyAll>} JSON data from response.
  */
-const currencyAll = () => {
-  const { config } = global.apiTools,
+const currencyAll = async () => {
+  const { config } = global.apiTools.coinbase,
     {
       PATH: { CURRENCY_ALL },
     } = config,
-    json = get(CURRENCY_ALL, schema, null);
+    json = await get(CURRENCY_ALL, schema, null);
 
   return json;
 };

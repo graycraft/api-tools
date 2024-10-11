@@ -1,39 +1,54 @@
 /**
  * Validate parameters for a request.
  *
+ * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.d.js").DictLike} DictLike
  * @module request/validate
  */
 
-import { throwRequired, warnOptional, warnRequired } from '../lib/output.mjs';
+import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 /**
- * @param {array} list
+ * @param {(string | Dict)[]} list
  * @param {string} value
  * @param {string} [prop]
- * @returns
+ * @returns {boolean}
  */
 export const hasSome = (list, value, prop) => {
-  const data = list.some((item) => (prop ? item[prop] === value : item === value));
+  const boolean = list.some((item) => (prop ? item[prop] === value : item === value));
 
-  return data;
+  return boolean;
 };
 
 /**
- * @param {string} path
- * @param {(param: { [key in string]: any; }) => boolean} isValid
- * @param {{
- *   defaults?: { [key: string]: string },
- *   optional?: { [key: string]: string },
- *   required?: { [key: string]: string },
- *   throw?: { [key: string]: string },
- * }} options
- * @returns {object}
+ * @param {string[]} list
+ * @param {string} value
+ * @param {(item1, item2) => {}} pair
+ * @returns {boolean}
  */
-export const requestValidate = (path, isValid, options) => {
+export const isPair = (list, value, pair) => {
+  const boolean = list.some((item1) =>
+    list.some((item2) => pair(item1, item2) === value && item1 !== item2),
+  );
+
+  return boolean;
+};
+
+/**
+ * @param {{ PATH: Dict }} config
+ * @param {string} path
+ * @param {(param: DictLike) => boolean} isValid
+ * @param {{
+ *   defaults?: DictLike,
+ *   optional?: DictLike,
+ *   required?: DictLike,
+ *   throw?: DictLike,
+ * }} options
+ * @returns {{}} Validated request parameters data.
+ */
+export const requestValidate = (config, path, isValid, options) => {
   const data = { ...options.defaults },
-    {
-      config: { PATH },
-    } = global.apiTools;
+    { PATH } = config;
   let category, key;
 
   for (category in options) {
@@ -43,7 +58,7 @@ export const requestValidate = (path, isValid, options) => {
 
         if (value) {
           if (isValid({ [key]: value })) data[key] = value;
-          else warnOptional(PATH, path, key, data[key]);
+          else warnOptional(path, PATH, key, data[key]);
         }
       }
     }
@@ -53,7 +68,7 @@ export const requestValidate = (path, isValid, options) => {
 
         if (value) {
           if (isValid({ [key]: value })) data[key] = value;
-          else warnRequired(PATH, path, key);
+          else warnRequired(path, PATH, key);
         }
       }
     }
@@ -62,7 +77,7 @@ export const requestValidate = (path, isValid, options) => {
         const value = options[category][key];
 
         if (isValid({ [key]: value })) data[key] = value;
-        else throwRequired(PATH, path, key);
+        else throwRequired(path, PATH, key);
       }
     }
   }

@@ -7,27 +7,25 @@
  * The channel collects all updates over the last 250 ms and sends them as an update -
  * so an update can contain one or many trades, depending on the last 250 ms of trading volume.
  *
+ * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#market-trades-channel
  * @module socket/coinbase/channel/market_trades
  */
 
 import coinbaseSubscribe from '../subscribe.mjs';
 import coinbaseValidate from '../validate.mjs';
 
-/**
- * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels/#market-trades-channel
- */
 const marketTrades = (product_ids) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.coinbase,
     {
       SOCKET: {
         CHANNEL: { MARKET_TRADES },
       },
     } = config,
     {
-      currency: { base, quote },
+      asset: { base, quote },
     } = settings,
     defaults = {
-      product_ids: [base + '-' + quote],
+      product_ids: [base.code + '-' + quote.code],
     },
     data = coinbaseValidate(MARKET_TRADES, defaults, { warnOptional: { product_ids } });
 

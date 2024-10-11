@@ -76,11 +76,10 @@
     "CODE": "retCode",
     "DESCRIPTION": "retMsg",
     "OK": 0,
-    "SUCCESS": "OK"
+    "SUCCESSFUL": "OK"
   },
   "TRADE": {
     "EXEC": [
-      "UNKNOWN",
       "AdlTrade",
       "BlockTrade",
       "BustTrade",
@@ -88,7 +87,8 @@
       "Funding",
       "MovePosition",
       "Settle",
-      "Trade"
+      "Trade",
+      "UNKNOWN"
     ],
     "SIDE": {
       "BUY": "Buy",

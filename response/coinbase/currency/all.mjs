@@ -1,21 +1,29 @@
 /**
  * Handle Coinbase Advanced API currency all response aggregation.
  *
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
+ * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/currency/all
  */
 
-import coinbaseAggregate from '../aggregate.mjs';
+import { fileNewest } from '#lib/file_system.mjs';
+import { obtainName } from '#lib/utility.mjs';
+import aggregate from '../aggregate.mjs';
 
 /**
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
+ * @returns {RSnapshot} Aggregated file data written in the collection directory.
  */
 const currencyAll = () => {
-  const { config } = global.apiTools,
+  const { config } = global.apiTools.coinbase,
     {
+      PATH,
       PATH: { CURRENCY_ALL },
-    } = config;
+    } = config,
+    directory = obtainName(CURRENCY_ALL, PATH).toLowerCase(),
+    file = fileNewest('response/coinbase/snapshot/' + directory),
+    fileAggregated = aggregate(directory, file.name);
 
-  coinbaseAggregate(CURRENCY_ALL, '2024-08-23T11:04:55.458Z.json');
+  return fileAggregated;
 };
 
 export default currencyAll;

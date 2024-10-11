@@ -2,17 +2,18 @@
  * Handle Bybit API endpoint, with margin mode and upgraded status information of an account.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/account-info
+ * @typedef {import("#types/response/bybit/account/information.d.js").default} AccountInformation
  * @module request/bybit/account/information
  */
 
+import { accountInformation as schema } from '#res/bybit/account/schema.mjs';
 import get from '../get.mjs';
-import { accountInformation as schema } from '../../../response/bybit/account/schema.mjs';
 
 /**
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<AccountInformation>} JSON data from response.
  */
 const accountInformation = async () => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { ACCOUNT_INFORMATION },
     } = config,

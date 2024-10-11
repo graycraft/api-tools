@@ -2,22 +2,23 @@
  * Handle Bybit API endpoint, with one deposit entry by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
+ * @typedef {import('#types/response/bybit/deposit/one.d.js').default} DepositOne
  * @module request/bybit/deposit/one
  */
 
+import { depositOne as schema } from '#res/bybit/deposit/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { depositOne as schema } from '../../../response/bybit/deposit/schema.mjs';
 
 /**
  * Documentation do not describe `txID`, but another endpoint `WITHDRAW_ONE` also has this parameter.
- * Defference between `endTime` and `startTime` should be less than 30 days (30 days is default).
+ * Difference between `endTime` and `startTime` should be less than 30 days (30 days is default).
  * @param {string} txID Transaction identifier.
- * @param {{ coin?, cursor?, endTime?, limit?, startTime? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @param {{ coin?, cursor?, endTime?, limit?, startTime? }} options
+ * @returns {Promise<DepositOne>} JSON data from response.
  */
 const depositOne = async (txID, { coin, cursor, endTime, limit, startTime } = {}) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { DEPOSIT_ONE },
     } = config,

@@ -1,13 +1,24 @@
 /**
- * Filter items from a Bybit API response array by strict equality comparison or a criterion function.
+ * Filter items from a Coinbase Advanced API response array by strict equality comparison or a criterion function.
  *
- * @module response/bybit/parse/filter
+ * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @module response/coinbase/parse/filter
  */
 
+/**
+ * @param {Response} json
+ * @param {{
+ *   criterion: string | ((item: Dict) => number),
+ *   key?: string,
+ *   list: string,
+ * }} options
+ * @returns {Response}
+ */
 const filter = (json, { criterion, key, list }) => {
   if (criterion) {
     const items = json.result[list].filter((item) =>
-      key ? item[key] === criterion : criterion(item),
+      key ? item[key] === criterion : typeof criterion === 'function' && criterion(item),
     );
 
     json = {

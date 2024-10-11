@@ -2,26 +2,24 @@
  * Handle Bybit API endpoint, with cancel all open orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-all
+ * @typedef {import("#types/response/bybit/order/cancel-all.d.js").default} OrderCancelAll
  * @module request/bybit/order/cancel-all
  */
 
+import { orderCancelAll as schema } from '#res/bybit/order/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { orderCancelAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} [symbol] Symbol name.
- * @param {{ baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType? }} rest
- * @returns {Promise<object>} JSON data from response.
+ * @param {{ baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType? }} options
+ * @returns {Promise<OrderCancelAll>} JSON data from response.
  */
 const orderCancelAll = async (
   symbol,
   { baseCoin, category, orderFilter, orderLinkId, settleCoin, stopOrderType } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { ORDER_CANCEL_ALL },
     } = config,

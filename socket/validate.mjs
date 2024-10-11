@@ -4,13 +4,13 @@
  * @module socket/validate
  */
 
-import { throwRequired, warnOptional, warnRequired } from '../lib/output.mjs';
+import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 const socketValidate = (path, isValidParams, defaults, ...options) => {
   const data = { ...defaults },
     {
       config: { PATH },
-    } = global.apiTools;
+    } = global.apiTools.coinbase;
   let index = options.length,
     category,
     key;
@@ -26,7 +26,7 @@ const socketValidate = (path, isValidParams, defaults, ...options) => {
           const value = option[category][key];
 
           if (isValidParams({ [key]: value })) data[key] = value;
-          else throwRequired(PATH, path, key);
+          else throwRequired(path, PATH, key);
         }
       }
       if (category === 'warnOptional') {
@@ -35,7 +35,7 @@ const socketValidate = (path, isValidParams, defaults, ...options) => {
 
           if (value) {
             if (isValidParams({ [key]: value })) data[key] = value;
-            else warnOptional(PATH, path, key, data[key]);
+            else warnOptional(path, PATH, key, data[key]);
           }
         }
       }
@@ -45,7 +45,7 @@ const socketValidate = (path, isValidParams, defaults, ...options) => {
 
           if (value) {
             if (isValidParams({ [key]: value })) data[key] = value;
-            else warnRequired(PATH, path, key);
+            else warnRequired(path, PATH, key);
           }
         }
       }

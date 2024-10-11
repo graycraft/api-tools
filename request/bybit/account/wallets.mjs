@@ -2,12 +2,13 @@
  * Handle Bybit API account wallet types endpoint.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
+ * @typedef {import("#types/response/bybit/account/wallets.d.js").default} AccountWallets
  * @module request/bybit/account/wallets
  */
 
+import { accountWallets as schema } from '#res/bybit/account/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { accountWallets as schema } from '../../../response/bybit/account/schema.mjs';
 
 /**
  * "FUND" - never deposited or transfered capital. This wallet type absent in the array, but account has this wallet.
@@ -16,10 +17,10 @@ import { accountWallets as schema } from '../../../response/bybit/account/schema
  * "CONTRACT", "SPOT" - classic account and Funding wallet is never operated.
  * "CONTRACT", "UNIFIED" - UTA account and Funding wallet is never operated.
  * @param {string} memberIds Multiple sub UIDs can be supplied, separated by commas.
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<AccountWallets>} JSON data from response.
  */
 const accountWallets = async (memberIds) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { ACCOUNT_WALLETS },
     } = config,

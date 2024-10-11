@@ -2,16 +2,15 @@
  * Handle Bybit API order book depth endpoint.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/orderbook
+ * @typedef {import("#types/response/bybit/order/book.d.js").default} OrderBook
  * @module request/bybit/order/book
  */
 
+import { orderBook as schema } from '#res/bybit/order/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { orderBook as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} symbol Symbol name is required by API.
  * @param {string} category Product type.
  * @param {string} limit Limit for data size per page (
@@ -19,17 +18,19 @@ import { orderBook as schema } from '../../../response/bybit/order/schema.mjs';
  *   for `option` default is 1, maximum 25;
  *   for `spot` default is 1, maximum 200
  * ).
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<OrderBook>} JSON data from response.
  */
 const orderBook = async (symbol, category, limit) => {
-  const { config, settings } = global.apiTools,
+  const { config, prefs, settings } = global.apiTools.bybit,
     {
       PATH: { ORDER_BOOK },
     } = config,
     {
+      currency: { base, quote },
+    } = prefs,
+    {
       account,
       authentication: { security },
-      currency: { base, quote },
     } = settings,
     data = validate(ORDER_BOOK, {
       defaults: {

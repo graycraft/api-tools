@@ -6,13 +6,13 @@
  */
 
 export const depositAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
+    result: { type: 'object' },
     retCode: { type: 'number' },
     retExtInfo: { type: 'object' },
     retMsg: { type: 'string' },
-    result: { type: 'object' },
     time: { type: 'number' },
   },
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],
@@ -20,13 +20,13 @@ export const depositAll = {
 };
 
 export const depositNewMaster = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
+    result: { type: 'object' },
     retCode: { type: 'number' },
     retExtInfo: { type: 'object' },
     retMsg: { type: 'string' },
-    result: { type: 'object' },
     time: { type: 'number' },
   },
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],
@@ -34,13 +34,13 @@ export const depositNewMaster = {
 };
 
 export const depositNewSub = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
+    result: { type: 'object' },
     retCode: { type: 'number' },
     retExtInfo: { type: 'object' },
     retMsg: { type: 'string' },
-    result: { type: 'object' },
     time: { type: 'number' },
   },
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],
@@ -48,13 +48,13 @@ export const depositNewSub = {
 };
 
 export const depositOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
+    result: { type: 'object' },
     retCode: { type: 'number' },
     retExtInfo: { type: 'object' },
     retMsg: { type: 'string' },
-    result: { type: 'object' },
     time: { type: 'number' },
   },
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],

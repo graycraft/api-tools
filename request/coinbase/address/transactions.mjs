@@ -1,35 +1,38 @@
 /**
- * Handle Coinbase Advanced API endpoint, with list transactions that have been sent.
+ * Handle Coinbase Advanced API endpoint, listing transactions that have been done by address UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-transactions
+ * @typedef {import('#types/response/coinbase/address/transactions.d.js').default} AddressTransactions
  * @module request/coinbase/address/transactions
  */
 
+import { addressTransactions as schema } from '#res/coinbase/address/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { addressTransactions as schema } from '../../../response/coinbase/address/schema.mjs';
 
 /**
  * @param {string} address_uuid Address UUID. Also regular cryptocurrency address can be used.
+ * @param {string} [limit] Pagination limit (default: 25). Not described in documentation.
  * @param {string} [account_uuid] Account UUID.
- * @param {string} [limit] Pagination limit (default is 25). Not described in documentation.
- * @returns {Promise<{ data: { id :string } }>}
+ * @returns {Promise<AddressTransactions>} JSON data from response.
  */
-const addressTransactions = async (address_uuid, account_uuid, limit) => {
-  const { config, settings } = global.apiTools,
+const addressTransactions = async (address_uuid, limit, account_uuid) => {
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { ADDRESS_TRANSACTIONS },
     } = config,
     {
-      account: { uuid },
       authentication: { security },
+      user,
+      user: { portfolio },
     } = settings,
     data = validate(ADDRESS_TRANSACTIONS, {
       defaults: {
-        account_uuid: uuid,
+        account_uuid: user[portfolio].account.uuid,
       },
       optional: { account_uuid },
-      required: { address_uuid, limit },
+      required: { limit },
+      throw: { address_uuid },
     }),
     json = await get(ADDRESS_TRANSACTIONS, schema, security, data);
 

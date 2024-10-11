@@ -1,45 +1,42 @@
 /**
- * Request a Bybit API endpoint by `POST` method.
+ * Request a Bybit API endpoint by the `POST` method.
  *
- * @see https://bybit-exchange.github.io/docs/v5/guide
- * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.js
- * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.ts
+ * @typedef {import("#types/response/bybit.d.js").default} Response
  * @module request/bybit/post
  */
 
+import { HTTP } from '#lib/constants.mjs';
+import { endpointPost } from '#lib/fetch.mjs';
+import { dirSnapshot } from '#lib/output.mjs';
+import parse from '#res/bybit/parse.mjs';
+import snapshot from '#res/bybit/snapshot.mjs';
+
 import { bybitKey, bybitSign } from './sign.mjs';
 import post from '../post.mjs';
-import { HTTP } from '../../lib/constants.mjs';
-import { endpointPost } from '../../lib/fetch.mjs';
-import { dirObject } from '../../lib/output.mjs';
-import { obtainName } from '../../lib/utility.mjs';
-import parse from '../../response/bybit/parse.mjs';
-import snapshot from '../../response/bybit/snapshot.mjs';
 
 /**
- * @param {string} template Path template to be interpolated.
- * @param {object} schema JSON-schema to validate response with.
+ * @param {string} template Endpoint path template to be interpolated.
+ * @param {{}} schema JSON-schema to validate response with.
  * @param {"HMAC" | "RSA" | null} [security] Authentication signature security.
- * @param {object} [data] Data to send with request.
- * @returns {Promise<object>} JSON data from response.
+ * @param {{}} [data] Data to send with request.
+ * @returns {Promise<Response>} JSON data from response.
  */
 const bybitPost = async (template, schema, security, data = {}) => {
-  const { config, settings } = global.apiTools,
+  const { bybit, options } = global.apiTools,
+    { config, prefs, settings } = bybit,
     {
       METHOD: { POST },
     } = HTTP,
-    { PATH } = config,
     {
       authentication: { delay },
     } = settings,
-    { body, url } = endpointPost(template, data),
+    { body, endpoint, url } = endpointPost(config, template, data),
     { key, timestamp } = bybitKey(),
-    payload = timestamp + key + delay + body;
-
-  global.apiTools.output = { [obtainName(template, PATH)]: url };
-
-  const headers = bybitSign(POST, security, key, payload, data),
+    payload = timestamp + key + delay + body,
+    title = { [endpoint]: url },
+    headers = bybitSign(POST, title, security, key, payload, data),
     json = await post(
+      global.apiTools.bybit,
       url,
       template,
       headers,
@@ -51,7 +48,7 @@ const bybitPost = async (template, schema, security, data = {}) => {
       data,
     );
 
-  dirObject('JSON', global.apiTools.output);
+  dirSnapshot(endpoint, options, prefs, global.apiTools.output);
 
   return json;
 };

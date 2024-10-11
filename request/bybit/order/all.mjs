@@ -2,25 +2,23 @@
  * Handle Bybit API all order endpoint, with unfilled or partially filled orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
+ * @typedef {import("#types/response/bybit/order/all.d.js").default} OrderAll
  * @module request/bybit/order/all
  */
 
+import { orderAll as schema } from '#res/bybit/order/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { orderAll as schema } from '../../../response/bybit/order/schema.mjs';
 
 /**
  * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.
- * @see https://bybit-exchange.github.io/docs/v5/enum#category
- * @see https://bybit-exchange.github.io/docs/v5/enum#stopordertype
- * @see https://bybit-exchange.github.io/docs/v5/enum#symbol
  * @param {string} symbol Symbol name.
  * @param {string} side Not supported by the API, must be filtered while parsing.
  * @param {string} limit Limit for data size per page (default is 20, maximum 50).
  * @param {{
  *   baseCoin?, category?, cursor?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
- * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * }} options
+ * @returns {Promise<OrderAll>} JSON data from response.
  */
 const orderAll = async (
   symbol,
@@ -36,7 +34,7 @@ const orderAll = async (
     settleCoin,
   } = {},
 ) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { ORDER_ALL },
     } = config,

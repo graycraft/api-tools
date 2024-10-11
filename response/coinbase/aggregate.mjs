@@ -1,26 +1,39 @@
 /**
  * Aggregate a Coinbase Advanced API response snapshot, usually for extracting arrays of data.
  *
+ * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/aggregate
  */
 
-import nodeFs from 'node:fs';
-import nodePath from 'node:path';
+import { fileReadJson } from '#lib/file_system.mjs';
 import responseAggregate from '../aggregate.mjs';
-import { obtainName } from '../../lib/utility.mjs';
 
-const coinbaseAggregate = (path, fileName) => {
-  const { config } = global.apiTools,
-    dirName = import.meta.dirname,
-    pathName = obtainName(path, config.PATH),
-    filePath = nodePath.join(dirName, `./snapshot/${pathName.toLowerCase()}`),
-    filePathFull = nodePath.join(filePath, fileName),
-    fileData = nodeFs.readFileSync(filePathFull),
-    json = JSON.parse(String(fileData)),
-    data = json.data,
-    key = 'code';
+/**
+ * Aggregate a Bybit API response snapshot.
+ * @param {string} directory Directory to take snapshot JSON from.
+ * @param {string} fileName File name of snapshot file.
+ * @returns {RSnapshot} File data to write in the collection directory.
+ */
+const coinbaseAggregate = (directory, fileName) => {
+  const { coinbase } = global.apiTools,
+    endpoint = directory.toUpperCase(),
+    json = fileReadJson('response/coinbase/snapshot/' + directory, fileName),
+    data = json.OK.json.data,
+    file = responseAggregate(coinbase, endpoint, data, {
+      currencies: (item) => ({
+        asset_id: item['asset_id'],
+        code: item['code'],
+        name: item['name'],
+      }),
+      networks: (row) =>
+        row.chains.map((item) => ({
+          chain: item.chain,
+          chainType: item.chainType,
+        })),
+      sort: (item1, item2) => item1['code'].localeCompare(item2['code']),
+    });
 
-  responseAggregate('coinbase', path, data, key);
+  return file;
 };
 
 export default coinbaseAggregate;

@@ -1,11 +1,16 @@
 {
-  "account": {
-    "uuid": "00000000-0000-0000-0000-000000000000"
+  "asset": {
+    "base": {
+      "code": "AAA",
+      "network": "aaaaaaaa",
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    "quote": {
+      "code": "BBB",
+      "network": "bbbbbbbb",
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    }
   },
-  "address": {
-    "withdraw": ""
-  },
-  "aggregate": ["CURRENCY_ALL"],
   "authentication": {
     "delay": 1e3,
     "hidden": "full",
@@ -17,41 +22,15 @@
     },
     "security": "JWT"
   },
-  "currency": {
-    "base": "AAA",
-    "network": "BBB",
-    "quote": "CCC",
-    "uuid": "00000000-0000-0000-0000-000000000000"
-  },
-  "enabled": ["aggregate", "parse", "snapshot", "verbose"],
-  "parse": ["ACCOUNT_BALANCE"],
-  "snapshot": [
-    "ADDRESS",
-    "ADDRESS_ONE",
-    "ADDRESS_TRANSACTIONS",
-    "CURRENCY_ALL",
-    "CURRENCY_ONE",
-    "MARKET_ALL",
-    "MARKET_ONE",
-    "MARKET_TICKERS",
-    "ORDER_ALL",
-    "ORDER_CANCEL",
-    "ORDER_ONE",
-    "ORDER_PLACE",
-    "TRANSACTION_ALL",
-    "TRANSACTION_ONE",
-    "USER_ACCOUNT_ALL",
-    "USER_ACCOUNT_ONE",
-    "USER_PORTFOLIO_ALL",
-    "USER_PORTFOLIO_ONE"
-  ],
   "user": {
-    "00000000-0000-0000-0000-000000000000": {
-      "main": true,
-      "permissions": []
+    "DEFAULT": {
+      "account": {
+        "address": ["00000000-0000-0000-0000-000000000000"],
+        "asset": "00000000-0000-0000-0000-000000000000",
+        "uuid": "00000000-0000-0000-0000-000000000000"
+      },
+      "uuid": "00000000-0000-0000-0000-000000000000"
     },
-    "DEFAULT": "00000000-0000-0000-0000-000000000000",
-    "account": "00000000-0000-0000-0000-000000000000",
     "portfolio": "DEFAULT"
   }
 }

@@ -4,5 +4,7 @@
  * @module request
  */
 
-import './request/bybit.js';
-import './request/coinbase.js';
+import requestBybit from './request/bybit/index.mjs';
+import requestCoinbase from './request/coinbase/index.mjs';
+
+Promise.resolve().then(requestBybit).then(requestCoinbase);

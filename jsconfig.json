@@ -2,16 +2,46 @@
   "compilerOptions": {
     "baseUrl": ".",
     "checkJs": true,
-    "lib": ["es2021", "dom", "dom.iterable"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "paths": {
-      "types/*": ["./types/*"]
+      "#config/*": ["./configuration/*"],
+      "#lib/*": ["./library/*"],
+      "#prefs/*": ["./preferences/*"],
+      "#res/*": ["./response/*"],
+      "#settings/*": ["./settings/*"],
+      "#types/*": ["./types/*"]
     },
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "target": "ES6"
+    "target": "es6",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["jest", "node"],
+    "verbatimModuleSyntax": true
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.js", "**/*.mjs"]
+  "exclude": [".vscode", "collection", "coverage", "node_modules", "response/**/snapshot"],
+  "include": [
+    "**/*.cjs",
+    "**/*.cjsx",
+    "**/*.cts",
+    "**/*.ctsx",
+    "**/*.es",
+    "**/*.es6",
+    "**/*.js",
+    "**/*.jsm",
+    "**/*.json",
+    "**/*.json5",
+    "**/*.json6",
+    "**/*.jsonc",
+    "**/*.jsox",
+    "**/*.jsx",
+    "**/*.mjs",
+    "**/*.mjsx",
+    "**/*.mts",
+    "**/*.mtsx",
+    "**/*.node",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

@@ -2,31 +2,31 @@
  * Handle Bybit API balance endpoint, with asset and risk rate information of each currency.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/wallet-balance
+ * @typedef {import("#types/response/bybit/balance/information.d.js").default} BalanceInformation
  * @module request/bybit/balance/information
  */
 
+import { balanceInformation as schema } from '#res/bybit/balance/schema.mjs';
 import get from '../get.mjs';
 import validate from '../validate.mjs';
-import { balanceInformation as schema } from '../../../response/bybit/balance/schema.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
  * @param {string} accountType Account type.
  * @param {string} coin Currency name, multiple values supported, separated by commas.
- * @returns {Promise<object>} JSON data from response.
+ * @returns {Promise<BalanceInformation>} JSON data from response.
  */
 const balanceInformation = async (accountType, coin) => {
-  const { config, settings } = global.apiTools,
+  const { config, settings } = global.apiTools.bybit,
     {
       PATH: { BALANCE_INFORMATION },
     } = config,
     {
-      account,
+      account: { wallet },
       authentication: { security },
     } = settings,
     data = validate(BALANCE_INFORMATION, {
       defaults: {
-        accountType: account.wallet,
+        accountType: wallet,
       },
       optional: { accountType },
       required: { coin },

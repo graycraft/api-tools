@@ -1,16 +1,19 @@
-# @see https://editorconfig.org
-# @see https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+# https://editorconfig.org
+# https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
 
-charset = utf-8
-[*]
 root = true
-[*.{cjs,es,es6,js,jsm,json,json5,json6,jsonc,jsox,jsx,mjs,node,ts,tsx}]
+
+[**/*]
+charset = utf-8
+
+[**/*.{cjs,cjsx,cts,ctsx,es,es6,js,jsm,json,json5,json6,jsonc,jsox,jsx,mjs,mjsx,mts,mtsx,node,ts,tsx}]
 end_of_line = lf
 indent_size = 2
 indent_style = space
 insert_final_newline = true
 max_line_length = 120
 trim_trailing_whitespace = true
-[*.md]
-# @see https://github.com/Microsoft/vscode/issues/1679#issuecomment-323608456
+
+# https://github.com/Microsoft/vscode/issues/1679#issuecomment-323608456
+[**/*.md]
 trim_trailing_whitespace = false

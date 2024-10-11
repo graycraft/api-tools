@@ -2,18 +2,18 @@
  * Handle Bybit API new wallet withdraw endpoint.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw
+ * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/vasp-list
+ * @see https://www.bybit.com/user/assets/money-address
+ * @typedef {import("#types/response/bybit/withdraw/new.d.js").default} WithdrawNew
  * @module request/bybit/withdraw/new
  */
 
+import { withdrawNew as schema } from '#res/bybit/withdraw/schema.mjs';
 import post from '../post.mjs';
 import validate from '../validate.mjs';
-import { withdrawNew as schema } from '../../../response/bybit/withdraw/schema.mjs';
 
 /**
  * API key pair must have "*Withdrawal" permission.
- * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/vasp-list
- * @see https://bybit-exchange.github.io/docs/v5/enum#accounttype
- * @see https://www.bybit.com/user/assets/money-address
  * @param {string} amount Currency amount to withdraw.
  * @param {string} coin Currency name.
  * @param {string} [address] Currency address name, case sensitive (
@@ -27,8 +27,8 @@ import { withdrawNew as schema } from '../../../response/bybit/withdraw/schema.m
  * @param {{
  *   accountType?, beneficiary?, beneficiaryName?, feeType?, forceChain?,
  *   requestId?, tag?, timestamp?, vaspEntityId?
- * }} rest
- * @returns {Promise<object>} JSON data from response.
+ * }} options
+ * @returns {Promise<WithdrawNew>} JSON data from response.
  */
 const withdrawNew = async (
   amount,
@@ -47,21 +47,24 @@ const withdrawNew = async (
     vaspEntityId,
   } = {},
 ) => {
-  const { config, settings, timestamp: now } = global.apiTools,
+  const { timestamp: now } = global.apiTools,
+    { config, prefs, settings } = global.apiTools.bybit,
     {
       PATH: { WITHDRAW_NEW },
     } = config,
     {
+      currency: { base, network },
+    } = prefs,
+    {
       address: { withdraw },
       authentication: { security },
-      currency: { base, network },
     } = settings,
-    data = await validate(WITHDRAW_NEW, {
+    data = validate(WITHDRAW_NEW, {
       defaults: {
         address: withdraw,
         chain: network,
         coin: base,
-        timestamp: now,
+        timestamp: String(now),
       },
       optional: { address, chain, coin, timestamp },
       required: {
@@ -76,7 +79,7 @@ const withdrawNew = async (
       },
       throw: { amount },
     }),
-    json = post(WITHDRAW_NEW, schema, security, data);
+    json = await post(WITHDRAW_NEW, schema, security, data);
 
   return json;
 };

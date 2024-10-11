@@ -6,7 +6,7 @@
  */
 
 export const transactionAll = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: { type: 'array' },
@@ -17,7 +17,7 @@ export const transactionAll = {
 };
 
 export const transactionOne = {
-  // "$schema": "https://json-schema.org/draft/2020-12/schema",
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
   properties: {
     data: { type: 'object' },

@@ -1,40 +1,72 @@
 /**
  * Snapshot an API response to a file with current UTC ISO timestamp.
  *
+ * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/snapshot.d.js").default} Snapshot
+ * @typedef RSnapshot
+ * @prop {{}} fileData Response code.
+ * @prop {string} fileName Response description.
  * @module response/snapshot
  */
 
 import nodeFs from 'node:fs';
 import nodePath from 'node:path';
-import { obtainName } from '../lib/utility.mjs';
 
-const responseSnapshot = (json, path, target) => {
-  const { config, options, settings } = global.apiTools,
-    { PATH } = config,
-    { enabled, snapshot } = settings,
-    name = obtainName(path, PATH),
-    isSnapshot = enabled.some((item) => item === 'snapshot'),
-    isVerbose = enabled.some((item) => item === 'verbose'),
-    isSnapshotEndpoint = snapshot.some((item) => item === name);
+/**
+ * Make snapshot of a response.
+ * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {Snapshot} output Information about request and response to output.
+ * @param {string} endpoint Endpoint name.
+ * @returns {RSnapshot} File data to write in a specific API's snapshot directory.
+ */
+const responseSnapshot = (api, output, endpoint) => {
+  const { options } = global.apiTools,
+    { prefs } = api,
+    { snapshot } = options,
+    isEnabled = prefs.enabled.includes('snapshot'),
+    isSnapshot = prefs.snapshot.includes(endpoint);
 
-  if (isSnapshot) {
-    if (isSnapshotEndpoint || options.isSnapshot) {
-      const dirName = import.meta.dirname,
-        fileData = JSON.stringify(json, null, 2),
-        fileName = new Date().toISOString() + '.json',
-        path2 = `./${target}/snapshot/${name.toLowerCase()}`,
-        filePath = nodePath.join(dirName, path2),
-        filePathFull = nodePath.join(filePath, fileName);
-
-      nodeFs.mkdirSync(filePath, { recursive: true });
-      nodeFs.writeFileSync(filePathFull, fileData);
-      console.info(
-        `Snapped "${fileName}" to "${path2}"` + (isVerbose || options.isVerbose ? ':' : '.'),
-      );
+  if (typeof snapshot === 'boolean') {
+    if (snapshot) {
+      const { fileData, fileName } = snapshotJson(api, output, endpoint);
 
       return { fileData, fileName };
-    } else console.info(`Snapshot: endpoint "${name}" is not enabled is settings.`);
-  } else console.info(`Snapshot: not enabled is settings.`);
+    }
+  } else {
+    if (isEnabled) {
+      if (isSnapshot) {
+        const { fileData, fileName } = snapshotJson(api, output, endpoint);
+
+        return { fileData, fileName };
+      } else console.info(`Snapshot: endpoint "${endpoint}" is not enabled is settings.`);
+    } else console.info(`Snapshot: not enabled is settings.`);
+  }
+};
+
+/**
+ * Write JSON snapshot data to a file.
+ * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {Snapshot} output Information about request and response to output.
+ * @param {string} endpoint Endpoint name.
+ * @returns {RSnapshot} File data to write in a specific API's snapshot directory.
+ */
+export const snapshotJson = (api, output, endpoint) => {
+  const { options } = global.apiTools,
+    { prefs } = api,
+    dirName = import.meta.dirname,
+    fileData = JSON.stringify(output, null, 2),
+    fileName = new Date().toISOString() + '.json',
+    path2 = `./${api.name}/snapshot/${endpoint.toLowerCase()}`,
+    filePath = nodePath.join(dirName, path2),
+    filePathFull = nodePath.join(filePath, fileName),
+    isVerbose = prefs.enabled.includes('verbose');
+
+  nodeFs.mkdirSync(filePath, { recursive: true });
+  nodeFs.writeFileSync(filePathFull, fileData);
+  console.info(`Snapped "${fileName}" to "${path2}"` + (isVerbose || options.verbose ? ':' : '.'));
+
+  return { fileData, fileName };
 };
 
 export default responseSnapshot;

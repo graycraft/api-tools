@@ -1,107 +1,105 @@
 /**
- * Parse a Coinbase Advanced API response, usually for shortening long arrays.
+ * Parse a Coinbase Advanced API response.
+ * Used for retrieving response status code/description and shortening long arrays.
  *
+ * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/error-response
+ * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/status-codes
+ * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
+ * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
+ * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @typedef {import("../parse.mjs").RParse} RParse
+ * @typedef {import("../parse.mjs").RParseStatus} RParseStatus
+ * @typedef {import("../parse.mjs").ResponseParse} ResponseParse
  * @module response/coinbase/parse
  */
 
-import filter from './parse/filter.mjs';
+import config from '#config/coinbase.json' with { type: 'json' };
+import settings from '#settings/coinbase.json' with { type: 'json' };
+
+import responseParse from '../parse.mjs';
+// import filter from './parse/filter.mjs';
 import find from './parse/find.mjs';
 import map from './parse/map.mjs';
-import config from '../../configuration/coinbase.json' with { type: 'json' };
-import { obtainName } from '../../lib/utility.mjs';
-import settings from '../../settings/coinbase.json' with { type: 'json' };
 
 /**
- * @param {{ json: object, statusText: string }} response
- * @param {string} path
- * @param {object} data
- * @returns {{ json: object, statusText: string }}
+ * Parse a response.
+ * `errors` array might be in a response of some endpoints:
+ *   `ADDRESS` - if provide `limit` exceeding maximum value.
+ * `error` and `message` properties might be in a response of some endpoints:
+ *   `MARKET_ONE` - if do not provide `product_id`.
+ * @param {RFetch} response Response of request.
+ * @param {string} endpoint Endpoint name.
+ * @param {{}} data Request parameters data.
+ * @returns {ResponseParse & RParseStatus} Parsed response, response code and description.
  */
-const responseParse = (response, path, data) => {
-  /** @type {{ PATH: { [key: string]: string } }} */
-  const { PATH } = config;
-  const {
-      PATH: {
-        CURRENCY_ALL,
-        MARKET_HISTORY,
-        MARKET_INFORMATION,
-        MARKET_TICKERS,
-        NETWORK_ALL,
-        ORDER_ALL,
-        TRADE_HISTORY_ALL,
-      },
-      TRADE,
-    } = config,
+const coinbaseParse = (response, endpoint, data) => {
+  const { config, prefs } = global.apiTools.coinbase,
     {
-      currency: { base, quote },
-      parse,
-    } = settings;
-  let { json, statusText } = response;
+      RESPONSE: { OK, SUCCESSFUL },
+    } = config,
+    { json } = response,
+    errors = json.errors,
+    code = json.error ?? errors?.[0]?.id ?? OK,
+    description = json.message ?? errors?.[0]?.message ?? SUCCESSFUL,
+    parse = responseParse(response, endpoint, data, parseJson, prefs);
 
-  /**
-   * @todo Refactor to `response/parse`.
-   */
-  if (parse.includes(obtainName(path, PATH))) {
-    let isFiltered = true,
-      isFound = true,
-      isMapped = true;
-
-    switch (path) {
-      /* case ACCOUNT_BALANCE_CURRENCIES: json = filter(json, {
-        criterion: (item) => Number(item.transferBalance) || Number(item.walletBalance),
-        list: "balance",
-      }); break; */
-      case ORDER_ALL:
-      case TRADE_HISTORY_ALL:
-        json = filter(json, {
-          criterion: data.side || TRADE.BUY,
-          key: 'side',
-          list: 'list',
-        });
-        break;
-      default:
-        isFiltered = false;
-    }
-    /* switch (path) {
-      case ACCOUNT_BALANCE:
-        json = find(json, {
-          criterion: data.asset ?? base,
-          key: 'asset',
-          list: 'spot_positions',
-        });
-        break;
-      default:
-        isFound = false;
-    } */
-    switch (path) {
-      case CURRENCY_ALL:
-        json = map(json, {
-          key: 'code',
-          list: 'data',
-        });
-        break;
-      case NETWORK_ALL:
-        json = map(json, {
-          key: ['coin', 'chain'],
-          list: ['rows', 'chains'],
-        });
-        break;
-      default:
-        isMapped = false;
-    }
-    if (isFiltered || isFound || isMapped) {
-      const parsed = [];
-
-      statusText += ' (';
-      if (isFiltered) parsed.push('filtered');
-      if (isFound) parsed.push('found');
-      if (isMapped) parsed.push('mapped');
-      statusText += parsed.join(', ') + ')';
-    }
-    console.info(`Parsed endpoint "${obtainName(path, PATH)}" successfully.`);
-  } else console.info(`Parse: endpoint "${obtainName(path, PATH)}" is not enabled is settings.`);
-
-  return { json, statusText };
+  return { ...parse, code, description };
 };
 
-export default responseParse;
+/**
+ * Parse JSON from response.
+ * @param {Response} json JSON from response.
+ * @param {string} endpoint Endpoint name.
+ * @param {{}} data Request parameters data.
+ * @returns {RParse} Parsed JSON data.
+ */
+const parseJson = (json, endpoint, data) => {
+  const {
+      PATH,
+      PATH: { CURRENCY_ALL, CURRENCY_ONE },
+    } = config,
+    {
+      user,
+      user: { portfolio },
+    } = settings,
+    parsed = [],
+    path = PATH[endpoint];
+
+  let isFiltered = false,
+    isFound = false,
+    isMapped = false,
+    jsonParsed;
+
+  switch (path) {
+    case CURRENCY_ONE:
+      jsonParsed = find(json, {
+        criterion: user[portfolio].account.asset,
+        key: 'asset_id',
+        list: 'data',
+      });
+      break;
+    default:
+      isFound = false;
+  }
+  switch (path) {
+    case CURRENCY_ALL:
+      jsonParsed = map(json, {
+        key: ['asset_id', 'code', 'name'],
+        list: 'data',
+      });
+      break;
+    default:
+      isMapped = false;
+  }
+  if (isFiltered) parsed.push('items filtered');
+  if (isFound) parsed.push('found one item');
+  if (isMapped) parsed.push('items mapped');
+  console.info(
+    `Parsed endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
+  );
+
+  return { jsonParsed: jsonParsed ?? json };
+};
+
+export default coinbaseParse;

@@ -1,25 +1,29 @@
 /**
  * Handle Bybit API network all response aggregation.
  *
- * @module response/bybit/network/all
+ * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @module response/bybit/currency/network-all
  */
 
+import { fileNewest } from '#lib/file_system.mjs';
+import { obtainName } from '#lib/utility.mjs';
 import aggregate from '../aggregate.mjs';
-import { fileNameNewest } from '../../../lib/file_system.mjs';
-import { obtainName } from '../../../lib/utility.mjs';
 
 /**
- * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
+ * @returns {RSnapshot} Aggregated file data written in the collection directory.
  */
 const currencyNetworkAll = () => {
-  const { config } = global.apiTools,
+  const { config } = global.apiTools.bybit,
     {
+      PATH,
       PATH: { CURRENCY_NETWORK_ALL },
     } = config,
-    dir = obtainName(CURRENCY_NETWORK_ALL, config.PATH).toLowerCase(),
-    file = fileNameNewest('response/bybit/snapshot/' + dir);
+    directory = obtainName(CURRENCY_NETWORK_ALL, PATH).toLowerCase(),
+    file = fileNewest('response/bybit/snapshot/' + directory),
+    fileAggregated = aggregate(directory, file.name);
 
-  aggregate(CURRENCY_NETWORK_ALL, file.name);
+  return fileAggregated;
 };
 
 export default currencyNetworkAll;
