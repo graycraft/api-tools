@@ -66,58 +66,58 @@ const requestCoinbase = async () => {
   if (handler) {
     switch (handler) {
       case 'addressAll':
-        return await addressAll(...params);
+        return await addressAll.apply(null, params);
       case 'addressNew':
-        return await addressNew(...params);
+        return await addressNew.apply(null, params);
       case 'address':
       case 'addressOne':
-        return await addressOne(...params);
+        return await addressOne.apply(null, params);
       case 'addressTransactions':
       case 'addressTxs':
-        return await addressTransactions(...params);
+        return await addressTransactions.apply(null, params);
       case 'currencyAll':
-        return await currencyAll(...params);
+        return await currencyAll.apply(null, params);
       case 'currency':
       case 'currencyOne':
-        return await currencyOne(...params);
+        return await currencyOne.apply(null, params);
       case 'marketAll':
-        return await marketAll(...params);
+        return await marketAll.apply(null, params);
       case 'market':
       case 'marketOne':
-        return await marketOne(...params);
+        return await marketOne.apply(null, params);
       case 'marketTickers':
-        return await marketTickers(...params);
+        return await marketTickers.apply(null, params);
       case 'orderAll':
-        return await orderAll(...params);
+        return await orderAll.apply(null, params);
       case 'orderBook':
-        return await orderBook(...params);
+        return await orderBook.apply(null, params);
       case 'orderCancel':
-        return await orderCancel(...params);
+        return await orderCancel.apply(null, params);
       case 'orderLimit':
       case 'orderLimitBuy':
-        return await orderLimitBuy(...params);
+        return await orderLimitBuy.apply(null, params);
       case 'orderLimitSell':
-        return await orderLimitSell(...params);
+        return await orderLimitSell.apply(null, params);
       case 'orderMarket':
       case 'orderMarketBuy':
-        return await orderMarketBuy(...params);
+        return await orderMarketBuy.apply(null, params);
       case 'orderMarketSell':
-        return await orderMarketSell(...params);
+        return await orderMarketSell.apply(null, params);
       case 'order':
       case 'orderOne':
-        return await orderOne(...params);
+        return await orderOne.apply(null, params);
       case 'transactionAll':
-        return await transactionAll(...params);
+        return await transactionAll.apply(null, params);
       case 'userAccountAll':
-        return await userAccountAll(...params);
+        return await userAccountAll.apply(null, params);
       case 'userAccount':
       case 'userAccountOne':
-        return await userAccountOne(...params);
+        return await userAccountOne.apply(null, params);
       case 'userPortfolioAll':
-        return await userPortfolioAll(...params);
+        return await userPortfolioAll.apply(null, params);
       case 'userPortfolio':
       case 'userPortfolioOne':
-        return await userPortfolioOne(...params);
+        return await userPortfolioOne.apply(null, params);
       default:
         throw new Error(requestCoinbase.name + ': ' + optional(handler));
     }

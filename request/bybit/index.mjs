@@ -99,97 +99,97 @@ const requestBybit = async () => {
       case 'account':
       case 'accountInfo':
       case 'accountInformation':
-        return await accountInformation(...params);
+        return await accountInformation.apply(null, params);
       case 'accountWallets':
-        return accountWallets(...params);
+        return accountWallets.apply(null, params);
       case 'balanceAll':
-        return await balanceAll(...params);
+        return await balanceAll.apply(null, params);
       case 'balanceInfo':
       case 'balanceInformation':
-        return await balanceInformation(...params);
+        return await balanceInformation.apply(null, params);
       case 'balance':
       case 'balanceOne':
-        return await balanceOne(...params);
+        return await balanceOne.apply(null, params);
       case 'currencyAll':
-        return await currencyAll(...params);
+        return await currencyAll.apply(null, params);
       case 'currencyNetworkAll':
-        return await currencyNetworkAll(...params);
+        return await currencyNetworkAll.apply(null, params);
       case 'currencyNetwork':
       case 'currencyNetworkOne':
-        return await currencyNetworkOne(...params);
+        return await currencyNetworkOne.apply(null, params);
       case 'currency':
       case 'currencyOne':
-        return await currencyOne(...params);
+        return await currencyOne.apply(null, params);
       case 'depositAll':
-        return await depositAll(...params);
+        return await depositAll.apply(null, params);
       case 'depositNew':
       case 'depositNewMaster':
-        return await depositNewMaster(...params);
+        return await depositNewMaster.apply(null, params);
       case 'depositNewSub':
-        return await depositNewSub(...params);
+        return await depositNewSub.apply(null, params);
       case 'deposit':
       case 'depositOne':
-        return await depositOne(...params);
+        return await depositOne.apply(null, params);
       case 'key':
       case 'keyInfo':
       case 'keyInformation':
-        return await keyInformation(...params);
+        return await keyInformation.apply(null, params);
       case 'marketHistory':
-        return await marketHistory(...params);
+        return await marketHistory.apply(null, params);
       case 'market':
       case 'marketInfo':
       case 'marketInformation':
-        return await marketInformation(...params);
+        return await marketInformation.apply(null, params);
       case 'marketTickers':
-        return await marketTickers(...params);
+        return await marketTickers.apply(null, params);
       case 'orderAll':
-        return await orderAll(...params);
+        return await orderAll.apply(null, params);
       case 'orderBook':
-        return await orderBook(...params);
+        return await orderBook.apply(null, params);
       case 'orderCancelAll':
-        return await orderCancelAll(...params);
+        return await orderCancelAll.apply(null, params);
       case 'orderCancel':
       case 'orderCancelOne':
-        return await orderCancelOne(...params);
+        return await orderCancelOne.apply(null, params);
       case 'orderHistoryAll':
-        return await orderHistoryAll(...params);
+        return await orderHistoryAll.apply(null, params);
       case 'orderHistory':
       case 'orderHistoryOne':
-        return await orderHistoryOne(...params);
+        return await orderHistoryOne.apply(null, params);
       case 'order':
       case 'orderOne':
-        return await orderOne(...params);
+        return await orderOne.apply(null, params);
       case 'orderLimit':
       case 'orderLimitBuy':
-        return await orderLimitBuy(...params);
+        return await orderLimitBuy.apply(null, params);
       case 'orderLimitSell':
-        return await orderLimitSell(...params);
+        return await orderLimitSell.apply(null, params);
       case 'orderMarket':
       case 'orderMarketBuy':
-        return await orderMarketBuy(...params);
+        return await orderMarketBuy.apply(null, params);
       case 'orderMarketSell':
-        return orderMarketSell(...params);
+        return orderMarketSell.apply(null, params);
       case 'tradeRates':
-        return await tradeRates(...params);
+        return await tradeRates.apply(null, params);
       case 'tradeHistoryAll':
-        return tradeHistoryAll(...params);
+        return tradeHistoryAll.apply(null, params);
       case 'tradeHistory':
       case 'tradeHistoryOne':
-        return await tradeHistoryOne(...params);
+        return await tradeHistoryOne.apply(null, params);
       case 'transferAll':
-        return await transferAll(...params);
+        return await transferAll.apply(null, params);
       case 'transfer':
       case 'transferOne':
-        return await transferOne(...params);
+        return await transferOne.apply(null, params);
       case 'transferInternal':
-        return await transferInternal(...params);
+        return await transferInternal.apply(null, params);
       case 'withdrawAll':
-        return await withdrawAll(...params);
+        return await withdrawAll.apply(null, params);
       case 'withdraw':
       case 'withdrawOne':
-        return await withdrawOne(...params);
+        return await withdrawOne.apply(null, params);
       case 'withdrawNew':
-        return await withdrawNew(...params);
+        return await withdrawNew.apply(null, params);
       default:
         throw new Error(requestBybit.name + ': ' + optional(handler));
     }

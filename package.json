@@ -1,6 +1,6 @@
 {
   "name": "api-tools",
-  "version": "0.2.2-alpha",
+  "version": "0.2.3-alpha",
   "description": "Tools to work with a REST API and WebSockets.",
   "main": "request.js",
   "directories": {},
@@ -24,7 +24,7 @@
     "validate",
     "test"
   ],
-  "author": "Definite Prototype <graycraft@pm.me> (graycraft@github)",
+  "author": "Defined Prototype <graycraft@pm.me> (graycraft@github)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/graycraft/api-tools/issues"
