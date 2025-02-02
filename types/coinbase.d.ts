@@ -37,6 +37,22 @@ interface Coinbase {
           asset: string;
           uuid: string;
         };
+        travel_rule_data: {
+          beneficiary_address: {
+            address1: string;
+            address2: string;
+            address3: string;
+            city: string;
+            country: string;
+            state: string;
+            postal_code: string;
+          };
+          beneficiary_financial_institution: string;
+          beneficiary_name: string;
+          beneficiary_wallet_type: string;
+          is_self: string;
+          transfer_purpose: string;
+        };
         uuid: string;
       };
     } & { portfolio: portfolio };
