@@ -1,14 +1,23 @@
 {
   "aggregate": ["CURRENCY_ALL"],
+  "currency": {
+    "base": "ETH",
+    "network": "ethereum",
+    "quote": "USDC"
+  },
   "debug": false,
   "enabled": ["aggregate", "parse", "snapshot", "verbose"],
-  "parse": ["CURRENCY_ALL", "CURRENCY_ONE"],
+  "parse": ["CURRENCY_ALL", "CURRENCY_ONE", "WITHDRAW_ALL"],
   "snapshot": [
-    "ADDRESS",
+    "ADDRESS_ALL",
+    "ADDRESS_NEW",
     "ADDRESS_ONE",
     "ADDRESS_TRANSACTIONS",
     "CURRENCY_ALL",
     "CURRENCY_ONE",
+    "DEPOSIT_CRYPTO_ALL",
+    "DEPOSIT_CRYPTO_ONE",
+    "DEPOSIT_FIAT_ALL",
     "MARKET_ALL",
     "MARKET_ONE",
     "MARKET_TICKERS",
@@ -17,12 +26,15 @@
     "ORDER_CANCEL",
     "ORDER_ONE",
     "ORDER_PLACE",
+    "PRODUCT_CANDLES",
     "TRANSACTION_ALL",
     "TRANSACTION_ONE",
     "USER_ACCOUNT_ALL",
     "USER_ACCOUNT_ONE",
     "USER_PORTFOLIO_ALL",
-    "USER_PORTFOLIO_ONE"
+    "USER_PORTFOLIO_ONE",
+    "WITHDRAW_ALL",
+    "WITHDRAW_NEW"
   ],
   "verbose": ["ORDER_PLACE", "WITHDRAW_NEW"]
 }
