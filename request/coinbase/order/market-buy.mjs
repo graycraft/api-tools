@@ -23,7 +23,7 @@ import validate, { pair } from '../validate.mjs';
  *   sor_limit_ioc?, stop_direction?, stop_limit_stop_limit_gtc?,
  *   stop_limit_stop_limit_gtd?, stop_price?, stop_trigger_price?,
  *   trigger_bracket_gtc?, trigger_bracket_gtd?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<OrderMarketBuy>} JSON data from response.
  */
 const orderMarketBuy = async (

@@ -13,7 +13,7 @@ import validate, { pair } from '../validate.mjs';
 /**
  * @param {string} product_id Trading pair (e.g. "BTC-USD").
  * @param {string} [limit] Number of trades to be returned. Not required, despite what is stated in documentation.
- * @param {{ end?, start? }} options
+ * @param {{ end?, start? }} options Optional parameters.
  * @returns {Promise<MarketTickers>} JSON data from response.
  */
 const marketTickers = async (product_id, limit, { end, start } = {}) => {
