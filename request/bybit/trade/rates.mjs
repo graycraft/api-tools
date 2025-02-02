@@ -12,7 +12,7 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} symbol Symbol name.
- * @param {{ baseCoin?, category? }} options
+ * @param {{ baseCoin?, category? }} options Optional parameters.
  * @returns {Promise<TradeRates>} JSON data from response.
  */
 const tradeRates = async (symbol, { baseCoin, category } = {}) => {

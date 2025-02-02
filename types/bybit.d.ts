@@ -22,7 +22,7 @@
  * @global
  */
 
-import { Configuration, Preferences, Settings, Status } from './api.d.ts';
+import type { Configuration, Preferences, Settings, Status } from './api.d.ts';
 import { Dict, DictLike } from './common.d.js';
 
 export type accountId = string;
@@ -188,7 +188,7 @@ interface Bybit {
   config: Configuration & {
     ACCOUNT: {
       CATEGORY: category[];
-      WALLET: accountWallet[];
+      WALLET: accountType[];
     };
     OPTION: optionType[];
     ORDER: {
@@ -223,11 +223,11 @@ interface Bybit {
   };
   settings: Settings & {
     account: {
-      [key in accountWallet]: accountId;
+      [key in accountType]: accountId;
     } & {
       category: category;
       id: { [key in accountId]: { main: boolean } };
-      wallet: accountWallet;
+      wallet: accountType;
     };
     address: {
       deposit: string;

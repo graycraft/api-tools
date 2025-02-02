@@ -33,7 +33,7 @@ const depositNewSub = async (subMemberId, coin, chainType) => {
       defaults: {
         chainType: network,
         coin: base,
-        subMemberId: Object.entries(account).find((entry) => !entry[1].main)[0],
+        subMemberId: account[account.wallet],
       },
       optional: { chainType, coin, subMemberId },
     }),

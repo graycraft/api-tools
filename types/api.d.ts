@@ -34,6 +34,7 @@ export type Preferences = {
   aggregate: string[];
   debug: true;
   enabled: ('aggregate' | 'parse' | 'snapshot' | 'verbose')[];
+  exit: boolean;
   parse: string[];
   snapshot: string[];
 };

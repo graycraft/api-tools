@@ -16,7 +16,7 @@ import validate from '../validate.mjs';
  *   for spot product type default is 60, maximum 60;
  *   for other product types default is 500, maximum 1000
  * ).
- * @param {{ baseCoin?, category?, optionType? }} options
+ * @param {{ baseCoin?, category?, optionType? }} options Optional parameters.
  * @returns {Promise<MarketHistory>} JSON data from response.
  */
 const marketHistory = async (symbol, limit, { baseCoin, category, optionType } = {}) => {

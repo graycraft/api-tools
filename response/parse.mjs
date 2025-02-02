@@ -45,8 +45,8 @@ const responseParse = (response, endpoint, data, callback, prefs) => {
         const { jsonParsed } = callback(json, endpoint, data);
 
         return { jsonParsed, status, statusText };
-      } else console.info(`Parse: endpoint "${endpoint}" is not enabled is settings.`);
-    } else console.info(`Parse: not enabled is settings.`);
+      } else console.info(`Parse: endpoint "${endpoint}" is not enabled in preferences.`);
+    } else console.info(`Parse: not enabled in preferences.`);
   }
 
   return { jsonParsed: null, status, statusText };

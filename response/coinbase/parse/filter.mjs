@@ -9,7 +9,7 @@
 /**
  * @param {Response} json
  * @param {{
- *   criterion: string | ((item: Dict) => number),
+ *   criterion: string | ((item: Dict) => boolean),
  *   key?: string,
  *   list: string,
  * }} options
@@ -17,15 +17,13 @@
  */
 const filter = (json, { criterion, key, list }) => {
   if (criterion) {
-    const items = json.result[list].filter((item) =>
+    const items = json[list].filter((item) =>
       key ? item[key] === criterion : typeof criterion === 'function' && criterion(item),
     );
 
     json = {
       ...json,
-      result: {
-        [list]: [items, `... ${json.result[list].length - items.length} more items`],
-      },
+      [list]: [items, `... ${json[list].length - items.length} more items`],
     };
 
     return json;

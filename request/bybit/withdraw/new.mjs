@@ -25,9 +25,8 @@ import validate from '../validate.mjs';
  *   for `forceChain` 2 this field can be omitted
  * ).
  * @param {{
- *   accountType?, beneficiary?, beneficiaryName?, feeType?, forceChain?,
- *   requestId?, tag?, timestamp?, vaspEntityId?
- * }} options
+ *   accountType?, beneficiary?, beneficiaryName?, feeType?, forceChain?, requestId?, tag?, timestamp?, vaspEntityId?
+ * }} options Optional parameters.
  * @returns {Promise<WithdrawNew>} JSON data from response.
  */
 const withdrawNew = async (
