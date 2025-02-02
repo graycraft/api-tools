@@ -12,7 +12,9 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} txID Transaction identifier.
- * @param {{ coin?, cursor?, endTime?, limit?, startTime?, withdrawID?, withdrawType? }} options
+ * @param {{
+ *   coin?, cursor?, endTime?, limit?, startTime?, withdrawID?, withdrawType?
+ * }} options Optional parameters.
  * @returns {Promise<WithdrawOne>} JSON data from response.
  */
 const withdrawOne = async (

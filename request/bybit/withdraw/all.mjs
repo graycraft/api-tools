@@ -11,7 +11,9 @@ import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
- * @param {{ coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType? }} options
+ * @param {{
+ *   coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType?
+ * }} options Optional parameters.
  * @returns {Promise<WithdrawAll>} JSON data from response.
  */
 const withdrawAll = async ({

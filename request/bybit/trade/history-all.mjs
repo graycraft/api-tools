@@ -15,7 +15,9 @@ import validate from '../validate.mjs';
  * @param {side[0] | side[1]} [side] Not supported by the API, must be filtered while parsing.
  * @param {string} [symbol] Symbol name.
  * @param {string} [limit] Limit data per page (default is 50, maximum 100).
- * @param {{ baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime? }} options
+ * @param {{
+ *   baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime?
+ * }} options Optional parameters.
  * @returns {Promise<TradeHistoryAll>} JSON data from response.
  */
 const tradeHistoryAll = async (

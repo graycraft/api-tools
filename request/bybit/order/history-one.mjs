@@ -18,7 +18,7 @@ import validate from '../validate.mjs';
  * @param {{
  *   baseCoin?, category?, cursor?, endTime?, limit?,openOnly?, orderFilter?, orderLinkId?,
  *   orderStatus?, settleCoin?, startTime?, symbol?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<OrderHistoryOne>} JSON data from response.
  */
 const orderHistoryOne = async (

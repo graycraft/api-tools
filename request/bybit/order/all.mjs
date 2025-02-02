@@ -17,7 +17,7 @@ import validate from '../validate.mjs';
  * @param {string} limit Limit for data size per page (default is 20, maximum 50).
  * @param {{
  *   baseCoin?, category?, cursor?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<OrderAll>} JSON data from response.
  */
 const orderAll = async (

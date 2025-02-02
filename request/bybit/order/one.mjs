@@ -15,7 +15,7 @@ import validate from '../validate.mjs';
  * @param {string} orderId Order identifier.
  * @param {{
  *   baseCoin?, category?, cursor?, limit?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, side?, symbol?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<OrderOne>} JSON data from response.
  */
 const orderOne = async (

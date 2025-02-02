@@ -14,7 +14,7 @@ import validate from '../validate.mjs';
  * @param {string} accountType Account type.
  * @param {string} coin Currency name, multiple values supported, separated by commas.
  * @param {string} memberId UID, required with master API keys.
- * @param {{ withBonus? }} options
+ * @param {{ withBonus? }} options Optional parameters.
  * @returns {Promise<BalanceOne>} JSON data from response.
  */
 const balanceOne = async (accountType, coin, memberId, { withBonus } = {}) => {
