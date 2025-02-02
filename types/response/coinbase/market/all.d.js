@@ -1,7 +1,7 @@
 /**
- * @typedef {import("./one.d.js").default} MarketOne
+ * @typedef {import("./one.d.js").default} One
  * @typedef default
  * @type {{
- *   products: MarketOne["products"][number][];
+ *   products: One["products"][number][];
  * }}
  */

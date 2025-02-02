@@ -1,7 +1,7 @@
 /**
- * @typedef {import("./one.d.js").default} AddressOne
+ * @typedef {import("./one.d.js").default} One
  * @typedef default
  * @type {{
- *   data: AddressOne["data"][number][];
+ *   data: One["data"][number][];
  * }}
  */

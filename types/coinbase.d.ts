@@ -4,8 +4,7 @@
  * @global
  */
 
-import { Configuration, Preferences, Settings, Status } from './api.d.ts';
-import { Dict, DictLike } from './common.d.js';
+import type { Configuration, Preferences, Settings, Status } from './api.d.ts';
 
 export type portfolio = 'DEFAULT';
 export type productType = 'FUTURE' | 'SPOT' | 'UNKNOWN_PRODUCT_TYPE';
@@ -17,6 +16,10 @@ interface Coinbase {
   name: string;
   prefs: Preferences & any;
   settings: Settings & {
+    address: {
+      deposit: string;
+      withdraw: string;
+    };
     asset: {
       [key in 'base' | 'quote']: {
         code: string;

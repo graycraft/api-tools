@@ -1,7 +1,7 @@
 /**
- * @typedef {import("./one.d.js").default} TransactionOne
+ * @typedef {import("./one.d.js").default} One
  * @typedef default
  * @type {{
- *   data: TransactionOne["data"][number][];
+ *   data: One["data"][number][];
  * }}
  */

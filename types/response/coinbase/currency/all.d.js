@@ -1,7 +1,7 @@
 /**
- * @typedef {import("./one.d.js").default} CurrencyOne
+ * @typedef {import("./one.d.js").default} One
  * @typedef default
  * @type {{
- *   data: CurrencyOne["data"][number][];
+ *   data: One["data"][number][];
  * }}
  */
