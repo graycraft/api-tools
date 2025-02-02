@@ -19,21 +19,21 @@ import validate from '../validate.mjs';
 const addressNew = async (name, account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,
     {
-      PATH: { ADDRESS },
+      PATH: { ADDRESS_NEW },
     } = config,
     {
       authentication: { security },
       user,
       user: { portfolio },
     } = settings,
-    data = validate(ADDRESS, {
+    data = validate(ADDRESS_NEW, {
       defaults: {
         account_uuid: user[portfolio].account.uuid,
       },
       optional: { account_uuid },
       required: { name },
     }),
-    json = await post(ADDRESS, schema, security, data);
+    json = await post(ADDRESS_NEW, schema, security, data);
 
   return json;
 };
