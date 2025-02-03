@@ -15,7 +15,7 @@ import validate from '../validate.mjs';
  * Parameter `limit` is not available for this endpoint.
  * For category `option`, parameters `baseCoin` and `symbol` are required.
  * @param {string} symbol Symbol name.
- * @param {{ baseCoin?, category?, expDate? }} options
+ * @param {{ baseCoin?, category?, expDate? }} options Optional parameters.
  * @returns {Promise<MarketTickers>} JSON data from response.
  */
 const marketTickers = async (symbol, { baseCoin, category, expDate } = {}) => {

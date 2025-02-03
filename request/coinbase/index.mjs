@@ -21,6 +21,9 @@ import addressNew from '../coinbase/address/new.mjs';
 import addressTransactions from '../coinbase/address/transactions.mjs';
 import currencyAll from '../coinbase/currency/all.mjs';
 import currencyOne from '../coinbase/currency/one.mjs';
+import depositCryptoAll from './deposit/crypto-all.mjs';
+import depositCryptoOne from './deposit/crypto-one.mjs';
+import depositFiatAll from './deposit/fiat-all.mjs';
 import marketAll from '../coinbase/market/all.mjs';
 import marketOne from '../coinbase/market/one.mjs';
 import marketTickers from '../coinbase/market/tickers.mjs';
@@ -32,12 +35,16 @@ import orderLimitSell from '../coinbase/order/limit-sell.mjs';
 import orderMarketBuy from '../coinbase/order/market-buy.mjs';
 import orderMarketSell from '../coinbase/order/market-sell.mjs';
 import orderOne from '../coinbase/order/one.mjs';
+import productCandles from '../coinbase/product/candles.mjs';
 import transactionAll from '../coinbase/transaction/all.mjs';
 import transactionOne from '../coinbase/transaction/one.mjs';
 import userAccountAll from '../coinbase/user/account-all.mjs';
 import userAccountOne from '../coinbase/user/account-one.mjs';
 import userPortfolioAll from '../coinbase/user/portfolio-all.mjs';
 import userPortfolioOne from '../coinbase/user/portfolio-one.mjs';
+import withdrawAll from '../coinbase/withdraw/all.mjs';
+import withdrawNew from '../coinbase/withdraw/new.mjs';
+//import withdrawOne from '../coinbase/withdraw/one.mjs';
 
 const {
     user,
@@ -80,6 +87,12 @@ const requestCoinbase = async () => {
       case 'currency':
       case 'currencyOne':
         return await currencyOne.apply(null, params);
+      case 'depositCryptoAll':
+        return await depositCryptoAll.apply(null, params);
+      case 'depositCryptoOne':
+        return await depositCryptoOne.apply(null, params);
+      case 'depositFiatAll':
+        return await depositFiatAll.apply(null, params);
       case 'marketAll':
         return await marketAll.apply(null, params);
       case 'market':
@@ -93,9 +106,12 @@ const requestCoinbase = async () => {
         return await orderBook.apply(null, params);
       case 'orderCancel':
         return await orderCancel.apply(null, params);
+      case 'limit':
+      case 'limitBuy':
       case 'orderLimit':
       case 'orderLimitBuy':
         return await orderLimitBuy.apply(null, params);
+      case 'limitSell':
       case 'orderLimitSell':
         return await orderLimitSell.apply(null, params);
       case 'orderMarket':
@@ -106,6 +122,8 @@ const requestCoinbase = async () => {
       case 'order':
       case 'orderOne':
         return await orderOne.apply(null, params);
+      case 'productCandles':
+        return await productCandles.apply(null, params);
       case 'transactionAll':
         return await transactionAll.apply(null, params);
       case 'userAccountAll':
@@ -118,6 +136,13 @@ const requestCoinbase = async () => {
       case 'userPortfolio':
       case 'userPortfolioOne':
         return await userPortfolioOne.apply(null, params);
+      case 'withdrawAll':
+        return await withdrawAll.apply(null, params);
+      /*case 'withdraw':
+      case 'withdrawOne':
+        return await withdrawOne.apply(null, params);*/
+      case 'withdrawNew':
+        return await withdrawNew.apply(null, params);
       default:
         throw new Error(requestCoinbase.name + ': ' + optional(handler));
     }
@@ -127,6 +152,8 @@ const requestCoinbase = async () => {
         return await addressFlow(account);
       case 'currency':
         return await currencyFlow();
+      case 'deposit':
+        return await depositFlow(account);
       case 'market':
         return await marketFlow();
       case 'order':
@@ -135,6 +162,8 @@ const requestCoinbase = async () => {
         return await transactionFlow(account);
       case 'user':
         return await userFlow();
+      case 'withdraw':
+        return await withdrawFlow(account);
       default:
         return await Promise.resolve()
           .then(() => addressFlow(account))
@@ -167,6 +196,15 @@ const currencyFlow = () =>
   Promise.resolve()
     .then((response) => currencyAll())
     .then((response) => currencyOne(response.data[0].asset_id))
+    .catch(console.error.bind(console));
+/**
+ * @returns {Promise<Response>}
+ */
+const depositFlow = (account) =>
+  Promise.resolve()
+    .then((response) => depositCryptoAll(account.uuid))
+    .then((response) => depositCryptoOne(response.data[0].id))
+    .then((response) => depositFiatAll(account.uuid))
     .catch(console.error.bind(console));
 
 /**
@@ -213,6 +251,16 @@ const userFlow = () =>
     .then((response) => userAccountOne(response.accounts[0].uuid))
     .then((response) => userPortfolioAll('DEFAULT'))
     .then((response) => userPortfolioOne(response.portfolios[0].uuid))
+    .catch(console.error.bind(console));
+
+/**
+ * @returns {Promise<Response>}
+ */
+const withdrawFlow = (account) =>
+  Promise.resolve()
+    .then((response) => withdrawAll(account.uuid))
+    //.then((response) => withdrawOne(response.data[0].id))
+    //.then((response) => withdrawNew())
     .catch(console.error.bind(console));
 
 export default requestCoinbase;

@@ -6,6 +6,7 @@
  *   aggregate?: boolean;
  *   authentication?: boolean;
  *   debug?: boolean;
+ *   exit?: string;
  *   flow?: string;
  *   headers?: boolean;
  *   snapshot?: boolean;
@@ -18,6 +19,7 @@ const OPTIONS = {
   aggr: 'aggregate',
   auth: 'authentication',
   debu: 'debug',
+  exit: 'exit',
   flow: 'flow',
   head: 'headers',
   snap: 'snapshot',

@@ -52,10 +52,18 @@
       "Invalid product_id",
       "assetFilters parameter not enabled for OPEN orders",
       "cannot pass OPEN, QUEUED or CANCEL_QUEUED status with SortBy param",
+      "granularity argument is invalid ",
+      "invalid time range",
       "start and end argument is invalid - number of candles requested should be less than 350 ",
+      "start argument is invalid - invalid unix timestamp ",
       "valid product_id is required"
     ],
-    "invalid_request": "Invalid `page_size` parameter for pagination (must be under 300)",
+    "invalid_request": [
+      "Incomplete travel rules information provided. Please refer to https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule for more info on travel rule requirements. Param: [BENEFICIARY_WALLET_TYPE, BENEFICIARY_NAME, BENEFICIARY_COUNTRY, IS_SELF, BENEFICIARY_FINANCIAL_INSTITUTION]",
+      "Invalid `page_size` parameter for pagination (must be under 300)",
+      "Invalid network for currency.",
+      "You can't send a payment from an account to itself."
+    ],
     "unknown": "parsing field \"product_type\": \"[object Object]\" is not a valid value"
   },
   "CREATED": {
@@ -65,7 +73,8 @@
     "PERMISSION_DENIED": "User does not have access to portfolio"
   },
   "INTERNAL_SERVER_ERROR": {
-    "INTERNAL": "The service is unavailable"
+    "INTERNAL": "The service is unavailable",
+    "transfer not found": "transfer not found"
   },
   "NOT_FOUND": {
     "NOT_FOUND": [
@@ -82,7 +91,8 @@
     ]
   },
   "OK": {
-    "0": "Successful."
+    "0": "Successful.",
+    "UNSUPPORTED_ORDER_CONFIGURATION": "source is not enabled for trading"
   },
   "UNAUTHORIZED": {}
 }

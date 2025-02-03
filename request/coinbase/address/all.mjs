@@ -16,24 +16,24 @@ import validate from '../validate.mjs';
  * @param {string} [account_uuid] Account UUID.
  * @returns {Promise<AddressAll>} JSON data from response.
  */
-const addressAll = async (limit = '1', account_uuid) => {
+const addressAll = async (limit = '3', account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,
     {
-      PATH: { ADDRESS },
+      PATH: { ADDRESS_ALL },
     } = config,
     {
       authentication: { security },
       user,
       user: { portfolio },
     } = settings,
-    data = validate(ADDRESS, {
+    data = validate(ADDRESS_ALL, {
       defaults: {
         account_uuid: user[portfolio].account.uuid,
       },
       optional: { account_uuid },
       required: { limit },
     }),
-    json = await get(ADDRESS, schema, security, data);
+    json = await get(ADDRESS_ALL, schema, security, data);
 
   return json;
 };

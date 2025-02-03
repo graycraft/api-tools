@@ -15,7 +15,7 @@ import validate, { pairs } from '../validate.mjs';
  * @param {{
  *   contract_expiry_type?, expiring_contract_status?, get_all_products?,
  *   offset?, product_ids?, product_type?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<MarketAll>} JSON data from response.
  */
 const marketAll = async (

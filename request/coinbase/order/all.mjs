@@ -19,7 +19,7 @@ import validate from '../validate.mjs';
  *   asset_filters?, contract_expiry_type?, cursor?, end_date?, order_ids?,
  *   order_placement_source?, order_side?, order_status?, order_types?, product_ids?,
  *   product_type?, retail_portfolio_id?, sort_by?, start_date?, time_in_forces?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<OrderAll>} JSON data from response.
  */
 const orderAll = async (

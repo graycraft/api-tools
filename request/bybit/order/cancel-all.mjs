@@ -12,7 +12,9 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} [symbol] Symbol name.
- * @param {{ baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType? }} options
+ * @param {{
+ *   baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
+ * }} options Optional parameters.
  * @returns {Promise<OrderCancelAll>} JSON data from response.
  */
 const orderCancelAll = async (

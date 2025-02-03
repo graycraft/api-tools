@@ -18,7 +18,7 @@ import validate from '../validate.mjs';
  *   category?, closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
  *   reduceOnly?, slLimitPrice?, slOrderType?, slTriggerBy?, smpType?, stopLoss?, takeProfit?, timeInForce?,
  *   tpLimitPrice?, tpOrderType?, tpTriggerBy?, tpslMode?, triggerDirection?, triggerPrice?, triggerBy?
- * }} options
+ * }} options Optional parameters.
  * @returns {Promise<OrderMarketSell>} JSON data from response.
  */
 const orderMarketSell = async (

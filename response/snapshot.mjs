@@ -39,8 +39,8 @@ const responseSnapshot = (api, output, endpoint) => {
         const { fileData, fileName } = snapshotJson(api, output, endpoint);
 
         return { fileData, fileName };
-      } else console.info(`Snapshot: endpoint "${endpoint}" is not enabled is settings.`);
-    } else console.info(`Snapshot: not enabled is settings.`);
+      } else console.info(`Snapshot: endpoint "${endpoint}" is not enabled in preferences.`);
+    } else console.info(`Snapshot: not enabled in preferences.`);
   }
 };
 

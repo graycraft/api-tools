@@ -17,7 +17,7 @@ import validate from '../validate.mjs';
  * the result will have USDT perpetual, USDC contract and Inverse contract symbols.
  * `baseCoin` is applicable to `linear`, `inverse` and `option` category only.
  * @param {category} category Product type.
- * @param {{ baseCoin?, cursor?, limit?, status?, symbol? }} options
+ * @param {{ baseCoin?, cursor?, limit?, status?, symbol? }} options Optional parameters.
  * @returns {Promise<MarketInformation>} JSON data from response.
  */
 const marketInformation = async (category, { baseCoin, cursor, limit, status, symbol } = {}) => {

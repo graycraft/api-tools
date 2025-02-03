@@ -1,4 +1,8 @@
 {
+  "address": {
+    "deposit": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "withdraw": "0x0000000000000000000000000000000000000000"
+  },
   "asset": {
     "base": {
       "code": "AAA",
@@ -28,6 +32,22 @@
         "address": ["00000000-0000-0000-0000-000000000000"],
         "asset": "00000000-0000-0000-0000-000000000000",
         "uuid": "00000000-0000-0000-0000-000000000000"
+      },
+      "travel_rule_data": {
+        "beneficiary_address": {
+          "address1": "",
+          "address2": "",
+          "address3": "",
+          "city": "",
+          "country": "",
+          "state": "",
+          "postal_code": ""
+        },
+        "beneficiary_financial_institution": "",
+        "beneficiary_name": "",
+        "beneficiary_wallet_type": "",
+        "is_self": "",
+        "transfer_purpose": ""
       },
       "uuid": "00000000-0000-0000-0000-000000000000"
     },

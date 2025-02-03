@@ -18,7 +18,7 @@ import config from '#config/coinbase.json' with { type: 'json' };
 import settings from '#settings/coinbase.json' with { type: 'json' };
 
 import responseParse from '../parse.mjs';
-// import filter from './parse/filter.mjs';
+import filter from './parse/filter.mjs';
 import find from './parse/find.mjs';
 import map from './parse/map.mjs';
 
@@ -57,7 +57,7 @@ const coinbaseParse = (response, endpoint, data) => {
 const parseJson = (json, endpoint, data) => {
   const {
       PATH,
-      PATH: { CURRENCY_ALL, CURRENCY_ONE },
+      PATH: { CURRENCY_ALL, CURRENCY_ONE, WITHDRAW_ALL },
     } = config,
     {
       user,
@@ -91,6 +91,17 @@ const parseJson = (json, endpoint, data) => {
       break;
     default:
       isMapped = false;
+  }
+
+  switch (path) {
+    case WITHDRAW_ALL:
+      jsonParsed = filter(json, {
+        criterion: (item) => item.type === 'send',
+        list: 'data',
+      });
+      break;
+    default:
+      isFiltered = false;
   }
   if (isFiltered) parsed.push('items filtered');
   if (isFound) parsed.push('found one item');

@@ -14,7 +14,7 @@ import validate from '../validate.mjs';
  * Documentation do not describe `txID`, but another endpoint `WITHDRAW_ONE` also has this parameter.
  * Difference between `endTime` and `startTime` should be less than 30 days (30 days is default).
  * @param {string} coin Currency name.
- * @param {{ cursor?, endTime?, limit?, startTime? }} options
+ * @param {{ cursor?, endTime?, limit?, startTime? }} options Optional parameters.
  * @returns {Promise<DepositAll>} JSON data from response.
  */
 const depositAll = async (coin, { cursor, endTime, limit, startTime /* , txID */ } = {}) => {
