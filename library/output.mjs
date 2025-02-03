@@ -11,6 +11,7 @@
  * }} Options
  * @typedef {{
  *   enabled: string[];
+ *   exit: boolean;
  *   verbose: string[];
  * }} Preferences
  * @module library/output
@@ -62,7 +63,7 @@ export const dirSnapshot = (endpoint, options, prefs, output) => {
   if (typeof verbose === 'boolean') {
     if (verbose) {
       dirObject('Snapshot', output);
-      if (flow === 'exit') global.process.exit();
+      if (prefs.exit && flow === 'exit') global.process.exit();
 
       return true;
     }

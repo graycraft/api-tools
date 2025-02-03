@@ -7,6 +7,7 @@
   },
   "debug": false,
   "enabled": ["aggregate", "parse", "snapshot", "verbose"],
+  "exit": false,
   "parse": ["CURRENCY_ALL", "CURRENCY_ONE", "WITHDRAW_ALL"],
   "snapshot": [
     "ADDRESS_ALL",
