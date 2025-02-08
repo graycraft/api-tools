@@ -99,9 +99,13 @@ export const NUMBER = {
 };
 
 export const REGEXP = {
+  DATE_ISO:
+    /^(19[7-9]\d|20[0-2]\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])T([01][0-9]|2[0-3]):([0-5]\d):([0-5]\d).\d{3}Z$/,
+  EVM_ADDRESS: /^0x[\dA-Fa-f]{40}$/,
   /** @todo Add regular expression for transaction identifiers of other currencies. */
   EVM_TXID: /^0x[\dA-Fa-f]{64}$/,
   INTEGER: /^\d{1,21}$/,
+  SOL_ADDRESS: /^[\dA-Za-z]{44}$/,
   /** @see https://tools.ietf.org/html/rfc3986#appendix-B */
   URI: /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/,
   UUID: /^[\dA-Fa-f]{8}\-([\dA-Fa-f]{4}\-){3}[\dA-Fa-f]{12}$/,
