@@ -19,7 +19,8 @@ const responseValidate = (json, schema) => {
     validate = ajv.compile(schema),
     isValid = validate(json);
 
-  if (!isValid) dirObject('AJV', validate.errors);
+  if (isValid) console.info('AJV:', 'passed.');
+  else dirObject('AJV', validate.errors);
 
   return isValid;
 };
