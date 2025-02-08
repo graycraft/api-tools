@@ -49,6 +49,7 @@
   },
   "type": "module",
   "imports": {
+    "#cltn/*": "./collection/*",
     "#config/*": "./configuration/*",
     "#lib/*": "./library/*",
     "#prefs/*": "./preferences/*",

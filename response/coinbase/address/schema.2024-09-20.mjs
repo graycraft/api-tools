@@ -6,7 +6,7 @@
  * @module response/coinbase/address/schema
  */
 
-import collection from '../../../collection/coinbase/address_all.json' with { type: 'json' };
+import collection from '#cltn/coinbase/address_all.json' with { type: 'json' };
 import config from '#config/coinbase.json' with { type: 'json' };
 import { composePattern } from '#lib/regexp.mjs';
 
