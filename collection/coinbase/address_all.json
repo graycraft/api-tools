@@ -1,0 +1,18 @@
+[
+  {
+    "currency": "BTC",
+    "network": "bitcoin"
+  },
+  {
+    "currency": "ETH",
+    "network": "ethereum"
+  },
+  {
+    "currency": "SOL",
+    "network": "solana"
+  },
+  {
+    "currency": "USDC",
+    "network": "ethereum"
+  }
+]

@@ -58,6 +58,7 @@
       "start argument is invalid - invalid unix timestamp ",
       "valid product_id is required"
     ],
+    "internal_server_error": "An error has occurred. If this problem persists, please visit https://support.coinbase.com for assistance.",
     "invalid_request": [
       "Incomplete travel rules information provided. Please refer to https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule for more info on travel rule requirements. Param: [BENEFICIARY_WALLET_TYPE, BENEFICIARY_NAME, BENEFICIARY_COUNTRY, IS_SELF, BENEFICIARY_FINANCIAL_INSTITUTION]",
       "Invalid `page_size` parameter for pagination (must be under 300)",
