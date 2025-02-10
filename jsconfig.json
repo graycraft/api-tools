@@ -7,7 +7,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "paths": {
-      "#cltn/*": ["./configuration/*"],
+      "#cllctn/*": ["./collection/*"],
       "#config/*": ["./configuration/*"],
       "#lib/*": ["./library/*"],
       "#prefs/*": ["./preferences/*"],
