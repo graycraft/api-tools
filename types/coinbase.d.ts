@@ -13,7 +13,7 @@ export type userPortfolio = 'CONSUMER' | 'DEFAULT' | 'INTX' | 'UNDEFINED';
 
 interface Coinbase {
   config: Configuration & any;
-  name: string;
+  name: 'coinbase';
   prefs: Preferences & any;
   settings: Settings & {
     address: {
