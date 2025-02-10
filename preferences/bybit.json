@@ -6,7 +6,7 @@
     "quote": "USDT"
   },
   "debug": false,
-  "enabled": ["aggregate", "parse", "snapshot", "verbose"],
+  "enabled": ["aggregate", "parse", "snapshot", "verbose", "validate"],
   "exit": false,
   "parse": [
     "BALANCE_ALL",
@@ -54,5 +54,6 @@
     "WITHDRAW_NEW",
     "WITHDRAW_ONE"
   ],
+  "validate": ["CURRENCY_ALL", "CURRENCY_NETWORK_ALL"],
   "verbose": ["ORDER_PLACE", "WITHDRAW_NEW"]
 }
