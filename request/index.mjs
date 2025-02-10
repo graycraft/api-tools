@@ -16,9 +16,8 @@
 
 import { fetchData } from '#lib/fetch.mjs';
 import { obtainName } from '#lib/utility.mjs';
-
-import analyze from '../response/analyze.mjs';
-import validate from '../response/validate.mjs';
+import analyze from '#res/analyze.mjs';
+import validate from '#res/validate.mjs';
 
 /**
  * Analyze, validate, parse and snapshot response data.
@@ -40,7 +39,7 @@ const request = async (method, api, url, template, headers, schema, callback, da
     { json } = response,
     { jsonParsed, statusText } = responseParsed,
     { isKnown, isSaved, isSuccessful } = analyze(api, responseParsed),
-    isValid = validate(response.json, schema);
+    isValid = validate(response.json, schema, api.name);
 
   global.apiTools.output[statusText] = {
     headers: response.headers,
