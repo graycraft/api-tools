@@ -6,10 +6,12 @@
  *   aggregate?: boolean;
  *   authentication?: boolean;
  *   debug?: boolean;
- *   exit?: string;
+ *   exit?: boolean;
  *   flow?: string;
  *   headers?: boolean;
  *   snapshot?: boolean;
+ *   throw?: boolean;
+ *   validate?: boolean;
  *   verbose?: boolean;
  * }} Options
  * @module library/utility
@@ -23,6 +25,8 @@ const OPTIONS = {
   flow: 'flow',
   head: 'headers',
   snap: 'snapshot',
+  thro: 'throw',
+  vali: 'validate',
   verb: 'verbose',
 };
 
@@ -87,9 +91,12 @@ export const parseOptions = (argv) => {
           option.includes('--aggr') ||
           option.includes('--auth') ||
           option.includes('--debu') ||
+          option.includes('--exit') ||
           option.includes('--flow') ||
           option.includes('--head') ||
           option.includes('--snap') ||
+          option.includes('--thro') ||
+          option.includes('--vali') ||
           option.includes('--verb'),
       ),
     optionsExplicit = options
