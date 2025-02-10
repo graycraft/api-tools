@@ -99,8 +99,11 @@ export const NUMBER = {
 };
 
 export const REGEXP = {
-  DATE_ISO:
+  BTC_ADDRESS: /^(bc1|[13])[\dA-HJ-NP-Za-z]{25,59}$/,
+  DATE_ISO_MS:
     /^(19[7-9]\d|20[0-2]\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])T([01][0-9]|2[0-3]):([0-5]\d):([0-5]\d).\d{3}Z$/,
+  DATE_ISO:
+    /^(19[7-9]\d|20[0-2]\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])T([01][0-9]|2[0-3]):([0-5]\d):([0-5]\d)Z$/,
   EVM_ADDRESS: /^0x[\dA-Fa-f]{40}$/,
   /** @todo Add regular expression for transaction identifiers of other currencies. */
   EVM_TXID: /^0x[\dA-Fa-f]{64}$/,
