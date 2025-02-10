@@ -1,6 +1,6 @@
 {
   "name": "api-tools",
-  "version": "0.3.0-alpha",
+  "version": "0.3.1-alpha",
   "description": "Tools to work with a REST API and WebSockets.",
   "main": "request.js",
   "directories": {},
@@ -49,6 +49,7 @@
   },
   "type": "module",
   "imports": {
+    "#cllctn/*": "./collection/*",
     "#config/*": "./configuration/*",
     "#lib/*": "./library/*",
     "#prefs/*": "./preferences/*",
