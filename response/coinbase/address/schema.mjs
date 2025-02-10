@@ -6,21 +6,42 @@
  * @module response/coinbase/address/schema
  */
 
-import collection from '#cltn/coinbase/address_all.json' with { type: 'json' };
+import collection from '#cllctn/coinbase/address_all.json' with { type: 'json' };
 import config from '#config/coinbase.json' with { type: 'json' };
 import { composePattern } from '#lib/regexp.mjs';
 
 const address = {
     additionalProperties: false,
-    type: 'object',
-    properties: {
-      address: {
-        /** @todo Bitcoin, Solana. */
-        pattern: composePattern('EVM_ADDRESS'),
-        type: 'string',
+    allOf: [
+      {
+        if: { properties: { network: { const: 'bitcoin' } } },
+        then: {
+          properties: {
+            address: { pattern: composePattern('BTC_ADDRESS'), type: 'string' },
+          },
+        },
       },
+      {
+        if: { properties: { network: { const: 'ethereum' } } },
+        then: {
+          properties: {
+            address: { pattern: composePattern('EVM_ADDRESS'), type: 'string' },
+          },
+        },
+      },
+      {
+        if: { properties: { network: { const: 'solana' } } },
+        then: {
+          properties: {
+            address: { pattern: composePattern('SOL_ADDRESS'), type: 'string' },
+          },
+        },
+      },
+    ],
+    properties: {
+      address: {},
       created_at: {
-        pattern: composePattern('DATE_ISO'),
+        pattern: composePattern('DATE_ISO_MS'),
         type: 'string',
       },
       currency: {
@@ -51,7 +72,7 @@ const address = {
         type: 'string',
       },
       updated_at: {
-        pattern: composePattern('DATE_ISO'),
+        pattern: composePattern('DATE_ISO_MS'),
         type: 'string',
       },
     },
@@ -65,8 +86,10 @@ const address = {
       'resource_path',
       'updated_at',
     ],
+    type: 'object',
   },
   pagination = {
+    additionalProperties: false,
     properties: {
       ending_before: { type: ['null', 'string'] },
       limit: { type: 'number' },
@@ -120,8 +143,10 @@ export const addressTransactions = {
   properties: {
     data: {
       items: {
+        additionalProperties: false,
         properties: {
           amount: {
+            additionalProperties: false,
             properties: {
               amount: { type: 'string' },
               currency: { enum: collection.map((item) => item.currency), type: 'string' },
@@ -130,11 +155,12 @@ export const addressTransactions = {
             type: 'object',
           },
           created_at: {
-            pattern: composePattern('DATE_ISO'),
+            pattern: composePattern('DATE_ISO_MS'),
             type: 'string',
           },
           description: { type: ['null', 'string'] },
           from: {
+            additionalProperties: false,
             properties: {
               id: {
                 pattern: composePattern('UUID'),
@@ -150,6 +176,7 @@ export const addressTransactions = {
             type: 'string',
           },
           native_amount: {
+            additionalProperties: false,
             properties: {
               amount: { type: 'string' },
               currency: { enum: collection.map((item) => item.currency), type: 'string' },
@@ -158,6 +185,7 @@ export const addressTransactions = {
             type: 'object',
           },
           network: {
+            additionalProperties: false,
             properties: {
               name: { enum: collection.map((item) => item.network), type: 'string' },
               status: { enum: ['off_blockchain'], type: 'string' },
@@ -182,7 +210,7 @@ export const addressTransactions = {
             type: 'string',
           },
           updated_at: {
-            pattern: composePattern('DATE_ISO'),
+            pattern: composePattern('DATE_ISO_MS'),
             type: 'string',
           },
         },

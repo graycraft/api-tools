@@ -6,26 +6,83 @@
  * @module response/coinbase/address/schema
  */
 
-import collection from '#cltn/coinbase/address_all.json' with { type: 'json' };
+import collection from '#cllctn/coinbase/address_all.json' with { type: 'json' };
 import config from '#config/coinbase.json' with { type: 'json' };
 import { composePattern } from '#lib/regexp.mjs';
 
 const address = {
     additionalProperties: false,
-    type: 'object',
-    properties: {
-      address: {
-        /** @todo Bitcoin, Solana. */
-        pattern: composePattern('EVM_ADDRESS'),
-        type: 'string',
-      },
-      address_info: {
-        properties: {
-          address: {
-            /** @todo Bitcoin, Solana. */
-            pattern: composePattern('EVM_ADDRESS'),
-            type: 'string',
+    allOf: [
+      {
+        if: { properties: { network: { const: 'bitcoin' } } },
+        then: {
+          properties: {
+            address: { pattern: composePattern('BTC_ADDRESS'), type: 'string' },
+            address_info: {
+              properties: {
+                address: {
+                  pattern: composePattern('BTC_ADDRESS'),
+                  type: 'string',
+                },
+              },
+              type: 'object',
+            },
+            deposit_uri: {
+              pattern: composePattern({ btc_address: 'BTC_ADDRESS' }, 'bitcoin:${btc_address}'),
+              type: 'string',
+            },
           },
+        },
+      },
+      {
+        if: { properties: { network: { const: 'ethereum' } } },
+        then: {
+          properties: {
+            address: { pattern: composePattern('EVM_ADDRESS'), type: 'string' },
+            address_info: {
+              properties: {
+                address: {
+                  pattern: composePattern('EVM_ADDRESS'),
+                  type: 'string',
+                },
+              },
+              type: 'object',
+            },
+            deposit_uri: {
+              pattern: composePattern({ evm_address: 'EVM_ADDRESS' }, 'ethereum:${evm_address}'),
+              type: 'string',
+            },
+          },
+        },
+      },
+      {
+        if: { properties: { network: { const: 'solana' } } },
+        then: {
+          properties: {
+            address: { pattern: composePattern('SOL_ADDRESS'), type: 'string' },
+            address_info: {
+              properties: {
+                address: {
+                  pattern: composePattern('SOL_ADDRESS'),
+                  type: 'string',
+                },
+              },
+              type: 'object',
+            },
+            deposit_uri: {
+              pattern: composePattern({ sol_address: 'SOL_ADDRESS' }, 'solana:${sol_address}'),
+              type: 'string',
+            },
+          },
+        },
+      },
+    ],
+    properties: {
+      address: {},
+      address_info: {
+        additionalProperties: false,
+        properties: {
+          address: {},
         },
         required: ['address'],
         type: 'object',
@@ -41,19 +98,17 @@ const address = {
         type: 'string',
       },
       default_receive: { type: 'boolean' },
-      deposit_uri: {
-        /** @todo Bitcoin, Solana. */
-        pattern: composePattern({ evm_address: 'EVM_ADDRESS' }, 'ethereum:${evm_address}'),
-        type: 'string',
-      },
+      deposit_uri: {},
       id: {
         pattern: composePattern('UUID'),
         type: 'string',
       },
       inline_warning: {
+        additionalProperties: false,
         properties: {
           text: { type: 'string' },
           tooltip: {
+            additionalProperties: false,
             properties: {
               subtitle: { type: 'string' },
               title: { type: 'string' },
@@ -66,6 +121,7 @@ const address = {
         type: 'object',
       },
       launch_warning: {
+        additionalProperties: false,
         properties: {
           cta: {
             properties: {
@@ -111,11 +167,12 @@ const address = {
             account_uuid: 'UUID',
             address_uuid: 'UUID',
           },
-          config.PATH.ADDRESS_ONE,
+          '/' + config.PATH.ADDRESS_ONE,
         ),
         type: 'string',
       },
       share_address_copy: {
+        additionalProperties: false,
         properties: {
           line1: { type: 'string' },
           line2: { type: 'string' },
@@ -133,6 +190,7 @@ const address = {
       },
       warnings: {
         items: {
+          additionalProperties: false,
           properties: {
             details: { type: 'string' },
             image_url: {
@@ -141,6 +199,7 @@ const address = {
             },
             options: {
               items: {
+                additionalProperties: false,
                 properties: {
                   id: { type: 'string' },
                   style: { type: 'string' },
@@ -182,8 +241,10 @@ const address = {
       'uri_scheme',
       'warnings',
     ],
+    type: 'object',
   },
   pagination = {
+    additionalProperties: false,
     properties: {
       ending_before: { type: ['null', 'string'] },
       limit: { type: 'number' },
@@ -253,8 +314,10 @@ export const addressTransactions = {
   properties: {
     data: {
       items: {
+        additionalProperties: false,
         properties: {
           amount: {
+            additionalProperties: false,
             properties: {
               amount: { type: 'string' },
               currency: { enum: collection.map((item) => item.currency), type: 'string' },
@@ -268,6 +331,7 @@ export const addressTransactions = {
           },
           description: { type: ['null', 'string'] },
           from: {
+            additionalProperties: false,
             properties: {
               id: {
                 pattern: composePattern('UUID'),
@@ -283,6 +347,7 @@ export const addressTransactions = {
             type: 'string',
           },
           native_amount: {
+            additionalProperties: false,
             properties: {
               amount: { type: 'string' },
               currency: { enum: collection.map((item) => item.currency), type: 'string' },
@@ -291,6 +356,7 @@ export const addressTransactions = {
             type: 'object',
           },
           network: {
+            additionalProperties: false,
             properties: {
               name: { enum: collection.map((item) => item.network), type: 'string' },
               status: { enum: ['off_blockchain'], type: 'string' },
