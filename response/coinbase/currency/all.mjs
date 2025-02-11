@@ -1,29 +1,31 @@
 /**
- * Handle Coinbase Advanced API currency all response aggregation.
+ * Handle Coinbase Advanced API currency all response operations.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/currency/all
  */
 
-import { fileNewest } from '#lib/file_system.mjs';
 import { obtainName } from '#lib/utility.mjs';
-import aggregate from '../aggregate.mjs';
+import { currencyAll as schema } from '#res/coinbase/currency/schema.mjs';
+
+import operate from '../operate.mjs';
 
 /**
- * @returns {RSnapshot} Aggregated file data written in the collection directory.
+ * Perform an operation on a specific response snapshot file data or latest created.
+ * @param {string} [snapshot] Response snapshot file name without `.json` extension.
+ * @returns {RSnapshot} File data has been operated.
  */
-const currencyAll = () => {
+const currencyAll = (snapshot) => {
   const { config } = global.apiTools.coinbase,
     {
       PATH,
       PATH: { CURRENCY_ALL },
     } = config,
-    directory = obtainName(CURRENCY_ALL, PATH).toLowerCase(),
-    file = fileNewest('response/coinbase/snapshot/' + directory),
-    fileAggregated = aggregate(directory, file.name);
+    endpoint = obtainName(CURRENCY_ALL, PATH),
+    data = operate(endpoint, snapshot, schema);
 
-  return fileAggregated;
+  return data;
 };
 
 export default currencyAll;
