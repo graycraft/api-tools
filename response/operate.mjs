@@ -7,6 +7,7 @@
  * @module response/perform
  */
 
+import { successfulJson } from '#lib/fetch.mjs';
 import { fileNewest, fileReadJson } from '#lib/file_system.mjs';
 import { toPascalCase } from '#lib/string.mjs';
 import validate from '#res/validate.mjs';
@@ -53,7 +54,7 @@ const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {
         fileName = file.name;
         fileData = fileReadJson(dirBase + dir, fileName);
       }
-      validate(fileData.CREATED?.json || fileData.OK?.json, schema, apiName, fileName);
+      validate(successfulJson(fileData), schema, apiName, fileName);
     } else
       console.info(
         `Validate: endpoint "${endpoint}" of ${toPascalCase(apiName)} API is not enabled in preferences.`,
