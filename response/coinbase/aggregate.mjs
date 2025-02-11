@@ -7,7 +7,7 @@
 
 import { fileReadJson } from '#lib/file_system.mjs';
 
-import responseAggregate from '../aggregate.mjs';
+import aggregate from '../aggregate.mjs';
 
 /**
  * Aggregate a Bybit API response snapshot.
@@ -20,7 +20,7 @@ const coinbaseAggregate = (directory, fileName) => {
     endpoint = directory.toUpperCase(),
     json = fileReadJson('response/coinbase/snapshot/' + directory, fileName),
     data = json.CREATED?.json || json.OK?.json.data,
-    file = responseAggregate(
+    file = aggregate(
       coinbase,
       endpoint,
       data,
