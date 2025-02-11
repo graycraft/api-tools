@@ -41,6 +41,7 @@ export const obtainName = (value, dictionary) => {
 
   return name;
 };
+export const obtain = obtainName;
 
 /**
  * Parse process argument vectors from CLI to usable handler, parameters and options.
