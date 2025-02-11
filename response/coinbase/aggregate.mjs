@@ -6,6 +6,7 @@
  */
 
 import { fileReadJson } from '#lib/file_system.mjs';
+
 import responseAggregate from '../aggregate.mjs';
 
 /**
@@ -18,20 +19,26 @@ const coinbaseAggregate = (directory, fileName) => {
   const { coinbase } = global.apiTools,
     endpoint = directory.toUpperCase(),
     json = fileReadJson('response/coinbase/snapshot/' + directory, fileName),
-    data = json.OK.json.data,
-    file = responseAggregate(coinbase, endpoint, data, {
-      currencies: (item) => ({
-        asset_id: item['asset_id'],
-        code: item['code'],
-        name: item['name'],
-      }),
-      networks: (row) =>
-        row.chains.map((item) => ({
-          chain: item.chain,
-          chainType: item.chainType,
-        })),
-      sort: (item1, item2) => item1['code'].localeCompare(item2['code']),
-    });
+    data = json.CREATED?.json || json.OK?.json.data,
+    file = responseAggregate(
+      coinbase,
+      endpoint,
+      data,
+      {
+        currencies: (item) => ({
+          asset_id: item['asset_id'],
+          code: item['code'],
+          name: item['name'],
+        }),
+        networks: (row) =>
+          row.chains.map((item) => ({
+            chain: item.chain,
+            chainType: item.chainType,
+          })),
+        sort: (item1, item2) => item1['code'].localeCompare(item2['code']),
+      },
+      fileName,
+    );
 
   return file;
 };
