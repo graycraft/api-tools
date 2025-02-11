@@ -34,24 +34,24 @@ const responseBybit = async () => {
       settings,
       status,
     },
-    { handler, options } = parseArguments(argv);
+    { handler, options, params } = parseArguments(argv);
 
   global.apiTools = { bybit, options, output: {}, timestamp };
   if (handler) {
     switch (handler) {
       case 'currency':
       case 'currencyAll':
-        return await currencyAll();
+        return await currencyAll.apply(null, params);
       case 'currencyNetwork':
       case 'currencyNetworkAll':
-        return await currencyNetworkAll();
+        return await currencyNetworkAll.apply(null, params);
       default:
         throw new Error(responseBybit.name + ': ' + optional(handler));
     }
   } else {
     return await Promise.resolve()
-      .then((response) => currencyAll())
-      .then((response) => currencyNetworkAll())
+      .then((response) => currencyAll.apply(null, params))
+      .then((response) => currencyNetworkAll.apply(null, params))
       .catch(console.error.bind(console));
   }
 };
