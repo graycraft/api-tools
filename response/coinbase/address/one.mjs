@@ -1,0 +1,31 @@
+/**
+ * Handle Coinbase Advanced API address one response operations.
+ *
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
+ * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @module response/coinbase/address/one
+ */
+
+import { obtainName } from '#lib/utility.mjs';
+import { addressOne as schema } from '#res/coinbase/address/schema.mjs';
+
+import operateResponse from '../operate.mjs';
+
+/**
+ * Perform an operation on a specific response snapshot file data or latest created.
+ * @param {string} [snapshot] Response snapshot file name without `.json` extension.
+ * @returns {RSnapshot} File data has been operated.
+ */
+const addressOne = (snapshot) => {
+  const { config } = global.apiTools.coinbase,
+    {
+      PATH,
+      PATH: { ADDRESS_ONE },
+    } = config,
+    endpoint = obtainName(ADDRESS_ONE, PATH),
+    data = operateResponse(endpoint, snapshot, schema);
+
+  return data;
+};
+
+export default addressOne;
