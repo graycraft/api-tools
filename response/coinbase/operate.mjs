@@ -16,11 +16,11 @@ import aggregate from './aggregate.mjs';
  * @param {{}} schema JSON-schema to validate against.
  * @returns {RSnapshot} File data has been operated.
  */
-const operateResponse = (endpoint, snapshot, schema) => {
+const coinbaseOperate = (endpoint, snapshot, schema) => {
   const { coinbase } = global.apiTools,
     data = operate(coinbase.name, endpoint, snapshot, schema, aggregate);
 
   return data;
 };
 
-export default operateResponse;
+export default coinbaseOperate;
