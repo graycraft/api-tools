@@ -6,7 +6,7 @@
  * @module response/coinbase/address/all
  */
 
-import { obtainName } from '#lib/utility.mjs';
+import { obtain } from '#lib/utility.mjs';
 import { addressAll as schema } from '#res/coinbase/address/schema.mjs';
 
 import operate from '../operate.mjs';
@@ -22,7 +22,7 @@ const addressAll = (snapshot) => {
       PATH,
       PATH: { ADDRESS_ALL },
     } = config,
-    endpoint = obtainName(ADDRESS_ALL, PATH),
+    endpoint = obtain(ADDRESS_ALL, PATH),
     data = operate(endpoint, snapshot, schema);
 
   return data;

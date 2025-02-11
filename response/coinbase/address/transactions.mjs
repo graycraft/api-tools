@@ -6,7 +6,7 @@
  * @module response/coinbase/address/transactions
  */
 
-import { obtainName } from '#lib/utility.mjs';
+import { obtain } from '#lib/utility.mjs';
 import { addressTransactions as schema } from '#res/coinbase/address/schema.mjs';
 
 import operate from '../operate.mjs';
@@ -22,7 +22,7 @@ const addressTransactions = (snapshot) => {
       PATH,
       PATH: { ADDRESS_TRANSACTIONS },
     } = config,
-    endpoint = obtainName(ADDRESS_TRANSACTIONS, PATH),
+    endpoint = obtain(ADDRESS_TRANSACTIONS, PATH),
     data = operate(endpoint, snapshot, schema);
 
   return data;

@@ -6,7 +6,7 @@
  * @module response/bybit/currency/all
  */
 
-import { obtainName } from '#lib/utility.mjs';
+import { obtain } from '#lib/utility.mjs';
 import { currencyAll as schema } from '#res/bybit/currency/schema.mjs';
 
 import operate from '../operate.mjs';
@@ -22,7 +22,7 @@ const currencyAll = (snapshot) => {
       PATH,
       PATH: { CURRENCY_ALL },
     } = config,
-    endpoint = obtainName(CURRENCY_ALL, PATH),
+    endpoint = obtain(CURRENCY_ALL, PATH),
     data = operate(endpoint, snapshot, schema);
 
   return data;
