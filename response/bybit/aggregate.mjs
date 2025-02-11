@@ -5,6 +5,7 @@
  * @module response/bybit/aggregate
  */
 
+import { successfulJson } from '#lib/fetch.mjs';
 import { fileReadJson } from '#lib/file_system.mjs';
 
 import aggregate from '../aggregate.mjs';
@@ -18,12 +19,12 @@ import aggregate from '../aggregate.mjs';
 const bybitAggregate = (directory, fileName) => {
   const { bybit } = global.apiTools,
     endpoint = directory.toUpperCase(),
-    json = fileReadJson('response/bybit/snapshot/' + directory, fileName),
-    data = json.CREATED?.json || json.OK?.json.result.rows,
+    fileData = fileReadJson('response/bybit/snapshot/' + directory, fileName),
+    json = /** @type {{ result: { rows: object }}} */ (successfulJson(fileData)).result.rows,
     file = aggregate(
       bybit,
       endpoint,
-      data,
+      json,
       {
         currencies: (item) => ({
           chains: item.chains.map((item) => ({

@@ -5,6 +5,7 @@
  * @module response/coinbase/aggregate
  */
 
+import { successfulJson } from '#lib/fetch.mjs';
 import { fileReadJson } from '#lib/file_system.mjs';
 
 import aggregate from '../aggregate.mjs';
@@ -18,12 +19,12 @@ import aggregate from '../aggregate.mjs';
 const coinbaseAggregate = (directory, fileName) => {
   const { coinbase } = global.apiTools,
     endpoint = directory.toUpperCase(),
-    json = fileReadJson('response/coinbase/snapshot/' + directory, fileName),
-    data = json.CREATED?.json || json.OK?.json.data,
+    fileData = fileReadJson('response/coinbase/snapshot/' + directory, fileName),
+    json = /** @type {{ data: object }} */ (successfulJson(fileData)).data,
     file = aggregate(
       coinbase,
       endpoint,
-      data,
+      json,
       {
         currencies: (item) => ({
           asset_id: item['asset_id'],
