@@ -9,7 +9,7 @@
 import { obtainName } from '#lib/utility.mjs';
 import { addressOne as schema } from '#res/coinbase/address/schema.mjs';
 
-import operateResponse from '../operate.mjs';
+import operate from '../operate.mjs';
 
 /**
  * Perform an operation on a specific response snapshot file data or latest created.
@@ -23,7 +23,7 @@ const addressOne = (snapshot) => {
       PATH: { ADDRESS_ONE },
     } = config,
     endpoint = obtainName(ADDRESS_ONE, PATH),
-    data = operateResponse(endpoint, snapshot, schema);
+    data = operate(endpoint, snapshot, schema);
 
   return data;
 };
