@@ -1,29 +1,31 @@
 /**
- * Handle Bybit API currency all response aggregation.
+ * Handle Bybit API currency all response operations.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @module response/bybit/currency/all
  */
 
-import { fileNewest } from '#lib/file_system.mjs';
-import { obtainName } from '#lib/utility.mjs';
-import aggregate from '../aggregate.mjs';
+import { obtain } from '#lib/utility.mjs';
+import { currencyAll as schema } from '#res/bybit/currency/schema.mjs';
+
+import operate from '../operate.mjs';
 
 /**
- * @returns {RSnapshot} Aggregated file data written in the collection directory.
+ * Perform an operation on a specific response snapshot file data or latest created.
+ * @param {string} [snapshot] Response snapshot file name without `.json` extension.
+ * @returns {RSnapshot} File data has been operated.
  */
-const currencyAll = () => {
+const currencyAll = (snapshot) => {
   const { config } = global.apiTools.bybit,
     {
       PATH,
       PATH: { CURRENCY_ALL },
     } = config,
-    directory = obtainName(CURRENCY_ALL, PATH).toLowerCase(),
-    file = fileNewest('response/bybit/snapshot/' + directory),
-    fileAggregated = aggregate(directory, file.name);
+    endpoint = obtain(CURRENCY_ALL, PATH),
+    data = operate(endpoint, snapshot, schema);
 
-  return fileAggregated;
+  return data;
 };
 
 export default currencyAll;
