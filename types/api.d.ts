@@ -27,16 +27,19 @@ export type Options = {
   flow: boolean;
   headers: boolean;
   snapshot: boolean;
+  validate: boolean;
   verbose: boolean;
 };
+export type Name = 'bybit' | 'coinbase';
 export type Parameters = DictLike;
 export type Preferences = {
   aggregate: string[];
   debug: true;
-  enabled: ('aggregate' | 'parse' | 'snapshot' | 'verbose')[];
+  enabled: ('aggregate' | 'parse' | 'snapshot' | 'verbose' | 'validate')[];
   exit: boolean;
   parse: string[];
   snapshot: string[];
+  validate: string[];
 };
 export type Settings = {
   authentication: {

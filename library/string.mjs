@@ -56,6 +56,11 @@ export const supplementary = (template, expressions) => {
   return result;
 };
 
+/**
+ * Format a string to pascal case.
+ * @param {string} string Source string in any casing.
+ * @returns {string} String formatted in pascal case.
+ */
 export const toPascalCase = (string) => {
   const result = string.replace(
     /\w+/g,

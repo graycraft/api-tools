@@ -20,22 +20,22 @@ import nodePath from 'node:path';
  * @param {string} endpoint Endpoint name.
  * @param {{}[]} data An array from JSON response to map and sort.
  * @param {Callback} callback Callbacks for mapping and sorting arrays.
+ * @param {string} fileName Name of snapshot response file.
  * @returns {RSnapshot} Aggregated file data to write in the collection directory.
  */
-const aggregateJson = (name, endpoint, data, callback) => {
+const aggregateJson = (name, endpoint, data, callback, fileName) => {
   const dirName = import.meta.dirname,
-    fileName = new Date().toISOString() + '.json',
     path = `../collection/${name}/${endpoint.toLowerCase()}`,
     filePath = nodePath.join(dirName, path),
     filePathFull = nodePath.join(filePath, fileName);
+
   let array, fileData;
 
   if (endpoint === 'CURRENCY_ALL') {
     const currencies = data.map(callback.currencies);
 
     array = currencies.sort(callback.sort);
-  }
-  if (endpoint === 'CURRENCY_NETWORK_ALL') {
+  } else if (endpoint === 'CURRENCY_NETWORK_ALL') {
     const networks = data.map(callback.networks),
       arrayDupes = networks.reduce((accum, chain) => accum.concat(chain), []),
       arrayUnique = arrayDupes.filter(
@@ -44,6 +44,7 @@ const aggregateJson = (name, endpoint, data, callback) => {
 
     array = arrayUnique.sort((a, b) => a.chain.localeCompare(b.chain));
   }
+
   fileData = JSON.stringify(array, null, 2);
   nodeFs.mkdirSync(filePath, { recursive: true });
   nodeFs.writeFileSync(filePathFull, fileData);
@@ -58,9 +59,10 @@ const aggregateJson = (name, endpoint, data, callback) => {
  * @param {string} endpoint Endpoint name.
  * @param {{}[]} data An array from JSON response to map.
  * @param {Callback} callback Callbacks for mapping and sorting arrays.
+ * @param {string} fileName Name of snapshot response file.
  * @returns {RSnapshot} Aggregated file data to write in the collection directory.
  */
-const responseAggregate = (api, endpoint, data, callback) => {
+const responseAggregate = (api, endpoint, data, callback, fileName) => {
   const { options } = global.apiTools,
     { prefs } = api,
     isEnabled = prefs.enabled.includes('aggregate'),
@@ -69,14 +71,14 @@ const responseAggregate = (api, endpoint, data, callback) => {
 
   if (typeof aggregate === 'boolean') {
     if (aggregate) {
-      const { fileData, fileName } = aggregateJson(api.name, endpoint, data, callback);
+      const { fileData } = aggregateJson(api.name, endpoint, data, callback, fileName);
 
       return { fileData, fileName };
     }
   } else {
     if (isEnabled) {
       if (isAggregate) {
-        const { fileData, fileName } = aggregateJson(api.name, endpoint, data, callback);
+        const { fileData } = aggregateJson(api.name, endpoint, data, callback, fileName);
 
         return { fileData, fileName };
       } else console.info(`Aggregate: endpoint "${endpoint}" is not enabled is settings.`);

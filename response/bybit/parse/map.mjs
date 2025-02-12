@@ -17,7 +17,7 @@ const map = (json, { key, list }) => {
   let data, items;
 
   if (typeof key === 'string' && typeof list === 'string') {
-    items = json.result[list].map((item) => ({
+    items = json.result[list]?.map((item) => ({
       [key]: item[key],
     }));
     data = {

@@ -6,20 +6,26 @@
  */
 
 import Ajv from 'ajv/dist/2020.js';
+
 import { dirObject } from '#lib/output.mjs';
+import { toPascalCase } from '#lib/string.mjs';
 
 /**
  * Validate the structure of an API response against a JSON-schema.
  * @param {{}} json JSON data from response.
  * @param {{}} schema JSON-schema to validate against.
+ * @param {string} apiName A specific API name.
+ * @param {string} [fileName] File name of response snapshot.
  * @returns {boolean} Whether response is valid or not.
  */
-const responseValidate = (json, schema) => {
+const responseValidate = (json, schema, apiName, fileName) => {
   const ajv = new Ajv.default({ allErrors: true }),
     validate = ajv.compile(schema),
-    isValid = validate(json);
+    isValid = validate(json),
+    snapshotText = fileName ? ` snapshot ${fileName} passed` : '';
 
-  if (isValid) console.info('AJV:', 'passed.');
+  if (isValid)
+    console.info('AJV:', `validation of ${toPascalCase(apiName)} API response${snapshotText}.`);
   else dirObject('AJV', validate.errors);
 
   return isValid;

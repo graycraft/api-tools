@@ -1,13 +1,13 @@
 /**
- * Handle Coinbase Advanced API currency all response operations.
+ * Handle Coinbase Advanced API address transactions response operations.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
- * @module response/coinbase/currency/all
+ * @module response/coinbase/address/transactions
  */
 
 import { obtain } from '#lib/utility.mjs';
-import { currencyAll as schema } from '#res/coinbase/currency/schema.mjs';
+import { addressTransactions as schema } from '#res/coinbase/address/schema.mjs';
 
 import operate from '../operate.mjs';
 
@@ -16,16 +16,16 @@ import operate from '../operate.mjs';
  * @param {string} [snapshot] Response snapshot file name without `.json` extension.
  * @returns {RSnapshot} File data has been operated.
  */
-const currencyAll = (snapshot) => {
+const addressTransactions = (snapshot) => {
   const { config } = global.apiTools.coinbase,
     {
       PATH,
-      PATH: { CURRENCY_ALL },
+      PATH: { ADDRESS_TRANSACTIONS },
     } = config,
-    endpoint = obtain(CURRENCY_ALL, PATH),
+    endpoint = obtain(ADDRESS_TRANSACTIONS, PATH),
     data = operate(endpoint, snapshot, schema);
 
   return data;
 };
 
-export default currencyAll;
+export default addressTransactions;

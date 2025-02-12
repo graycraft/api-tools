@@ -1,6 +1,7 @@
 /**!
  * Fetch data from a REST API endpoint with parameters.
  *
+ * @typedef {import("#types/response/snapshot.d.js").default} Snapshot
  * @typedef {import("./constants.mjs").HttpStatusCode} HttpStatusCode
  * @typedef {import("./constants.mjs").HttpStatusText} HttpStatusText
  * @typedef {Object<string, string>} Dict
@@ -156,4 +157,15 @@ export const stringifyQuery = (template, data) => {
     query = Object.keys(params).length ? '?' + String(new URLSearchParams(params)) : '';
 
   return query;
+};
+
+/**
+ * Obtain JSON data from successful response snapshot.
+ * @param {Snapshot} snapshot All data from response snapshot.
+ * @returns {{}} JSON data from response snapshot.
+ */
+export const successfulJson = (snapshot) => {
+  const json = snapshot.CREATED?.json ?? snapshot.OK?.json;
+
+  return json;
 };

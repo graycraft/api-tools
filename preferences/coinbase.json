@@ -6,7 +6,7 @@
     "quote": "USDC"
   },
   "debug": false,
-  "enabled": ["aggregate", "parse", "snapshot", "verbose"],
+  "enabled": ["aggregate", "parse", "snapshot", "verbose", "validate"],
   "exit": false,
   "parse": ["CURRENCY_ALL", "CURRENCY_ONE", "WITHDRAW_ALL"],
   "snapshot": [
@@ -37,5 +37,6 @@
     "WITHDRAW_ALL",
     "WITHDRAW_NEW"
   ],
+  "validate": ["ADDRESS_ALL", "ADDRESS_NEW", "ADDRESS_ONE", "ADDRESS_TRANSACTIONS", "CURRENCY_ALL"],
   "verbose": ["ORDER_PLACE", "WITHDRAW_NEW"]
 }

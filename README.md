@@ -191,6 +191,14 @@ $ node response --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/coinbase/currency_network_all".
 ```
 
+```bash
+$ node response --vali
+$ node response --validate
+  AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.058Z.json passed.
+  AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.532Z.json passed.
+  AJV: validation of Coinbase API response snapshot 2025-02-10T21:08:43.831Z.json passed.
+```
+
 To run a flow related to an API response, change directory:
 
 ```bash
@@ -200,15 +208,29 @@ $ cd response
 Run flow for **all responses** of a **specific API**:
 
 ```bash
-$ node bybit
+response$ node bybit --aggr
+response$ node bybit --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_all".
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_network_all".
+```
+
+```bash
+response$ node bybit --vali
+response$ node bybit --validate
+  AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.058Z.json passed.
+  AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.532Z.json passed.
 ```
 
 Run **single response** aggregation (option `--aggr[egate]` is required if not enabled in settings):
 
 ```bash
-$ node bybit currencyAll --aggr
-$ node bybit currencyAll --aggregate
+response$ node bybit currencyAll --aggr
+response$ node bybit currencyAll --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_all".
+```
+
+```bash
+response$ node bybit currencyAll --vali
+response$ node bybit currencyAll --validate
+  AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.058Z.json passed.
 ```

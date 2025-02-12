@@ -13,10 +13,12 @@ declare var apiTools: {
     aggregate?: boolean;
     authentication?: boolean;
     debug?: boolean;
+    exit?: boolean;
     flow?: string;
     headers?: boolean;
     snapshot?: boolean;
     throw?: boolean;
+    validate?: boolean;
     verbose?: boolean;
   };
   output: {};
