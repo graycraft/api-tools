@@ -1,0 +1,42 @@
+{
+  "authentication": {
+    "delay": 1e3,
+    "hidden": "full",
+    "keys": {
+      "00000000-0000-0000-0000-000000000000": "organizations/************************************/apiKeys/************************************"
+    },
+    "secrets": {
+      "61552f0b-022d-5bb4-a86e-0499d4a70605": "-----BEGIN EC PRIVATE KEY-----\n****************************************************************\n****************************************************************\n**********************************==\n-----END EC PRIVATE KEY-----\n"
+    },
+    "security": "JWT"
+  },
+  "user": {
+    "DEFAULT": {
+      "account": {
+        "address": ["00000000-0000-0000-0000-000000000000"],
+        "asset": "00000000-0000-0000-0000-000000000000",
+        "uuid": "00000000-0000-0000-0000-000000000000"
+      },
+      "deposit": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "travel_rule_data": {
+        "beneficiary_address": {
+          "address1": "Aaaaa",
+          "address2": "",
+          "address3": "",
+          "city": "Aaaaa",
+          "country": "AA",
+          "postal_code": "00000",
+          "state": ""
+        },
+        "beneficiary_financial_institution": "",
+        "beneficiary_name": "Aaaaa",
+        "beneficiary_wallet_type": "AAAAA",
+        "is_self": "AAAAA",
+        "transfer_purpose": "Aaaaa"
+      },
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    "portfolio": "DEFAULT",
+    "withdraw": "0x0000000000000000000000000000000000000000"
+  }
+}
