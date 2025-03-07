@@ -4,16 +4,9 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/console/dir_static
  * @see https://nodejs.org/docs/latest/api/console.html#consoledirobj-options
  * @see https://nodejs.org/docs/latest/api/util.html#utilinspectobject-showhidden-depth-colors
- * @typedef {Object<string, string>} Dict
- * @typedef {{
- *   flow?: string | undefined;
- *   verbose?: boolean | undefined;
- * }} Options
- * @typedef {{
- *   enabled: string[];
- *   exit: boolean;
- *   verbose: string[];
- * }} Preferences
+ * @typedef {import("#types/common.ts").Dict} Dict
+ * @typedef {import("#types/api.ts").Options} Options
+ * @typedef {import("#types/api.ts").Preferences} Preferences
  * @module library/output
  */
 
@@ -22,7 +15,7 @@ import { obtainName } from './utility.mjs';
 
 /**
  * Output a list of the properties of an object with maximum nesting depth.
- * Number of Array, TypedArray, Map, Set, WeakMap, WeakSet items is maximized too (default is 100).
+ * Number of Array, TypedArray, Map, Set, WeakMap, WeakSet items is maximized too (default: 100).
  * @param {string} name Name to output in title.
  * @param {{}} data Data to output.
  * @returns {boolean} Whether information has been listed or not.
@@ -56,14 +49,13 @@ export const dirObject = (name, data) => {
  * @returns {boolean} Whether information has been output or not.
  */
 export const dirSnapshot = (endpoint, options, prefs, output) => {
-  const { flow, verbose } = options,
+  const { verbose } = options,
     isEnabled = prefs.enabled.includes('verbose'),
     isVerbose = prefs.verbose.includes(endpoint);
 
   if (typeof verbose === 'boolean') {
     if (verbose) {
       dirObject('Snapshot', output);
-      if (prefs.exit && flow === 'exit') global.process.exit();
 
       return true;
     }
