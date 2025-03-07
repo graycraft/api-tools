@@ -82,6 +82,7 @@ export const fetchData = (method, url, headers, data) => {
       headers,
       method,
     };
+
   let intervalCount = 0;
 
   if (method === METHOD.POST) {
@@ -96,12 +97,21 @@ export const fetchData = (method, url, headers, data) => {
       done = ` done in ${timeEnd - timeStart} ms.`,
       eraser = ' '.repeat(intervalCount > done.length ? intervalCount - done.length : 0),
       text = await response.text();
+
     let json;
 
     global.clearInterval(intervalId);
     process.stdout.write(`\rFetching${done}${eraser}\n`);
+
     try {
-      json = JSON.parse(text);
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#the_reviver_parameter
+       */
+      json = JSON.parse(text, (key, value, context) => {
+        if (Number.MAX_SAFE_INTEGER < Number(context.source)) return BigInt(context.source);
+
+        return value;
+      });
     } catch (error) {
       json = (text || error.message) + ': ' + statusText;
     }
