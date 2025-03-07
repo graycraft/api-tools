@@ -1,7 +1,7 @@
 /**
  * Validate parameters for a Bybit API request.
  *
- * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.ts").Dict} Dict
  * @module request/bybit/validate
  */
 
@@ -30,7 +30,7 @@ const bybitValidate = (path, options) =>
  * @returns {boolean} Whether parameter is valid or not.
  */
 const isValid = (param) => {
-  const { EVM_TXID, INTEGER, UUID } = REGEXP,
+  const { EVM_TXID, FLOAT64, INTEGER, UUID } = REGEXP,
     { config } = global.apiTools.bybit,
     { ACCOUNT, OPTION, ORDER, TRADE } = config,
     [key, value] = Object.entries(param)[0],
@@ -51,9 +51,13 @@ const isValid = (param) => {
     case 'toAccountType':
       return hasSome(ACCOUNT.WALLET, value);
     case 'amount':
-      return INTEGER.test(value);
+      return FLOAT64.test(value) || INTEGER.test(value);
     case 'baseCoin':
     case 'coin':
+      if (value.includes(',')) {
+        return value.split(',').every((coin) => hasSome(currencyAll, coin));
+      }
+
       return hasSome(currencyAll, value);
     case 'category':
       return hasSome(ACCOUNT.CATEGORY, value);
@@ -90,7 +94,7 @@ const isValid = (param) => {
     case 'qty':
       return Boolean(Number(value));
     case 'side':
-      return hasSome(Object.values(TRADE.SIDE), value);
+      return hasSome(Object.values(ORDER.SIDE), value);
     case 'startTime':
       return withinDays(1, value, 31);
     case 'status':

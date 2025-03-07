@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with cancel one order by order identifier or `orderLinkId`.
+ * Handle Bybit API request, with cancel one order by order identifier or `orderLinkId`.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
  * @typedef {import("#types/response/bybit/order/cancel-one.d.js").default} OrderCancelOne
@@ -7,6 +7,7 @@
  */
 
 import { orderCancelOne as schema } from '#res/bybit/order/schema.mjs';
+
 import post from '../post.mjs';
 import validate from '../validate.mjs';
 

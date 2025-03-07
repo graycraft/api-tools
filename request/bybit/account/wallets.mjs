@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API account wallet types endpoint.
+ * Handle Bybit API account wallet types request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
  * @typedef {import("#types/response/bybit/account/wallets.d.js").default} AccountWallets
@@ -7,6 +7,7 @@
  */
 
 import { accountWallets as schema } from '#res/bybit/account/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

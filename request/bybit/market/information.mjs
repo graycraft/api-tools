@@ -1,13 +1,14 @@
 /**
- * Handle Bybit API market information endpoint, with instrument specification of online trading pairs.
+ * Handle Bybit API market information request, with instrument specification of online trading pairs.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/instrument
- * @typedef {import("#types/bybit.d.js").category} category
+ * @typedef {import("#types/bybit.ts").category} category
  * @typedef {import("#types/response/bybit/market/information.d.js").default} MarketInformation
  * @module request/bybit/market/information
  */
 
 import { marketInformation as schema } from '#res/bybit/market/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
@@ -23,16 +24,14 @@ import validate from '../validate.mjs';
 const marketInformation = async (category, { baseCoin, cursor, limit, status, symbol } = {}) => {
   const { config, prefs, settings } = global.apiTools.bybit,
     {
+      ASSET: { BASE, QUOTE },
       PATH: { MARKET_INFORMATION },
     } = config,
-    {
-      currency: { base, quote },
-    } = prefs,
     { account } = settings,
     data = validate(MARKET_INFORMATION, {
       defaults: {
         category: account.category,
-        symbol: base + quote,
+        symbol: BASE.CODE + QUOTE.CODE,
       },
       optional: { category, symbol },
       required: { baseCoin, category, cursor, limit, status },

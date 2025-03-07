@@ -1,20 +1,21 @@
 /**
- * Handle Bybit API endpoint, with all trade history.
+ * Handle Bybit API request, with all trade history.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
- * @typedef {import("#types/bybit.d.js").side} side
+ * @typedef {import("#types/bybit.ts").orderSide} side
  * @typedef {import("#types/response/bybit/trade/history-all.d.js").default} TradeHistoryAll
  * @module request/bybit/trade/history-all
  */
 
 import { tradeHistoryAll as schema } from '#res/bybit/trade/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
  * @param {side[0] | side[1]} [side] Not supported by the API, must be filtered while parsing.
- * @param {string} [symbol] Symbol name.
- * @param {string} [limit] Limit data per page (default is 50, maximum 100).
+ * @param {string} [symbol] Currency pair code (e.g. "ETHUSDC").
+ * @param {string} [limit] Limit data per page (default: 50, maximum: 100).
  * @param {{
  *   baseCoin?, category?, cursor?, endTime?, execType?, orderLinkId?, startTime?
  * }} options Optional parameters.

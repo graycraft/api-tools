@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API trade fee rates endpoint.
+ * Handle Bybit API trade fee rates request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
  * @typedef {import("#types/response/bybit/trade/rates.d.js").default} TradeRates
@@ -7,11 +7,12 @@
  */
 
 import { tradeRates as schema } from '#res/bybit/trade/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
- * @param {string} symbol Symbol name.
+ * @param {string} symbol Currency pair code (e.g. "ETHUSDC").
  * @param {{ baseCoin?, category? }} options Optional parameters.
  * @returns {Promise<TradeRates>} JSON data from response.
  */

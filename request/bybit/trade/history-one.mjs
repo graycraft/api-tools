@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with one trade history entry by order identifier.
+ * Handle Bybit API request, with one trade history entry by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
  * @typedef {import("#types/response/bybit/trade/history-one.d.js").default} TradeHistoryOne
@@ -7,6 +7,7 @@
  */
 
 import { tradeHistoryOne as schema } from '#res/bybit/trade/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

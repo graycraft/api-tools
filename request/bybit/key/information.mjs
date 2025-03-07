@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API key information endpoint.
+ * Handle Bybit API key information request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/apikey-info
  * @typedef {import("#types/response/bybit/key/information.d.js").default} KeyInformation
@@ -7,6 +7,7 @@
  */
 
 import { keyInformation as schema } from '#res/bybit/key/schema.mjs';
+
 import get from '../get.mjs';
 
 /**

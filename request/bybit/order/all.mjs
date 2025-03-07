@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API all order endpoint, with unfilled or partially filled orders.
+ * Handle Bybit API all orders request, with unfilled or partially filled orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
  * @typedef {import("#types/response/bybit/order/all.d.js").default} OrderAll
@@ -7,14 +7,15 @@
  */
 
 import { orderAll as schema } from '#res/bybit/order/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
  * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.
- * @param {string} symbol Symbol name.
+ * @param {string} symbol Currency pair code (e.g. "ETHUSDC").
  * @param {string} side Not supported by the API, must be filtered while parsing.
- * @param {string} limit Limit for data size per page (default is 20, maximum 50).
+ * @param {string} limit Limit for data size per page (default: 20, maximum: 50).
  * @param {{
  *   baseCoin?, category?, cursor?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
  * }} options Optional parameters.

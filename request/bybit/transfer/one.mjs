@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with one transferable coin between each account type.
+ * Handle Bybit API request, with one transferable coin between each account type.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
  * @typedef {import("#types/response/bybit/transfer/one.d.js").default} TransferOne
@@ -7,6 +7,7 @@
  */
 
 import { transferOne as schema } from '#res/bybit/transfer/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
@@ -16,20 +17,18 @@ import validate from '../validate.mjs';
  * @returns {Promise<TransferOne>} JSON data from response.
  */
 const transferOne = async (toAccountType, coin) => {
-  const { config, prefs, settings } = global.apiTools.bybit,
+  const { config, settings } = global.apiTools.bybit,
     {
+      ASSET: { BASE },
       PATH: { TRANSFER_ONE },
     } = config,
-    {
-      currency: { base },
-    } = prefs,
     {
       account,
       authentication: { security },
     } = settings,
     data = validate(TRANSFER_ONE, {
       defaults: {
-        coin: base,
+        coin: BASE.CODE,
         fromAccountType: account.wallet,
       },
       throw: { coin, toAccountType },

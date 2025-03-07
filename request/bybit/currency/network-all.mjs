@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with all networks from all currencies.
+ * Handle Bybit API request, with all networks from all currencies (coins).
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  * @typedef {import("#types/response/bybit/currency/network-all.d.js").default} CurrencyNetworkAll
@@ -7,6 +7,7 @@
  */
 
 import { currencyNetworkAll as schema } from '#res/bybit/currency/schema.mjs';
+
 import get from '../get.mjs';
 
 /**

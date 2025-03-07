@@ -1,12 +1,13 @@
 /**
- * Handle Bybit API one wallet withdraw entry endpoint by transaction identifier.
+ * Handle Bybit API one wallet withdraw entry request by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
- * @typedef {import("#types/response/bybit/withdraw/one.d.js", { with: { "resolution-mode": "import" } }).default} WithdrawOne
+ * @typedef {import("#types/response/bybit/withdraw/one.d.js").default} WithdrawOne
  * @module request/bybit/withdraw/one
  */
 
 import { withdrawOne as schema } from '#res/bybit/withdraw/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

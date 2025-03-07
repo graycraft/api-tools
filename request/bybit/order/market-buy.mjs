@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with placing market buy order.
+ * Handle Bybit API request, with placing market buy order.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @see https://bybit-exchange.github.io/docs/v5/smp
@@ -8,12 +8,13 @@
  */
 
 import { orderMarketBuy as schema } from '#res/bybit/order/schema.mjs';
+
 import post from '../post.mjs';
 import validate from '../validate.mjs';
 
 /**
  * @param {string} qty Quote currency quantity.
- * @param {string} [symbol] Symbol name.
+ * @param {string} [symbol] Currency pair code (e.g. "ETHUSDC").
  * @param {{
  *   category?, closeOnTrigger?, isLeverage?, marketUnit?, mmp?, orderFilter?, orderIv?, orderLinkId?, positionIdx?,
  *   reduceOnly?, slLimitPrice?, slOrderType?, slTriggerBy?, smpType?, stopLoss?, takeProfit?, timeInForce?,
@@ -52,15 +53,13 @@ const orderMarketBuy = async (
     triggerPrice,
   } = {},
 ) => {
-  const { config, prefs, settings } = global.apiTools.bybit,
+  const { config, settings } = global.apiTools.bybit,
     {
+      ASSET: { BASE, QUOTE },
       ORDER,
+      ORDER: { SIDE },
       PATH: { ORDER_PLACE },
-      TRADE: { SIDE },
     } = config,
-    {
-      currency: { base, quote },
-    } = prefs,
     {
       account,
       authentication: { security },
@@ -70,7 +69,7 @@ const orderMarketBuy = async (
         category: account.category,
         orderType: ORDER.MARKET,
         side: SIDE.BUY,
-        symbol: base + quote,
+        symbol: BASE.CODE + QUOTE.CODE,
       },
       optional: { category, symbol },
       required: {

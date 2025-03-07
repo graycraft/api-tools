@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API all balances endpoint.
+ * Handle Bybit API all balances request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
  * @typedef {import("#types/response/bybit/balance/all.d.js").default} BalanceAll
@@ -7,10 +7,12 @@
  */
 
 import { balanceAll as schema } from '#res/bybit/balance/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
+ * Coin parameter is required for unified accounts.
  * @param {string} accountType Account type.
  * @param {string} memberId UID, required with master API keys.
  * @param {{ coin?, withBonus? }} options Optional parameters.

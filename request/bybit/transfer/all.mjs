@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with all transferable coin list between each account type.
+ * Handle Bybit API request, with all transferable coin list between each account type.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
  * @typedef {import("#types/response/bybit/transfer/all.d.js").default} TransferAll
@@ -7,15 +7,16 @@
  */
 
 import { transferAll as schema } from '#res/bybit/transfer/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
+ * @param {string} fromAccountType From account type.
  * @param {string} toAccountType To account type.
- * @param {{ fromAccountType? }} options
  * @returns {Promise<TransferAll>} JSON data from response.
  */
-const transferAll = async (toAccountType, { fromAccountType } = {}) => {
+const transferAll = async (fromAccountType, toAccountType) => {
   const { config, settings } = global.apiTools.bybit,
     {
       PATH: { TRANSFER_ALL },
@@ -25,9 +26,9 @@ const transferAll = async (toAccountType, { fromAccountType } = {}) => {
       authentication: { security },
     } = settings,
     data = validate(TRANSFER_ALL, {
-      defaults: { fromAccountType: account.wallet },
-      optional: { fromAccountType },
-      required: { toAccountType },
+      defaults: { toAccountType: account.wallet },
+      optional: { toAccountType },
+      required: { fromAccountType },
     }),
     json = await get(TRANSFER_ALL, schema, security, data);
 

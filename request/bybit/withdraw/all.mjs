@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API all wallet withdraw entries endpoint.
+ * Handle Bybit API all wallet withdraw entries request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
  * @typedef {import("#types/response/bybit/withdraw/all.d.js").default} WithdrawAll
@@ -7,6 +7,7 @@
  */
 
 import { withdrawAll as schema } from '#res/bybit/withdraw/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

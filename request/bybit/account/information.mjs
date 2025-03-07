@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with margin mode and upgraded status information of an account.
+ * Handle Bybit API request, with margin mode and upgraded status information of an account.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/account-info
  * @typedef {import("#types/response/bybit/account/information.d.js").default} AccountInformation
@@ -7,6 +7,7 @@
  */
 
 import { accountInformation as schema } from '#res/bybit/account/schema.mjs';
+
 import get from '../get.mjs';
 
 /**

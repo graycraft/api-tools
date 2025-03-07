@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API endpoint, with one deposit entry by transaction identifier.
+ * Handle Bybit API request, with one deposit entry by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
  * @typedef {import('#types/response/bybit/deposit/one.d.js').default} DepositOne
@@ -7,6 +7,7 @@
  */
 
 import { depositOne as schema } from '#res/bybit/deposit/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

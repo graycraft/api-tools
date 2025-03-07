@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API one order endpoint, with unfilled or partially filled orders by order identifier.
+ * Handle Bybit API one order request, with unfilled or partially filled orders by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
  * @typedef {import("#types/response/bybit/order/one.d.js").default} OrderOne
@@ -7,6 +7,7 @@
  */
 
 import { orderOne as schema } from '#res/bybit/order/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
