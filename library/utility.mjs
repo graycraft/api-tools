@@ -1,33 +1,41 @@
 /**!
  * Utility methods for common application use cases.
  *
- * @typedef {Object<string, string>} Dict
- * @typedef {{
- *   aggregate?: boolean;
- *   authentication?: boolean;
- *   debug?: boolean;
- *   exit?: boolean;
- *   flow?: string;
- *   headers?: boolean;
- *   snapshot?: boolean;
- *   throw?: boolean;
- *   validate?: boolean;
- *   verbose?: boolean;
- * }} Options
+ * @typedef {import("#types/api.ts").Options} Options
+ * @typedef {import("#types/api.ts").Preferences} Preferences
+ * @typedef {import("#types/common.ts")} Dict
  * @module library/utility
  */
 
 const OPTIONS = {
   aggr: 'aggregate',
   auth: 'authentication',
+  cont: 'continue',
   debu: 'debug',
-  exit: 'exit',
   flow: 'flow',
   head: 'headers',
   snap: 'snapshot',
   thro: 'throw',
   vali: 'validate',
   verb: 'verbose',
+};
+
+/**
+ * Exit (terminate) the current Node.js process depending on circumstances.
+ * @param {{} | null} json JSON data from response.
+ * @param {Options} options CLI options to check whether `continue` option is set or not.
+ * @param {Preferences} prefs Preferences to check whether `continue` preference is set or not.
+ * @returns {null | void} `null` if the current Node.js process continued.
+ */
+export const exitProcess = (json, options, prefs) => {
+  if (!json) {
+    if (!options.continue && !prefs.continue) {
+      console.info('Exited gracefully due to errors in request and/or response.');
+      global.process.exit();
+    }
+  }
+
+  return null;
 };
 
 /**
@@ -50,7 +58,7 @@ export const obtain = obtainName;
  * @prop {Dict} explicit Explicit parameters to execute API request handler with.
  * @prop {string} handler API request handler.
  * @prop {string[]} implicit Implicit parameters to execute API request handler with.
- * @prop {Options} options Options to apply while executing API request handler or flow.
+ * @prop {Options} options CLI options to apply while executing API request handler or flow.
  * @prop {(string | Dict)[]} params Parameters to execute API request handler with.
  * @returns {Arguments} Usable handler, parameters and options.
  */
@@ -91,8 +99,8 @@ export const parseOptions = (argv) => {
         (option) =>
           option.includes('--aggr') ||
           option.includes('--auth') ||
+          option.includes('--cont') ||
           option.includes('--debu') ||
-          option.includes('--exit') ||
           option.includes('--flow') ||
           option.includes('--head') ||
           option.includes('--snap') ||
