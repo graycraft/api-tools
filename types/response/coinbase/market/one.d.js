@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/coinbase.d.js").productType} productType
+ * @typedef {import("#types/coinbase.ts").productType} productType
  * @typedef default
  * @type {{
  *   products: [{

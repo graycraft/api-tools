@@ -7,17 +7,17 @@
  *       fill_price: string;
  *       order_id: string;
  *       order_side: "sell";
- *       product_id: "ETH-USDC";
+ *       product_id: string;
  *     }
  *     amount: {
  *       amount: string;
- *       currency: "ETH";
+ *       currency: string;
  *     },
  *     created_at: string;
  *     id: string;
  *     native_amount: {
  *       amount: string;
- *       currency: "EUR";
+ *       currency: string;
  *     },
  *     resource: "transaction";
  *     resource_path: string;

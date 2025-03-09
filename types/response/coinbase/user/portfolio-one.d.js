@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/coinbase.d.js").userPortfolio} userPortfolio
+ * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
  * @typedef default
  * @type {{
  *   breakdown: {

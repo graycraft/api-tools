@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/coinbase.d.js").tradeSide} tradeSide
+ * @typedef {import("#types/coinbase.ts").tradeSide} tradeSide
  * @typedef default
  * @type {{
  *   data: {
