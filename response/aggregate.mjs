@@ -2,10 +2,10 @@
  * Aggregate a response snapshot, usually for extracting arrays of data.
  *
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
- * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("#types/api.ts").default} Api
  * @typedef {{
  *   currencies: (item) => object;
- *   networks: (row) => object[];
+ *   networks?: (row) => object[];
  *   sort: (item1: {}, item2: {}) => number;
  * }} Callback
  * @module response/aggregate
