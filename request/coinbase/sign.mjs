@@ -3,12 +3,13 @@
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth
  * @see https://developers.coinbase.com/api#versioning
- * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.ts").Dict} Dict
  * @module request/coinbase/sign
  */
 
 import { blind, signJwt } from '#lib/authentication.mjs';
 import { AUTH } from '#lib/constants.mjs';
+import { dirObject } from '#lib/output.mjs';
 
 let timestamp;
 
@@ -54,9 +55,10 @@ export const coinbaseSecret = () => {
  * @returns {object} JSON data from response.
  */
 export const coinbaseSign = (method, title, security, key, payload, data = {}) => {
-  const { config } = global.apiTools.coinbase,
-    { ENCODING } = config,
+  const { prefs } = global.apiTools.coinbase,
+    { debug } = prefs,
     secret = coinbaseSecret();
+
   let headers = {
     /**
      * Some methods, e.g. `/v2/accounts/${account_uuid}/addresses` suggests to supply additional header:
@@ -77,8 +79,13 @@ export const coinbaseSign = (method, title, security, key, payload, data = {}) =
   };
 
   global.apiTools.output = title;
+
   if (security === AUTH.SECURITY.JWT) {
-    const token = signJwt(ENCODING, payload, secret, key);
+    const token = signJwt('hex', payload, secret, key);
+
+    if (debug) {
+      dirObject('Signature', { key, payload, secret, timestamp, token });
+    }
 
     headers = {
       ...headers,
