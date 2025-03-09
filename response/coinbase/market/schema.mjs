@@ -1,6 +1,7 @@
 /**
  * Market related JSON-schemas for Coinbase Advanced API response structure.
  *
+ * @todo Describe JSON-schemas.
  * @see https://json-schema.org/draft/2020-12/release-notes
  * @module response/coinbase/market/schema
  */
@@ -8,8 +9,8 @@
 import config from '#config/coinbase.json' with { type: 'json' };
 
 const {
+  ORDER: { SIDE },
   PRODUCT,
-  TRADE: { SIDE },
 } = config;
 
 export const marketAll = {
@@ -44,6 +45,7 @@ export const marketOne = {
     limit_only: { type: 'boolean' },
     mid_market_price: { type: 'string' },
     new: { type: 'boolean' },
+    new_at: { type: 'string' },
     post_only: { type: 'boolean' },
     price_increment: { type: 'string' },
     product_id: { type: 'string' },
@@ -82,6 +84,7 @@ export const marketOne = {
     'limit_only',
     'mid_market_price',
     'new',
+    'new_at',
     'post_only',
     'price_increment',
     'product_id',

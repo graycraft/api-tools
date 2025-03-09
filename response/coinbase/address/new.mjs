@@ -1,7 +1,7 @@
 /**
- * Handle Coinbase Advanced API address new response operations.
+ * Handle Coinbase Advanced API new account address response operations.
  *
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#create-address
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/address/new
  */

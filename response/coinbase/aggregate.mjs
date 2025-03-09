@@ -31,11 +31,6 @@ const coinbaseAggregate = (directory, fileName) => {
           code: item['code'],
           name: item['name'],
         }),
-        networks: (row) =>
-          row.chains.map((item) => ({
-            chain: item.chain,
-            chainType: item.chainType,
-          })),
         sort: (item1, item2) => item1['code'].localeCompare(item2['code']),
       },
       fileName,

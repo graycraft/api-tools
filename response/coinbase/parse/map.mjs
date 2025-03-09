@@ -1,7 +1,7 @@
 /**
  * Map items from a Coinbase Advanced API response array by object key.
  *
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} Response
  * @module response/coinbase/parse/map
  */
 

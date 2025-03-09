@@ -1,6 +1,7 @@
 /**
  * Transaction related JSON-schema for Coinbase Advanced API response structure.
  *
+ * @todo Describe JSON-schemas.
  * @see https://json-schema.org/draft/2020-12/release-notes
  * @module response/coinbase/transaction/schema
  */

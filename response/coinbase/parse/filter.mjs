@@ -2,7 +2,7 @@
  * Filter items from a Coinbase Advanced API response array by strict equality comparison or a criterion function.
  *
  * @typedef {import("#types/common.ts").Dict} Dict
- * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} Response
  * @module response/coinbase/parse/filter
  */
 
