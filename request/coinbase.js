@@ -1,5 +1,5 @@
 /**
- * Request Coinbase Advanced API spot endpoints.
+ * Request Coinbase Advanced API endpoints.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth
  * @module request/coinbase

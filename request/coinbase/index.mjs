@@ -1,6 +1,7 @@
 /**
  * Request Coinbase Advanced API spot endpoints.
  *
+ * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
  * @typedef {import("#types/response/coinbase.d.js").default} Response
  * @module request/coinbase/index
  */
@@ -15,42 +16,46 @@ import prefs from '#prefs/coinbase.json' with { type: 'json' };
 import status from '#res/coinbase/status.json' with { type: 'json' };
 import settings from '#settings/coinbase.json' with { type: 'json' };
 
-import addressAll from '../coinbase/address/all.mjs';
-import addressOne from '../coinbase/address/one.mjs';
-import addressNew from '../coinbase/address/new.mjs';
-import addressTransactions from '../coinbase/address/transactions.mjs';
-import currencyAll from '../coinbase/currency/all.mjs';
-import currencyOne from '../coinbase/currency/one.mjs';
+import addressAll from './address/all.mjs';
+import addressOne from './address/one.mjs';
+import addressNew from './address/new.mjs';
+import addressTransactions from './address/transactions.mjs';
+import currencyAll from './currency/all.mjs';
+import currencyOne from './currency/one.mjs';
 import depositCryptoAll from './deposit/crypto-all.mjs';
 import depositCryptoOne from './deposit/crypto-one.mjs';
 import depositFiatAll from './deposit/fiat-all.mjs';
-import marketAll from '../coinbase/market/all.mjs';
-import marketOne from '../coinbase/market/one.mjs';
-import marketTickers from '../coinbase/market/tickers.mjs';
-import orderAll from '../coinbase/order/all.mjs';
-import orderBook from '../coinbase/order/book.mjs';
-import orderCancel from '../coinbase/order/cancel.mjs';
-import orderLimitBuy from '../coinbase/order/limit-buy.mjs';
-import orderLimitSell from '../coinbase/order/limit-sell.mjs';
-import orderMarketBuy from '../coinbase/order/market-buy.mjs';
-import orderMarketSell from '../coinbase/order/market-sell.mjs';
-import orderOne from '../coinbase/order/one.mjs';
-import productCandles from '../coinbase/product/candles.mjs';
-import transactionAll from '../coinbase/transaction/all.mjs';
-import transactionOne from '../coinbase/transaction/one.mjs';
-import userAccountAll from '../coinbase/user/account-all.mjs';
-import userAccountOne from '../coinbase/user/account-one.mjs';
-import userPortfolioAll from '../coinbase/user/portfolio-all.mjs';
-import userPortfolioOne from '../coinbase/user/portfolio-one.mjs';
-import withdrawAll from '../coinbase/withdraw/all.mjs';
-import withdrawNew from '../coinbase/withdraw/new.mjs';
-//import withdrawOne from '../coinbase/withdraw/one.mjs';
+import marketAll from './market/all.mjs';
+import marketOne from './market/one.mjs';
+import marketTickers from './market/tickers.mjs';
+import orderAll from './order/all.mjs';
+import orderBook from './order/book.mjs';
+import orderCancel from './order/cancel.mjs';
+import orderLimitBuy from './order/limit-buy.mjs';
+import orderLimitSell from './order/limit-sell.mjs';
+import orderMarketBuy from './order/market-buy.mjs';
+import orderMarketSell from './order/market-sell.mjs';
+import orderOne from './order/one.mjs';
+import productCandles from './product/candles.mjs';
+import transactionAll from './transaction/all.mjs';
+import transactionOne from './transaction/one.mjs';
+import userAccountAll from './user/account-all.mjs';
+import userAccountOne from './user/account-one.mjs';
+import userPortfolioAll from './user/portfolio-all.mjs';
+import userPortfolioOne from './user/portfolio-one.mjs';
+import { pair } from './validate.mjs';
+import withdrawAll from './withdraw/all.mjs';
+import withdrawNew from './withdraw/new.mjs';
+//import withdrawOne from './withdraw/one.mjs';
 
 const {
+    PRODUCT: { BASE, QUOTE },
+  } = config,
+  { debug } = prefs,
+  {
     user,
     user: { portfolio },
   } = settings,
-  { debug } = prefs,
   account = user[portfolio].account,
   timestamp = Date.now();
 
@@ -69,6 +74,7 @@ const requestCoinbase = async () => {
     { handler, options, params } = parseArguments(argv);
 
   global.apiTools = { coinbase, options, output: {}, timestamp };
+
   if (debug || options.debug) dirObject('global.apiTools', global.apiTools);
   if (handler) {
     switch (handler) {
@@ -213,8 +219,8 @@ const depositFlow = (account) =>
 const marketFlow = () =>
   Promise.resolve()
     .then((response) => marketAll('2'))
-    .then((response) => marketOne(response.products[1].product_id))
-    .then((response) => marketTickers('BTC-USDT', '2'))
+    .then((response) => marketOne(response.products[0].product_id))
+    .then((response) => marketTickers(pair(BASE.CODE, QUOTE.CODE), '2'))
     .catch(console.error.bind(console));
 
 /**
@@ -222,7 +228,7 @@ const marketFlow = () =>
  */
 const orderFlow = () =>
   Promise.resolve()
-    .then((response) => orderBook('SHIB-USDT', '2'))
+    .then((response) => orderBook(pair(BASE.CODE, QUOTE.CODE), '2'))
     .then((response) => orderMarketBuy('1'))
     .then((response) => orderMarketSell('0.0001'))
     .then((response) => orderLimitBuy('0.0001', '1000'))
@@ -249,7 +255,7 @@ const userFlow = () =>
   Promise.resolve()
     .then((response) => userAccountAll('2'))
     .then((response) => userAccountOne(response.accounts[0].uuid))
-    .then((response) => userPortfolioAll('DEFAULT'))
+    .then((response) => userPortfolioAll(/** @type {userPortfolio} */ (portfolio)))
     .then((response) => userPortfolioOne(response.portfolios[0].uuid))
     .catch(console.error.bind(console));
 
