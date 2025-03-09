@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API one order endpoint, by order UUID.
+ * Handle Coinbase Advanced API one order request, by order UUID.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorder
  * @typedef {import("#types/response/coinbase/order/one.d.js").default} OrderOne
@@ -7,6 +7,7 @@
  */
 
 import { orderOne as schema } from '#res/coinbase/order/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

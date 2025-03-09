@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API all account addresses endpoint, listing all created addresses.
+ * Handle Coinbase Advanced API all account addresses request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
  * @typedef {import("#types/response/coinbase/address/all.d.js").default} AddressAll
@@ -7,6 +7,7 @@
  */
 
 import { addressAll as schema } from '#res/coinbase/address/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

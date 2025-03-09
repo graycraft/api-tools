@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API all fiat deposit entries endpoint.
+ * Handle Coinbase Advanced API account's all fiat currencies deposit entries request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-deposits#list-deposits
  * @typedef {import("#types/response/coinbase/deposit/fiat-all.d.js").default} DepositFiatAll
@@ -7,6 +7,7 @@
  */
 
 import { depositFiatAll as schema } from '#res/coinbase/deposit/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

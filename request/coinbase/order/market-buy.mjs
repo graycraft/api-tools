@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API place market buy order endpoint.
+ * Handle Coinbase Advanced API request, with placing market buy order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
  * @typedef {import("#types/response/coinbase/order/market-buy.d.js").default} OrderMarketBuy
@@ -7,7 +7,9 @@
  */
 
 import nodeCrypto from 'node:crypto';
+
 import { orderMarketBuy as schema } from '#res/coinbase/order/schema.mjs';
+
 import post from '../post.mjs';
 import validate, { pair } from '../validate.mjs';
 
@@ -16,7 +18,7 @@ import validate, { pair } from '../validate.mjs';
  * A buy Order will execute at or lower than the market price.
  * A sell Order will execute at or higher than the market price.
  * @param {string} quote_size Size of the first asset in a trading pair.
- * @param {string} [product_id] Trading pair (e.g. "BTC-USD").
+ * @param {string} [product_id] Currency pair code (e.g. "ETH-USDC").
  * @param {{
  *   client_order_id?, end_time?, leverage?, limit_limit_fok?, limit_limit_gtc?,
  *   limit_limit_gtd?, market_market_ioc?, margin_type?, post_only?, preview_id?,
@@ -40,7 +42,7 @@ const orderMarketBuy = async (
     margin_type,
     post_only,
     preview_id,
-    /* side, */
+    //side,
     sor_limit_ioc,
     stop_direction,
     stop_limit_stop_limit_gtc,
@@ -54,17 +56,17 @@ const orderMarketBuy = async (
   const { config, settings } = global.apiTools.coinbase,
     {
       ORDER,
+      ORDER: { SIDE },
       PATH: { ORDER_PLACE },
-      TRADE: { SIDE },
+      PRODUCT: { BASE, QUOTE },
     } = config,
     {
       authentication: { security },
-      asset: { base, quote },
     } = settings,
     data = validate(ORDER_PLACE, {
       defaults: {
         client_order_id: nodeCrypto.randomUUID(),
-        product_id: pair(base.code, quote.code),
+        product_id: pair(BASE.CODE, QUOTE.CODE),
         side: SIDE.BUY,
       },
       optional: { client_order_id, product_id },

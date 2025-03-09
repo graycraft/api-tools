@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API all wallet withdraw entries endpoint.
+ * Handle Coinbase Advanced API request, listing account's all withdraw entries.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule
@@ -8,6 +8,7 @@
  */
 
 import { withdrawAll as schema } from '#res/coinbase/withdraw/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

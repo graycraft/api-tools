@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API endpoint, with portfolio breakdown of a user by portfolio UUID.
+ * Handle Coinbase Advanced API request, with portfolio breakdown of a user by portfolio UUID.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfoliobreakdown
  * @typedef {import("#types/response/coinbase/user/portfolio-one.d.js").default} UserPortfolioOne
@@ -7,6 +7,7 @@
  */
 
 import { userPortfolioOne as schema } from '#res/coinbase/user/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

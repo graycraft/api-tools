@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API endpoint, listing transactions that have been done by address UUID.
+ * Handle Coinbase Advanced API request, listing transactions that have been done by account address UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-transactions
  * @typedef {import('#types/response/coinbase/address/transactions.d.js').default} AddressTransactions
@@ -7,6 +7,7 @@
  */
 
 import { addressTransactions as schema } from '#res/coinbase/address/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

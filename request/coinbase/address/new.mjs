@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API new address endpoint, creating an address for an account.
+ * Handle Coinbase Advanced API new account address request, creating an address for an account.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#create-address
  * @typedef {import("#types/response/coinbase/address/new.d.js").default} AddressNew
@@ -7,6 +7,7 @@
  */
 
 import { addressNew as schema } from '#res/coinbase/address/schema.mjs';
+
 import post from '../post.mjs';
 import validate from '../validate.mjs';
 

@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API endpoint, finding one cryptocurrency by asset UUID.
+ * Handle Coinbase Advanced API request, finding one currency by asset UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
  * @typedef {import("#types/response/coinbase/currency/one.d.js").default} CurrencyOne
@@ -7,6 +7,7 @@
  */
 
 import { currencyOne as schema } from '#res/coinbase/currency/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

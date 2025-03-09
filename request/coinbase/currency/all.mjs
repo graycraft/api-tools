@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API endpoint, listing all known cryptocurrencies.
+ * Handle Coinbase Advanced API request, listing all known currencies.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
  * @typedef {import("#types/response/coinbase/currency/all.d.js").default} CurrencyAll
@@ -7,6 +7,7 @@
  */
 
 import { currencyAll as schema } from '#res/coinbase/currency/schema.mjs';
+
 import get from '../get.mjs';
 
 /**

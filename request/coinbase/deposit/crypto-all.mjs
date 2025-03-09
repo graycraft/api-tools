@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API all crypto deposit entries endpoint.
+ * Handle Coinbase Advanced API account's all crypto currencies deposit entries request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
  * @typedef {import("#types/response/coinbase/deposit/crypto-all.d.js").default} DepositCryptoAll
@@ -7,6 +7,7 @@
  */
 
 import { depositCryptoAll as schema } from '#res/coinbase/deposit/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

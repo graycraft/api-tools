@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API one account transaction endpoint, by transaction UUID.
+ * Handle Coinbase Advanced API one account transaction request, by transaction UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
  * @typedef {import("#types/response/coinbase/transaction/one.d.js").default} TransactionOne
@@ -7,6 +7,7 @@
  */
 
 import { transactionOne as schema } from '#res/coinbase/transaction/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

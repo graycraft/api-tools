@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API endpoint, listing transactions of an account.
+ * Handle Coinbase Advanced API request, listing all transactions of an account.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
  * @typedef {import("#types/response/coinbase/transaction/all.d.js").default} TransactionAll
@@ -7,6 +7,7 @@
  */
 
 import { transactionAll as schema } from '#res/coinbase/transaction/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

@@ -1,7 +1,7 @@
 /**
  * Validate parameters for a Coinbase Advanced API request.
  *
- * @typedef {import("#types/common.d.js").DictLike} DictLike
+ * @typedef {import("#types/common.ts").DictLike} DictLike
  * @module request/coinbase/validate
  */
 
@@ -37,9 +37,9 @@ const isValid = (param) => {
     {
       CONTRACT,
       ORDER,
+      ORDER: { SIDE },
       PRODUCT,
       SORT,
-      TRADE: { SIDE },
       USER: { PORTFOLIO },
     } = config,
     [key, value] = Object.entries(param)[0],
@@ -48,8 +48,8 @@ const isValid = (param) => {
     currencyAll = fileReadJson(currencyDir, currencyFile.name).map((item) => item.code);
 
   /**
-   * @todo Pass array `?order_types=BTC-USDT&order_types=ETH-USDT` instead of `?order_types=BTC-USDT,ETH-USDT` as API requires.
-   * @todo Pass array `?product_ids=BTC-USDT&product_ids=ETH-USDT` instead of `?product_ids=BTC-USDT,ETH-USDT` as API requires.
+   * @todo Pass array `?order_types=BTC-USDC&order_types=ETH-USDC` instead of `?order_types=BTC-USDC,ETH-USDC` as API requires.
+   * @todo Pass array `?product_ids=BTC-USDC&product_ids=ETH-USDC` instead of `?product_ids=BTC-USDC,ETH-USDC` as API requires.
    * @todo `cursor`.
    * `name` as address label is a random string.
    */

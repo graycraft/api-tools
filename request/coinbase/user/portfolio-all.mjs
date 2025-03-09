@@ -1,13 +1,14 @@
 /**
- * Handle Coinbase Advanced API endpoint for all portfolios of a user.
+ * Handle Coinbase Advanced API request for all portfolios of a user.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfolios
- * @typedef {import("#types/coinbase.d.js").userPortfolio} userPortfolio
+ * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
  * @typedef {import("#types/response/coinbase/user/portfolio-all.d.js").default} UserPortfolioAll
  * @module request/coinbase/user/portfolio-all
  */
 
 import { userPortfolioAll as schema } from '#res/coinbase/user/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 

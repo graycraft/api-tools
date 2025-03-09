@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API endpoint, listing all products available for trading.
+ * Handle Coinbase Advanced API request, listing all currency pairs (products) available for trading.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproducts
  * @typedef {import("#types/response/coinbase/market/all.d.js").default} MarketAll
@@ -7,11 +7,12 @@
  */
 
 import { marketAll as schema } from '#res/coinbase/market/schema.mjs';
+
 import get from '../get.mjs';
 import validate, { pairs } from '../validate.mjs';
 
 /**
- * @param {string} limit Pagination limit (default > 668, maximum unknown).
+ * @param {string} limit Pagination limit (default: ~668).
  * @param {{
  *   contract_expiry_type?, expiring_contract_status?, get_all_products?,
  *   offset?, product_ids?, product_type?

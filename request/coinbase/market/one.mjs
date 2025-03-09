@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API market endpoint, with information about single product by its identifier.
+ * Handle Coinbase Advanced API market request, with information about one currency pair (product) by its identifier.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproduct
  * @typedef {import("#types/response/coinbase/market/one.d.js").default} MarketOne
@@ -7,24 +7,23 @@
  */
 
 import { marketOne as schema } from '#res/coinbase/market/schema.mjs';
+
 import get from '../get.mjs';
 import validate, { pair } from '../validate.mjs';
 
 /**
- * @param {string} product_id Trading pair (e.g. "BTC-USD").
+ * @param {string} product_id Currency pair (product) code (e.g. "ETH-USDC").
  * @returns {Promise<MarketOne>} JSON data from response.
  */
 const marketOne = async (product_id) => {
-  const { config, settings } = global.apiTools.coinbase,
+  const { config } = global.apiTools.coinbase,
     {
       PATH: { MARKET_ONE },
+      PRODUCT: { BASE, QUOTE },
     } = config,
-    {
-      asset: { base, quote },
-    } = settings,
     data = validate(MARKET_ONE, {
       defaults: {
-        product_id: pair(base.code, quote.code),
+        product_id: pair(BASE.CODE, QUOTE.CODE),
       },
       optional: { product_id },
     }),

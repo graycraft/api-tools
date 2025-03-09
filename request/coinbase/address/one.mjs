@@ -1,5 +1,5 @@
 /**
- * Handle Coinbase Advanced API one account addresses endpoint.
+ * Handle Coinbase Advanced API one account address request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#show-address
  * @typedef {import("#types/response/coinbase/address/one.d.js").default} AddressOne
@@ -7,6 +7,7 @@
  */
 
 import { addressOne as schema } from '#res/coinbase/address/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
