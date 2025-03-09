@@ -6,10 +6,9 @@
  * @global
  */
 
-import { Dict, DictLike } from './common.js';
+import type { Dict, DictLike } from './common.ts';
 
 export type Configuration = {
-  ENCODING: 'hex';
   HOSTNAME: string;
   PATH: Dict;
   PREFIX: string;
@@ -19,38 +18,48 @@ export type Configuration = {
     OK: number;
     SUCCESSFUL: string;
   };
+  SOCKET: {
+    CHANNEL: Dict;
+    SUBSCRIBE: string;
+    UNSUBSCRIBE: string;
+    URL: string;
+  };
 };
 export type Options = {
-  aggregate: boolean;
-  authentication: boolean;
-  debug: boolean;
-  flow: boolean;
-  headers: boolean;
-  snapshot: boolean;
-  validate: boolean;
-  verbose: boolean;
+  aggregate?: boolean;
+  authentication?: boolean;
+  continue?: boolean;
+  debug?: boolean;
+  flow?: string;
+  headers?: boolean;
+  snapshot?: boolean;
+  throw?: boolean;
+  validate?: boolean;
+  verbose?: boolean;
 };
-export type Name = 'bybit' | 'coinbase';
+export type Name = 'bybit' | 'coinbase' | 'fameex';
 export type Parameters = DictLike;
 export type Preferences = {
   aggregate: string[];
+  continue: boolean;
   debug: true;
-  enabled: ('aggregate' | 'parse' | 'snapshot' | 'verbose' | 'validate')[];
-  exit: boolean;
+  enabled: ('aggregate' | 'parse' | 'snapshot' | 'validate' | 'verbose')[];
   parse: string[];
   snapshot: string[];
   validate: string[];
+  verbose: string[];
 };
 export type Settings = {
   authentication: {
     delay: number;
     keys: Dict;
+    security: 'JWT' | 'HMAC' | 'RSA';
     secrets: Dict;
   };
 };
 export type Status = Dict<DictLike>;
 
-interface Api {
+export default interface Api {
   config: Configuration;
   name: string;
   prefs: Preferences;

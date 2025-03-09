@@ -22,8 +22,8 @@
  * @global
  */
 
-import type { Configuration, Preferences, Settings, Status } from './api.d.ts';
-import { Dict, DictLike } from './common.d.js';
+import type { Configuration, Preferences, Settings, Status } from './api.ts';
+import type { Dict } from './common.ts';
 
 export type accountId = string;
 export type accountType = 'CONTRACT' | 'FUND' | 'OPTION' | 'SPOT' | 'UNIFIED';
@@ -67,7 +67,7 @@ export type execType =
 export type kycLevel = 'LEVEL_1' | 'LEVEL_2' | 'LEVEL_DEFAULT';
 export type marginTrading = 'both' | 'none' | 'normalSpotOnly' | 'utaOnly';
 export type optionType = 'Call' | 'Put';
-export type orderType = ['Market', 'Limit', 'UNKNOWN'];
+export type orderSide = ['Buy', 'Sell'];
 export type orderStatus =
   | 'Cancelled'
   | 'Deactivated'
@@ -78,6 +78,7 @@ export type orderStatus =
   | 'Rejected'
   | 'Triggered'
   | 'Untriggered';
+export type orderType = ['Market', 'Limit', 'UNKNOWN'];
 export type path =
   | 'ACCOUNT_INFORMATION'
   | 'ACCOUNT_WALLETS'
@@ -140,7 +141,6 @@ export type rejectReason =
   | 'EC_CancelForNoFullFill'
   | 'EC_BySelfMatch'
   | 'EC_InCallAuctionStatus';
-export type side = ['Buy', 'Sell'];
 export type smpType = 'CancelBoth' | 'CancelMaker' | 'CancelTaker' | 'None';
 export type status = 'Closed' | 'Delivering' | 'PreLaunch' | 'Trading';
 export type stopOrderType =
@@ -184,16 +184,30 @@ export type withdrawStatus =
   | 'Unknown'
   | 'success';
 
-interface Bybit {
+export default interface Bybit {
   config: Configuration & {
     ACCOUNT: {
       CATEGORY: category[];
       WALLET: accountType[];
     };
+    ASSET: {
+      BASE: {
+        CODE: 'ETH';
+        NETWORK: 'ethereum';
+      };
+      QUOTE: {
+        CODE: 'USDT';
+        NETWORK: 'ethereum';
+      };
+    };
     OPTION: optionType[];
     ORDER: {
       LIMIT: orderType[1];
       MARKET: orderType[0];
+      SIDE: {
+        BUY: orderSide[0];
+        SELL: orderSide[1];
+      };
       STOP: stopOrderType[];
       STATUS: orderStatus[];
     };
@@ -206,10 +220,6 @@ interface Bybit {
     };
     TRADE: {
       EXEC: execType[];
-      SIDE: {
-        BUY: side[0];
-        SELL: side[1];
-      };
       STATUS: status[];
     };
   };
@@ -239,5 +249,3 @@ interface Bybit {
   };
   status: Status;
 }
-
-export default Bybit;
