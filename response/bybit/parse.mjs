@@ -5,7 +5,7 @@
  * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
  * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} Response
  * @typedef {import("../parse.mjs").RParse} RParse
  * @typedef {import("../parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("../parse.mjs").ResponseParse} ResponseParse

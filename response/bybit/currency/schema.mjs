@@ -1,6 +1,7 @@
 /**
  * Currency related JSON-schema for Bybit API response structure.
  *
+ * @todo Describe JSON-schemas.
  * @see https://json-schema.org/draft/2020-12/release-notes
  * @module response/bybit/currency/schema
  */
@@ -18,7 +19,6 @@ export const currencyAll = {
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],
   type: 'object',
 };
-
 export const currencyNetworkAll = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
@@ -32,7 +32,6 @@ export const currencyNetworkAll = {
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],
   type: 'object',
 };
-
 export const currencyNetworkOne = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,
@@ -46,7 +45,6 @@ export const currencyNetworkOne = {
   required: ['result', 'retCode', 'retExtInfo', 'retMsg', 'time'],
   type: 'object',
 };
-
 export const currencyOne = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
   additionalProperties: false,

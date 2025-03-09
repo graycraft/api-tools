@@ -1,5 +1,5 @@
 /**
- * Handle Bybit API network all response response operations.
+ * Handle Bybit API all networks response operations.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot

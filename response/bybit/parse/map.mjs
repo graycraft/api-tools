@@ -1,7 +1,7 @@
 /**
  * Map items from a Bybit API response array by object key.
  *
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} Response
  * @module response/bybit/parse/map
  */
 
