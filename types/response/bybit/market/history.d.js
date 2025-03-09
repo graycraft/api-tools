@@ -1,6 +1,6 @@
 /**
- * @typedef {import("#types/bybit.d.ts").category} category
- * @typedef {import("#types/bybit.d.ts").side} side
+ * @typedef {import("#types/bybit.ts").category} category
+ * @typedef {import("#types/bybit.ts").orderSide} side
  * @typedef default
  * @type {{
  *   result: {
@@ -19,5 +19,5 @@
  *   retExtInfo: {};
  *   retMsg: "success";
  *   time: number;
- * }}
+ * } | string}
  */

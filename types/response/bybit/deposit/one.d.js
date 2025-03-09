@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/bybit.d.ts").depositStatus} depositStatus
+ * @typedef {import("#types/bybit.ts").depositStatus} depositStatus
  * @typedef default
  * @type {{
  *   result: {

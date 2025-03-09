@@ -1,15 +1,15 @@
 /**
- * @typedef {import("#types/bybit.d.ts").cancelType} cancelType
- * @typedef {import("#types/bybit.d.ts").category} category
- * @typedef {import("#types/bybit.d.ts").positionIdx} positionIdx
- * @typedef {import("#types/bybit.d.ts").orderStatus} orderStatus
- * @typedef {import("#types/bybit.d.ts").orderType} orderType
- * @typedef {import("#types/bybit.d.ts").rejectReason} rejectReason
- * @typedef {import("#types/bybit.d.ts").side} side
- * @typedef {import("#types/bybit.d.ts").smpType} smpType
- * @typedef {import("#types/bybit.d.ts").stopOrderType} stopOrderType
- * @typedef {import("#types/bybit.d.ts").timeInForce} timeInForce
- * @typedef {import("#types/bybit.d.ts").triggerBy} triggerBy
+ * @typedef {import("#types/bybit.ts").cancelType} cancelType
+ * @typedef {import("#types/bybit.ts").category} category
+ * @typedef {import("#types/bybit.ts").positionIdx} positionIdx
+ * @typedef {import("#types/bybit.ts").orderStatus} orderStatus
+ * @typedef {import("#types/bybit.ts").orderType} orderType
+ * @typedef {import("#types/bybit.ts").rejectReason} rejectReason
+ * @typedef {import("#types/bybit.ts").orderSide} side
+ * @typedef {import("#types/bybit.ts").smpType} smpType
+ * @typedef {import("#types/bybit.ts").stopOrderType} stopOrderType
+ * @typedef {import("#types/bybit.ts").timeInForce} timeInForce
+ * @typedef {import("#types/bybit.ts").triggerBy} triggerBy
  * @typedef default
  * @type {{
  *   result: {

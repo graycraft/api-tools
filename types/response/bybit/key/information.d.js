@@ -1,6 +1,6 @@
 /**
- * @typedef {import("#types/bybit.d.ts").kycLevel} kycLevel
- * @typedef {import("#types/bybit.d.ts").vipLevel} vipLevel
+ * @typedef {import("#types/bybit.ts").kycLevel} kycLevel
+ * @typedef {import("#types/bybit.ts").vipLevel} vipLevel
  * @typedef default
  * @type {{
  *   result: {

@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/bybit.d.ts").transferStatus} transferStatus
+ * @typedef {import("#types/bybit.ts").transferStatus} transferStatus
  * @typedef default
  * @type {{
  *   result: {

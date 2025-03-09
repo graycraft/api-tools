@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/bybit.d.ts").category} category
+ * @typedef {import("#types/bybit.ts").category} category
  * @typedef {import("./one.d.js").default} WithdrawOne
  * @typedef default
  * @type {{

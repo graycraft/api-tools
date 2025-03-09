@@ -1,8 +1,8 @@
 /**
- * @typedef {import("#types/bybit.d.ts").category} category
- * @typedef {import("#types/bybit.d.ts").orderType} orderType
- * @typedef {import("#types/bybit.d.ts").side} side
- * @typedef {import("#types/bybit.d.ts").stopOrderType} stopOrderType
+ * @typedef {import("#types/bybit.ts").category} category
+ * @typedef {import("#types/bybit.ts").orderType} orderType
+ * @typedef {import("#types/bybit.ts").orderSide} side
+ * @typedef {import("#types/bybit.ts").stopOrderType} stopOrderType
  * @typedef default
  * @type {{
  *   result: {

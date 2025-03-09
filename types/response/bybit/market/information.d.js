@@ -1,8 +1,8 @@
 /**
- * @typedef {import("#types/bybit.d.ts").category} category
- * @typedef {import("#types/bybit.d.ts").contractType} contractType
- * @typedef {import("#types/bybit.d.ts").marginTrading} marginTrading
- * @typedef {import("#types/bybit.d.ts").status} status
+ * @typedef {import("#types/bybit.ts").category} category
+ * @typedef {import("#types/bybit.ts").contractType} contractType
+ * @typedef {import("#types/bybit.ts").marginTrading} marginTrading
+ * @typedef {import("#types/bybit.ts").status} status
  * @typedef default
  * @type {{
  *   result: {

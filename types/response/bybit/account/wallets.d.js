@@ -1,5 +1,5 @@
 /**
- * @typedef {import("#types/bybit.d.ts").accountType} accountType
+ * @typedef {import("#types/bybit.ts").accountType} accountType
  * @typedef default
  * @type {{
  *   result: {

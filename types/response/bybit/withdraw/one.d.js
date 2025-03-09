@@ -1,6 +1,6 @@
 /**
- * @typedef {import("#types/bybit.d.ts").category} category
- * @typedef {import("#types/bybit.d.ts").withdrawStatus} withdrawStatus
+ * @typedef {import("#types/bybit.ts").category} category
+ * @typedef {import("#types/bybit.ts").withdrawStatus} withdrawStatus
  * @typedef default
  * @type {{
  *   result: {
