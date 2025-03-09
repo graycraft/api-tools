@@ -49,6 +49,8 @@ const bybitParse = (response, endpoint, data) => {
  */
 const parseJson = (json, endpoint, data) => {
   const {
+      ASSET: { BASE, QUOTE },
+      ORDER,
       PATH,
       PATH: {
         BALANCE_ALL,
@@ -60,11 +62,7 @@ const parseJson = (json, endpoint, data) => {
         ORDER_ALL,
         TRADE_HISTORY_ALL,
       },
-      TRADE,
     } = config,
-    {
-      currency: { base, quote },
-    } = prefs,
     path = PATH[endpoint],
     parsed = [];
 
@@ -83,7 +81,7 @@ const parseJson = (json, endpoint, data) => {
     case ORDER_ALL:
     case TRADE_HISTORY_ALL:
       jsonParsed = filter(json, {
-        criterion: data.side || TRADE.SIDE.BUY,
+        criterion: data.side || ORDER.SIDE.BUY,
         key: 'side',
         list: 'list',
       });
@@ -101,7 +99,7 @@ const parseJson = (json, endpoint, data) => {
     case MARKET_INFORMATION:
     case MARKET_TICKERS:
       jsonParsed = find(json, {
-        criterion: data.symbol ?? base + quote,
+        criterion: data.symbol ?? BASE.CODE + QUOTE.CODE,
         key: 'symbol',
         list: 'list',
       });
@@ -125,11 +123,13 @@ const parseJson = (json, endpoint, data) => {
     default:
       isMapped = false;
   }
+
   if (isFiltered) parsed.push('items filtered');
   if (isFound) parsed.push('found one item');
   if (isMapped) parsed.push('items mapped');
+
   console.info(
-    `Parsed endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
+    `Parsed response from endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
   );
 
   return { jsonParsed: jsonParsed ?? json };
