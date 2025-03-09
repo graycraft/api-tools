@@ -5,7 +5,7 @@
  * @typedef {import("#res/parse.mjs").ResponseParse} ResponseParse
  * @typedef {import("#res/parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
- * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("#types/api.ts").default} Api
  * @typedef {import("#types/response/snapshot.d.js").default} Snapshot
  * @typedef {{
  *   parse: (response: RFetch, endpoint: string, data: {}) => ResponseParse & RParseStatus;
@@ -32,19 +32,25 @@ import validate from '#res/validate.mjs';
  * @returns {Promise<RFetch["json"]>} JSON data from response.
  */
 const request = async (method, api, url, template, headers, schema, callback, data = {}) => {
-  const { PATH } = api.config,
+  let json;
+
+  const {
+      config: { PATH },
+    } = api,
     endpoint = obtainName(template, PATH),
     response = await fetchData(method, url, headers, data),
     responseParsed = callback.parse(response, endpoint, data),
-    { json } = response,
     { jsonParsed, statusText } = responseParsed,
     { isKnown, isSaved, isSuccessful } = analyze(api, responseParsed),
     isValid = validate(response.json, schema, api.name);
+
+  json = response.json;
 
   global.apiTools.output[statusText] = {
     headers: response.headers,
     json: jsonParsed ?? json,
   };
+
   if (isSuccessful) {
     if (isValid) {
       callback.snapshot(
@@ -58,24 +64,31 @@ const request = async (method, api, url, template, headers, schema, callback, da
         }),
         endpoint,
       );
-    } else {
-      console.info('Snapshot:', 'response is not valid.');
-      console.info('Parse:', 'response is not valid.');
-      global.apiTools.options.flow = 'exit';
-      global.apiTools.options.verbose = true;
-    }
+    } else json = handleFailed();
   } else {
     console.info(
       'Status:',
       `code is${isKnown ? '' : ' not'} known, description is${isSaved ? '' : ' not'} saved.`,
     );
-    console.info('Snapshot:', 'response is not successful.');
-    console.info('Parse:', 'response is not successful.');
-    global.apiTools.options.flow = 'exit';
-    global.apiTools.options.verbose = true;
+    json = handleFailed();
   }
 
   return json;
+};
+
+/**
+ * Handle failed response:
+ * - HTTP status is abortive (not 200 or 201);
+ * - response status has error;
+ * - JSON-schema validation failed.
+ * @returns {null}
+ */
+const handleFailed = () => {
+  console.info('Snapshot:', 'response is not successful.');
+  console.info('Parse:', 'response is not successful.');
+  global.apiTools.options.verbose = true;
+
+  return null;
 };
 
 export default request;
