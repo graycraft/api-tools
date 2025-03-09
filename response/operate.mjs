@@ -1,7 +1,7 @@
 /**
  * Operate a response snapshot to aggregate or validate data.
  *
- * @typedef {import("#types/api.d.js").Name} Name
+ * @typedef {import("#types/api.ts").Name} Name
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @typedef {(directory: string, fileName: string) => RSnapshot} FAggregate
  * @module response/perform
@@ -32,7 +32,6 @@ const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {
   if (options.aggregate) {
     if (global.apiTools[apiName].prefs.aggregate.includes(endpoint)) {
       if (snapshot) {
-        console.log(dir, fileName);
         fileData = aggregate(dir, fileName);
       } else {
         const file = fileNewest(dirBase + dir);

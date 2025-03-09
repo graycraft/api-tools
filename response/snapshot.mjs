@@ -1,9 +1,9 @@
 /**
  * Snapshot an API response to a file with current UTC ISO timestamp.
  *
- * @typedef {import("#types/api.d.js").Api} Api
- * @typedef {import("#types/response/bybit.d.js").default} Response
- * @typedef {import("#types/response/snapshot.d.js").default} Snapshot
+ * @typedef {import("#types/api.ts").default} Api
+ * @typedef {import("#types/response/bybit.js").default} Response
+ * @typedef {import("#types/response/snapshot.js").default} Snapshot
  * @typedef RSnapshot
  * @prop {{}} fileData Response code.
  * @prop {string} fileName Response description.
