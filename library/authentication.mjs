@@ -11,8 +11,10 @@
  * @module library/authentication
  */
 
-import jsonwebtoken from 'jsonwebtoken';
 import nodeCrypto from 'node:crypto';
+
+import jsonwebtoken from 'jsonwebtoken';
+
 import { AUTH } from './constants.mjs';
 
 const { ALGORITHM, SECURITY } = AUTH;

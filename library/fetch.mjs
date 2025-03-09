@@ -1,7 +1,7 @@
 /**!
  * Fetch data from a REST API endpoint with parameters.
  *
- * @typedef {import("#types/response/snapshot.d.js").default} Snapshot
+ * @typedef {import("#types/response/snapshot.js").default} Snapshot
  * @typedef {import("./constants.mjs").HttpStatusCode} HttpStatusCode
  * @typedef {import("./constants.mjs").HttpStatusText} HttpStatusText
  * @typedef {Object<string, string>} Dict
