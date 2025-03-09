@@ -107,7 +107,7 @@ const parseJson = (json, endpoint, data) => {
   if (isFound) parsed.push('found one item');
   if (isMapped) parsed.push('items mapped');
   console.info(
-    `Parsed endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
+    `Parsed response from endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
   );
 
   return { jsonParsed: jsonParsed ?? json };
