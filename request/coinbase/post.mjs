@@ -8,6 +8,7 @@
 import { HTTP } from '#lib/constants.mjs';
 import { endpointPost } from '#lib/fetch.mjs';
 import { dirSnapshot } from '#lib/output.mjs';
+import { exitProcess } from '#lib/utility.mjs';
 import parse from '#res/coinbase/parse.mjs';
 import snapshot from '#res/coinbase/snapshot.mjs';
 
@@ -56,6 +57,7 @@ const coinbasePost = async (template, schema, security, data = {}) => {
     );
 
   dirSnapshot(endpoint, options, prefs, global.apiTools.output);
+  exitProcess(json, options, prefs);
 
   return json;
 };
