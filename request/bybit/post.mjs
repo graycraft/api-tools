@@ -1,7 +1,7 @@
 /**
  * Request a Bybit API endpoint by the `POST` method.
  *
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} Response
  * @module request/bybit/post
  */
 

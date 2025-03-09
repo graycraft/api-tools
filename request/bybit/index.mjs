@@ -12,7 +12,7 @@
  * @see https://www.bybit.com/app/user/add-secret-key?type=auto
  * @see https://www.bybit.com/app/user/add-secret-key?type=system
  * @see https://www.bybit.com/user/assets/money-address
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} Response
  * @module request/bybit/index
  */
 
@@ -71,11 +71,11 @@ const {
   {
     ASSET: { BASE, QUOTE },
   } = config,
+  { debug } = prefs,
   {
     account,
     account: { wallet },
   } = settings,
-  { debug } = prefs,
   timestamp = Date.now();
 
 /**

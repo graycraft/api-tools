@@ -1,7 +1,7 @@
 /**
  * Request a Coinbase Advanced API endpoint by the `POST` method.
  *
- * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} Response
  * @module request/coinbase/post
  */
 

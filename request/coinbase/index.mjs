@@ -2,7 +2,7 @@
  * Request Coinbase Advanced API spot endpoints.
  *
  * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
- * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} Response
  * @module request/coinbase/index
  */
 
