@@ -3,12 +3,13 @@
  *
  * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.js
  * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.ts
- * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.ts").Dict} Dict
  * @module request/bybit/sign
  */
 
 import { blind, signHmac } from '#lib/authentication.mjs';
 import { AUTH } from '#lib/constants.mjs';
+import { dirObject } from '#lib/output.mjs';
 
 let timestamp;
 
@@ -54,24 +55,32 @@ export const bybitSecret = () => {
  * @returns {object} JSON data from response.
  */
 export const bybitSign = (method, title, security, key, payload, data = {}) => {
-  const { config, settings } = global.apiTools.bybit,
-    { ENCODING } = config,
+  const { prefs, settings } = global.apiTools.bybit,
+    { debug } = prefs,
     {
       authentication: { delay },
     } = settings,
     secret = bybitSecret();
-  let headers = {};
+
+  let headers = {
+    'X-BAPI-RECV-WINDOW': delay,
+    'X-BAPI-TIMESTAMP': timestamp,
+  };
 
   global.apiTools.output = title;
+
   if (security === AUTH.SECURITY.HMAC) {
-    const digest = signHmac(ENCODING, payload, secret, key);
+    const digest = signHmac('hex', payload, secret, key);
+
+    if (debug) {
+      dirObject('Signature', { digest, key, payload, secret, timestamp });
+    }
 
     headers = {
+      ...headers,
       'X-BAPI-API-KEY': key,
-      'X-BAPI-RECV-WINDOW': delay,
       'X-BAPI-SIGN': digest,
       'X-BAPI-SIGN-TYPE': 2,
-      'X-BAPI-TIMESTAMP': timestamp,
     };
     global.apiTools.output[method] = {
       headers: {
