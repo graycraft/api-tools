@@ -4,7 +4,7 @@
  * @typedef {import("#lib/constants.mjs").AuthSecurity} AuthSecurity
  * @typedef {import("#lib/constants.mjs").HttpMethod} HttpMethod
  * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
- * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.ts").Dict} Dict
  * @typedef {{
  *   [key: string]: string;
  * } & {

@@ -6,7 +6,7 @@
  * @typedef {import("#res/parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @typedef {import("#types/api.ts").default} Api
- * @typedef {import("#types/response/snapshot.d.js").default} Snapshot
+ * @typedef {import("#types/response/snapshot.js").default} Snapshot
  * @typedef {{
  *   parse: (response: RFetch, endpoint: string, data: {}) => ResponseParse & RParseStatus;
  *   snapshot: (api: Api, output: Snapshot, endpoint: string) => RSnapshot;
