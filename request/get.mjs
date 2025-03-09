@@ -2,12 +2,13 @@
  * Request an API endpoint by the `GET` method.
  *
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
- * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("#types/api.ts").default} Api
  * @typedef {import("./index.mjs").Callback} Callback
  * @module request/get
  */
 
 import { HTTP } from '#lib/constants.mjs';
+
 import request from './index.mjs';
 
 /**

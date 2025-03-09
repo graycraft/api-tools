@@ -1,15 +1,15 @@
 /**
  * Validate parameters for a request.
  *
- * @typedef {import("#types/common.d.js").Dict} Dict
- * @typedef {import("#types/common.d.js").DictLike} DictLike
+ * @typedef {import("#types/common.ts").Dict} Dict
+ * @typedef {import("#types/common.ts").DictLike} DictLike
  * @module request/validate
  */
 
 import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 /**
- * @param {(string | Dict)[]} list
+ * @param {(Dict | string)[]} list
  * @param {string} value
  * @param {string} [prop]
  * @returns {boolean}
@@ -35,20 +35,22 @@ export const isPair = (list, value, pair) => {
 };
 
 /**
+ * Validate request parameters.
  * @param {{ PATH: Dict }} config
  * @param {string} path
  * @param {(param: DictLike) => boolean} isValid
  * @param {{
- *   defaults?: DictLike,
- *   optional?: DictLike,
- *   required?: DictLike,
- *   throw?: DictLike,
+ *   defaults?: DictLike;
+ *   optional?: DictLike;
+ *   required?: DictLike;
+ *   throw?: DictLike;
  * }} options
  * @returns {{}} Validated request parameters data.
  */
 export const requestValidate = (config, path, isValid, options) => {
   const data = { ...options.defaults },
     { PATH } = config;
+
   let category, key;
 
   for (category in options) {
