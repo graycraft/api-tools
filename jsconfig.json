@@ -7,6 +7,7 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "NodeNext",
     "moduleResolution": "nodenext",
+    "noImplicitAny": true,
     "paths": {
       "#cllctn/*": ["./collection/*"],
       "#config/*": ["./configuration/*"],
