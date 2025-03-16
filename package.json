@@ -1,6 +1,6 @@
 {
   "name": "api-tools",
-  "version": "0.4.0-alpha",
+  "version": "0.4.1-alpha",
   "description": "Tools to work with a REST API and WebSockets.",
   "main": "request.js",
   "directories": {},
