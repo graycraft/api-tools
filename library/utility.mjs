@@ -3,10 +3,28 @@
  *
  * @typedef {import("#types/api.ts").Options} Options
  * @typedef {import("#types/api.ts").Preferences} Preferences
- * @typedef {import("#types/common.ts")} Dict
  * @module library/utility
  */
 
+/**
+ * @typedef {import("#types/common.ts").dictionary<T>} dictionary
+ * @template {string} T
+ */
+
+/**
+ * @type {{
+ *   aggr: "aggregate";
+ *   auth: "authentication";
+ *   cont: "continue";
+ *   debu: "debug";
+ *   flow: "flow";
+ *   head: "headers";
+ *   snap: "snapshot";
+ *   thro: "throw";
+ *   vali: "validate";
+ *   verb: "verbose";
+ * }}
+ */
 const OPTIONS = {
   aggr: 'aggregate',
   auth: 'authentication',
@@ -41,7 +59,7 @@ export const exitProcess = (json, options, prefs) => {
 /**
  * Obtain key name from a dictionary by value.
  * @param {string} value A dictionary entry value.
- * @param {Dict} dictionary Dictionary to search.
+ * @param {dictionary<string>} dictionary Dictionary to search.
  * @returns {string} Key name.
  */
 export const obtainName = (value, dictionary) => {
@@ -55,11 +73,11 @@ export const obtain = obtainName;
  * Parse process argument vectors from CLI to usable handler, parameters and options.
  * @param {NodeJS.Process["argv"]} [argv] Process argument vectors from CLI.
  * @typedef Arguments
- * @prop {Dict} explicit Explicit parameters to execute API request handler with.
+ * @prop {dictionary<string>} explicit Explicit parameters to execute API request handler with.
  * @prop {string} handler API request handler.
  * @prop {string[]} implicit Implicit parameters to execute API request handler with.
  * @prop {Options} options CLI options to apply while executing API request handler or flow.
- * @prop {(string | Dict)[]} params Parameters to execute API request handler with.
+ * @prop {(string | dictionary<string>)[]} params Parameters to execute API request handler with.
  * @returns {Arguments} Usable handler, parameters and options.
  */
 export const parseArguments = (argv = []) => {
@@ -114,7 +132,7 @@ export const parseOptions = (argv) => {
         let [key, value] = option.split('='),
           flag;
 
-        key = OPTIONS[key.slice(2, 6)];
+        key = OPTIONS[/** @type {keyof OPTIONS} */ (key.slice(2, 6))];
         if (key !== 'flow') {
           flag = value === 'off' ? false : Boolean(value);
 
@@ -126,8 +144,11 @@ export const parseOptions = (argv) => {
       .reduce((accum, option) => Object.assign(accum, option), {}),
     optionsImplicit = options
       .filter((param) => !param.includes('='))
-      .map((option) => OPTIONS[option.slice(2, 6)], {})
-      .reduce((accum, option) => ((accum[option] = true), accum), {});
+      .map((option) => OPTIONS[/** @type {keyof OPTIONS} */ (option.slice(2, 6))], {})
+      .reduce(
+        (/** @type {dictionary<boolean>} */ accum, option) => ((accum[option] = true), accum),
+        {},
+      );
 
   return { optionsExplicit, optionsImplicit };
 };
@@ -136,7 +157,7 @@ export const parseOptions = (argv) => {
  * Parse process argument vectors from CLI to usable parameters.
  * @param {NodeJS.Process["argv"]} argv Process argument vectors from CLI.
  * @returns {{
- *   paramsExplicit: Dict,
+ *   paramsExplicit: dictionary<string>,
  *   paramsImplicit: string[]
  * }} Usable parameters.
  */

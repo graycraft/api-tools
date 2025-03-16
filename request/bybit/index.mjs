@@ -12,6 +12,7 @@
  * @see https://www.bybit.com/app/user/add-secret-key?type=auto
  * @see https://www.bybit.com/app/user/add-secret-key?type=system
  * @see https://www.bybit.com/user/assets/money-address
+ * @typedef {import("#types/bybit.ts").default} IBybit
  * @typedef {import("#types/response/bybit.js").default} Response
  * @module request/bybit/index
  */
@@ -69,13 +70,13 @@ const {
     DATE: { DAY },
   } = NUMBER,
   {
-    ASSET: { BASE, QUOTE },
-  } = config,
-  { debug } = prefs,
+    COIN: { BASE, QUOTE },
+  } = /** @type {IBybit["config"]} */ (config),
+  { debug } = /** @type {IBybit["prefs"]} */ (prefs),
   {
     account,
     account: { wallet },
-  } = settings,
+  } = /** @type {IBybit["settings"]} */ (settings),
   timestamp = Date.now();
 
 /**
@@ -95,7 +96,7 @@ const requestBybit = async () => {
     },
     { handler, options, params } = parseArguments(argv);
 
-  global.apiTools = { bybit, options, output: {}, timestamp };
+  global.apiTools = { bybit, options, timestamp };
 
   if (debug || options.debug) dirObject('global.apiTools', global.apiTools);
   if (handler) {
@@ -251,11 +252,11 @@ const accountFlow = () =>
 const balanceFlow = () =>
   Promise.resolve()
     .then((response) =>
-      balanceAll(account.wallet, account[account.wallet], { coin: BASE.CODE, withBonus: '1' }),
+      balanceAll(account.wallet, account[account.wallet], { coin: BASE.NAME, withBonus: '1' }),
     )
-    .then((response) => balanceInformation(account.wallet, QUOTE.CODE))
+    .then((response) => balanceInformation(account.wallet, QUOTE.NAME))
     .then((response) =>
-      balanceOne(account.wallet, QUOTE.CODE, account[account.wallet], { withBonus: '1' }),
+      balanceOne(account.wallet, QUOTE.NAME, account[account.wallet], { withBonus: '1' }),
     )
     .catch(console.error.bind(console));
 
@@ -266,8 +267,8 @@ const currencyFlow = () =>
   Promise.resolve()
     .then((response) => currencyAll())
     .then((response) => currencyNetworkAll())
-    .then((response) => currencyNetworkOne(BASE.CODE, QUOTE.CODE))
-    .then((response) => currencyOne(BASE.CODE))
+    .then((response) => currencyNetworkOne(BASE.NAME, QUOTE.CHAIN))
+    .then((response) => currencyOne(BASE.NAME))
     .catch(console.error.bind(console));
 
 /**
@@ -276,20 +277,20 @@ const currencyFlow = () =>
 const depositFlow = () =>
   Promise.resolve()
     .then((response) =>
-      depositAll(QUOTE.CODE, {
-        endTime: timestamp,
-        limit: 1,
-        startTime: timestamp - DAY * 30,
+      depositAll(QUOTE.NAME, {
+        endTime: String(timestamp),
+        limit: '1',
+        startTime: String(timestamp - DAY * 30),
       }),
     )
-    .then((response) => depositNewMaster(QUOTE.CODE, BASE.CODE))
+    .then((response) => depositNewMaster(QUOTE.NAME, QUOTE.CHAINTYPE))
     //.then((response) => depositNewSub(account[account.wallet], QUOTE.CODE, BASE.CODE))
     .then((response) =>
       depositOne(account.id[account[wallet]].deposit, {
-        coin: QUOTE.CODE,
-        endTime: timestamp,
-        limit: 1,
-        startTime: timestamp - DAY * 30,
+        coin: QUOTE.NAME,
+        endTime: String(timestamp),
+        limit: '1',
+        startTime: String(timestamp - DAY * 30),
       }),
     )
     .catch(console.error.bind(console));
@@ -300,23 +301,23 @@ const depositFlow = () =>
 const marketFlow = () =>
   Promise.resolve()
     .then((response) =>
-      marketHistory(BASE.CODE + QUOTE.CODE, '2', {
-        baseCoin: BASE.CODE,
+      marketHistory(BASE.NAME + QUOTE.NAME, '2', {
+        baseCoin: BASE.NAME,
         category: 'spot',
         optionType: 'Call',
       }),
     )
     .then((response) =>
       marketInformation('spot', {
-        baseCoin: BASE.CODE,
+        baseCoin: BASE.NAME,
         limit: '2',
         status: 'Trading',
-        symbol: BASE.CODE + QUOTE.CODE,
+        symbol: BASE.NAME + QUOTE.NAME,
       }),
     )
     .then((response) =>
-      marketTickers(BASE.CODE + QUOTE.CODE, {
-        baseCoin: BASE.CODE,
+      marketTickers(BASE.NAME + QUOTE.NAME, {
+        baseCoin: BASE.NAME,
         category: 'spot',
       }),
     )
@@ -327,9 +328,9 @@ const marketFlow = () =>
  */
 const orderFlow = () =>
   Promise.resolve()
-    .then((response) => orderAll(BASE.CODE + QUOTE.CODE, 'Buy', '2'))
-    .then((response) => orderBook(BASE.CODE + QUOTE.CODE, 'inverse', '2'))
-    .then((response) => orderHistoryAll(BASE.CODE + QUOTE.CODE, '2'))
+    .then((response) => orderAll(BASE.NAME + QUOTE.NAME, 'Buy', '2'))
+    .then((response) => orderBook(BASE.NAME + QUOTE.NAME, 'inverse', '2'))
+    .then((response) => orderHistoryAll(BASE.NAME + QUOTE.NAME, '2'))
     .then((response) => orderHistoryOne(response.result.list[0]?.orderId ?? '0000000000000000000'))
     .then((response) => orderCancelAll())
     .then((response) => orderMarketBuy('10'))
@@ -338,7 +339,7 @@ const orderFlow = () =>
     .then((response) => orderOne(response.result.orderId))
     .then((response) => orderLimitSell('0.001', '5000'))
     .then((response) => orderCancelOne(response.result.orderId))
-    .then((response) => orderCancelAll(BASE.CODE + QUOTE.CODE))
+    .then((response) => orderCancelAll(BASE.NAME + QUOTE.NAME))
     .catch(console.error.bind(console));
 
 /**
@@ -348,7 +349,7 @@ const tradeFlow = () =>
   Promise.resolve()
     .then((response) => tradeHistoryAll())
     .then((response) => tradeHistoryOne(response.result.list[0]?.orderId ?? '0000000000000000000'))
-    .then((response) => tradeRates(BASE.CODE + QUOTE.CODE))
+    .then((response) => tradeRates(BASE.NAME + QUOTE.NAME))
     .catch(console.error.bind(console));
 
 /**
@@ -358,7 +359,7 @@ const transferFlow = () =>
   Promise.resolve()
     .then((response) => transferAll(account.wallet, 'CONTRACT'))
     .then((response) => transferInternal(account.wallet, 'FUND', '0.000001'))
-    .then((response) => transferOne(account.wallet, BASE.CODE))
+    .then((response) => transferOne(account.wallet, BASE.NAME))
     .catch(console.error.bind(console));
 
 /**
@@ -368,7 +369,7 @@ const withdrawFlow = () =>
   Promise.resolve()
     .then((response) => withdrawAll())
     .then((response) => withdrawOne(response.result.rows[0]?.txID ?? account.withdraw))
-    .then((response) => withdrawNew('1', BASE.CODE))
+    .then((response) => withdrawNew('1', BASE.NAME))
     .catch(console.error.bind(console));
 
 export default requestBybit;

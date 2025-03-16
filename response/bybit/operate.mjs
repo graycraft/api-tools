@@ -1,7 +1,7 @@
 /**
  * Handle Bybit API response operations.
  *
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @typedef {import("#res/operate.mjs").RSnapshot} RSnapshot
  * @module response/bybit/operate
  */
 

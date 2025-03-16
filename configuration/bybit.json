@@ -3,14 +3,16 @@
     "CATEGORY": ["inverse", "linear", "option", "spot"],
     "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
   },
-  "ASSET": {
+  "COIN": {
     "BASE": {
-      "CODE": "ETH",
-      "NETWORK": "ETH"
+      "CHAIN": "ETH",
+      "CHAINTYPE": "Ethereum",
+      "NAME": "ETH"
     },
     "QUOTE": {
-      "CODE": "USDT",
-      "NETWORK": "ETH"
+      "CHAIN": "ETH",
+      "CHAINTYPE": "Ethereum",
+      "NAME": "USDT"
     }
   },
   "HOSTNAME": "api.bybit.com",

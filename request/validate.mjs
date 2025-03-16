@@ -1,21 +1,27 @@
 /**
  * Validate parameters for a request.
  *
- * @typedef {import("#types/common.ts").Dict} Dict
- * @typedef {import("#types/common.ts").DictLike} DictLike
+ * @typedef {import("#types/common.ts").dictLike} dictLike
  * @module request/validate
+ */
+
+/**
+ * @typedef {import("#types/common.ts").dictionary<T>} dictionary
+ * @template T
  */
 
 import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
 /**
- * @param {(Dict | string)[]} list
+ * @param {(dictionary<string> | string)[]} list
  * @param {string} value
  * @param {string} [prop]
  * @returns {boolean}
  */
 export const hasSome = (list, value, prop) => {
-  const boolean = list.some((item) => (prop ? item[prop] === value : item === value));
+  const boolean = list.some((item) =>
+    prop && item instanceof Object ? item[prop] === value : item === value,
+  );
 
   return boolean;
 };
@@ -23,7 +29,7 @@ export const hasSome = (list, value, prop) => {
 /**
  * @param {string[]} list
  * @param {string} value
- * @param {(item1, item2) => {}} pair
+ * @param {(item1: string, item2: string) => {}} pair
  * @returns {boolean}
  */
 export const isPair = (list, value, pair) => {
@@ -36,14 +42,14 @@ export const isPair = (list, value, pair) => {
 
 /**
  * Validate request parameters.
- * @param {{ PATH: Dict }} config
+ * @param {{ PATH: dictionary<string> }} config
  * @param {string} path
- * @param {(param: DictLike) => boolean} isValid
+ * @param {(param: dictionary<string> | object) => boolean} isValid
  * @param {{
- *   defaults?: DictLike;
- *   optional?: DictLike;
- *   required?: DictLike;
- *   throw?: DictLike;
+ *   defaults?: dictLike | object;
+ *   optional?: dictLike | object;
+ *   required?: dictLike | object;
+ *   throw?: dictLike | object;
  * }} options
  * @returns {{}} Validated request parameters data.
  */
@@ -51,12 +57,12 @@ export const requestValidate = (config, path, isValid, options) => {
   const data = { ...options.defaults },
     { PATH } = config;
 
-  let category, key;
+  let category, /** @type {string} */ key;
 
   for (category in options) {
     if (category === 'optional') {
       for (key in options[category]) {
-        const value = options[category][key];
+        const value = /** @type {dictLike} */ (options[category])[key];
 
         if (value) {
           if (isValid({ [key]: value })) data[key] = value;
@@ -66,7 +72,7 @@ export const requestValidate = (config, path, isValid, options) => {
     }
     if (category === 'required') {
       for (key in options[category]) {
-        const value = options[category][key];
+        const value = /** @type {dictLike} */ (options[category])[key];
 
         if (value) {
           if (isValid({ [key]: value })) data[key] = value;
@@ -76,7 +82,7 @@ export const requestValidate = (config, path, isValid, options) => {
     }
     if (category === 'throw') {
       for (key in options[category]) {
-        const value = options[category][key];
+        const value = /** @type {dictLike} */ (options[category])[key];
 
         if (isValid({ [key]: value })) data[key] = value;
         else throwRequired(path, PATH, key);

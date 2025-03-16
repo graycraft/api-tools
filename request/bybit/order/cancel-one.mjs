@@ -13,7 +13,12 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} orderId Order identifier.
- * @param {{ category?, orderFilter?, orderLinkId?, symbol? }} options Optional parameters.
+ * @param {{
+ *   category?: string;
+ *   orderFilter?: string;
+ *   orderLinkId?: string;
+ *   symbol?: string;
+ * }} options Optional parameters.
  * @returns {Promise<OrderCancelOne>} JSON data from response.
  */
 const orderCancelOne = async (orderId, { category, orderFilter, orderLinkId, symbol } = {}) => {

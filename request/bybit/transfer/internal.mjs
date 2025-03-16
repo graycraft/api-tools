@@ -18,7 +18,9 @@ import validate from '../validate.mjs';
  * @param {string} toAccountType Account type to transfer.
  * @param {string} amount Currency amount to transfer.
  * @param {string} [coin] Currency code.
- * @param {{ fromAccountType?, transferId? }} options
+ * @param {{
+ *   transferId?: string;
+ * }} options
  * @returns {Promise<TransferInternal>} JSON data from response.
  */
 const transferInternal = async (
@@ -30,7 +32,7 @@ const transferInternal = async (
 ) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { TRANSFER_INTERNAL },
     } = config,
     {
@@ -39,7 +41,7 @@ const transferInternal = async (
     } = settings,
     data = validate(TRANSFER_INTERNAL, {
       defaults: {
-        coin: BASE.CODE,
+        coin: BASE.NAME,
         fromAccountType: account.wallet,
         transferId: nodeCrypto.randomUUID(),
       },

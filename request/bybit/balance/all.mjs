@@ -15,7 +15,7 @@ import validate from '../validate.mjs';
  * Coin parameter is required for unified accounts.
  * @param {string} accountType Account type.
  * @param {string} memberId UID, required with master API keys.
- * @param {{ coin?, withBonus? }} options Optional parameters.
+ * @param {{ coin?: string; withBonus?: string }} options Optional parameters.
  * @returns {Promise<BalanceAll>} JSON data from response.
  */
 const balanceAll = async (accountType, memberId, { coin, withBonus } = {}) => {

@@ -4,26 +4,26 @@
  * @typedef {import("#lib/constants.mjs").AuthSecurity} AuthSecurity
  * @typedef {import("#lib/constants.mjs").HttpMethod} HttpMethod
  * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
- * @typedef {import("#types/common.ts").Dict} Dict
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @typedef {{
  *   [key: string]: string;
  * } & {
  *   [key in AuthSecurity]: {
  *     encoding: string;
  *     key: string;
- *     payload: Dict;
+ *     payload: dictionary;
  *     secret: string;
  *     token: string;
  *   };
  * } & {
  *   [key in HttpMethod]: {
- *     headers: Dict;
- *     data: Dict;
+ *     headers: dictionary;
+ *     data: dictionary;
  *   };
  * } & {
  *   [key in HttpStatusText]: {
- *     headers: Dict;
- *     json: Dict;
+ *     headers: dictionary;
+ *     json: dictionary;
  *   };
  * }} default
  */

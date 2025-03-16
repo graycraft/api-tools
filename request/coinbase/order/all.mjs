@@ -17,9 +17,10 @@ import validate from '../validate.mjs';
  * `assetFilters` parameter not applicable for open orders
  * @param {string} limit Pagination limit (maximum: 1000).
  * @param {{
- *   asset_filters?, contract_expiry_type?, cursor?, end_date?, order_ids?,
- *   order_placement_source?, order_side?, order_status?, order_types?, product_ids?,
- *   product_type?, retail_portfolio_id?, sort_by?, start_date?, time_in_forces?
+ *   asset_filters?: string; contract_expiry_type?: string; cursor?: string; end_date?: string; order_ids?: string;
+ *   order_placement_source?: string; order_side?: string; order_status?: string; order_types?: string;
+ *   product_ids?: string; product_type?: string; retail_portfolio_id?: string; sort_by?: string; start_date?: string;
+ *   time_in_forces?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderAll>} JSON data from response.
  */
@@ -35,7 +36,7 @@ const orderAll = async (
     order_side,
     order_status,
     order_types,
-    //product_id,
+    // product_id,
     product_ids,
     product_type,
     retail_portfolio_id,
@@ -69,7 +70,7 @@ const orderAll = async (
         order_placement_source,
         order_side,
         order_types,
-        //product_id,
+        // product_id,
         product_ids,
         product_type,
         retail_portfolio_id,

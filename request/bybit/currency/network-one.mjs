@@ -21,7 +21,7 @@ import validate from '../validate.mjs';
 const currencyNetworkOne = async (coin, chain) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { CURRENCY_NETWORK_ONE },
     } = config,
     {
@@ -29,8 +29,8 @@ const currencyNetworkOne = async (coin, chain) => {
     } = settings,
     data = validate(CURRENCY_NETWORK_ONE, {
       defaults: {
-        chain: BASE.NETWORK,
-        coin: BASE.CODE,
+        chain: BASE.CHAIN,
+        coin: BASE.NAME,
       },
       optional: { chain, coin },
     }),

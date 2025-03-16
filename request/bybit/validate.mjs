@@ -1,7 +1,9 @@
 /**
  * Validate parameters for a Bybit API request.
  *
- * @typedef {import("#types/common.ts").Dict} Dict
+ * @typedef {import("#types/collection/bybit/currency_all.js").default} JCurrencyAll
+ * @typedef {import("#types/collection/bybit/network_all.js").default} JNetworkAll
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @module request/bybit/validate
  */
 
@@ -14,10 +16,10 @@ import { hasSome, requestValidate } from '../validate.mjs';
 /**
  * @param {string} path
  * @param {{
- *   defaults?: Dict,
- *   optional?: Dict,
- *   required?: Dict,
- *   throw?: Dict,
+ *   defaults?: dictionary,
+ *   optional?: dictionary,
+ *   required?: dictionary,
+ *   throw?: dictionary,
  * }} options
  * @returns {{}}
  */
@@ -26,7 +28,7 @@ const bybitValidate = (path, options) =>
 
 /**
  * Validate a request data parameter before send.
- * @param {Dict} param Request parameter to validate.
+ * @param {dictionary} param Request parameter to validate.
  * @returns {boolean} Whether parameter is valid or not.
  */
 const isValid = (param) => {
@@ -36,10 +38,12 @@ const isValid = (param) => {
     [key, value] = Object.entries(param)[0],
     currencyDir = 'collection/bybit/currency_all',
     currencyFile = fileNewest(currencyDir),
-    currencyAll = fileReadJson(currencyDir, currencyFile.name).map((item) => item.coin),
+    currencyAll = /** @type {JCurrencyAll} */ (fileReadJson(currencyDir, currencyFile.name)).map(
+      (item) => item.coin,
+    ),
     networkDir = 'collection/bybit/currency_network_all',
     networkFile = fileNewest(networkDir),
-    networkAll = fileReadJson(networkDir, networkFile.name);
+    networkAll = /** @type {JNetworkAll} */ (fileReadJson(networkDir, networkFile.name));
 
   /**
    * `cursor` string format is different for each endpoint.

@@ -17,7 +17,14 @@ import validate from '../validate.mjs';
  * @param {string} side Not supported by the API, must be filtered while parsing.
  * @param {string} limit Limit for data size per page (default: 20, maximum: 50).
  * @param {{
- *   baseCoin?, category?, cursor?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
+ *   baseCoin?: string;
+ *   category?: string;
+ *   cursor?: string;
+ *   openOnly?: string;
+ *   orderFilter?: string;
+ *   orderLinkId?: string;
+ *   settleCoin?: string;
+ *   stopOrderType?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderAll>} JSON data from response.
  */

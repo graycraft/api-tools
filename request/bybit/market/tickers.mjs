@@ -16,20 +16,20 @@ import validate from '../validate.mjs';
  * Parameter `limit` is not available for this endpoint.
  * For category `option`, parameters `baseCoin` and `symbol` are required.
  * @param {string} symbol Currency pair code (e.g. "ETHUSDC").
- * @param {{ baseCoin?, category?, expDate? }} options Optional parameters.
+ * @param {{ baseCoin?: string; category?: string; expDate?: string; }} options Optional parameters.
  * @returns {Promise<MarketTickers>} JSON data from response.
  */
 const marketTickers = async (symbol, { baseCoin, category, expDate } = {}) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE, QUOTE },
+      COIN: { BASE, QUOTE },
       PATH: { MARKET_TICKERS },
     } = config,
     { account } = settings,
     data = validate(MARKET_TICKERS, {
       defaults: {
         category: account.category,
-        symbol: BASE.CODE + QUOTE.CODE,
+        symbol: BASE.NAME + QUOTE.NAME,
       },
       optional: { category, symbol },
       required: { baseCoin, expDate },

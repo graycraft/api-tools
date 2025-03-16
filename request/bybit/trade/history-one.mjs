@@ -14,8 +14,16 @@ import validate from '../validate.mjs';
 /**
  * @param {string} orderId Order identifier.
  * @param {{
- *   baseCoin?, category?, cursor?, endTime?, execType?, limit?, orderLinkId?,
- *   side?, startTime?, symbol?
+ *   baseCoin?: string;
+ *   category?: string;
+ *   cursor?: string;
+ *   endTime?: string;
+ *   execType?: string;
+ *   limit?: string;
+ *   orderLinkId?: string;
+ *   side?: string;
+ *   startTime?: string;
+ *   symbol?: string;
  * }} options Optional parameters.
  * @returns {Promise<TradeHistoryOne>} JSON data from response.
  */

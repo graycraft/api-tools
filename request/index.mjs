@@ -5,11 +5,11 @@
  * @typedef {import("#res/parse.mjs").ResponseParse} ResponseParse
  * @typedef {import("#res/parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
- * @typedef {import("#types/api.ts").default} Api
+ * @typedef {import("#types/api.ts").default} IApi
  * @typedef {import("#types/response/snapshot.js").default} Snapshot
  * @typedef {{
  *   parse: (response: RFetch, endpoint: string, data: {}) => ResponseParse & RParseStatus;
- *   snapshot: (api: Api, output: Snapshot, endpoint: string) => RSnapshot;
+ *   snapshot: (api: IApi, output: Snapshot, endpoint: string) => RSnapshot;
  * }} Callback
  * @module request/index
  */
@@ -22,7 +22,7 @@ import validate from '#res/validate.mjs';
 /**
  * Analyze, validate, parse and snapshot response data.
  * @param {"GET" | "POST"} method URL to send request.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {string} url URL to send request.
  * @param {string} template Endpoint path template to be interpolated.
  * @param {{}} headers Headers to send with request.

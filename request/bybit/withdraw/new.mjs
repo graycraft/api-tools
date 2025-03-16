@@ -26,7 +26,15 @@ import validate from '../validate.mjs';
  *   for `forceChain` 2 this field can be omitted
  * ).
  * @param {{
- *   accountType?, beneficiary?, beneficiaryName?, feeType?, forceChain?, requestId?, tag?, timestamp?, vaspEntityId?
+ *   accountType?: string;
+ *   beneficiary?: string;
+ *   beneficiaryName?: string;
+ *   feeType?: string;
+ *   forceChain?: string;
+ *   requestId?: string;
+ *   tag?: string;
+ *   timestamp?: string;
+ *   vaspEntityId?: string;
  * }} options Optional parameters.
  * @returns {Promise<WithdrawNew>} JSON data from response.
  */
@@ -50,18 +58,18 @@ const withdrawNew = async (
   const { timestamp: now } = global.apiTools,
     { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { WITHDRAW_NEW },
     } = config,
     {
-      address: { withdraw },
+      account: { withdraw },
       authentication: { security },
     } = settings,
     data = validate(WITHDRAW_NEW, {
       defaults: {
         address: withdraw,
-        chain: BASE.NETWORK,
-        coin: BASE.CODE,
+        chain: BASE.CHAIN,
+        coin: BASE.NAME,
         timestamp: String(now),
       },
       optional: { address, chain, coin, timestamp },

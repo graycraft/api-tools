@@ -1,11 +1,11 @@
 /**
  * Snapshot an API response to a file with current UTC ISO timestamp.
  *
- * @typedef {import("#types/api.ts").default} Api
+ * @typedef {import("#types/api.ts").default} IApi
  * @typedef {import("#types/response/bybit.js").default} Response
  * @typedef {import("#types/response/snapshot.js").default} Snapshot
  * @typedef RSnapshot
- * @prop {{}} fileData Response code.
+ * @prop {string} fileData Response code.
  * @prop {string} fileName Response description.
  * @module response/snapshot
  */
@@ -15,7 +15,7 @@ import nodePath from 'node:path';
 
 /**
  * Make snapshot of a response.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {Snapshot} output Information about request and response to output.
  * @param {string} endpoint Endpoint name.
  * @returns {RSnapshot} File data to write in a specific API's snapshot directory.
@@ -46,7 +46,7 @@ const responseSnapshot = (api, output, endpoint) => {
 
 /**
  * Write JSON snapshot data to a file.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {Snapshot} output Information about request and response to output.
  * @param {string} endpoint Endpoint name.
  * @returns {RSnapshot} File data to write in a specific API's snapshot directory.

@@ -1,6 +1,7 @@
 /**
  * Request Coinbase Advanced API spot endpoints.
  *
+ * @typedef {import("#types/coinbase.ts").default} ICoinbase
  * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
  * @typedef {import("#types/response/coinbase.js").default} Response
  * @module request/coinbase/index
@@ -46,7 +47,7 @@ import userPortfolioOne from './user/portfolio-one.mjs';
 import { pair } from './validate.mjs';
 import withdrawAll from './withdraw/all.mjs';
 import withdrawNew from './withdraw/new.mjs';
-//import withdrawOne from './withdraw/one.mjs';
+// import withdrawOne from './withdraw/one.mjs';
 
 const {
     PRODUCT: { BASE, QUOTE },
@@ -55,7 +56,7 @@ const {
   {
     user,
     user: { portfolio },
-  } = settings,
+  } = /** @type {ICoinbase["settings"]} */ (settings),
   account = user[portfolio].account,
   timestamp = Date.now();
 
@@ -73,7 +74,7 @@ const requestCoinbase = async () => {
     },
     { handler, options, params } = parseArguments(argv);
 
-  global.apiTools = { coinbase, options, output: {}, timestamp };
+  global.apiTools = { coinbase, options, timestamp };
 
   if (debug || options.debug) dirObject('global.apiTools', global.apiTools);
   if (handler) {
@@ -204,6 +205,7 @@ const currencyFlow = () =>
     .then((response) => currencyOne(response.data[0].asset_id))
     .catch(console.error.bind(console));
 /**
+ * @param {{ uuid: string }} account
  * @returns {Promise<Response>}
  */
 const depositFlow = (account) =>
@@ -219,7 +221,7 @@ const depositFlow = (account) =>
 const marketFlow = () =>
   Promise.resolve()
     .then((response) => marketAll('2'))
-    .then((response) => marketOne(response.products[0].product_id))
+    .then((response) => marketOne(pair(BASE.CODE, QUOTE.CODE)))
     .then((response) => marketTickers(pair(BASE.CODE, QUOTE.CODE), '2'))
     .catch(console.error.bind(console));
 
@@ -260,13 +262,14 @@ const userFlow = () =>
     .catch(console.error.bind(console));
 
 /**
+ * @param {{ uuid: string }} account
  * @returns {Promise<Response>}
  */
 const withdrawFlow = (account) =>
   Promise.resolve()
     .then((response) => withdrawAll(account.uuid))
-    //.then((response) => withdrawOne(response.data[0].id))
-    //.then((response) => withdrawNew())
+    // .then((response) => withdrawOne(response.data[0].id))
+    // .then((response) => withdrawNew())
     .catch(console.error.bind(console));
 
 export default requestCoinbase;

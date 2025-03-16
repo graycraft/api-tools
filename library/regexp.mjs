@@ -9,7 +9,7 @@ import { stringifyPath } from '#lib/fetch.mjs';
 
 /**
  * Compose JSON-Schema pattern from a regular expression by its name.
- * @param {Object<string, string> | RegExp | string} target Map-like object of template expressions
+ * @param {Object<string, keyof REGEXP> | RegExp | keyof REGEXP} target Map-like object of template expressions
  *   to regular expression names, regular expression or a regular expression name from constants.
  * @param {string} [template] String as template literal.
  * @returns {string} JSON-Schema pattern.

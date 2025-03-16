@@ -2,7 +2,7 @@
  * Request an API endpoint by the `GET` method.
  *
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
- * @typedef {import("#types/api.ts").default} Api
+ * @typedef {import("#types/api.ts").default} IApi
  * @typedef {import("./index.mjs").Callback} Callback
  * @module request/get
  */
@@ -13,7 +13,7 @@ import request from './index.mjs';
 
 /**
  * Analyze, validate, parse and snapshot response data.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {string} url URL to send request.
  * @param {string} template Endpoint path template to be interpolated.
  * @param {{}} headers Headers to send with request.

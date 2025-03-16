@@ -3,7 +3,8 @@
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/rest-api-auth
  * @see https://developers.coinbase.com/api#versioning
- * @typedef {import("#types/common.ts").Dict} Dict
+ * @typedef {import("#lib/authentication.mjs").JwtPayload} Payload
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @module request/coinbase/sign
  */
 
@@ -11,6 +12,7 @@ import { blind, signJwt } from '#lib/authentication.mjs';
 import { AUTH } from '#lib/constants.mjs';
 import { dirObject } from '#lib/output.mjs';
 
+/** @type {number} */
 let timestamp;
 
 /**
@@ -47,10 +49,10 @@ export const coinbaseSecret = () => {
 /**
  * Sign a request for Coinbase Advanced API by specified authentication security method.
  * @param {"GET" | "POST"} method HTTP method to submit the request with.
- * @param {Dict} title Endpoint title to output.
+ * @param {{ [key: string]: {}; }} title Endpoint title to output.
  * @param {"JWT" | null} security Authentication signature security.
  * @param {string} key Endpoint path template to be interpolated.
- * @param {object} payload JSON-schema to validate response with.
+ * @param {Payload} payload Payload to sign.
  * @param {object} [data] Data to send with request.
  * @returns {object} JSON data from response.
  */
@@ -59,6 +61,7 @@ export const coinbaseSign = (method, title, security, key, payload, data = {}) =
     { debug } = prefs,
     secret = coinbaseSecret();
 
+  /** @type {dictionary} */
   let headers = {
     /**
      * Some methods, e.g. `/v2/accounts/${account_uuid}/addresses` suggests to supply additional header:

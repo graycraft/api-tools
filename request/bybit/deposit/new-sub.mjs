@@ -21,7 +21,7 @@ import validate from '../validate.mjs';
 const depositNewSub = async (subMemberId, coin, chainType) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { DEPOSIT_NEW_SUB },
     } = config,
     {
@@ -30,8 +30,8 @@ const depositNewSub = async (subMemberId, coin, chainType) => {
     } = settings,
     data = validate(DEPOSIT_NEW_SUB, {
       defaults: {
-        chainType: BASE.NETWORK,
-        coin: BASE.CODE,
+        chainType: BASE.CHAIN,
+        coin: BASE.NAME,
         subMemberId: account[account.wallet],
       },
       optional: { chainType, coin, subMemberId },

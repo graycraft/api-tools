@@ -14,7 +14,7 @@ import validate, { pair } from '../validate.mjs';
 /**
  * @param {string} product_id Currency pair code (e.g. "ETH-USDC").
  * @param {string} [limit] Number of trades to be returned. Not required, despite what is stated in documentation.
- * @param {{ end?, start? }} options Optional parameters.
+ * @param {{ end?: string; start?: string; }} options Optional parameters.
  * @returns {Promise<MarketTickers>} JSON data from response.
  */
 const marketTickers = async (product_id, limit, { end, start } = {}) => {

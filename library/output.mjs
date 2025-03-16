@@ -4,7 +4,7 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/console/dir_static
  * @see https://nodejs.org/docs/latest/api/console.html#consoledirobj-options
  * @see https://nodejs.org/docs/latest/api/util.html#utilinspectobject-showhidden-depth-colors
- * @typedef {import("#types/common.ts").Dict} Dict
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @typedef {import("#types/api.ts").Options} Options
  * @typedef {import("#types/api.ts").Preferences} Preferences
  * @module library/output
@@ -74,7 +74,7 @@ export const dirSnapshot = (endpoint, options, prefs, output) => {
  * Call this method if can not determine parameter value and can not substitute with default, e.g. random values.
  * API has no predefined value, e.g. `orderId`, `price`, `qty`, `subMemberId`.
  * @param {string} template Endpoint path template to be interpolated.
- * @param {Dict} PATH Path dictionary from configuration of a specific API.
+ * @param {dictionary} PATH Path dictionary from configuration of a specific API.
  * @param {string} param Parameter to output.
  * @returns {boolean} Whether information has been shown or not.
  */
@@ -86,13 +86,18 @@ export const throwRequired = (template, PATH, param) => {
  * Call this method if can not determine parameter value but can substitute with default.
  * API might has or has no predefined value.
  * @param {string} template Endpoint path template to be interpolated.
- * @param {Dict} PATH Path dictionary from configuration of a specific API.
+ * @param {dictionary} PATH Path dictionary from configuration of a specific API.
  * @param {string} param Parameter to output.
  * @param {string | string[]} value Fallback value of a parameter.
  * @returns {boolean} Whether information has been shown or not.
  */
 export const warnOptional = (template, PATH, param, value) => {
-  console.warn(obtainName(template, PATH) + ': ' + optional(param) + fallback(value));
+  console.warn(
+    obtainName(template, PATH) +
+      ': ' +
+      optional(param) +
+      fallback(value instanceof Array ? value.join('') : value),
+  );
 
   return true;
 };
@@ -101,7 +106,7 @@ export const warnOptional = (template, PATH, param, value) => {
  * Call this method if can not determine parameter value and can not substitute with default, e.g. range values.
  * API has predefined value, e.g. `coin`, `limit`.
  * @param {string} template Endpoint path template to be interpolated.
- * @param {Dict} PATH Path dictionary from configuration of a specific API.
+ * @param {dictionary} PATH Path dictionary from configuration of a specific API.
  * @param {string} param Parameter to output.
  * @returns {boolean} Whether information has been shown or not.
  */

@@ -6,23 +6,19 @@
  * @global
  */
 
-import type { Dict, DictLike } from './common.ts';
+import type { AuthSecurity } from '#lib/constants.mjs';
+
+import type { dictionary, dictLike } from './common.ts';
 
 export type Configuration = {
   HOSTNAME: string;
-  PATH: Dict;
+  PATH: dictionary;
   PREFIX: string;
   RESPONSE: {
     CODE: string;
     DESCRIPTION: string;
     OK: number;
     SUCCESSFUL: string;
-  };
-  SOCKET: {
-    CHANNEL: Dict;
-    SUBSCRIBE: string;
-    UNSUBSCRIBE: string;
-    URL: string;
   };
 };
 export type Options = {
@@ -38,7 +34,7 @@ export type Options = {
   verbose?: boolean;
 };
 export type Name = 'bybit' | 'coinbase' | 'fameex';
-export type Parameters = DictLike;
+export type Parameters = dictLike;
 export type Preferences = {
   aggregate: string[];
   continue: boolean;
@@ -52,14 +48,14 @@ export type Preferences = {
 export type Settings = {
   authentication: {
     delay: number;
-    keys: Dict;
-    security: 'JWT' | 'HMAC' | 'RSA';
-    secrets: Dict;
+    keys: dictionary;
+    security: AuthSecurity;
+    secrets: dictionary;
   };
 };
-export type Status = Dict<DictLike>;
+export type Status = dictionary<dictLike>;
 
-export default interface Api {
+export default interface IApi {
   config: Configuration;
   name: string;
   prefs: Preferences;

@@ -19,7 +19,7 @@ import validate from '../validate.mjs';
 const transferOne = async (toAccountType, coin) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { TRANSFER_ONE },
     } = config,
     {
@@ -28,7 +28,7 @@ const transferOne = async (toAccountType, coin) => {
     } = settings,
     data = validate(TRANSFER_ONE, {
       defaults: {
-        coin: BASE.CODE,
+        coin: BASE.NAME,
         fromAccountType: account.wallet,
       },
       throw: { coin, toAccountType },

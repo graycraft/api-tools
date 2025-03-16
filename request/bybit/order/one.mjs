@@ -15,7 +15,16 @@ import validate from '../validate.mjs';
  * Also supports querying recent 500 closed status (cancelled or filled) orders by `openOnly` parameter.
  * @param {string} orderId Order identifier.
  * @param {{
- *   baseCoin?, category?, cursor?, limit?, openOnly?, orderFilter?, orderLinkId?, settleCoin?, side?, symbol?
+ *   baseCoin?: string;
+ *   category?: string;
+ *   cursor?: string;
+ *   limit?: string;
+ *   openOnly?: string;
+ *   orderFilter?: string;
+ *   orderLinkId?: string;
+ *   settleCoin?: string;
+ *   side?: string;
+ *   symbol?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderOne>} JSON data from response.
  */

@@ -17,8 +17,18 @@ import validate from '../validate.mjs';
  * Limit data per page (default: 20, maximum: 50).
  * @param {string} orderId Order identifier.
  * @param {{
- *   baseCoin?, category?, cursor?, endTime?, limit?,openOnly?, orderFilter?, orderLinkId?,
- *   orderStatus?, settleCoin?, startTime?, symbol?
+ *   baseCoin?: string;
+ *   category?: string;
+ *   cursor?: string;
+ *   endTime?: string;
+ *   limit?: string;
+ *   openOnly?: string;
+ *   orderFilter?: string;
+ *   orderLinkId?: string;
+ *   orderStatus?: string;
+ *   settleCoin?: string;
+ *   startTime?: string;
+ *   symbol?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderHistoryOne>} JSON data from response.
  */

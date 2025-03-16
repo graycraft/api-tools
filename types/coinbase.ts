@@ -4,6 +4,9 @@
  * @global
  */
 
+import type { dictionary } from '#types/common.ts';
+import type WebSocketMessage from '#types/socket/message.d.js';
+
 import type { Configuration, Preferences, Settings, Status } from './api.ts';
 
 export enum orderTypes {
@@ -20,6 +23,8 @@ export enum productTypes {
   unknown = 'UNKNOWN_PRODUCT_TYPE',
 }
 
+export type assetCode = 'BTC' | 'ETH' | 'SOL' | 'USDC';
+export type assetNetwork = 'base' | 'bitcoin' | 'ethereum' | 'solana';
 export type contractExpiry = 'EXPIRING' | 'PERPETUAL' | 'UNKNOWN_CONTRACT_EXPIRY_TYPE';
 export type contractStatus =
   | 'STATUS_ALL'
@@ -50,14 +55,41 @@ export type orderType =
   | 'STOP'
   | 'STOP_LIMIT'
   | 'UNKNOWN_ORDER_TYPE';
-export type productCode = 'BTC' | 'ETH' | 'SOL' | 'USDT';
-export type productNetwork = 'base' | 'bitcoin' | 'ethereum' | 'solana';
+export type pathName =
+  | 'ADDRESS_ALL'
+  | 'ADDRESS_NEW'
+  | 'ADDRESS_ONE'
+  | 'ADDRESS_TRANSACTIONS'
+  | 'CURRENCY_ALL'
+  | 'CURRENCY_ONE'
+  | 'DEPOSIT_CRYPTO_ALL'
+  | 'DEPOSIT_CRYPTO_ONE'
+  | 'DEPOSIT_FIAT_ALL'
+  | 'MARKET_ALL'
+  | 'MARKET_ONE'
+  | 'MARKET_TICKERS'
+  | 'NETWORK_ALL'
+  | 'ORDER_ALL'
+  | 'ORDER_BOOK'
+  | 'ORDER_CANCEL'
+  | 'ORDER_ONE'
+  | 'ORDER_PLACE'
+  | 'PRODUCT_CANDLES'
+  | 'TRANSACTION_ALL'
+  | 'TRANSACTION_ONE'
+  | 'USER_ACCOUNT_ALL'
+  | 'USER_ACCOUNT_ONE'
+  | 'USER_PORTFOLIO_ALL'
+  | 'USER_PORTFOLIO_ONE'
+  | 'WITHDRAW_ALL'
+  | 'WITHDRAW_NEW';
+export type productId = 'BTC-USDC' | 'ETH-USDC' | 'SOL-USDC';
 export type productType = productTypes.future | productTypes.spot | productTypes.unknown;
 export type sortType = 'LAST_FILL_TIME' | 'LIMIT_PRICE' | 'UNKNOWN_SORT_BY';
 export type tradeSide = 'BUY' | 'SELL';
 export type userPortfolio = 'CONSUMER' | 'DEFAULT' | 'INTX' | 'UNDEFINED';
 
-export default interface Coinbase {
+export default interface ICoinbase {
   config: Configuration & {
     CONTRACT: {
       EXPIRY: contractExpiry[];
@@ -75,27 +107,27 @@ export default interface Coinbase {
       TIME_IN_FORCES: orderTimeInForces[];
       TYPE: orderType[];
     };
-    asset: {
-      [key in 'base' | 'quote']: {
-        code: string;
-        network: string;
-        uuid: string;
-      };
-    };
+    PATH: { [key in pathName]: string };
     PRODUCT: {
       BASE: {
-        CODE: productCode;
-        NETWORK: productNetwork;
+        CODE: assetCode;
+        NETWORK: assetNetwork;
         UUID: string;
       };
       FUTURE: productTypes.future;
       QUOTE: {
-        CODE: productCode;
-        NETWORK: productNetwork;
+        CODE: assetCode;
+        NETWORK: assetNetwork;
         UUID: string;
       };
       SPOT: productTypes.spot;
       UNKNOWN: productTypes.unknown;
+    };
+    SOCKET: {
+      CHANNEL: dictionary<WebSocketMessage['channel']>;
+      SUBSCRIBE: string;
+      UNSUBSCRIBE: string;
+      URL: string;
     };
     SORT: sortType[];
     USER: {
@@ -132,7 +164,7 @@ export default interface Coinbase {
           transfer_purpose: string;
         };
         uuid: string;
-      };
+      } | null;
     } & { portfolio: userPortfolio; withdraw: string };
   };
   status: Status;

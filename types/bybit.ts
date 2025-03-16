@@ -23,7 +23,7 @@
  */
 
 import type { Configuration, Preferences, Settings, Status } from './api.ts';
-import type { Dict } from './common.ts';
+import type { dictionary } from './common.ts';
 
 export type accountId = string;
 export type accountType = 'CONTRACT' | 'FUND' | 'OPTION' | 'SPOT' | 'UNIFIED';
@@ -48,6 +48,9 @@ export type cancelType =
   | 'CancelByUser'
   | 'UNKNOWN';
 export type category = 'inverse' | 'linear' | 'option' | 'spot';
+export type coinChain = 'BTC' | 'ETH' | 'SOL';
+export type coinChainType = 'Bitcoin' | 'Ethereum' | 'Solana';
+export type coinName = 'BTC' | 'ETH' | 'SOL' | 'USDT';
 export type contractType =
   | 'InverseFutures'
   | 'InversePerpetual'
@@ -184,20 +187,22 @@ export type withdrawStatus =
   | 'Unknown'
   | 'success';
 
-export default interface Bybit {
+export default interface IBybit {
   config: Configuration & {
     ACCOUNT: {
       CATEGORY: category[];
       WALLET: accountType[];
     };
-    ASSET: {
+    COIN: {
       BASE: {
-        CODE: 'ETH';
-        NETWORK: 'ethereum';
+        CHAIN: coinChain;
+        CHAINTYPE: coinChainType;
+        NAME: coinName;
       };
       QUOTE: {
-        CODE: 'USDT';
-        NETWORK: 'ethereum';
+        CHAIN: coinChain;
+        CHAINTYPE: coinChainType;
+        NAME: coinName;
       };
     };
     OPTION: optionType[];
@@ -211,7 +216,7 @@ export default interface Bybit {
       STOP: stopOrderType[];
       STATUS: orderStatus[];
     };
-    PATH: Dict;
+    PATH: dictionary;
     RESPONSE: {
       CODE: 'retCode';
       DESCRIPTION: 'retMsg';
@@ -226,7 +231,7 @@ export default interface Bybit {
   name: 'bybit';
   prefs: Preferences & {
     aggregate: path[];
-    currency: Dict;
+    currency: dictionary;
     parse: path[];
     snapshot: path[];
     verbose: path[];
@@ -236,11 +241,13 @@ export default interface Bybit {
       [key in accountType]: accountId;
     } & {
       category: category;
-      id: { [key in accountId]: { main: boolean } };
+      id: {
+        [key in accountId]: {
+          deposit: null;
+          main: boolean;
+        };
+      };
       wallet: accountType;
-    };
-    address: {
-      deposit: string;
       withdraw: string;
     };
     authentication: {

@@ -1,4 +1,4 @@
 /**
  * @typedef default
- * @type {{ account; }}
+ * @type {{ account: string; }}
  */

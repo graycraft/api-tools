@@ -1,4 +1,11 @@
 /**
  * @typedef default
- * @type {{ accounts; cursor; has_next; size; }}
+ * @type {{
+ *   accounts: {
+ *     uuid: string;
+ *   }[];
+ *   cursor: string;
+ *   has_next: string;
+ *   size: string;
+ * }}
  */

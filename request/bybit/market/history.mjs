@@ -16,20 +16,20 @@ import validate from '../validate.mjs';
  * @param {string} limit Limit data per page:
  *   - for spot product type -- default: 60, maximum: 60;
  *   - for other product types -- default: 500, maximum: 1000.
- * @param {{ baseCoin?, category?, optionType? }} options Optional parameters.
+ * @param {{ baseCoin?: string; category?: string; optionType?: string; }} options Optional parameters.
  * @returns {Promise<MarketHistory>} JSON data from response.
  */
 const marketHistory = async (symbol, limit, { baseCoin, category, optionType } = {}) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE, QUOTE },
+      COIN: { BASE, QUOTE },
       PATH: { MARKET_HISTORY },
     } = config,
     { account } = settings,
     data = validate(MARKET_HISTORY, {
       defaults: {
         category: account.category,
-        symbol: BASE.CODE + QUOTE.CODE,
+        symbol: BASE.NAME + QUOTE.NAME,
       },
       optional: { category, symbol },
       required: { baseCoin, limit, optionType },

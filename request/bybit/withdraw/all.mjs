@@ -13,7 +13,14 @@ import validate from '../validate.mjs';
 
 /**
  * @param {{
- *   coin?, cursor?, endTime?, limit?, startTime?, txID?, withdrawID?, withdrawType?
+ *   coin?: string;
+ *   cursor?: string;
+ *   endTime?: string;
+ *   limit?: string;
+ *   startTime?: string;
+ *   txID?: string;
+ *   withdrawID?: string;
+ *   withdrawType?: string;
  * }} options Optional parameters.
  * @returns {Promise<WithdrawAll>} JSON data from response.
  */

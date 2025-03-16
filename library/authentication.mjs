@@ -7,7 +7,13 @@
  * @see https://nodejs.org/api/crypto.html#hmacupdatedata-inputencoding
  * @see https://www.npmjs.com/package/jsonwebtoken
  * @typedef {NodeJS.ArrayBufferView | string} BinaryLike
- * @typedef {Object<string, string>} Dict
+ * @typedef {{
+ *   exp: number;
+ *   iss: string;
+ *   nbf: number;
+ *   sub: string;
+ *   uri?: string;
+ * }} JwtPayload
  * @module library/authentication
  */
 
@@ -67,26 +73,18 @@ export const signHmac = (encoding, payload, secret, key) => {
 /**
  * Sign a request by JSON Web Token.
  * @param {"hex"} encoding Encoding of signature.
- * @param {{
- *   exp: number;
- *   iss: string;
- *   nbf: number;
- *   sub: string;
- *   uri?: string;
- * }} payload Payload to sign.
+ * @param {JwtPayload} payload Payload to sign.
  * @param {string} secret Private key.
  * @param {string} key Public key.
  * @returns {string} JSON Web Token.
  */
 export const signJwt = (encoding, payload, secret, key) => {
-  const nonce = nodeCrypto.randomBytes(16).toString(encoding),
-    token = jsonwebtoken.sign(payload, secret, {
-      algorithm: ALGORITHM.ES256,
-      header: {
-        kid: key,
-        nonce,
-      },
-    });
+  const token = jsonwebtoken.sign(payload, secret, {
+    header: {
+      alg: ALGORITHM.ES256,
+      kid: key,
+    },
+  });
 
   global.apiTools.output[SECURITY.JWT] = {
     encoding,

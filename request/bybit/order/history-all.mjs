@@ -17,8 +17,17 @@ import validate from '../validate.mjs';
  * @param {string} [symbol] Currency pair code (e.g. "ETHUSDC").
  * @param {string} [limit] Limit data per page (default: 20, maximum: 50).
  * @param {{
- *   baseCoin?, category?, cursor?, endTime?, openOnly?, orderFilter?, orderId?,
- *   orderLinkId?, orderStatus?, settleCoin?, startTime?
+ *   baseCoin?: string;
+ *   category?: string;
+ *   cursor?: string;
+ *   endTime?: string;
+ *   openOnly?: string;
+ *   orderFilter?: string;
+ *   orderId?: string;
+ *   orderLinkId?: string;
+ *   orderStatus?: string;
+ *   settleCoin?: string;
+ *   startTime?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderHistoryAll>} JSON data from response.
  */

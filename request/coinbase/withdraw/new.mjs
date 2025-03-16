@@ -3,7 +3,7 @@
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#send-money
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule
- * @typedef {import("#types/coinbase.ts").default} Coinbase
+ * @typedef {import("#types/coinbase.ts").default} ICoinbase
  * @typedef {import("#types/response/coinbase/withdraw/new.d.js").default} WithdrawNew
  * @module request/coinbase/withdraw/new
  */
@@ -20,8 +20,8 @@ import validate from '../validate.mjs';
  * @param {string} to Currency address name.
  * @param {string} [network] Currency network name.
  * @param {{
- *   account_uuid?: string,
- *   travel_rule_data?: Coinbase["settings"]["user"]["DEFAULT"]["travel_rule_data"]
+ *   account_uuid?: string;
+ *   travel_rule_data?: ICoinbase["settings"]["user"]["DEFAULT"]["travel_rule_data"];
  * }} options Optional parameters.
  * @returns {Promise<WithdrawNew>} JSON data from response.
  */
@@ -49,7 +49,7 @@ const withdrawNew = async (
         currency: BASE.CODE,
         network: BASE.NETWORK,
         to: withdraw,
-        travel_rule_data: /** @type {object} */ (user[portfolio].travel_rule_data),
+        travel_rule_data: user[portfolio].travel_rule_data,
         type,
       },
       optional: {
@@ -57,7 +57,7 @@ const withdrawNew = async (
         currency,
         network,
         to,
-        travel_rule_data: /** @type {object} */ (travel_rule_data),
+        travel_rule_data: travel_rule_data,
       },
       required: {},
       throw: { amount },

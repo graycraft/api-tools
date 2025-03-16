@@ -6,6 +6,11 @@
  */
 
 /**
+ * @typedef {import("#types/common.ts").dictionary<T>} dictionary
+ * @template T
+ */
+
+/**
  * @param {Response} json
  * @param {{
  *   key: string | string[],
@@ -18,7 +23,7 @@ const map = (json, { key, list }) => {
 
   if (json instanceof Object) {
     if (typeof key === 'string' && typeof list === 'string') {
-      items = json.result[list]?.map((item) => ({
+      items = json.result[list]?.map((/** @type {dictionary<string>} */ item) => ({
         [key]: item[key],
       }));
       data = {
@@ -28,7 +33,7 @@ const map = (json, { key, list }) => {
         },
       };
     } else if (key instanceof Array && list instanceof Array) {
-      items = json.result[list[0]].map((item1) => ({
+      items = json.result[list[0]].map((/** @type {dictionary<dictionary<string>[]>} */ item1) => ({
         [key[0]]: item1[key[0]],
         [list[1]]: item1[list[1]].map((item2) => ({
           [key[1]]: item2[key[1]],

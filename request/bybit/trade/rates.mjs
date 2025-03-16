@@ -13,7 +13,10 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} symbol Currency pair code (e.g. "ETHUSDC").
- * @param {{ baseCoin?, category? }} options Optional parameters.
+ * @param {{
+ *   baseCoin?: string;
+ *   category?: string;
+ * }} options Optional parameters.
  * @returns {Promise<TradeRates>} JSON data from response.
  */
 const tradeRates = async (symbol, { baseCoin, category } = {}) => {

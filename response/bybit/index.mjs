@@ -36,7 +36,8 @@ const responseBybit = async () => {
     },
     { handler, options, params } = parseArguments(argv);
 
-  global.apiTools = { bybit, options, output: {}, timestamp };
+  global.apiTools = { bybit, options, timestamp };
+
   if (handler) {
     switch (handler) {
       case 'currency':

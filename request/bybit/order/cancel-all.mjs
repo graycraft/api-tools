@@ -14,7 +14,12 @@ import validate from '../validate.mjs';
 /**
  * @param {string} [symbol] Currency pair code (e.g. "ETHUSDC").
  * @param {{
- *   baseCoin?, category?, orderFilter?, orderLinkId?, settleCoin?, stopOrderType?
+ *   baseCoin?: string;
+ *   category?: string;
+ *   orderFilter?: string;
+ *   orderLinkId?: string;
+ *   settleCoin?: string;
+ *   stopOrderType?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderCancelAll>} JSON data from response.
  */

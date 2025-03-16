@@ -15,13 +15,13 @@ import validate from '../validate.mjs';
  * @param {string} accountType Account type.
  * @param {string} coin Currency code, multiple values supported, separated by commas.
  * @param {string} memberId UID, required with master API keys.
- * @param {{ withBonus? }} options Optional parameters.
+ * @param {{ withBonus?: string }} options Optional parameters.
  * @returns {Promise<BalanceOne>} JSON data from response.
  */
 const balanceOne = async (accountType, coin, memberId, { withBonus } = {}) => {
   const { config, prefs, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { BALANCE_ONE },
     } = config,
     {
@@ -32,7 +32,7 @@ const balanceOne = async (accountType, coin, memberId, { withBonus } = {}) => {
     data = validate(BALANCE_ONE, {
       defaults: {
         accountType: wallet,
-        coin: BASE.CODE,
+        coin: BASE.NAME,
         memberId: account[wallet],
       },
       optional: { accountType, coin, memberId },

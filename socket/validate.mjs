@@ -1,11 +1,20 @@
 /**
  * Validate data before send to a web socket channel.
  *
+ * @typedef {import("#types/common.js").dictionary} dictionary
+ * @typedef {import("#types/common.js").dictLike} dictLike
  * @module socket/validate
  */
 
 import { throwRequired, warnOptional, warnRequired } from '#lib/output.mjs';
 
+/**
+ * @param {string} path
+ * @param {(param: dictionary) => {}} isValidParams
+ * @param {dictLike} defaults
+ * @param  {...any} options
+ * @returns
+ */
 const socketValidate = (path, isValidParams, defaults, ...options) => {
   const data = { ...defaults },
     {

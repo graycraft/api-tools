@@ -1,7 +1,7 @@
 /**
  * Handle Coinbase Advanced API response operations.
  *
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @typedef {import("#res/operate.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/operate
  */
 

@@ -2,9 +2,10 @@
  * Type definitions for common application use cases.
  */
 
-export type Dict<T = string> = {
-  [key: string]: T;
-};
-export type DictLike<T = string> = {
+export type dictLike<T = string> = {
   [key: string]: T | T[];
+};
+
+export type dictionary<T = string> = {
+  [key: string]: T;
 };

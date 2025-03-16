@@ -5,15 +5,22 @@
  * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
  * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
+ * @typedef {import("#types/bybit.ts").default} IBybit
  * @typedef {import("#types/response/bybit.js").default} Response
  * @typedef {import("../parse.mjs").RParse} RParse
  * @typedef {import("../parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("../parse.mjs").ResponseParse} ResponseParse
+ * @typedef {{
+ *   json: {
+ *     message: string;
+ *     retCode: number;
+ *     retMsg: string;
+ *   }
+ * }} RFetchBybit
  * @module response/bybit/parse
  */
 
 import config from '#config/bybit.json' with { type: 'json' };
-import prefs from '#prefs/bybit.json' with { type: 'json' };
 
 import filter from './parse/filter.mjs';
 import find from './parse/find.mjs';
@@ -31,8 +38,8 @@ const bybitParse = (response, endpoint, data) => {
   const { config, prefs } = global.apiTools.bybit,
     {
       RESPONSE: { CODE, DESCRIPTION },
-    } = config,
-    { json } = response,
+    } = /** @type {IBybit["config"]} */ (config),
+    { json } = /** @type {RFetchBybit} */ (response),
     code = json[CODE],
     description = json[DESCRIPTION],
     parse = responseParse(response, endpoint, data, parseJson, prefs);
@@ -49,7 +56,7 @@ const bybitParse = (response, endpoint, data) => {
  */
 const parseJson = (json, endpoint, data) => {
   const {
-      ASSET: { BASE, QUOTE },
+      COIN: { BASE, QUOTE },
       ORDER,
       PATH,
       PATH: {
@@ -62,7 +69,7 @@ const parseJson = (json, endpoint, data) => {
         ORDER_ALL,
         TRADE_HISTORY_ALL,
       },
-    } = config,
+    } = /** @type {IBybit["config"]} */ (config),
     path = PATH[endpoint],
     parsed = [];
 
@@ -99,7 +106,7 @@ const parseJson = (json, endpoint, data) => {
     case MARKET_INFORMATION:
     case MARKET_TICKERS:
       jsonParsed = find(json, {
-        criterion: data.symbol ?? BASE.CODE + QUOTE.CODE,
+        criterion: data.symbol ?? BASE.NAME + QUOTE.NAME,
         key: 'symbol',
         list: 'list',
       });

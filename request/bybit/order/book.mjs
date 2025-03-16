@@ -23,7 +23,7 @@ import validate from '../validate.mjs';
 const orderBook = async (symbol, category, limit) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE, QUOTE },
+      COIN: { BASE, QUOTE },
       PATH: { ORDER_BOOK },
     } = config,
     {
@@ -33,7 +33,7 @@ const orderBook = async (symbol, category, limit) => {
     data = validate(ORDER_BOOK, {
       defaults: {
         category: account.category,
-        symbol: BASE.CODE + QUOTE.CODE,
+        symbol: BASE.NAME + QUOTE.NAME,
       },
       optional: { category },
       required: { limit },

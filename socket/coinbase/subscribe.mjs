@@ -8,6 +8,8 @@
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-auth
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
+ * @typedef {import('#lib/constants.mjs').AuthSecurity} AuthSecurity
+ * @typedef {import('#types/coinbase.ts').default} ICoinbase
  * @typedef {import('#types/socket/message.d.js').default} WebSocketMessage
  * @module socket/coinbase/subscribe
  */
@@ -19,25 +21,27 @@ import { socketData } from '#lib/socket.mjs';
 import settings from '#settings/coinbase.json' with { type: 'json' };
 
 /**
+ * @param {AuthSecurity} security
+ * @param {WebSocketMessage["channel"]} channel
+ * @param {{}} data
  * @returns {Promise<WebSocket>}
  */
 const coinbaseSubscribe = async (security, channel, data = {}) => {
   const { timestamp } = global.apiTools,
     {
-      ENCODING,
       SOCKET: { SUBSCRIBE, URL },
-    } = config,
-    { user, authentication } = settings,
+    } = /** @type {ICoinbase["config"]} */ (config),
+    { user, authentication } = /** @type {ICoinbase["settings"]} */ (settings),
     { portfolio } = user,
     { delay, keys, secrets } = authentication,
-    key = keys[user[portfolio]],
+    key = keys[user[portfolio].uuid],
     /** @type {WebSocketMessage} */
     message = {
       ...data,
       channel,
       type: /** @type {WebSocketMessage["type"]} */ (SUBSCRIBE),
     },
-    secret = secrets[user[portfolio]],
+    secret = secrets[user[portfolio].uuid],
     payload = {
       exp: Math.floor(timestamp / delay) + 120,
       iss: 'cdp',
@@ -46,7 +50,7 @@ const coinbaseSubscribe = async (security, channel, data = {}) => {
     };
 
   if (security === AUTH.SECURITY.JWT) {
-    message.jwt = signJwt(/** @type {"hex"} */ (ENCODING), payload, secret, key);
+    message.jwt = signJwt('hex', payload, secret, key);
   }
 
   const socket = socketData(URL, message);

@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API one account address response operation.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#show-address
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @typedef {import("#res/operate.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/address/one
  */
 

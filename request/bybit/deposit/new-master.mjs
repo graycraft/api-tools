@@ -19,7 +19,7 @@ import validate from '../validate.mjs';
 const depositNewMaster = async (coin, chainType) => {
   const { config, settings } = global.apiTools.bybit,
     {
-      ASSET: { BASE },
+      COIN: { BASE },
       PATH: { DEPOSIT_NEW_MASTER },
     } = config,
     {
@@ -27,8 +27,8 @@ const depositNewMaster = async (coin, chainType) => {
     } = settings,
     data = validate(DEPOSIT_NEW_MASTER, {
       defaults: {
-        chainType: BASE.NETWORK,
-        coin: BASE.CODE,
+        chainType: BASE.CHAIN,
+        coin: BASE.NAME,
       },
       optional: { chainType, coin },
     }),

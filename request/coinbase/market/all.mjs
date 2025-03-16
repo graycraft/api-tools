@@ -14,8 +14,8 @@ import validate, { pairs } from '../validate.mjs';
 /**
  * @param {string} limit Pagination limit (default: ~668).
  * @param {{
- *   contract_expiry_type?, expiring_contract_status?, get_all_products?,
- *   offset?, product_ids?, product_type?
+ *   contract_expiry_type?: string; expiring_contract_status?: string; get_all_products?: string; offset?: string;
+ *   product_ids?: string; product_type?: string;
  * }} options Optional parameters.
  * @returns {Promise<MarketAll>} JSON data from response.
  */

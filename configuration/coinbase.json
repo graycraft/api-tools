@@ -102,7 +102,7 @@
   "RESPONSE": {
     "CODE": "error",
     "DESCRIPTION": "message",
-    "OK": "0",
+    "OK": 0,
     "SUCCESSFUL": "Successful."
   },
   "USER": {

@@ -5,12 +5,13 @@
  * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
  * @typedef {import("#types/api.ts").Preferences} Preferences
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @typedef {import("#types/response/bybit.js").default} Response
  * @typedef RParse
- * @prop {{}} jsonParsed Parsed JSON data from a response.
+ * @prop {dictionary} jsonParsed Parsed JSON data from a response.
  * @typedef ResponseStatus
  * @prop {HttpStatusCode} status HTTP status code.
- * @prop {HttpStatusText} statusText HTTP status text.
+ * @prop {HttpStatusText | string} statusText HTTP status text.
  * @typedef {ResponseStatus & RParse} ResponseParse
  * @typedef RParseStatus
  * @prop {number} code Response code.

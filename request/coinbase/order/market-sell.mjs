@@ -35,11 +35,11 @@ import validate, { pair } from '../validate.mjs';
  * @param {string} base_size Size of the first asset in a trading pair.
  * @param {string} [product_id] Currency pair code (e.g. "ETH-USDC").
  * @param {{
- *   client_order_id?, end_time?, leverage?, limit_limit_fok?, limit_limit_gtc?,
- *   limit_limit_gtd?, market_market_ioc?, margin_type?, post_only?, preview_id?,
- *   sor_limit_ioc?, stop_direction?, stop_limit_stop_limit_gtc?,
- *   stop_limit_stop_limit_gtd?, stop_price?, stop_trigger_price?,
- *   trigger_bracket_gtc?, trigger_bracket_gtd?
+ *   client_order_id?: string; end_time?: string; leverage?: string; limit_limit_fok?: string; limit_limit_gtc?: string;
+ *   limit_limit_gtd?: string; market_market_ioc?: string; margin_type?: string; post_only?: string;
+ *   preview_id?: string; quote_size?: string; sor_limit_ioc?: string; stop_direction?: string;
+ *   stop_limit_stop_limit_gtc?: string; stop_limit_stop_limit_gtd?: string; stop_price?: string;
+ *   stop_trigger_price?: string; trigger_bracket_gtc?: string; trigger_bracket_gtd?: string;
  * }} options Optional parameters.
  * @returns {Promise<OrderMarketSell>} JSON data from response.
  */
@@ -53,11 +53,12 @@ const orderMarketSell = async (
     limit_limit_fok,
     limit_limit_gtc,
     limit_limit_gtd,
+    // limit_price,
     market_market_ioc,
     margin_type,
     post_only,
     preview_id,
-    //side,
+    // side,
     sor_limit_ioc,
     stop_direction,
     stop_limit_stop_limit_gtc,

@@ -2,8 +2,12 @@
  * Operate a response snapshot to aggregate or validate data.
  *
  * @typedef {import("#types/api.ts").Name} Name
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
- * @typedef {(directory: string, fileName: string) => RSnapshot} FAggregate
+ * @typedef {import("#types/common.ts").dictionary} dictionary
+ * @typedef {import("#types/response/snapshot.js").default} Snapshot
+ * @typedef RSnapshot
+ * @prop {dictionary | string} fileData Response code.
+ * @prop {string} fileName Response description.
+ * @typedef {(directory: string, fileName: string) => RSnapshot} FAggregat
  * @module response/perform
  */
 
@@ -18,7 +22,7 @@ import validate from '#res/validate.mjs';
  * @param {string} endpoint Target endpoint name.
  * @param {string} snapshot Response snapshot file name without `.json` extension.
  * @param {{}} schema JSON-schema to validate against.
- * @param {FAggregate} aggregate Utility callback function to process response data.
+ * @param {FAggregat} aggregate Utility callback function to process response data.
  * @returns {RSnapshot} File data has been operated.
  */
 const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {
@@ -26,18 +30,17 @@ const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {
     dir = endpoint.toLowerCase(),
     dirBase = `response/${apiName}/snapshot/`;
 
-  let fileData,
+  let snapshotData,
     fileName = snapshot + '.json';
 
   if (options.aggregate) {
     if (global.apiTools[apiName].prefs.aggregate.includes(endpoint)) {
       if (snapshot) {
-        fileData = aggregate(dir, fileName);
+        snapshotData = aggregate(dir, fileName);
       } else {
         const file = fileNewest(dirBase + dir);
 
-        fileName = file.name;
-        fileData = aggregate(dir, fileName);
+        snapshotData = aggregate(dir, file.name);
       }
     } else
       console.info(
@@ -45,22 +48,30 @@ const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {
       );
   } else if (options.validate) {
     if (global.apiTools[apiName].prefs.validate.includes(endpoint)) {
+      let fileData;
+
       if (snapshot) {
-        fileData = fileReadJson(dirBase + dir, fileName);
+        fileData = /** @type {Snapshot} */ (fileReadJson(dirBase + dir, fileName));
       } else {
         const file = fileNewest(dirBase + dir);
 
         fileName = file.name;
-        fileData = fileReadJson(dirBase + dir, fileName);
+        fileData = /** @type {Snapshot} */ (fileReadJson(dirBase + dir, fileName));
       }
+
       validate(successfulJson(fileData), schema, apiName, fileName);
+
+      snapshotData = {
+        fileData,
+        fileName,
+      };
     } else
       console.info(
         `Validate: endpoint "${endpoint}" of ${toPascalCase(apiName)} API is not enabled in preferences.`,
       );
   } else console.info('Specify operation you want to perform: aggregation or validation.');
 
-  return fileData;
+  return snapshotData;
 };
 
 export default responseOperate;
