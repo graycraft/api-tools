@@ -5,8 +5,8 @@
  * @see https://nodejs.org/docs/latest/api/console.html#consoledirobj-options
  * @see https://nodejs.org/docs/latest/api/util.html#utilinspectobject-showhidden-depth-colors
  * @typedef {import("#types/common.ts").dictionary} dictionary
- * @typedef {import("#types/api.ts").Options} Options
- * @typedef {import("#types/api.ts").Preferences} Preferences
+ * @typedef {import("#types/api.ts").options} options
+ * @typedef {import("#types/api.ts").preferences} preferences
  * @module library/output
  */
 
@@ -43,8 +43,8 @@ export const dirObject = (name, data) => {
  *   }
  * }
  * @param {string} endpoint Request endpoint name.
- * @param {Options} options Options from CLI.
- * @param {Preferences} prefs Preferences of an API.
+ * @param {options} options Options from CLI.
+ * @param {preferences} prefs Preferences of an API.
  * @param {{}} output Gathered information to output.
  * @returns {boolean} Whether information has been output or not.
  */

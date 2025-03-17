@@ -3,7 +3,7 @@
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule
- * @typedef {import("#types/response/coinbase/withdraw/all.js").default} WithdrawAll
+ * @typedef {import("#types/response/coinbase/withdraw/all.js").default} JWithdrawAll
  * @module request/coinbase/withdraw/all
  */
 
@@ -16,7 +16,7 @@ import validate from '../validate.mjs';
  * API key pair must have withdrawal permission?
  * @param {string} account_uuid Account UUID.
  * @param {string} [limit] Pagination limit (default: 25, maximum: 300). Not described in documentation.
- * @returns {Promise<WithdrawAll>} JSON data from response.
+ * @returns {Promise<JWithdrawAll>} JSON data from response.
  */
 const withdrawAll = async (account_uuid, limit = '300') => {
   const { config, settings } = global.apiTools.coinbase,

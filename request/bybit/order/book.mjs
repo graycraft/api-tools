@@ -2,7 +2,7 @@
  * Handle Bybit API order book depth request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/orderbook
- * @typedef {import("#types/response/bybit/order/book.js").default} OrderBook
+ * @typedef {import("#types/response/bybit/order/book.js").default} JOrderBook
  * @module request/bybit/order/book
  */
 
@@ -18,7 +18,7 @@ import validate from '../validate.mjs';
  *   - for `linear` or `inverse` -- default: 25, maximum 500;
  *   - for `option` -- default: 1, maximum 25;
  *   - for `spot` -- default: 1, maximum 200.
- * @returns {Promise<OrderBook>} JSON data from response.
+ * @returns {Promise<JOrderBook>} JSON data from response.
  */
 const orderBook = async (symbol, category, limit) => {
   const { config, settings } = global.apiTools.bybit,

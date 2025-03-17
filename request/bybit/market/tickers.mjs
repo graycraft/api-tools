@@ -3,7 +3,7 @@
  * best ask/bid price and trading volume in the last 24 hours.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/tickers
- * @typedef {import("#types/response/bybit/market/tickers.js").default} MarketTickers
+ * @typedef {import("#types/response/bybit/market/tickers.js").default} JMarketTickers
  * @module request/bybit/market/tickers
  */
 
@@ -17,7 +17,7 @@ import validate from '../validate.mjs';
  * For category `option`, parameters `baseCoin` and `symbol` are required.
  * @param {string} symbol Currency pair code (e.g. "ETHUSDC").
  * @param {{ baseCoin?: string; category?: string; expDate?: string; }} options Optional parameters.
- * @returns {Promise<MarketTickers>} JSON data from response.
+ * @returns {Promise<JMarketTickers>} JSON data from response.
  */
 const marketTickers = async (symbol, { baseCoin, category, expDate } = {}) => {
   const { config, settings } = global.apiTools.bybit,

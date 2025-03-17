@@ -2,11 +2,11 @@
  * Parse a Bybit API response.
  * Used for retrieving response status code/description and shortening long arrays.
  *
- * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
- * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#lib/constants.mjs").httpStatusCode} httpStatusCode
+ * @typedef {import("#lib/constants.mjs").httpStatusText} httpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
  * @typedef {import("#types/bybit.ts").default} IBybit
- * @typedef {import("#types/response/bybit.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} JResponse
  * @typedef {import("../parse.mjs").RParse} RParse
  * @typedef {import("../parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("../parse.mjs").ResponseParse} ResponseParse
@@ -49,7 +49,7 @@ const bybitParse = (response, endpoint, data) => {
 
 /**
  * Parse JSON data from a response.
- * @param {Response} json JSON data from a response.
+ * @param {JResponse} json JSON data from a response.
  * @param {string} endpoint Endpoint name.
  * @param {{ [k in ("side" | "symbol")]: string }} data Request parameters data.
  * @returns {RParse} Parsed JSON data.

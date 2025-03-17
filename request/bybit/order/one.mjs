@@ -2,7 +2,7 @@
  * Handle Bybit API one order request, with unfilled or partially filled orders by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
- * @typedef {import("#types/response/bybit/order/one.js").default} OrderOne
+ * @typedef {import("#types/response/bybit/order/one.js").default} JOrderOne
  * @module request/bybit/order/one
  */
 
@@ -26,7 +26,7 @@ import validate from '../validate.mjs';
  *   side?: string;
  *   symbol?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderOne>} JSON data from response.
+ * @returns {Promise<JOrderOne>} JSON data from response.
  */
 const orderOne = async (
   orderId,

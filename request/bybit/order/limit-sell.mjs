@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @see https://bybit-exchange.github.io/docs/v5/smp
- * @typedef {import("#types/response/bybit/order/limit-sell.js").default} OrderLimitSell
+ * @typedef {import("#types/response/bybit/order/limit-sell.js").default} JOrderLimitSell
  * @module request/bybit/order/limit-sell
  */
 
@@ -42,7 +42,7 @@ import validate from '../validate.mjs';
  *   triggerDirection?: string;
  *   triggerPrice?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderLimitSell>} JSON data from response.
+ * @returns {Promise<JOrderLimitSell>} JSON data from response.
  */
 const orderLimitSell = async (
   qty,

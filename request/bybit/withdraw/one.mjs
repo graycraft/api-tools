@@ -2,7 +2,7 @@
  * Handle Bybit API one wallet withdraw entry request by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
- * @typedef {import("#types/response/bybit/withdraw/one.js").default} WithdrawOne
+ * @typedef {import("#types/response/bybit/withdraw/one.js").default} JWithdrawOne
  * @module request/bybit/withdraw/one
  */
 
@@ -22,7 +22,7 @@ import validate from '../validate.mjs';
  *   withdrawID?: string;
  *   withdrawType?: string;
  * }} options Optional parameters.
- * @returns {Promise<WithdrawOne>} JSON data from response.
+ * @returns {Promise<JWithdrawOne>} JSON data from response.
  */
 const withdrawOne = async (
   txID,

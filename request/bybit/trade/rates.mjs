@@ -2,7 +2,7 @@
  * Handle Bybit API trade fee rates request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
- * @typedef {import("#types/response/bybit/trade/rates.js").default} TradeRates
+ * @typedef {import("#types/response/bybit/trade/rates.js").default} JTradeRates
  * @module request/bybit/trade/rates
  */
 
@@ -17,7 +17,7 @@ import validate from '../validate.mjs';
  *   baseCoin?: string;
  *   category?: string;
  * }} options Optional parameters.
- * @returns {Promise<TradeRates>} JSON data from response.
+ * @returns {Promise<JTradeRates>} JSON data from response.
  */
 const tradeRates = async (symbol, { baseCoin, category } = {}) => {
   const { config, settings } = global.apiTools.bybit,

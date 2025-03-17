@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./all.js").default} CurrencyAll
+ * @typedef {import("./all.js").default} JCurrencyAll
  * @typedef default
- * @type {CurrencyAll}
+ * @type {JCurrencyAll}
  */

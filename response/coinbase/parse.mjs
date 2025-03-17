@@ -4,12 +4,12 @@
  *
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/error-response
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/status-codes
- * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
- * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#lib/constants.mjs").httpStatusCode} httpStatusCode
+ * @typedef {import("#lib/constants.mjs").httpStatusText} httpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
  * @typedef {import("#types/coinbase.ts").default} ICoinbase
  * @typedef {import("#types/coinbase.ts").pathName} pathName
- * @typedef {import("#types/response/coinbase.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @typedef {import("../parse.mjs").RParse} RParse
  * @typedef {import("../parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("../parse.mjs").ResponseParse} ResponseParse
@@ -58,7 +58,7 @@ const coinbaseParse = (response, endpoint, data) => {
 
 /**
  * Parse JSON from response.
- * @param {Response} json JSON from response.
+ * @param {JResponse} json JSON from response.
  * @param {pathName} endpoint Endpoint name.
  * @param {{}} data Request parameters data.
  * @returns {RParse} Parsed JSON data.

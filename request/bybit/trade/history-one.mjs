@@ -2,7 +2,7 @@
  * Handle Bybit API request, with one trade history entry by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
- * @typedef {import("#types/response/bybit/trade/history-one.js").default} TradeHistoryOne
+ * @typedef {import("#types/response/bybit/trade/history-one.js").default} JTradeHistoryOne
  * @module request/bybit/trade/history-one
  */
 
@@ -25,7 +25,7 @@ import validate from '../validate.mjs';
  *   startTime?: string;
  *   symbol?: string;
  * }} options Optional parameters.
- * @returns {Promise<TradeHistoryOne>} JSON data from response.
+ * @returns {Promise<JTradeHistoryOne>} JSON data from response.
  */
 const tradeHistoryOne = async (
   orderId,

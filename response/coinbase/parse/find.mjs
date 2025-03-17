@@ -2,18 +2,18 @@
  * Find an item from a Coinbase Advanced API response array by strict equality comparison or a criterion function.
  *
  * @typedef {import("#types/common.ts").dictionary} dictionary
- * @typedef {import("#types/response/coinbase.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @module response/coinbase/parse/find
  */
 
 /**
- * @param {Response} json
+ * @param {JResponse} json
  * @param {{
  *   criterion: string | ((item: dictionary) => number),
  *   key: string,
  *   list: string,
  * }} options
- * @returns {Response | null}
+ * @returns {JResponse | null}
  */
 const find = (json, { criterion, key, list }) => {
   if (json instanceof Object && criterion) {

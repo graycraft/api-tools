@@ -8,9 +8,9 @@
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-auth
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
- * @typedef {import('#lib/constants.mjs').AuthSecurity} AuthSecurity
+ * @typedef {import('#lib/constants.mjs').authSecurity} authSecurity
  * @typedef {import('#types/coinbase.ts').default} ICoinbase
- * @typedef {import('#types/socket/message.js').default} WebSocketMessage
+ * @typedef {import('#types/socket/message.js').default} JWebSocketMessage
  * @module socket/coinbase/subscribe
  */
 
@@ -21,8 +21,8 @@ import { socketData } from '#lib/socket.mjs';
 import settings from '#settings/coinbase.json' with { type: 'json' };
 
 /**
- * @param {AuthSecurity} security
- * @param {WebSocketMessage["channel"]} channel
+ * @param {authSecurity} security
+ * @param {JWebSocketMessage["channel"]} channel
  * @param {{}} data
  * @returns {Promise<WebSocket>}
  */
@@ -35,11 +35,11 @@ const coinbaseSubscribe = async (security, channel, data = {}) => {
     { portfolio } = user,
     { delay, keys, secrets } = authentication,
     key = keys[user[portfolio].uuid],
-    /** @type {WebSocketMessage} */
+    /** @type {JWebSocketMessage} */
     message = {
       ...data,
       channel,
-      type: /** @type {WebSocketMessage["type"]} */ (SUBSCRIBE),
+      type: /** @type {JWebSocketMessage["type"]} */ (SUBSCRIBE),
     },
     secret = secrets[user[portfolio].uuid],
     payload = {

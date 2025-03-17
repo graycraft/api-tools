@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/instrument
  * @typedef {import("#types/bybit.ts").category} category
- * @typedef {import("#types/response/bybit/market/information.js").default} MarketInformation
+ * @typedef {import("#types/response/bybit/market/information.js").default} JMarketInformation
  * @module request/bybit/market/information
  */
 
@@ -19,7 +19,7 @@ import validate from '../validate.mjs';
  * `baseCoin` is applicable to `linear`, `inverse` and `option` category only.
  * @param {category} category Product type.
  * @param {{ baseCoin?: string; cursor?: string; limit?: string; status?: string; symbol?: string; }} options Optional parameters.
- * @returns {Promise<MarketInformation>} JSON data from response.
+ * @returns {Promise<JMarketInformation>} JSON data from response.
  */
 const marketInformation = async (category, { baseCoin, cursor, limit, status, symbol } = {}) => {
   const { config, prefs, settings } = global.apiTools.bybit,

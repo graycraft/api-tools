@@ -5,7 +5,7 @@
  * @typedef {import("#types/common.ts").dictionary} dictionary
  * @typedef {import("#types/collection/bybit/currency_all.js").default} JCurrencyAll
  * @typedef {import("#types/collection/bybit/network_all.js").default} JNetworkAll
- * @typedef {import("#types/response/snapshot.js").default} Snapshot
+ * @typedef {import("#types/response/snapshot.js").default} JSnapshot
  * @module response/bybit/aggregate
  */
 
@@ -23,7 +23,7 @@ import aggregate from '../aggregate.mjs';
 const bybitAggregate = (directory, fileName) => {
   const { bybit } = global.apiTools,
     endpoint = directory.toUpperCase(),
-    fileData = /** @type {Snapshot} */ (
+    fileData = /** @type {JSnapshot} */ (
       fileReadJson('response/bybit/snapshot/' + directory, fileName)
     ),
     json = /** @type {{}[]} */ (

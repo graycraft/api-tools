@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, listing all currency pairs (products) available for trading.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproducts
- * @typedef {import("#types/response/coinbase/market/all.js").default} MarketAll
+ * @typedef {import("#types/response/coinbase/market/all.js").default} JMarketAll
  * @module request/coinbase/market/all
  */
 
@@ -17,7 +17,7 @@ import validate, { pairs } from '../validate.mjs';
  *   contract_expiry_type?: string; expiring_contract_status?: string; get_all_products?: string; offset?: string;
  *   product_ids?: string; product_type?: string;
  * }} options Optional parameters.
- * @returns {Promise<MarketAll>} JSON data from response.
+ * @returns {Promise<JMarketAll>} JSON data from response.
  */
 const marketAll = async (
   limit,

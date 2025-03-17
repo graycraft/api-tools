@@ -13,7 +13,7 @@
  * @see https://www.bybit.com/app/user/add-secret-key?type=system
  * @see https://www.bybit.com/user/assets/money-address
  * @typedef {import("#types/bybit.ts").default} IBybit
- * @typedef {import("#types/response/bybit.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} JResponse
  * @module request/bybit/index
  */
 
@@ -80,7 +80,7 @@ const {
   timestamp = Date.now();
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const requestBybit = async () => {
   /**
@@ -238,7 +238,7 @@ const requestBybit = async () => {
 };
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const accountFlow = () =>
   Promise.resolve()
@@ -247,7 +247,7 @@ const accountFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const balanceFlow = () =>
   Promise.resolve()
@@ -261,7 +261,7 @@ const balanceFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const currencyFlow = () =>
   Promise.resolve()
@@ -272,7 +272,7 @@ const currencyFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const depositFlow = () =>
   Promise.resolve()
@@ -296,7 +296,7 @@ const depositFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const marketFlow = () =>
   Promise.resolve()
@@ -324,7 +324,7 @@ const marketFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const orderFlow = () =>
   Promise.resolve()
@@ -343,7 +343,7 @@ const orderFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const tradeFlow = () =>
   Promise.resolve()
@@ -353,7 +353,7 @@ const tradeFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const transferFlow = () =>
   Promise.resolve()
@@ -363,7 +363,7 @@ const transferFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const withdrawFlow = () =>
   Promise.resolve()

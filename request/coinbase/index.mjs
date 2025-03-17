@@ -3,7 +3,7 @@
  *
  * @typedef {import("#types/coinbase.ts").default} ICoinbase
  * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
- * @typedef {import("#types/response/coinbase.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @module request/coinbase/index
  */
 
@@ -186,7 +186,7 @@ const requestCoinbase = async () => {
 
 /**
  * @param {{ uuid: string }} account
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const addressFlow = (account) =>
   Promise.resolve()
@@ -197,7 +197,7 @@ const addressFlow = (account) =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const currencyFlow = () =>
   Promise.resolve()
@@ -206,7 +206,7 @@ const currencyFlow = () =>
     .catch(console.error.bind(console));
 /**
  * @param {{ uuid: string }} account
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const depositFlow = (account) =>
   Promise.resolve()
@@ -216,7 +216,7 @@ const depositFlow = (account) =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const marketFlow = () =>
   Promise.resolve()
@@ -226,7 +226,7 @@ const marketFlow = () =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const orderFlow = () =>
   Promise.resolve()
@@ -242,7 +242,7 @@ const orderFlow = () =>
 
 /**
  * @param {{ uuid: string }} account
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const transactionFlow = (account) =>
   Promise.resolve()
@@ -251,7 +251,7 @@ const transactionFlow = (account) =>
     .catch(console.error.bind(console));
 
 /**
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const userFlow = () =>
   Promise.resolve()
@@ -263,7 +263,7 @@ const userFlow = () =>
 
 /**
  * @param {{ uuid: string }} account
- * @returns {Promise<Response>}
+ * @returns {Promise<JResponse>}
  */
 const withdrawFlow = (account) =>
   Promise.resolve()

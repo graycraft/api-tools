@@ -1,14 +1,14 @@
 /**
  * JSON data structure to output and make snapshots.
  *
- * @typedef {import("#lib/constants.mjs").AuthSecurity} AuthSecurity
- * @typedef {import("#lib/constants.mjs").HttpMethod} HttpMethod
- * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#lib/constants.mjs").authSecurity} authSecurity
+ * @typedef {import("#lib/constants.mjs").httpMethod} httpMethod
+ * @typedef {import("#lib/constants.mjs").httpStatusText} httpStatusText
  * @typedef {import("#types/common.ts").dictionary} dictionary
  * @typedef {{
  *   [key: string]: string;
  * } & {
- *   [key in AuthSecurity]: {
+ *   [key in authSecurity]: {
  *     encoding: string;
  *     key: string;
  *     payload: dictionary;
@@ -16,12 +16,12 @@
  *     token: string;
  *   };
  * } & {
- *   [key in HttpMethod]: {
+ *   [key in httpMethod]: {
  *     headers: dictionary;
  *     data: dictionary;
  *   };
  * } & {
- *   [key in HttpStatusText]: {
+ *   [key in httpStatusText]: {
  *     headers: dictionary;
  *     json: dictionary;
  *   };

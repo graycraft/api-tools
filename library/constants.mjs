@@ -1,10 +1,10 @@
 /**!
  * Constants library for common usage.
  *
- * @typedef {keyof AUTH["SECURITY"]} AuthSecurity
- * @typedef {keyof HTTP["METHOD"]} HttpMethod
- * @typedef {keyof HTTP["STATUS"]} HttpStatusText
- * @typedef {HTTP["STATUS"][HttpStatusText]} HttpStatusCode
+ * @typedef {keyof AUTH["SECURITY"]} authSecurity
+ * @typedef {keyof HTTP["METHOD"]} httpMethod
+ * @typedef {keyof HTTP["STATUS"]} httpStatusText
+ * @typedef {HTTP["STATUS"][httpStatusText]} httpStatusCode
  * @module library/constants
  */
 

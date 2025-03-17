@@ -2,7 +2,7 @@
  * Handle Bybit API request, with cancel one order by order identifier or `orderLinkId`.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
- * @typedef {import("#types/response/bybit/order/cancel-one.js").default} OrderCancelOne
+ * @typedef {import("#types/response/bybit/order/cancel-one.js").default} JOrderCancelOne
  * @module request/bybit/order/cancel-one
  */
 
@@ -19,7 +19,7 @@ import validate from '../validate.mjs';
  *   orderLinkId?: string;
  *   symbol?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderCancelOne>} JSON data from response.
+ * @returns {Promise<JOrderCancelOne>} JSON data from response.
  */
 const orderCancelOne = async (orderId, { category, orderFilter, orderLinkId, symbol } = {}) => {
   const { config, settings } = global.apiTools.bybit,

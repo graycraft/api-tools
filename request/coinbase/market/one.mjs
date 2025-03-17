@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API market request, with information about one currency pair (product) by its identifier.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproduct
- * @typedef {import("#types/response/coinbase/market/one.js").default} MarketOne
+ * @typedef {import("#types/response/coinbase/market/one.js").default} JMarketOne
  * @module request/coinbase/market/one
  */
 
@@ -13,7 +13,7 @@ import validate, { pair } from '../validate.mjs';
 
 /**
  * @param {string} product_id Currency pair (product) code (e.g. "ETH-USDC").
- * @returns {Promise<MarketOne>} JSON data from response.
+ * @returns {Promise<JMarketOne>} JSON data from response.
  */
 const marketOne = async (product_id) => {
   const { config } = global.apiTools.coinbase,

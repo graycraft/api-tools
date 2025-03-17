@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @see https://bybit-exchange.github.io/docs/v5/smp
- * @typedef {import("#types/response/bybit/order/market-sell.js").default} OrderMarketSell
+ * @typedef {import("#types/response/bybit/order/market-sell.js").default} JOrderMarketSell
  * @module request/bybit/order/market-sell
  */
 
@@ -41,7 +41,7 @@ import validate from '../validate.mjs';
  *   triggerDirection?: string;
  *   triggerPrice?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderMarketSell>} JSON data from response.
+ * @returns {Promise<JOrderMarketSell>} JSON data from response.
  */
 const orderMarketSell = async (
   qty,

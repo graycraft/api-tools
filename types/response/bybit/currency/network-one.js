@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./one.js").default} CurrencyOne
+ * @typedef {import("./one.js").default} JCurrencyOne
  * @typedef default
- * @type {CurrencyOne}
+ * @type {JCurrencyOne}
  */

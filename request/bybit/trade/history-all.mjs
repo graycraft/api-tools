@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
  * @typedef {import("#types/bybit.ts").orderSide} side
- * @typedef {import("#types/response/bybit/trade/history-all.js").default} TradeHistoryAll
+ * @typedef {import("#types/response/bybit/trade/history-all.js").default} JTradeHistoryAll
  * @module request/bybit/trade/history-all
  */
 
@@ -25,7 +25,7 @@ import validate from '../validate.mjs';
  *   orderLinkId?: string;
  *   startTime?: string;
  * }} options Optional parameters.
- * @returns {Promise<TradeHistoryAll>} JSON data from response.
+ * @returns {Promise<JTradeHistoryAll>} JSON data from response.
  */
 const tradeHistoryAll = async (
   side,

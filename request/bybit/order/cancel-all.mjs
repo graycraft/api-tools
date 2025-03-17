@@ -2,7 +2,7 @@
  * Handle Bybit API request, with cancel all open orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-all
- * @typedef {import("#types/response/bybit/order/cancel-all.js").default} OrderCancelAll
+ * @typedef {import("#types/response/bybit/order/cancel-all.js").default} JOrderCancelAll
  * @module request/bybit/order/cancel-all
  */
 
@@ -21,7 +21,7 @@ import validate from '../validate.mjs';
  *   settleCoin?: string;
  *   stopOrderType?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderCancelAll>} JSON data from response.
+ * @returns {Promise<JOrderCancelAll>} JSON data from response.
  */
 const orderCancelAll = async (
   symbol,

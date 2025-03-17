@@ -11,15 +11,15 @@ declare var apiTools: {
   coinbase?: import('#types/coinbase.ts').default;
   example?: import('#types/example.ts').default;
   fameex?: import('#types/fameex.ts').default;
-  options: import('#types/api.ts').Options;
+  options: import('#types/api.ts').options;
   output?: {
     [key: string]: {};
   } & {
-    [key in import('#lib/constants.mjs').AuthSecurity]?: {};
+    [key in import('#lib/constants.mjs').authSecurity]?: {};
   } & {
-    [key in import('#lib/constants.mjs').HttpMethod]?: {};
+    [key in import('#lib/constants.mjs').httpMethod]?: {};
   } & {
-    [key in import('#lib/constants.mjs').HttpStatusText]?: {};
+    [key in import('#lib/constants.mjs').httpStatusText]?: {};
   };
   timestamp: number;
 };

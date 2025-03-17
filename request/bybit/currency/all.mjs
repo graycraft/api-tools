@@ -2,7 +2,7 @@
  * Handle Bybit API all currencies (coins) request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#types/response/bybit/currency/all.js").default} CurrencyAll
+ * @typedef {import("#types/response/bybit/currency/all.js").default} JCurrencyAll
  * @module request/bybit/currency/all
  */
 
@@ -11,7 +11,7 @@ import { currencyAll as schema } from '#res/bybit/currency/schema.mjs';
 import get from '../get.mjs';
 
 /**
- * @returns {Promise<CurrencyAll>} JSON data from response.
+ * @returns {Promise<JCurrencyAll>} JSON data from response.
  */
 const currencyAll = async () => {
   const { config, settings } = global.apiTools.bybit,

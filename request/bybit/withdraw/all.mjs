@@ -2,7 +2,7 @@
  * Handle Bybit API all wallet withdraw entries request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
- * @typedef {import("#types/response/bybit/withdraw/all.js").default} WithdrawAll
+ * @typedef {import("#types/response/bybit/withdraw/all.js").default} JWithdrawAll
  * @module request/bybit/withdraw/all
  */
 
@@ -22,7 +22,7 @@ import validate from '../validate.mjs';
  *   withdrawID?: string;
  *   withdrawType?: string;
  * }} options Optional parameters.
- * @returns {Promise<WithdrawAll>} JSON data from response.
+ * @returns {Promise<JWithdrawAll>} JSON data from response.
  */
 const withdrawAll = async ({
   coin,

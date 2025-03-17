@@ -3,7 +3,7 @@
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfolios
  * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
- * @typedef {import("#types/response/coinbase/user/portfolio-all.js").default} UserPortfolioAll
+ * @typedef {import("#types/response/coinbase/user/portfolio-all.js").default} JUserPortfolioAll
  * @module request/coinbase/user/portfolio-all
  */
 
@@ -14,7 +14,7 @@ import validate from '../validate.mjs';
 
 /**
  * @param {userPortfolio} portfolio_type
- * @returns {Promise<UserPortfolioAll>} JSON data from response.
+ * @returns {Promise<JUserPortfolioAll>} JSON data from response.
  */
 const userPortfolioAll = async (portfolio_type) => {
   const { config, settings } = global.apiTools.coinbase,

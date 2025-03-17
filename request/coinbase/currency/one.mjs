@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, finding one currency by asset UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
- * @typedef {import("#types/response/coinbase/currency/one.js").default} CurrencyOne
+ * @typedef {import("#types/response/coinbase/currency/one.js").default} JCurrencyOne
  * @module request/coinbase/currency/one
  */
 
@@ -13,7 +13,7 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} asset_id Not supported by the API, item is found while parsing.
- * @returns {Promise<CurrencyOne>} JSON data from response.
+ * @returns {Promise<JCurrencyOne>} JSON data from response.
  */
 const currencyOne = async (asset_id) => {
   const { config } = global.apiTools.coinbase,

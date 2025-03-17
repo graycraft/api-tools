@@ -1,9 +1,9 @@
 /**
- * @typedef {import("./one.js").default} CurrencyOne
+ * @typedef {import("./one.js").default} JCurrencyOne
  * @typedef default
  * @type {{
  *   result: {
- *     rows: CurrencyOne["result"]["rows"][0][];
+ *     rows: JCurrencyOne["result"]["rows"][0][];
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

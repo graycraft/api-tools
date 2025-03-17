@@ -7,7 +7,7 @@
 import type { dictionary } from '#types/common.ts';
 import type WebSocketMessage from '#types/socket/message.js';
 
-import type { Configuration, Preferences, Settings, Status } from './api.ts';
+import type { configuration, preferences, settings, status } from './api.ts';
 
 export enum orderTypes {
   limit = 'limit_limit_gtc',
@@ -90,7 +90,7 @@ export type tradeSide = 'BUY' | 'SELL';
 export type userPortfolio = 'CONSUMER' | 'DEFAULT' | 'INTX' | 'UNDEFINED';
 
 export default interface ICoinbase {
-  config: Configuration & {
+  config: configuration & {
     CONTRACT: {
       EXPIRY: contractExpiry[];
       STATUS: contractStatus[];
@@ -135,8 +135,8 @@ export default interface ICoinbase {
     };
   };
   name: 'coinbase';
-  prefs: Preferences;
-  settings: Settings & {
+  prefs: preferences;
+  settings: settings & {
     authentication: {
       security: 'JWT' | null;
     };
@@ -167,5 +167,5 @@ export default interface ICoinbase {
       } | null;
     } & { portfolio: userPortfolio; withdraw: string };
   };
-  status: Status;
+  status: status;
 }

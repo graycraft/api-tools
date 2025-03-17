@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API all orders request.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
- * @typedef {import("#types/response/coinbase/order/all.js").default} OrderAll
+ * @typedef {import("#types/response/coinbase/order/all.js").default} JOrderAll
  * @module request/coinbase/order/all
  */
 
@@ -22,7 +22,7 @@ import validate from '../validate.mjs';
  *   product_ids?: string; product_type?: string; retail_portfolio_id?: string; sort_by?: string; start_date?: string;
  *   time_in_forces?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderAll>} JSON data from response.
+ * @returns {Promise<JOrderAll>} JSON data from response.
  */
 const orderAll = async (
   limit,

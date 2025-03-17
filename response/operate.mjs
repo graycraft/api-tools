@@ -1,9 +1,9 @@
 /**
  * Operate a response snapshot to aggregate or validate data.
  *
- * @typedef {import("#types/api.ts").Name} Name
+ * @typedef {import("#types/api.ts").name} name
  * @typedef {import("#types/common.ts").dictionary} dictionary
- * @typedef {import("#types/response/snapshot.js").default} Snapshot
+ * @typedef {import("#types/response/snapshot.js").default} JSnapshot
  * @typedef RSnapshot
  * @prop {dictionary | string} fileData Response code.
  * @prop {string} fileName Response description.
@@ -18,7 +18,7 @@ import validate from '#res/validate.mjs';
 
 /**
  * Validate against JSON-schema or aggregate response snapshot file and write to the collection directory.
- * @param {Name} apiName A specific API name.
+ * @param {name} apiName A specific API name.
  * @param {string} endpoint Target endpoint name.
  * @param {string} snapshot Response snapshot file name without `.json` extension.
  * @param {{}} schema JSON-schema to validate against.
@@ -51,12 +51,12 @@ const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {
       let fileData;
 
       if (snapshot) {
-        fileData = /** @type {Snapshot} */ (fileReadJson(dirBase + dir, fileName));
+        fileData = /** @type {JSnapshot} */ (fileReadJson(dirBase + dir, fileName));
       } else {
         const file = fileNewest(dirBase + dir);
 
         fileName = file.name;
-        fileData = /** @type {Snapshot} */ (fileReadJson(dirBase + dir, fileName));
+        fileData = /** @type {JSnapshot} */ (fileReadJson(dirBase + dir, fileName));
       }
 
       validate(successfulJson(fileData), schema, apiName, fileName);

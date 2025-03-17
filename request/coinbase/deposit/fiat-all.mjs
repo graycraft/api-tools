@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API account's all fiat currencies deposit entries request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-deposits#list-deposits
- * @typedef {import("#types/response/coinbase/deposit/fiat-all.js").default} DepositFiatAll
+ * @typedef {import("#types/response/coinbase/deposit/fiat-all.js").default} JDepositFiatAll
  * @module request/coinbase/deposit/fiat-all
  */
 
@@ -13,7 +13,7 @@ import validate from '../validate.mjs';
 
 /**
  * @param {string} account_uuid Account UUID.
- * @returns {Promise<DepositFiatAll>} JSON data from response.
+ * @returns {Promise<JDepositFiatAll>} JSON data from response.
  */
 const depositFiatAll = async (account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,

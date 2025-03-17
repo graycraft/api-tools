@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API new account address request, creating an address for an account.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#create-address
- * @typedef {import("#types/response/coinbase/address/new.js").default} AddressNew
+ * @typedef {import("#types/response/coinbase/address/new.js").default} JAddressNew
  * @module request/coinbase/address/new
  */
 
@@ -15,7 +15,7 @@ import validate from '../validate.mjs';
  * Addresses can be created for wallet account types.
  * @param {string} name Address label.
  * @param {string} [account_uuid] Account UUID.
- * @returns {Promise<AddressNew>} JSON data from response.
+ * @returns {Promise<JAddressNew>} JSON data from response.
  */
 const addressNew = async (name, account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,

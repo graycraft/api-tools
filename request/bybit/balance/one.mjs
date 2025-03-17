@@ -2,7 +2,7 @@
  * Handle Bybit API one balance request, with entry by currency (coin) name.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
- * @typedef {import("#types/response/bybit/balance/one.js").default} BalanceOne
+ * @typedef {import("#types/response/bybit/balance/one.js").default} JBalanceOne
  * @module request/bybit/balance/one
  */
 
@@ -16,7 +16,7 @@ import validate from '../validate.mjs';
  * @param {string} coin Currency code, multiple values supported, separated by commas.
  * @param {string} memberId UID, required with master API keys.
  * @param {{ withBonus?: string }} options Optional parameters.
- * @returns {Promise<BalanceOne>} JSON data from response.
+ * @returns {Promise<JBalanceOne>} JSON data from response.
  */
 const balanceOne = async (accountType, coin, memberId, { withBonus } = {}) => {
   const { config, prefs, settings } = global.apiTools.bybit,

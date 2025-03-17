@@ -1,8 +1,8 @@
 /**
- * @typedef {import("./one.js").default} One
+ * @typedef {import("./one.js").default} JOne
  * @typedef default
  * @type {{
- *   data: One["data"][];
+ *   data: JOne["data"][];
  *   pagination: {}
  * }}
  */

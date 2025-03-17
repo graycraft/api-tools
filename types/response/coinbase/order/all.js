@@ -1,7 +1,7 @@
 /**
- * @typedef {import("./one.js").default} OrderOne
+ * @typedef {import("./one.js").default} JOrderOne
  * @typedef default
  * @type {{
- *   orders: OrderOne["order"][];
+ *   orders: JOrderOne["order"][];
  * }}
  */

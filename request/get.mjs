@@ -3,7 +3,7 @@
  *
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
  * @typedef {import("#types/api.ts").default} IApi
- * @typedef {import("./index.mjs").Callback} Callback
+ * @typedef {import("./index.mjs").DCallback} Callback
  * @module request/get
  */
 

@@ -2,7 +2,7 @@
  * Handle Bybit API request, with one deposit entry by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
- * @typedef {import('#types/response/bybit/deposit/one.js').default} DepositOne
+ * @typedef {import('#types/response/bybit/deposit/one.js').default} JDepositOne
  * @module request/bybit/deposit/one
  */
 
@@ -22,7 +22,7 @@ import validate from '../validate.mjs';
  *   limit?: string;
  *   startTime?: string;
  * }} options Optional parameters.
- * @returns {Promise<DepositOne>} JSON data from response.
+ * @returns {Promise<JDepositOne>} JSON data from response.
  */
 const depositOne = async (txID, { coin, cursor, endTime, limit, startTime } = {}) => {
   const { config, settings } = global.apiTools.bybit,

@@ -2,7 +2,7 @@
  * Handle Bybit API account wallet types request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
- * @typedef {import("#types/response/bybit/account/wallets.js").default} AccountWallets
+ * @typedef {import("#types/response/bybit/account/wallets.js").default} JAccountWallets
  * @module request/bybit/account/wallets
  */
 
@@ -18,7 +18,7 @@ import validate from '../validate.mjs';
  * "CONTRACT", "SPOT" - classic account and Funding wallet is never operated.
  * "CONTRACT", "UNIFIED" - UTA account and Funding wallet is never operated.
  * @param {string} memberIds Multiple sub UIDs can be supplied, separated by commas.
- * @returns {Promise<AccountWallets>} JSON data from response.
+ * @returns {Promise<JAccountWallets>} JSON data from response.
  */
 const accountWallets = async (memberIds) => {
   const { config, settings } = global.apiTools.bybit,

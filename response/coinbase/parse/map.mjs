@@ -1,7 +1,7 @@
 /**
  * Map items from a Coinbase Advanced API response array by object key.
  *
- * @typedef {import("#types/response/coinbase.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @module response/coinbase/parse/map
  */
 
@@ -11,12 +11,12 @@
  */
 
 /**
- * @param {Response} json
+ * @param {JResponse} json
  * @param {{
  *   key: string | string[],
  *   list: string | string[],
  * }} options
- * @returns {Response | null}
+ * @returns {JResponse | null}
  */
 const map = (json, { key, list }) => {
   let data, items;

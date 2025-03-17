@@ -3,7 +3,7 @@
  *
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @typedef {import("#types/collection/coinbase/currency_all.js").default} JCurrencyAll
- * @typedef {import("#types/response/snapshot.js").default} Snapshot
+ * @typedef {import("#types/response/snapshot.js").default} JSnapshot
  * @module response/coinbase/aggregate
  */
 
@@ -21,7 +21,7 @@ import aggregate from '../aggregate.mjs';
 const coinbaseAggregate = (directory, fileName) => {
   const { coinbase } = global.apiTools,
     endpoint = directory.toUpperCase(),
-    fileData = /** @type {Snapshot} */ (
+    fileData = /** @type {JSnapshot} */ (
       fileReadJson('response/coinbase/snapshot/' + directory, fileName)
     ),
     json = /** @type {{}[]} */ (/** @type {{ data: object }} */ (successfulJson(fileData)).data),

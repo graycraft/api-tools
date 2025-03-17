@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request with product candles.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getcandles
- * @typedef {import("#types/response/coinbase/product/candles.js").default} ProductCandles
+ * @typedef {import("#types/response/coinbase/product/candles.js").default} JProductCandles
  * @module request/coinbase/product/candles
  */
 
@@ -18,7 +18,7 @@ import validate, { pair } from '../validate.mjs';
  * @param {"FIFTEEN_MINUTE" | "FIVE_MINUTE" | "ONE_DAY" | "ONE_HOUR" | "ONE_MINUTE" | "SIX_HOUR" | "THIRTY_MINUTE" |
  *   "TWO_HOUR" | "UNKNOWN_GRANULARITY"} granularity The time frame each candle represents.
  * @param {{ limit?: string }} options Optional parameters.
- * @returns {Promise<ProductCandles>} JSON data from response.
+ * @returns {Promise<JProductCandles>} JSON data from response.
  */
 const productCandles = async (product_id, start, end, granularity, { limit } = {}) => {
   const { timestamp } = global.apiTools,

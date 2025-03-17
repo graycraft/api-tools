@@ -2,14 +2,14 @@
  * Fetch data from a REST API endpoint with parameters.
  *
  * @typedef {import("#types/common.ts").dictionary} dictionary
- * @typedef {import("#types/response/snapshot.js").default} Snapshot
- * @typedef {import("./constants.mjs").HttpStatusCode} HttpStatusCode
- * @typedef {import("./constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#types/response/snapshot.js").default} JSnapshot
+ * @typedef {import("./constants.mjs").httpStatusCode} httpStatusCode
+ * @typedef {import("./constants.mjs").httpStatusText} httpStatusText
  * @typedef RFetch
  * @prop {dictionary} headers Response headers.
  * @prop {object | string} json Response JSON.
- * @prop {HttpStatusCode} status HTTP status code.
- * @prop {HttpStatusText | string} statusText HTTP status text.
+ * @prop {httpStatusCode} status HTTP status code.
+ * @prop {httpStatusText | string} statusText HTTP status text.
  * @module library/fetch
  */
 
@@ -96,7 +96,7 @@ export const fetchData = (method, url, headersInit, data) => {
 
   return global.fetch(url, options).then(async (response) => {
     const { status, statusText } =
-        /** @type {{ status: HttpStatusCode; statusText: HttpStatusText }} */ (response),
+        /** @type {{ status: httpStatusCode; statusText: httpStatusText }} */ (response),
       statusTextUpperCase = statusText.replace(' ', '_').toUpperCase(),
       timeEnd = Date.now(),
       done = ` done in ${timeEnd - timeStart} ms.`,
@@ -187,7 +187,7 @@ export const stringifyQuery = (template, data) => {
 
 /**
  * Obtain JSON data from successful response snapshot.
- * @param {Snapshot} snapshot All data from response snapshot.
+ * @param {JSnapshot} snapshot All data from response snapshot.
  * @returns {{}} JSON data from response snapshot.
  */
 export const successfulJson = (snapshot) => {

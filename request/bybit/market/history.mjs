@@ -2,7 +2,7 @@
  * Handle Bybit API market history request, with recent public trading data.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/recent-trade
- * @typedef {import("#types/response/bybit/market/history.js").default} MarketHistory
+ * @typedef {import("#types/response/bybit/market/history.js").default} JMarketHistory
  * @module request/bybit/market/history
  */
 
@@ -17,7 +17,7 @@ import validate from '../validate.mjs';
  *   - for spot product type -- default: 60, maximum: 60;
  *   - for other product types -- default: 500, maximum: 1000.
  * @param {{ baseCoin?: string; category?: string; optionType?: string; }} options Optional parameters.
- * @returns {Promise<MarketHistory>} JSON data from response.
+ * @returns {Promise<JMarketHistory>} JSON data from response.
  */
 const marketHistory = async (symbol, limit, { baseCoin, category, optionType } = {}) => {
   const { config, settings } = global.apiTools.bybit,

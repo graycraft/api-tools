@@ -22,7 +22,7 @@
  * @global
  */
 
-import type { Configuration, Preferences, Settings, Status } from './api.ts';
+import type { configuration, preferences, settings, status } from './api.ts';
 import type { dictionary } from './common.ts';
 
 export type accountId = string;
@@ -145,7 +145,6 @@ export type rejectReason =
   | 'EC_BySelfMatch'
   | 'EC_InCallAuctionStatus';
 export type smpType = 'CancelBoth' | 'CancelMaker' | 'CancelTaker' | 'None';
-export type status = 'Closed' | 'Delivering' | 'PreLaunch' | 'Trading';
 export type stopOrderType =
   | ''
   | 'BidirectionalTpslOrder'
@@ -161,6 +160,7 @@ export type stopOrderType =
   | 'TrailingStop'
   | 'tpslOrder';
 export type timeInForce = 'GTC' | 'IOC' | 'FOK';
+export type tradeStatus = 'Closed' | 'Delivering' | 'PreLaunch' | 'Trading';
 export type transferStatus = 'FAILED' | 'PENDING' | 'SUCCESS';
 export type triggerBy = '' | 'IndexPrice' | 'LastPrice' | 'MarkPrice';
 export type vipLevel =
@@ -188,7 +188,7 @@ export type withdrawStatus =
   | 'success';
 
 export default interface IBybit {
-  config: Configuration & {
+  config: configuration & {
     ACCOUNT: {
       CATEGORY: category[];
       WALLET: accountType[];
@@ -225,18 +225,18 @@ export default interface IBybit {
     };
     TRADE: {
       EXEC: execType[];
-      STATUS: status[];
+      STATUS: tradeStatus[];
     };
   };
   name: 'bybit';
-  prefs: Preferences & {
+  prefs: preferences & {
     aggregate: path[];
     currency: dictionary;
     parse: path[];
     snapshot: path[];
     verbose: path[];
   };
-  settings: Settings & {
+  settings: settings & {
     account: {
       [key in accountType]: accountId;
     } & {
@@ -254,5 +254,5 @@ export default interface IBybit {
       security: 'HMAC' | 'RSA' | null;
     };
   };
-  status: Status;
+  status: status;
 }

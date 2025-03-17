@@ -2,7 +2,7 @@
  * @typedef {import("#types/bybit.ts").category} category
  * @typedef {import("#types/bybit.ts").contractType} contractType
  * @typedef {import("#types/bybit.ts").marginTrading} marginTrading
- * @typedef {import("#types/bybit.ts").status} status
+ * @typedef {import("#types/bybit.ts").tradeStatus} tradeStatus
  * @typedef default
  * @type {{
  *   result: {
@@ -28,7 +28,7 @@
  *         limitParameter: string;
  *         marketParameter: string;
  *       };
- *       status: status;
+ *       status: tradeStatus;
  *       symbol: string;
  *     }[];
  *   };

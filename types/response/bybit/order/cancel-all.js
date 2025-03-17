@@ -1,9 +1,9 @@
 /**
- * @typedef {import("./cancel-one.js").default} OrderCancelOne
+ * @typedef {import("./cancel-one.js").default} JOrderCancelOne
  * @typedef default
  * @type {{
  *   result: {
- *     list: OrderCancelOne["result"][];
+ *     list: JOrderCancelOne["result"][];
  *     success: "0" | "1";
  *   };
  *   retCode: 0;

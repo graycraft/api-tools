@@ -2,7 +2,7 @@
  * Handle Bybit API request, with deposit address information of a sub account.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/sub-deposit-addr
- * @typedef {import("#types/response/bybit/deposit/new-sub.js").default} DepositNewSub
+ * @typedef {import("#types/response/bybit/deposit/new-sub.js").default} JDepositNewSub
  * @module request/bybit/deposit/new-sub
  */
 
@@ -16,7 +16,7 @@ import validate from '../validate.mjs';
  * @param {string} subMemberId Sub UID.
  * @param {string} coin Currency code.
  * @param {string} chainType Value of `chain` parameter from `CURRENCY_ALL` endpoint must be used for this.
- * @returns {Promise<DepositNewSub>} JSON data from response.
+ * @returns {Promise<JDepositNewSub>} JSON data from response.
  */
 const depositNewSub = async (subMemberId, coin, chainType) => {
   const { config, settings } = global.apiTools.bybit,

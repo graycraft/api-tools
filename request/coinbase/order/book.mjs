@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API order book depth request, listing asks/bids by currency pair (product) identifier.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproductbook
- * @typedef {import("#types/response/coinbase/order/book.js").default} OrderBook
+ * @typedef {import("#types/response/coinbase/order/book.js").default} JOrderBook
  * @module request/coinbase/order/book
  */
 
@@ -15,7 +15,7 @@ import validate, { pair } from '../validate.mjs';
  * @param {string} product_id Currency pair code (e.g. "ETH-USDC").
  * @param {string} [limit] Pagination limit (maximum: 1000).
  * @param {string} [aggregation_price_increment] The minimum price intervals at which buy and sell orders are grouped or combined in the order book.
- * @returns {Promise<OrderBook>} JSON data from response.
+ * @returns {Promise<JOrderBook>} JSON data from response.
  */
 const orderBook = async (product_id, limit, aggregation_price_increment) => {
   const { config, settings } = global.apiTools.coinbase,

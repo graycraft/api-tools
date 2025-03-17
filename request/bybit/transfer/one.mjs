@@ -2,7 +2,7 @@
  * Handle Bybit API request, with one transferable coin between each account type.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
- * @typedef {import("#types/response/bybit/transfer/one.js").default} TransferOne
+ * @typedef {import("#types/response/bybit/transfer/one.js").default} JTransferOne
  * @module request/bybit/transfer/one
  */
 
@@ -14,7 +14,7 @@ import validate from '../validate.mjs';
 /**
  * @param {string} toAccountType To account type.
  * @param {string} coin Not supported by the API, must be filtered while parsing.
- * @returns {Promise<TransferOne>} JSON data from response.
+ * @returns {Promise<JTransferOne>} JSON data from response.
  */
 const transferOne = async (toAccountType, coin) => {
   const { config, settings } = global.apiTools.bybit,

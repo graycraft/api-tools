@@ -2,7 +2,7 @@
  * Handle Bybit API request, with internal transfer between different account types under the same UID.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/create-inter-transfer
- * @typedef {import("#types/response/bybit/transfer/internal.js").default} TransferInternal
+ * @typedef {import("#types/response/bybit/transfer/internal.js").default} JTransferInternal
  * @module request/bybit/transfer/internal
  */
 
@@ -21,7 +21,7 @@ import validate from '../validate.mjs';
  * @param {{
  *   transferId?: string;
  * }} options
- * @returns {Promise<TransferInternal>} JSON data from response.
+ * @returns {Promise<JTransferInternal>} JSON data from response.
  */
 const transferInternal = async (
   fromAccountType,

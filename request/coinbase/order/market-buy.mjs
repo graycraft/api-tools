@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with placing market buy order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
- * @typedef {import("#types/response/coinbase/order/market-buy.js").default} OrderMarketBuy
+ * @typedef {import("#types/response/coinbase/order/market-buy.js").default} JOrderMarketBuy
  * @module request/coinbase/order/market-buy
  */
 
@@ -26,7 +26,7 @@ import validate, { pair } from '../validate.mjs';
  *   stop_limit_stop_limit_gtc?: string; stop_limit_stop_limit_gtd?: string; stop_price?: string;
  *   stop_trigger_price?: string; trigger_bracket_gtc?: string; trigger_bracket_gtd?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderMarketBuy>} JSON data from response.
+ * @returns {Promise<JOrderMarketBuy>} JSON data from response.
  */
 const orderMarketBuy = async (
   quote_size,

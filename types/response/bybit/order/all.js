@@ -1,9 +1,9 @@
 /**
- * @typedef {import("./one.js").default} OrderOne
+ * @typedef {import("./one.js").default} JOrderOne
  * @typedef default
  * @type {{
  *   result: {
- *     list: OrderOne["result"]["list"][0][];
+ *     list: JOrderOne["result"]["list"][0][];
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

@@ -1,11 +1,11 @@
 /**
  * @typedef {import("#types/bybit.ts").category} category
- * @typedef {import("./one.js").default} WithdrawOne
+ * @typedef {import("./one.js").default} JWithdrawOne
  * @typedef default
  * @type {{
  *   result: {
  *     category: category;
- *     rows: WithdrawOne["result"]["rows"][0][];
+ *     rows: JWithdrawOne["result"]["rows"][0][];
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

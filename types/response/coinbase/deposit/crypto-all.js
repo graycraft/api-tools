@@ -1,8 +1,8 @@
 /**
- * @typedef {import("./crypto-one.js").default} CryptoOne
+ * @typedef {import("./crypto-one.js").default} JCryptoOne
  * @typedef default
  * @type {{
- *   data: CryptoOne["data"][];
+ *   data: JCryptoOne["data"][];
  *   pagination: {};
  * }}
  */

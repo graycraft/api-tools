@@ -2,7 +2,7 @@
  * Handle Bybit API all orders history request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/order-list
- * @typedef {import("#types/response/bybit/order/history-all.js").default} OrderHistoryAll
+ * @typedef {import("#types/response/bybit/order/history-all.js").default} JOrderHistoryAll
  * @module request/bybit/order/history-all
  */
 
@@ -29,7 +29,7 @@ import validate from '../validate.mjs';
  *   settleCoin?: string;
  *   startTime?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderHistoryAll>} JSON data from response.
+ * @returns {Promise<JOrderHistoryAll>} JSON data from response.
  */
 const orderHistoryAll = async (
   symbol,

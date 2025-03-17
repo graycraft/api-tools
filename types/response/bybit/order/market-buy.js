@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./cancel-one.js").default} OrderCancelOne
+ * @typedef {import("./cancel-one.js").default} JOrderCancelOne
  * @typedef default
- * @type {OrderCancelOne}
+ * @type {JOrderCancelOne}
  */

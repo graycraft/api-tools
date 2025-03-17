@@ -6,11 +6,11 @@
  * @typedef {import("#res/parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
  * @typedef {import("#types/api.ts").default} IApi
- * @typedef {import("#types/response/snapshot.js").default} Snapshot
+ * @typedef {import("#types/response/snapshot.js").default} JSnapshot
  * @typedef {{
  *   parse: (response: RFetch, endpoint: string, data: {}) => ResponseParse & RParseStatus;
- *   snapshot: (api: IApi, output: Snapshot, endpoint: string) => RSnapshot;
- * }} Callback
+ *   snapshot: (api: IApi, output: JSnapshot, endpoint: string) => RSnapshot;
+ * }} DCallback
  * @module request/index
  */
 
@@ -27,7 +27,7 @@ import validate from '#res/validate.mjs';
  * @param {string} template Endpoint path template to be interpolated.
  * @param {{}} headers Headers to send with request.
  * @param {{}} schema JSON-schema to validate response with.
- * @param {Callback} callback Utility callback functions to process response data.
+ * @param {DCallback} callback Utility callback functions to process response data.
  * @param {{}} [data] Data to send with request.
  * @returns {Promise<RFetch["json"]>} JSON data from response.
  */
@@ -55,7 +55,7 @@ const request = async (method, api, url, template, headers, schema, callback, da
     if (isValid) {
       callback.snapshot(
         api,
-        /** @type {Snapshot} */ ({
+        /** @type {JSnapshot} */ ({
           ...global.apiTools.output,
           [statusText]: {
             ...global.apiTools.output[statusText],

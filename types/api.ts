@@ -6,11 +6,11 @@
  * @global
  */
 
-import type { AuthSecurity } from '#lib/constants.mjs';
+import type { authSecurity } from '#lib/constants.mjs';
 
 import type { dictionary, dictLike } from './common.ts';
 
-export type Configuration = {
+export type configuration = {
   HOSTNAME: string;
   PATH: dictionary;
   PREFIX: string;
@@ -21,7 +21,7 @@ export type Configuration = {
     SUCCESSFUL: string;
   };
 };
-export type Options = {
+export type options = {
   aggregate?: boolean;
   authentication?: boolean;
   continue?: boolean;
@@ -33,9 +33,9 @@ export type Options = {
   validate?: boolean;
   verbose?: boolean;
 };
-export type Name = 'bybit' | 'coinbase' | 'fameex';
-export type Parameters = dictLike;
-export type Preferences = {
+export type name = 'bybit' | 'coinbase' | 'fameex';
+export type parameters = dictLike;
+export type preferences = {
   aggregate: string[];
   continue: boolean;
   debug: true;
@@ -45,20 +45,20 @@ export type Preferences = {
   validate: string[];
   verbose: string[];
 };
-export type Settings = {
+export type settings = {
   authentication: {
     delay: number;
     keys: dictionary;
-    security: AuthSecurity;
+    security: authSecurity;
     secrets: dictionary;
   };
 };
-export type Status = dictionary<dictLike>;
+export type status = dictionary<dictLike>;
 
 export default interface IApi {
-  config: Configuration;
+  config: configuration;
   name: string;
-  prefs: Preferences;
-  settings: Settings;
-  status: Status;
+  prefs: preferences;
+  settings: settings;
+  status: status;
 }

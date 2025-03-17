@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with placing limit sell order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
- * @typedef {import("#types/response/coinbase/order/limit-sell.js").default} OrderLimitSell
+ * @typedef {import("#types/response/coinbase/order/limit-sell.js").default} JOrderLimitSell
  * @module request/coinbase/order/limit-sell
  */
 
@@ -27,7 +27,7 @@ import validate, { pair } from '../validate.mjs';
  *   stop_limit_stop_limit_gtc?: string; stop_limit_stop_limit_gtd?: string; stop_price?: string;
  *   stop_trigger_price?: string; trigger_bracket_gtc?: string; trigger_bracket_gtd?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderLimitSell>} JSON data from response.
+ * @returns {Promise<JOrderLimitSell>} JSON data from response.
  */
 const orderLimitSell = async (
   base_size,

@@ -1,10 +1,10 @@
 /**
- * @typedef {import("./one.js").default} DepositOne
+ * @typedef {import("./one.js").default} JDepositOne
  * @typedef default
  * @type {{
  *   result: {
  *     nextPageCursor: string;
- *     rows: DepositOne["result"]["rows"][0][];
+ *     rows: JDepositOne["result"]["rows"][0][];
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

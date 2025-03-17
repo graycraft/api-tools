@@ -2,7 +2,7 @@
  * Handle Bybit API all orders request, with unfilled or partially filled orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
- * @typedef {import("#types/response/bybit/order/all.js").default} OrderAll
+ * @typedef {import("#types/response/bybit/order/all.js").default} JOrderAll
  * @module request/bybit/order/all
  */
 
@@ -26,7 +26,7 @@ import validate from '../validate.mjs';
  *   settleCoin?: string;
  *   stopOrderType?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderAll>} JSON data from response.
+ * @returns {Promise<JOrderAll>} JSON data from response.
  */
 const orderAll = async (
   symbol,

@@ -14,11 +14,11 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
- * @typedef {import("#types/socket/coinbase/candles.js").default} Candles
- * @typedef {import("#types/socket/coinbase/heartbeats.js").default} Heartbeats
- * @typedef {import("#types/socket/coinbase/l2_data.js").default} L2Data
- * @typedef {import("#types/socket/coinbase/market_trades.js").default} MarketTrades
- * @typedef {import("#types/socket/message.js").default} WebSocketMessage
+ * @typedef {import("#types/socket/coinbase/candles.js").default} JCandles
+ * @typedef {import("#types/socket/coinbase/heartbeats.js").default} JHeartbeats
+ * @typedef {import("#types/socket/coinbase/l2_data.js").default} JL2Data
+ * @typedef {import("#types/socket/coinbase/market_trades.js").default} JMarketTrades
+ * @typedef {import("#types/socket/message.js").default} JWebSocketMessage
  * @module library/socket
  */
 
@@ -27,7 +27,7 @@ import { dirObject } from './output.mjs';
 
 /**
  * @param {string} url
- * @param {WebSocketMessage} message
+ * @param {JWebSocketMessage} message
  * @returns {WebSocket}
  */
 export const socketData = (url, message) => {
@@ -51,7 +51,7 @@ export const socketData = (url, message) => {
   };
   socket.onmessage = (event) => {
     const { data, origin, lastEventId, ports, source } = event,
-      /** @type {Candles | Heartbeats | L2Data | MarketTrades | { channel: string; events: [] }} */
+      /** @type {JCandles | JHeartbeats | JL2Data | JMarketTrades | { channel: string; events: [] }} */
       json = JSON.parse(data);
 
     let events;

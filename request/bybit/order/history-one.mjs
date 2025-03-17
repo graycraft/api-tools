@@ -2,7 +2,7 @@
  * Handle Bybit API one order history request by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/order-list
- * @typedef {import("#types/response/bybit/order/history-one.js").default} OrderHistoryOne
+ * @typedef {import("#types/response/bybit/order/history-one.js").default} JOrderHistoryOne
  * @module request/bybit/order/history-one
  */
 
@@ -30,7 +30,7 @@ import validate from '../validate.mjs';
  *   startTime?: string;
  *   symbol?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderHistoryOne>} JSON data from response.
+ * @returns {Promise<JOrderHistoryOne>} JSON data from response.
  */
 const orderHistoryOne = async (
   orderId,

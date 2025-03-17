@@ -4,7 +4,7 @@
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/vasp-list
  * @see https://www.bybit.com/user/assets/money-address
- * @typedef {import("#types/response/bybit/withdraw/new.js").default} WithdrawNew
+ * @typedef {import("#types/response/bybit/withdraw/new.js").default} JWithdrawNew
  * @module request/bybit/withdraw/new
  */
 
@@ -36,7 +36,7 @@ import validate from '../validate.mjs';
  *   timestamp?: string;
  *   vaspEntityId?: string;
  * }} options Optional parameters.
- * @returns {Promise<WithdrawNew>} JSON data from response.
+ * @returns {Promise<JWithdrawNew>} JSON data from response.
  */
 const withdrawNew = async (
   amount,

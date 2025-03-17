@@ -1,8 +1,8 @@
 /**!
  * Utility methods for common application use cases.
  *
- * @typedef {import("#types/api.ts").Options} Options
- * @typedef {import("#types/api.ts").Preferences} Preferences
+ * @typedef {import("#types/api.ts").options} options
+ * @typedef {import("#types/api.ts").preferences} preferences
  * @module library/utility
  */
 
@@ -41,8 +41,8 @@ const OPTIONS = {
 /**
  * Exit (terminate) the current Node.js process depending on circumstances.
  * @param {{} | null} json JSON data from response.
- * @param {Options} options CLI options to check whether `continue` option is set or not.
- * @param {Preferences} prefs Preferences to check whether `continue` preference is set or not.
+ * @param {options} options CLI options to check whether `continue` option is set or not.
+ * @param {preferences} prefs Preferences to check whether `continue` preference is set or not.
  * @returns {null | void} `null` if the current Node.js process continued.
  */
 export const exitProcess = (json, options, prefs) => {
@@ -76,7 +76,7 @@ export const obtain = obtainName;
  * @prop {dictionary<string>} explicit Explicit parameters to execute API request handler with.
  * @prop {string} handler API request handler.
  * @prop {string[]} implicit Implicit parameters to execute API request handler with.
- * @prop {Options} options CLI options to apply while executing API request handler or flow.
+ * @prop {options} options CLI options to apply while executing API request handler or flow.
  * @prop {(string | dictionary<string>)[]} params Parameters to execute API request handler with.
  * @returns {Arguments} Usable handler, parameters and options.
  */
@@ -106,8 +106,8 @@ export const parseArguments = (argv = []) => {
  * Parse process argument vectors from CLI to usable options.
  * @param {NodeJS.Process["argv"]} argv Process argument vectors from CLI.
  * @returns {{
- *   optionsExplicit: Options,
- *   optionsImplicit: Options
+ *   optionsExplicit: options,
+ *   optionsImplicit: options
  * }} Usable options.
  */
 export const parseOptions = (argv) => {

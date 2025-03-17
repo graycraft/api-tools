@@ -1,7 +1,7 @@
 /**
  * Request a Coinbase Advanced API endpoint by the `POST` method.
  *
- * @typedef {import("#types/response/coinbase.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @module request/coinbase/post
  */
 
@@ -20,7 +20,7 @@ import post from '../post.mjs';
  * @param {{}} schema JSON-schema to validate response with.
  * @param {"JWT" | null} [security] Authentication signature security.
  * @param {{}} [data] Data to send with request.
- * @returns {Promise<Response>} JSON data from response.
+ * @returns {Promise<JResponse>} JSON data from response.
  */
 const coinbasePost = async (template, schema, security, data = {}) => {
   const { coinbase, options } = global.apiTools,
