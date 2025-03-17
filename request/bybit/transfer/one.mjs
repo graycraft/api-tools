@@ -2,7 +2,7 @@
  * Handle Bybit API request, with one transferable coin between each account type.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
- * @typedef {import("#types/response/bybit/transfer/one.d.js").default} TransferOne
+ * @typedef {import("#types/response/bybit/transfer/one.js").default} TransferOne
  * @module request/bybit/transfer/one
  */
 

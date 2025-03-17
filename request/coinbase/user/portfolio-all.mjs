@@ -3,7 +3,7 @@
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfolios
  * @typedef {import("#types/coinbase.ts").userPortfolio} userPortfolio
- * @typedef {import("#types/response/coinbase/user/portfolio-all.d.js").default} UserPortfolioAll
+ * @typedef {import("#types/response/coinbase/user/portfolio-all.js").default} UserPortfolioAll
  * @module request/coinbase/user/portfolio-all
  */
 

@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
  * @typedef {import("#types/bybit.ts").orderSide} side
- * @typedef {import("#types/response/bybit/trade/history-all.d.js").default} TradeHistoryAll
+ * @typedef {import("#types/response/bybit/trade/history-all.js").default} TradeHistoryAll
  * @module request/bybit/trade/history-all
  */
 

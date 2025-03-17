@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with all authenticated accounts of current user.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getaccounts
- * @typedef {import("#types/response/coinbase/user/account-all.d.js").default} UserAccountAll
+ * @typedef {import("#types/response/coinbase/user/account-all.js").default} UserAccountAll
  * @module request/coinbase/user/account-all
  */
 

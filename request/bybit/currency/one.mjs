@@ -2,7 +2,7 @@
  * Handle Bybit API currency request, with one entry by currency (coin) code.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#types/response/bybit/currency/one.d.js").default} CurrencyOne
+ * @typedef {import("#types/response/bybit/currency/one.js").default} CurrencyOne
  * @module request/bybit/currency/one
  */
 

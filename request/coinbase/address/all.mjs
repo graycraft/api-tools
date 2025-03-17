@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API all account addresses request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-addresses
- * @typedef {import("#types/response/coinbase/address/all.d.js").default} AddressAll
+ * @typedef {import("#types/response/coinbase/address/all.js").default} AddressAll
  * @module request/coinbase/address/all
  */
 

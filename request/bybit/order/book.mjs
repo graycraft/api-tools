@@ -2,7 +2,7 @@
  * Handle Bybit API order book depth request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/orderbook
- * @typedef {import("#types/response/bybit/order/book.d.js").default} OrderBook
+ * @typedef {import("#types/response/bybit/order/book.js").default} OrderBook
  * @module request/bybit/order/book
  */
 

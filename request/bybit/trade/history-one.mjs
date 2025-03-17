@@ -2,7 +2,7 @@
  * Handle Bybit API request, with one trade history entry by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/execution
- * @typedef {import("#types/response/bybit/trade/history-one.d.js").default} TradeHistoryOne
+ * @typedef {import("#types/response/bybit/trade/history-one.js").default} TradeHistoryOne
  * @module request/bybit/trade/history-one
  */
 

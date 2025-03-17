@@ -2,7 +2,7 @@
  * Handle Bybit API request, with all deposit entries.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
- * @typedef {import("#types/response/bybit/deposit/all.d.js").default} DepositAll
+ * @typedef {import("#types/response/bybit/deposit/all.js").default} DepositAll
  * @module request/bybit/deposit/all
  */
 

@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with portfolio breakdown of a user by portfolio UUID.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getportfoliobreakdown
- * @typedef {import("#types/response/coinbase/user/portfolio-one.d.js").default} UserPortfolioOne
+ * @typedef {import("#types/response/coinbase/user/portfolio-one.js").default} UserPortfolioOne
  * @module request/coinbase/user/portfolio-one
  */
 

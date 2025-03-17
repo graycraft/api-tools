@@ -2,7 +2,7 @@
  * Handle Bybit API request, with margin mode and upgraded status information of an account.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/account-info
- * @typedef {import("#types/response/bybit/account/information.d.js").default} AccountInformation
+ * @typedef {import("#types/response/bybit/account/information.js").default} AccountInformation
  * @module request/bybit/account/information
  */
 

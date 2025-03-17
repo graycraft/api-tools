@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API one account transaction request, by transaction UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
- * @typedef {import("#types/response/coinbase/transaction/one.d.js").default} TransactionOne
+ * @typedef {import("#types/response/coinbase/transaction/one.js").default} TransactionOne
  * @module request/coinbase/transaction/one
  */
 

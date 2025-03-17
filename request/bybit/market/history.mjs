@@ -2,7 +2,7 @@
  * Handle Bybit API market history request, with recent public trading data.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/recent-trade
- * @typedef {import("#types/response/bybit/market/history.d.js").default} MarketHistory
+ * @typedef {import("#types/response/bybit/market/history.js").default} MarketHistory
  * @module request/bybit/market/history
  */
 

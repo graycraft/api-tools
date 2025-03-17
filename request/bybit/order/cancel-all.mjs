@@ -2,7 +2,7 @@
  * Handle Bybit API request, with cancel all open orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-all
- * @typedef {import("#types/response/bybit/order/cancel-all.d.js").default} OrderCancelAll
+ * @typedef {import("#types/response/bybit/order/cancel-all.js").default} OrderCancelAll
  * @module request/bybit/order/cancel-all
  */
 

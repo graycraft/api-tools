@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, listing all transactions of an account.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
- * @typedef {import("#types/response/coinbase/transaction/all.d.js").default} TransactionAll
+ * @typedef {import("#types/response/coinbase/transaction/all.js").default} TransactionAll
  * @module request/coinbase/transaction/all
  */
 

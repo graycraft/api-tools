@@ -2,7 +2,7 @@
  * Handle Bybit API request, with internal transfer between different account types under the same UID.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/create-inter-transfer
- * @typedef {import("#types/response/bybit/transfer/internal.d.js").default} TransferInternal
+ * @typedef {import("#types/response/bybit/transfer/internal.js").default} TransferInternal
  * @module request/bybit/transfer/internal
  */
 

@@ -10,7 +10,7 @@
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
  * @typedef {import('#lib/constants.mjs').AuthSecurity} AuthSecurity
  * @typedef {import('#types/coinbase.ts').default} ICoinbase
- * @typedef {import('#types/socket/message.d.js').default} WebSocketMessage
+ * @typedef {import('#types/socket/message.js').default} WebSocketMessage
  * @module socket/coinbase/subscribe
  */
 

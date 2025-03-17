@@ -18,7 +18,7 @@
  * @typedef {import("#types/socket/coinbase/heartbeats.js").default} Heartbeats
  * @typedef {import("#types/socket/coinbase/l2_data.js").default} L2Data
  * @typedef {import("#types/socket/coinbase/market_trades.js").default} MarketTrades
- * @typedef {import("#types/socket/message.d.js").default} WebSocketMessage
+ * @typedef {import("#types/socket/message.js").default} WebSocketMessage
  * @module library/socket
  */
 

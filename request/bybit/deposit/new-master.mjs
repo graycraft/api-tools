@@ -2,7 +2,7 @@
  * Handle Bybit API request, with new deposit address information of a master account.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/master-deposit-addr
- * @typedef {import("#types/response/bybit/deposit/new-master.d.js").default} DepositNewMaster
+ * @typedef {import("#types/response/bybit/deposit/new-master.js").default} DepositNewMaster
  * @module request/bybit/deposit/new-master
  */
 

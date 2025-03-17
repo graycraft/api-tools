@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API cancel order request by one or more order identifiers.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_cancelorders
- * @typedef {import("#types/response/coinbase/order/cancel.d.js").default} OrderCancel
+ * @typedef {import("#types/response/coinbase/order/cancel.js").default} OrderCancel
  * @module request/coinbase/order/cancel
  */
 

@@ -1,9 +1,10 @@
 /**
- * @typedef {import("./one.d.js").default} OrderOne
+ * @typedef {import("./cancel-one.js").default} OrderCancelOne
  * @typedef default
  * @type {{
  *   result: {
- *     list: OrderOne["result"]["list"][0][];
+ *     list: OrderCancelOne["result"][];
+ *     success: "0" | "1";
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

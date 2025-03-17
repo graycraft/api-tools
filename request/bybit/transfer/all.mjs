@@ -2,7 +2,7 @@
  * Handle Bybit API request, with all transferable coin list between each account type.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/transfer/transferable-coin
- * @typedef {import("#types/response/bybit/transfer/all.d.js").default} TransferAll
+ * @typedef {import("#types/response/bybit/transfer/all.js").default} TransferAll
  * @module request/bybit/transfer/all
  */
 

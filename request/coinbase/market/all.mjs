@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, listing all currency pairs (products) available for trading.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproducts
- * @typedef {import("#types/response/coinbase/market/all.d.js").default} MarketAll
+ * @typedef {import("#types/response/coinbase/market/all.js").default} MarketAll
  * @module request/coinbase/market/all
  */
 

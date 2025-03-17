@@ -2,7 +2,7 @@
  * Handle Bybit API all orders request, with unfilled or partially filled orders.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
- * @typedef {import("#types/response/bybit/order/all.d.js").default} OrderAll
+ * @typedef {import("#types/response/bybit/order/all.js").default} OrderAll
  * @module request/bybit/order/all
  */
 

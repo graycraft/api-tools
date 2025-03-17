@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with placing market buy order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
- * @typedef {import("#types/response/coinbase/order/market-buy.d.js").default} OrderMarketBuy
+ * @typedef {import("#types/response/coinbase/order/market-buy.js").default} OrderMarketBuy
  * @module request/coinbase/order/market-buy
  */
 

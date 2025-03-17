@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with information about the last trades (ticks) and best ask/bid.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicmarkettrades
- * @typedef {import("#types/response/coinbase/market/tickers.d.js").default} MarketTickers
+ * @typedef {import("#types/response/coinbase/market/tickers.js").default} MarketTickers
  * @module request/coinbase/market/tickers
  */
 

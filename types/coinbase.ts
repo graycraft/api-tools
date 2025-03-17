@@ -5,7 +5,7 @@
  */
 
 import type { dictionary } from '#types/common.ts';
-import type WebSocketMessage from '#types/socket/message.d.js';
+import type WebSocketMessage from '#types/socket/message.js';
 
 import type { Configuration, Preferences, Settings, Status } from './api.ts';
 

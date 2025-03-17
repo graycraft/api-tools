@@ -2,7 +2,7 @@
  * Handle Bybit API key information request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/apikey-info
- * @typedef {import("#types/response/bybit/key/information.d.js").default} KeyInformation
+ * @typedef {import("#types/response/bybit/key/information.js").default} KeyInformation
  * @module request/bybit/key/information
  */
 

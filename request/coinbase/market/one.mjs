@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API market request, with information about one currency pair (product) by its identifier.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproduct
- * @typedef {import("#types/response/coinbase/market/one.d.js").default} MarketOne
+ * @typedef {import("#types/response/coinbase/market/one.js").default} MarketOne
  * @module request/coinbase/market/one
  */
 

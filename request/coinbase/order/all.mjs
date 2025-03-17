@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API all orders request.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorders
- * @typedef {import("#types/response/coinbase/order/all.d.js").default} OrderAll
+ * @typedef {import("#types/response/coinbase/order/all.js").default} OrderAll
  * @module request/coinbase/order/all
  */
 

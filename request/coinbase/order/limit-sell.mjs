@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with placing limit sell order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
- * @typedef {import("#types/response/coinbase/order/limit-sell.d.js").default} OrderLimitSell
+ * @typedef {import("#types/response/coinbase/order/limit-sell.js").default} OrderLimitSell
  * @module request/coinbase/order/limit-sell
  */
 

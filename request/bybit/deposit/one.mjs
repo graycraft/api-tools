@@ -2,7 +2,7 @@
  * Handle Bybit API request, with one deposit entry by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/deposit-record
- * @typedef {import('#types/response/bybit/deposit/one.d.js').default} DepositOne
+ * @typedef {import('#types/response/bybit/deposit/one.js').default} DepositOne
  * @module request/bybit/deposit/one
  */
 

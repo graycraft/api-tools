@@ -1,6 +1,6 @@
 /**
  * @typedef {import("#types/bybit.ts").category} category
- * @typedef {import("./history-one.d.js").default} TradeHistoryOne
+ * @typedef {import("./history-one.js").default} TradeHistoryOne
  * @typedef default
  * @type {{
  *   result: {

@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request with product candles.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getcandles
- * @typedef {import("#types/response/coinbase/product/candles.d.js").default} ProductCandles
+ * @typedef {import("#types/response/coinbase/product/candles.js").default} ProductCandles
  * @module request/coinbase/product/candles
  */
 

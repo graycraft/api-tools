@@ -2,7 +2,7 @@
  * Handle Bybit API one wallet withdraw entry request by transaction identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
- * @typedef {import("#types/response/bybit/withdraw/one.d.js").default} WithdrawOne
+ * @typedef {import("#types/response/bybit/withdraw/one.js").default} WithdrawOne
  * @module request/bybit/withdraw/one
  */
 

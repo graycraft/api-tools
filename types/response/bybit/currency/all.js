@@ -1,10 +1,9 @@
 /**
- * @typedef {import("./cancel-one.d.js").default} OrderCancelOne
+ * @typedef {import("./one.js").default} CurrencyOne
  * @typedef default
  * @type {{
  *   result: {
- *     list: OrderCancelOne["result"][];
- *     success: "0" | "1";
+ *     rows: CurrencyOne["result"]["rows"][0][];
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

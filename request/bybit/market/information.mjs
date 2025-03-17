@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/instrument
  * @typedef {import("#types/bybit.ts").category} category
- * @typedef {import("#types/response/bybit/market/information.d.js").default} MarketInformation
+ * @typedef {import("#types/response/bybit/market/information.js").default} MarketInformation
  * @module request/bybit/market/information
  */
 

@@ -2,7 +2,7 @@
  * Handle Bybit API balance request, with asset and risk rate information of each currency (coin).
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/wallet-balance
- * @typedef {import("#types/response/bybit/balance/information.d.js").default} BalanceInformation
+ * @typedef {import("#types/response/bybit/balance/information.js").default} BalanceInformation
  * @module request/bybit/balance/information
  */
 

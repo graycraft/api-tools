@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @see https://bybit-exchange.github.io/docs/v5/smp
- * @typedef {import("#types/response/bybit/order/market-buy.d.js").default} OrderMarketBuy
+ * @typedef {import("#types/response/bybit/order/market-buy.js").default} OrderMarketBuy
  * @module request/bybit/order/market-buy
  */
 

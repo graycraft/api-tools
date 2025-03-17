@@ -2,7 +2,7 @@
  * Handle Bybit API request, with deposit address information of a sub account.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/deposit/sub-deposit-addr
- * @typedef {import("#types/response/bybit/deposit/new-sub.d.js").default} DepositNewSub
+ * @typedef {import("#types/response/bybit/deposit/new-sub.js").default} DepositNewSub
  * @module request/bybit/deposit/new-sub
  */
 

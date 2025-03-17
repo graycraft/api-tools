@@ -2,7 +2,7 @@
  * Handle Bybit API one order request, with unfilled or partially filled orders by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/open-order
- * @typedef {import("#types/response/bybit/order/one.d.js").default} OrderOne
+ * @typedef {import("#types/response/bybit/order/one.js").default} OrderOne
  * @module request/bybit/order/one
  */
 

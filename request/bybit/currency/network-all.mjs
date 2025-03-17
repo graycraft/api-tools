@@ -2,7 +2,7 @@
  * Handle Bybit API request, with all networks from all currencies (coins).
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#types/response/bybit/currency/network-all.d.js").default} CurrencyNetworkAll
+ * @typedef {import("#types/response/bybit/currency/network-all.js").default} CurrencyNetworkAll
  * @module request/bybit/currency/network-all
  */
 

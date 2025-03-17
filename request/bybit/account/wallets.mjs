@@ -2,7 +2,7 @@
  * Handle Bybit API account wallet types request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/wallet-type
- * @typedef {import("#types/response/bybit/account/wallets.d.js").default} AccountWallets
+ * @typedef {import("#types/response/bybit/account/wallets.js").default} AccountWallets
  * @module request/bybit/account/wallets
  */
 

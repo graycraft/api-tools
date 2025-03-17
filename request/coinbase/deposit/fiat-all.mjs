@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API account's all fiat currencies deposit entries request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-deposits#list-deposits
- * @typedef {import("#types/response/coinbase/deposit/fiat-all.d.js").default} DepositFiatAll
+ * @typedef {import("#types/response/coinbase/deposit/fiat-all.js").default} DepositFiatAll
  * @module request/coinbase/deposit/fiat-all
  */
 

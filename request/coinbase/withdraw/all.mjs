@@ -3,7 +3,7 @@
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule
- * @typedef {import("#types/response/coinbase/withdraw/all.d.js").default} WithdrawAll
+ * @typedef {import("#types/response/coinbase/withdraw/all.js").default} WithdrawAll
  * @module request/coinbase/withdraw/all
  */
 

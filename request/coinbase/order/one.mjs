@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API one order request, by order UUID.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_gethistoricalorder
- * @typedef {import("#types/response/coinbase/order/one.d.js").default} OrderOne
+ * @typedef {import("#types/response/coinbase/order/one.js").default} OrderOne
  * @module request/coinbase/order/one
  */
 

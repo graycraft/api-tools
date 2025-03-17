@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with placing limit buy order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
- * @typedef {import("#types/response/coinbase/order/limit-buy.d.js").default} OrderLimitBuy
+ * @typedef {import("#types/response/coinbase/order/limit-buy.js").default} OrderLimitBuy
  * @module request/coinbase/order/limit-buy
  */
 

@@ -2,7 +2,7 @@
  * Handle Bybit API one order history request by order identifier.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/order-list
- * @typedef {import("#types/response/bybit/order/history-one.d.js").default} OrderHistoryOne
+ * @typedef {import("#types/response/bybit/order/history-one.js").default} OrderHistoryOne
  * @module request/bybit/order/history-one
  */
 

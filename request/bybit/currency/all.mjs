@@ -2,7 +2,7 @@
  * Handle Bybit API all currencies (coins) request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#types/response/bybit/currency/all.d.js").default} CurrencyAll
+ * @typedef {import("#types/response/bybit/currency/all.js").default} CurrencyAll
  * @module request/bybit/currency/all
  */
 

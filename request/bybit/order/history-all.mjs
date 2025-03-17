@@ -2,7 +2,7 @@
  * Handle Bybit API all orders history request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/order-list
- * @typedef {import("#types/response/bybit/order/history-all.d.js").default} OrderHistoryAll
+ * @typedef {import("#types/response/bybit/order/history-all.js").default} OrderHistoryAll
  * @module request/bybit/order/history-all
  */
 

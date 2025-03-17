@@ -4,7 +4,7 @@
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/vasp-list
  * @see https://www.bybit.com/user/assets/money-address
- * @typedef {import("#types/response/bybit/withdraw/new.d.js").default} WithdrawNew
+ * @typedef {import("#types/response/bybit/withdraw/new.js").default} WithdrawNew
  * @module request/bybit/withdraw/new
  */
 

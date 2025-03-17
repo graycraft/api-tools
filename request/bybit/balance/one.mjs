@@ -2,7 +2,7 @@
  * Handle Bybit API one balance request, with entry by currency (coin) name.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
- * @typedef {import("#types/response/bybit/balance/one.d.js").default} BalanceOne
+ * @typedef {import("#types/response/bybit/balance/one.js").default} BalanceOne
  * @module request/bybit/balance/one
  */
 

@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, with an account information of current user by account UUID.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getaccount
- * @typedef {import("#types/response/coinbase/user/account-one.d.js").default} UserAccountOne
+ * @typedef {import("#types/response/coinbase/user/account-one.js").default} UserAccountOne
  * @module request/coinbase/user/account-one
  */
 

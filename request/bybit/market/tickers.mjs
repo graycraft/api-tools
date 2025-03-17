@@ -3,7 +3,7 @@
  * best ask/bid price and trading volume in the last 24 hours.
  *
  * @see https://bybit-exchange.github.io/docs/v5/market/tickers
- * @typedef {import("#types/response/bybit/market/tickers.d.js").default} MarketTickers
+ * @typedef {import("#types/response/bybit/market/tickers.js").default} MarketTickers
  * @module request/bybit/market/tickers
  */
 

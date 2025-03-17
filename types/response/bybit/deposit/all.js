@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./one.d.js").default} DepositOne
+ * @typedef {import("./one.js").default} DepositOne
  * @typedef default
  * @type {{
  *   result: {

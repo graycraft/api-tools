@@ -2,7 +2,7 @@
  * Handle Bybit API one network request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#types/response/bybit/currency/network-one.d.js").default} CurrencyNetworkOne
+ * @typedef {import("#types/response/bybit/currency/network-one.js").default} CurrencyNetworkOne
  * @module request/bybit/currency/network-one
  */
 

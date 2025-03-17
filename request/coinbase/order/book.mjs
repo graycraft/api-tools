@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API order book depth request, listing asks/bids by currency pair (product) identifier.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getpublicproductbook
- * @typedef {import("#types/response/coinbase/order/book.d.js").default} OrderBook
+ * @typedef {import("#types/response/coinbase/order/book.js").default} OrderBook
  * @module request/coinbase/order/book
  */
 

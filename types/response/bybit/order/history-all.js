@@ -1,9 +1,9 @@
 /**
- * @typedef {import("./one.d.js").default} CurrencyOne
+ * @typedef {import("./one.js").default} OrderOne
  * @typedef default
  * @type {{
  *   result: {
- *     rows: CurrencyOne["result"]["rows"][0][];
+ *     list: OrderOne["result"]["list"][0][];
  *   };
  *   retCode: 0;
  *   retExtInfo: {};

@@ -2,7 +2,7 @@
  * Handle Bybit API trade fee rates request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/account/fee-rate
- * @typedef {import("#types/response/bybit/trade/rates.d.js").default} TradeRates
+ * @typedef {import("#types/response/bybit/trade/rates.js").default} TradeRates
  * @module request/bybit/trade/rates
  */
 

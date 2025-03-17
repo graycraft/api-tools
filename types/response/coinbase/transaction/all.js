@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./one.d.js").default} One
+ * @typedef {import("./one.js").default} One
  * @typedef default
  * @type {{
  *   data: One["data"][number][];

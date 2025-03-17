@@ -3,7 +3,7 @@
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/create-order
  * @see https://bybit-exchange.github.io/docs/v5/smp
- * @typedef {import("#types/response/bybit/order/limit-sell.d.js").default} OrderLimitSell
+ * @typedef {import("#types/response/bybit/order/limit-sell.js").default} OrderLimitSell
  * @module request/bybit/order/limit-sell
  */
 

@@ -7,7 +7,7 @@
  * @typedef RSnapshot
  * @prop {dictionary | string} fileData Response code.
  * @prop {string} fileName Response description.
- * @typedef {(directory: string, fileName: string) => RSnapshot} FAggregat
+ * @typedef {(directory: string, fileName: string) => RSnapshot} FAggregate
  * @module response/perform
  */
 
@@ -22,7 +22,7 @@ import validate from '#res/validate.mjs';
  * @param {string} endpoint Target endpoint name.
  * @param {string} snapshot Response snapshot file name without `.json` extension.
  * @param {{}} schema JSON-schema to validate against.
- * @param {FAggregat} aggregate Utility callback function to process response data.
+ * @param {FAggregate} aggregate Utility callback function to process response data.
  * @returns {RSnapshot} File data has been operated.
  */
 const responseOperate = (apiName, endpoint, snapshot, schema, aggregate) => {

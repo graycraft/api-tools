@@ -4,7 +4,7 @@
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#send-money
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule
  * @typedef {import("#types/coinbase.ts").default} ICoinbase
- * @typedef {import("#types/response/coinbase/withdraw/new.d.js").default} WithdrawNew
+ * @typedef {import("#types/response/coinbase/withdraw/new.js").default} WithdrawNew
  * @module request/coinbase/withdraw/new
  */
 

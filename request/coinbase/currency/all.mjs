@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, listing all known currencies.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
- * @typedef {import("#types/response/coinbase/currency/all.d.js").default} CurrencyAll
+ * @typedef {import("#types/response/coinbase/currency/all.js").default} CurrencyAll
  * @module request/coinbase/currency/all
  */
 

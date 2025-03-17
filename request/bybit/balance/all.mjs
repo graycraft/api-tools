@@ -2,7 +2,7 @@
  * Handle Bybit API all balances request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/balance/all-balance
- * @typedef {import("#types/response/bybit/balance/all.d.js").default} BalanceAll
+ * @typedef {import("#types/response/bybit/balance/all.js").default} BalanceAll
  * @module request/bybit/balance/all
  */
 

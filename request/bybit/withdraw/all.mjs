@@ -2,7 +2,7 @@
  * Handle Bybit API all wallet withdraw entries request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/withdraw-record
- * @typedef {import("#types/response/bybit/withdraw/all.d.js").default} WithdrawAll
+ * @typedef {import("#types/response/bybit/withdraw/all.js").default} WithdrawAll
  * @module request/bybit/withdraw/all
  */
 

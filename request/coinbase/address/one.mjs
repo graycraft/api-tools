@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API one account address request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#show-address
- * @typedef {import("#types/response/coinbase/address/one.d.js").default} AddressOne
+ * @typedef {import("#types/response/coinbase/address/one.js").default} AddressOne
  * @module request/coinbase/address/all
  */
 

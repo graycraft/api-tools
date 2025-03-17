@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, finding one currency by asset UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
- * @typedef {import("#types/response/coinbase/currency/one.d.js").default} CurrencyOne
+ * @typedef {import("#types/response/coinbase/currency/one.js").default} CurrencyOne
  * @module request/coinbase/currency/one
  */
 

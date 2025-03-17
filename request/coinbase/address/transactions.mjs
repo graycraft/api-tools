@@ -2,7 +2,7 @@
  * Handle Coinbase Advanced API request, listing transactions that have been done by account address UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-transactions
- * @typedef {import('#types/response/coinbase/address/transactions.d.js').default} AddressTransactions
+ * @typedef {import('#types/response/coinbase/address/transactions.js').default} AddressTransactions
  * @module request/coinbase/address/transactions
  */
 

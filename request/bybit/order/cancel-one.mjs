@@ -2,7 +2,7 @@
  * Handle Bybit API request, with cancel one order by order identifier or `orderLinkId`.
  *
  * @see https://bybit-exchange.github.io/docs/v5/order/cancel-order
- * @typedef {import("#types/response/bybit/order/cancel-one.d.js").default} OrderCancelOne
+ * @typedef {import("#types/response/bybit/order/cancel-one.js").default} OrderCancelOne
  * @module request/bybit/order/cancel-one
  */
 
