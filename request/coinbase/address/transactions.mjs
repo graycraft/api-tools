@@ -1,12 +1,13 @@
 /**
- * Handle Coinbase Advanced API endpoint, listing transactions that have been done by address UUID.
+ * Handle Coinbase Advanced API request, listing transactions that have been done by account address UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#list-transactions
- * @typedef {import('#types/response/coinbase/address/transactions.d.js').default} AddressTransactions
+ * @typedef {import('#types/response/coinbase/address/transactions.js').default} JAddressTransactions
  * @module request/coinbase/address/transactions
  */
 
 import { addressTransactions as schema } from '#res/coinbase/address/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
@@ -14,7 +15,7 @@ import validate from '../validate.mjs';
  * @param {string} address_uuid Address UUID. Also regular cryptocurrency address can be used.
  * @param {string} [limit] Pagination limit (default: 25). Not described in documentation.
  * @param {string} [account_uuid] Account UUID.
- * @returns {Promise<AddressTransactions>} JSON data from response.
+ * @returns {Promise<JAddressTransactions>} JSON data from response.
  */
 const addressTransactions = async (address_uuid, limit, account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,

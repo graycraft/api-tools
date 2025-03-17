@@ -1,8 +1,8 @@
 /**
- * Handle Coinbase Advanced API address one response operations.
+ * Handle Coinbase Advanced API one account address response operation.
  *
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-addresses#show-address
+ * @typedef {import("#res/operate.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/address/one
  */
 

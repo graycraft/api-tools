@@ -1,7 +1,7 @@
 /**
  * Analyze an API response by comparing its code and description with known values.
  *
- * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("#types/api.ts").default} IApi
  * @typedef {import("./parse.mjs").RParse} RParse
  * @typedef {import("./parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("./parse.mjs").ResponseParse} ResponseParse
@@ -17,7 +17,7 @@ import { dirObject } from '#lib/output.mjs';
 
 /**
  * Analyze response and decide whether it is successful for further processing.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {ResponseParse & RParseStatus} response Parsed response data.
  * @returns {Result} Information about the analysis.
  */
@@ -32,8 +32,8 @@ const responseAnalyze = (api, response) => {
       RESPONSE: { CODE, DESCRIPTION, OK },
     } = config,
     { jsonParsed, status, statusText } = response,
-    { code = jsonParsed[CODE], description = jsonParsed[DESCRIPTION] } = response,
-    known = statusKnown[statusText]?.[code] ?? '';
+    { code = jsonParsed?.[CODE] ?? null, description = jsonParsed?.[DESCRIPTION] } = response,
+    known = statusKnown[statusText]?.[code] ?? null;
 
   if (debug) {
     dirObject('Analyze', { CODE, DESCRIPTION, OK, code, description, known, status });

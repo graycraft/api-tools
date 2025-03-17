@@ -1,13 +1,8 @@
 {
   "aggregate": ["CURRENCY_ALL", "CURRENCY_NETWORK_ALL"],
-  "currency": {
-    "base": "NOT",
-    "network": "TON",
-    "quote": "USDT"
-  },
+  "continue": false,
   "debug": false,
-  "enabled": ["aggregate", "parse", "snapshot", "verbose", "validate"],
-  "exit": false,
+  "enabled": ["aggregate", "parse", "snapshot", "validate", "verbose"],
   "parse": [
     "BALANCE_ALL",
     "CURRENCY_ALL",
@@ -55,5 +50,5 @@
     "WITHDRAW_ONE"
   ],
   "validate": ["CURRENCY_ALL", "CURRENCY_NETWORK_ALL"],
-  "verbose": ["ORDER_PLACE", "WITHDRAW_NEW"]
+  "verbose": ["WITHDRAW_NEW"]
 }

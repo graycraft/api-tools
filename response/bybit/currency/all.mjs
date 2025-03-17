@@ -2,7 +2,7 @@
  * Handle Bybit API currency all response operations.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @typedef {import("#res/operate.mjs").RSnapshot} RSnapshot
  * @module response/bybit/currency/all
  */
 

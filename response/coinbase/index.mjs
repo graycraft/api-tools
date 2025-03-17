@@ -39,7 +39,8 @@ const responseCoinbase = async () => {
     },
     { handler, options, params } = parseArguments(argv);
 
-  global.apiTools = { coinbase, options, output: {}, timestamp };
+  global.apiTools = { coinbase, options, timestamp };
+
   if (handler) {
     switch (handler) {
       case 'addressAll':

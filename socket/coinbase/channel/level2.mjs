@@ -10,18 +10,20 @@
 import coinbaseSubscribe from '../subscribe.mjs';
 import coinbaseValidate from '../validate.mjs';
 
+/**
+ * @param {string} product_ids One or more currency pair codes (e.g. "ETH-USDC").
+ * @returns {Promise<WebSocket>}
+ */
 const level2 = (product_ids) => {
-  const { config, settings } = global.apiTools.coinbase,
+  const { config } = global.apiTools.coinbase,
     {
+      PRODUCT: { BASE, QUOTE },
       SOCKET: {
         CHANNEL: { LEVEL2 },
       },
     } = config,
-    {
-      asset: { base, quote },
-    } = settings,
     defaults = {
-      product_ids: [base.code + '-' + quote.code],
+      product_ids: [BASE.CODE + '-' + QUOTE.CODE],
     },
     data = coinbaseValidate(LEVEL2, defaults, { warnOptional: { product_ids } });
 

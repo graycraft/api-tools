@@ -5,11 +5,11 @@
  */
 
 /**
- * Append new item to array.
+ * Append new item to an array.
  * Same as native push but returns target array.
  * @example append(["a", "b"], "c");
  *   ["a", "b", "c"]
- * @param {array} array
+ * @param {any[]} array
  * @param {any} item
  * @returns {array}
  */
@@ -33,11 +33,11 @@ export const hasDuplicates = (array) => {
 };
 
 /**
- * Prepend new item to array.
+ * Prepend new item to an array.
  * Same as native unshift but returns target array.
  * @example prepend(["b", "c"], "a");
  *   ["a", "b", "c"]
- * @param {array} array
+ * @param {any[]} array
  * @param {any} item
  * @returns {array}
  */

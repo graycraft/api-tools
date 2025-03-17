@@ -1,13 +1,14 @@
 /**
  * Request a Coinbase Advanced API endpoint by `GET` method.
  *
- * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @module request/coinbase/get
  */
 
 import { HTTP } from '#lib/constants.mjs';
 import { endpointGet } from '#lib/fetch.mjs';
 import { dirSnapshot } from '#lib/output.mjs';
+import { exitProcess } from '#lib/utility.mjs';
 import parse from '#res/coinbase/parse.mjs';
 import snapshot from '#res/coinbase/snapshot.mjs';
 
@@ -19,7 +20,7 @@ import get from '../get.mjs';
  * @param {{}} schema JSON-schema to validate response with.
  * @param {"JWT" | null} [security] Authentication signature security.
  * @param {{}} [data] Data to send with request.
- * @returns {Promise<Response>} JSON data from response.
+ * @returns {Promise<JResponse>} JSON data from response.
  */
 const coinbaseGet = async (template, schema, security, data = {}) => {
   const { coinbase, options } = global.apiTools,
@@ -56,6 +57,7 @@ const coinbaseGet = async (template, schema, security, data = {}) => {
     );
 
   dirSnapshot(endpoint, options, prefs, global.apiTools.output);
+  exitProcess(json, options, prefs);
 
   return json;
 };

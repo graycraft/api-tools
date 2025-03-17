@@ -157,7 +157,7 @@ Run flow for **all requests** of **all APIs**:
 $ node request
 ```
 
-To run a flow related to an API request, change directory:
+To run a request flow related to a **specific API**, change directory:
 
 ```bash
 $ cd request
@@ -167,7 +167,14 @@ Run flow for **all requests** of a **specific API**:
 
 ```bash
 $ node bybit
+$ node coinbase
+```
+
+Run flow for a **single request** of a **specific API**:
+
+```bash
 $ node bybit --flow=orders
+$ node coinbase --flow=orders
 ```
 
 Run **single request** with snapshot (option `--snap[shot]` is required if not enabled in settings):
@@ -176,6 +183,25 @@ Run **single request** with snapshot (option `--snap[shot]` is required if not e
 $ node bybit currencyAll --snap
 $ node bybit currencyAll --snapshot
   Snapped "2024-01-01T00:00:00.000Z.json" to "./snapshot/currency_all".
+```
+
+```bash
+$ node coinbase currencyAll --snap
+$ node coinbase currencyAll --snapshot
+  Snapped "2024-01-01T00:00:00.000Z.json" to "./snapshot/currency_all".
+```
+
+```bash
+  aggr: 'aggregate',
+  auth: 'authentication',
+  cont: 'continue',
+  debu: 'debug',
+  flow: 'flow',
+  head: 'headers',
+  snap: 'snapshot',
+  thro: 'throw',
+  vali: 'validate',
+  verb: 'verbose',
 ```
 
 ### Response
@@ -195,11 +221,10 @@ $ node response --aggregate
 $ node response --vali
 $ node response --validate
   AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.058Z.json passed.
-  AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.532Z.json passed.
   AJV: validation of Coinbase API response snapshot 2025-02-10T21:08:43.831Z.json passed.
 ```
 
-To run a flow related to an API response, change directory:
+To run a response flow related to a **specific API**, change directory:
 
 ```bash
 $ cd response
@@ -208,11 +233,20 @@ $ cd response
 Run flow for **all responses** of a **specific API**:
 
 ```bash
+response$ node bybit
+response$ node coinbase
+```
+
+Run **all response** aggregation (option `--aggr[egate]` is required if not enabled in settings):
+
+```bash
 response$ node bybit --aggr
 response$ node bybit --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_all".
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_network_all".
 ```
+
+Run **all response** validation (option `--vali[date]` is required if not enabled in settings):
 
 ```bash
 response$ node bybit --vali
@@ -221,13 +255,15 @@ response$ node bybit --validate
   AJV: validation of Bybit API response snapshot 2025-02-01T23:38:48.532Z.json passed.
 ```
 
-Run **single response** aggregation (option `--aggr[egate]` is required if not enabled in settings):
+Run a **single response** aggregation (option `--aggr[egate]` is required if not enabled in settings):
 
 ```bash
 response$ node bybit currencyAll --aggr
 response$ node bybit currencyAll --aggregate
   Aggregated "2024-01-01T00:00:00.000Z.json" to "../collection/bybit/currency_all".
 ```
+
+Run a **single response** validation (option `--vali[date]` is required if not enabled in settings):
 
 ```bash
 response$ node bybit currencyAll --vali

@@ -1,8 +1,8 @@
 /**
- * Handle Coinbase Advanced API currency all response operations.
+ * Handle Coinbase Advanced API all currencies response operations.
  *
- * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies
- * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-currencies#get-cryptocurrencies
+ * @typedef {import("#res/operate.mjs").RSnapshot} RSnapshot
  * @module response/coinbase/currency/all
  */
 

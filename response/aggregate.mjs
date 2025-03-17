@@ -2,13 +2,18 @@
  * Aggregate a response snapshot, usually for extracting arrays of data.
  *
  * @typedef {import("#res/snapshot.mjs").RSnapshot} RSnapshot
- * @typedef {import("#types/api.d.js").Api} Api
+ * @typedef {import("#types/api.ts").default} IApi
  * @typedef {{
- *   currencies: (item) => object;
- *   networks: (row) => object[];
+ *   currencies: (item: {}) => {};
+ *   networks?: (row: dictionary<[]>) => { chain: string }[];
  *   sort: (item1: {}, item2: {}) => number;
  * }} Callback
  * @module response/aggregate
+ */
+
+/**
+ * @typedef {import("#types/common.ts").dictionary<T>} dictionary
+ * @template T
  */
 
 import nodeFs from 'node:fs';
@@ -55,7 +60,7 @@ const aggregateJson = (name, endpoint, data, callback, fileName) => {
 
 /**
  * Determine if there is a need to aggregate a response.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {string} endpoint Endpoint name.
  * @param {{}[]} data An array from JSON response to map.
  * @param {Callback} callback Callbacks for mapping and sorting arrays.

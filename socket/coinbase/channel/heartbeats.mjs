@@ -11,6 +11,9 @@
 
 import coinbaseSubscribe from '../subscribe.mjs';
 
+/**
+ * @returns {Promise<WebSocket>}
+ */
 const heartbeats = () => {
   const { config } = global.apiTools.coinbase,
     {

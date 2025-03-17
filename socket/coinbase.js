@@ -40,34 +40,35 @@ const requestCoinbase = () => {
     },
     { handler, options, params } = parseArguments(argv);
 
-  global.apiTools = { coinbase, options, output: {}, timestamp };
+  global.apiTools = { coinbase, options, timestamp };
+
   if (debug || options.debug) dirObject('global.apiTools', global.apiTools);
   if (handler) {
     switch (handler) {
       case 'candles':
-        return candles(...params);
+        return candles.apply(null, params);
       case 'futuresBalance':
-        return futuresBalance(...params);
+        return futuresBalance.apply(null, params);
       case 'heartbeats':
         return heartbeats();
       case 'level2':
-        return level2(...params);
+        return level2.apply(null, params);
       case 'marketTrades':
-        return marketTrades(...params);
+        return marketTrades.apply(null, params);
       case 'status':
-        return status(...params);
+        return status.apply(null, params);
       case 'ticker':
-        return ticker(...params);
+        return ticker.apply(null, params);
       case 'tickerBatch':
-        return tickerBatch(...params);
+        return tickerBatch.apply(null, params);
       case 'user':
-        return user(...params);
+        return user.apply(null, params);
       default:
         throw new Error(requestCoinbase.name + ': ' + optional(handler));
     }
   } else {
     Promise.resolve()
-      .then((response) => level2())
+      .then((response) => level2.apply(null, params))
       .catch(console.error.bind(console));
   }
 };

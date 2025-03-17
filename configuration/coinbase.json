@@ -8,12 +8,15 @@
       "UNKNOWN_EXPIRING_CONTRACT_STATUS"
     ]
   },
-  "ENCODING": "hex",
   "HOSTNAME": "api.coinbase.com",
   "ORDER": {
     "LIMIT": "limit_limit_gtc",
     "MARKET": "market_market_ioc",
     "PLACEMENT": ["RETAIL_ADVANCED", "RETAIL_SIMPLE", "UNKNOWN_PLACEMENT_SOURCE"],
+    "SIDE": {
+      "BUY": "BUY",
+      "SELL": "SELL"
+    },
     "STATUS": [
       "CANCEL_QUEUED",
       "CANCELLED",
@@ -65,7 +68,17 @@
   },
   "PREFIX": "/",
   "PRODUCT": {
+    "BASE": {
+      "CODE": "ETH",
+      "NETWORK": "ethereum",
+      "UUID": "d85dce9b-5b73-5c3c-8978-522ce1d1c1b4"
+    },
     "FUTURE": "FUTURE",
+    "QUOTE": {
+      "CODE": "USDC",
+      "NETWORK": "ethereum",
+      "UUID": "532ff90b-cff5-5200-8f77-b0f1f0863945"
+    },
     "SPOT": "SPOT",
     "UNKNOWN": "UNKNOWN_PRODUCT_TYPE"
   },
@@ -89,14 +102,8 @@
   "RESPONSE": {
     "CODE": "error",
     "DESCRIPTION": "message",
-    "OK": "0",
+    "OK": 0,
     "SUCCESSFUL": "Successful."
-  },
-  "TRADE": {
-    "SIDE": {
-      "BUY": "BUY",
-      "SELL": "SELL"
-    }
   },
   "USER": {
     "PORTFOLIO": ["CONSUMER", "DEFAULT", "INTX", "UNDEFINED"]

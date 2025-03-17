@@ -1,28 +1,29 @@
 /**
- * Handle Coinbase Advanced API new wallet withdraw endpoint.
+ * Handle Coinbase Advanced API new account withdraw request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#send-money
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/coinbase-app-travel-rule
- * @typedef {import('#types/coinbase.d.js').default} Coinbase
- * @typedef {import("#types/response/coinbase/withdraw/new.d.js").default} WithdrawNew
+ * @typedef {import("#types/coinbase.ts").default} ICoinbase
+ * @typedef {import("#types/response/coinbase/withdraw/new.js").default} JWithdrawNew
  * @module request/coinbase/withdraw/new
  */
 
 import { withdrawAll as schema } from '#res/coinbase/withdraw/schema.mjs';
+
 import post from '../post.mjs';
 import validate from '../validate.mjs';
 
 /**
  * API key pair must have withdrawal permission.
  * @param {string} amount Currency amount to withdraw.
- * @param {string} currency Currency name.
+ * @param {string} currency Currency code.
  * @param {string} to Currency address name.
  * @param {string} [network] Currency network name.
  * @param {{
- *   account_uuid?: string,
- *   travel_rule_data?: Coinbase["settings"]["user"]["DEFAULT"]["travel_rule_data"]
+ *   account_uuid?: string;
+ *   travel_rule_data?: ICoinbase["settings"]["user"]["DEFAULT"]["travel_rule_data"];
  * }} options Optional parameters.
- * @returns {Promise<WithdrawNew>} JSON data from response.
+ * @returns {Promise<JWithdrawNew>} JSON data from response.
  */
 const withdrawNew = async (
   amount,
@@ -31,27 +32,24 @@ const withdrawNew = async (
   network,
   { account_uuid, travel_rule_data } = {},
 ) => {
-  const { config, prefs, settings } = global.apiTools.coinbase,
+  const { config, settings } = global.apiTools.coinbase,
     {
       PATH: { WITHDRAW_NEW },
+      PRODUCT: { BASE },
     } = config,
     {
-      currency: { base, network: networkPreferred },
-    } = prefs,
-    {
-      address: { withdraw },
       authentication: { security },
       user,
-      user: { portfolio },
+      user: { portfolio, withdraw },
     } = settings,
     type = 'send',
     data = validate(WITHDRAW_NEW, {
       defaults: {
         account_uuid: user[portfolio].account.uuid,
-        currency: base,
-        network: networkPreferred,
+        currency: BASE.CODE,
+        network: BASE.NETWORK,
         to: withdraw,
-        travel_rule_data: /** @type {object} */ (user[portfolio].travel_rule_data),
+        travel_rule_data: user[portfolio].travel_rule_data,
         type,
       },
       optional: {
@@ -59,7 +57,7 @@ const withdrawNew = async (
         currency,
         network,
         to,
-        travel_rule_data: /** @type {object} */ (travel_rule_data),
+        travel_rule_data: travel_rule_data,
       },
       required: {},
       throw: { amount },

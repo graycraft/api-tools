@@ -1,16 +1,16 @@
 /**
  * Parse an API response.
  *
- * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
- * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#lib/constants.mjs").httpStatusCode} httpStatusCode
+ * @typedef {import("#lib/constants.mjs").httpStatusText} httpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
- * @typedef {import("#types/api.d.ts").Preferences} Preferences
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/api.ts").preferences} preferences
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @typedef RParse
- * @prop {{}} jsonParsed Parsed JSON data from a response.
+ * @prop {dictionary} jsonParsed Parsed JSON data from a response.
  * @typedef ResponseStatus
- * @prop {HttpStatusCode} status HTTP status code.
- * @prop {HttpStatusText} statusText HTTP status text.
+ * @prop {httpStatusCode} status HTTP status code.
+ * @prop {httpStatusText | string} statusText HTTP status text.
  * @typedef {ResponseStatus & RParse} ResponseParse
  * @typedef RParseStatus
  * @prop {number} code Response code.
@@ -24,7 +24,7 @@
  * @param {string} endpoint Endpoint name.
  * @param {{}} data Request parameters data.
  * @param {(json: {}, endpoint: string, data: {}) => RParse} callback Utility callback function to parse response data.
- * @param {Preferences} prefs API specific preferences.
+ * @param {preferences} prefs API specific preferences.
  * @returns {ResponseParse} Parsed response.
  */
 const responseParse = (response, endpoint, data, callback, prefs) => {
