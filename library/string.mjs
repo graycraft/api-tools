@@ -1,18 +1,19 @@
 /**!
  * String related methods for common application use cases.
  *
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @module library/string
  */
 
 /**
  * Find complementary expressions (found in a template).
  * @param {string} template String as template literal.
- * @param {{}} expressions Expressions to be embedded within a template.
- * @returns {{}} Complementary expressions.
+ * @param {dictionary} expressions Expressions to be embedded within a template.
+ * @returns {dictionary} Complementary expressions.
  */
 export const complementary = (template, expressions) => {
   const result = Object.keys(expressions).reduce(
-    (accum, key) => (
+    (/** @type {dictionary} */ accum, key) => (
       template.match(/{[A-z_]+}/g)?.includes('{' + key + '}')
         ? (accum[key] = expressions[key])
         : accum,
@@ -27,7 +28,7 @@ export const complementary = (template, expressions) => {
 /**
  * Interpolate a string as template literal.
  * @param {string} template String as template literal.
- * @param {{}} expressions Expressions to be embedded within a template.
+ * @param {dictionary} expressions Expressions to be embedded within a template.
  * @returns {string} Interpolated string.
  */
 export const interpolate = (template, expressions) => {
@@ -39,12 +40,12 @@ export const interpolate = (template, expressions) => {
 /**
  * Find supplementary expressions (not found in a template).
  * @param {string} template String as template literal.
- * @param {{}} expressions Expressions to be embedded within a template.
- * @returns {{}} Supplementary expressions.
+ * @param {dictionary} expressions Expressions to be embedded within a template.
+ * @returns {dictionary} Supplementary expressions.
  */
 export const supplementary = (template, expressions) => {
   const result = Object.keys(expressions).reduce(
-    (accum, key) => (
+    (/** @type {dictionary} */ accum, key) => (
       !template.match(/{[A-z_]+}/g)?.includes('{' + key + '}')
         ? (accum[key] = expressions[key])
         : accum,

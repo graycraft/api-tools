@@ -21,12 +21,13 @@ import { toPascalCase } from '#lib/string.mjs';
 const responseValidate = (json, schema, apiName, fileName) => {
   const ajv = new Ajv.default({ allErrors: true }),
     validate = ajv.compile(schema),
-    isValid = validate(json),
-    snapshotText = fileName ? ` snapshot ${fileName} passed` : '';
+    isValid = validate(json);
 
-  if (isValid)
-    console.info('AJV:', `validation of ${toPascalCase(apiName)} API response${snapshotText}.`);
-  else dirObject('AJV', validate.errors);
+  if (isValid) {
+    const text = fileName ? ` snapshot ${fileName}` : '';
+
+    console.info('AJV:', `validation of ${toPascalCase(apiName)} API response${text} passed.`);
+  } else dirObject('AJV', validate.errors);
 
   return isValid;
 };

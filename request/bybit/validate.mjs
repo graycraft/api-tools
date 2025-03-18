@@ -1,7 +1,9 @@
 /**
  * Validate parameters for a Bybit API request.
  *
- * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/collection/bybit/currency_all.js").default} JCurrencyAll
+ * @typedef {import("#types/collection/bybit/network_all.js").default} JNetworkAll
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @module request/bybit/validate
  */
 
@@ -14,10 +16,10 @@ import { hasSome, requestValidate } from '../validate.mjs';
 /**
  * @param {string} path
  * @param {{
- *   defaults?: Dict,
- *   optional?: Dict,
- *   required?: Dict,
- *   throw?: Dict,
+ *   defaults?: dictionary,
+ *   optional?: dictionary,
+ *   required?: dictionary,
+ *   throw?: dictionary,
  * }} options
  * @returns {{}}
  */
@@ -26,20 +28,22 @@ const bybitValidate = (path, options) =>
 
 /**
  * Validate a request data parameter before send.
- * @param {Dict} param Request parameter to validate.
+ * @param {dictionary} param Request parameter to validate.
  * @returns {boolean} Whether parameter is valid or not.
  */
 const isValid = (param) => {
-  const { EVM_TXID, INTEGER, UUID } = REGEXP,
+  const { EVM_TXID, FLOAT64, INTEGER, UUID } = REGEXP,
     { config } = global.apiTools.bybit,
     { ACCOUNT, OPTION, ORDER, TRADE } = config,
     [key, value] = Object.entries(param)[0],
     currencyDir = 'collection/bybit/currency_all',
     currencyFile = fileNewest(currencyDir),
-    currencyAll = fileReadJson(currencyDir, currencyFile.name).map((item) => item.coin),
+    currencyAll = /** @type {JCurrencyAll} */ (fileReadJson(currencyDir, currencyFile.name)).map(
+      (item) => item.coin,
+    ),
     networkDir = 'collection/bybit/currency_network_all',
     networkFile = fileNewest(networkDir),
-    networkAll = fileReadJson(networkDir, networkFile.name);
+    networkAll = /** @type {JNetworkAll} */ (fileReadJson(networkDir, networkFile.name));
 
   /**
    * `cursor` string format is different for each endpoint.
@@ -51,9 +55,13 @@ const isValid = (param) => {
     case 'toAccountType':
       return hasSome(ACCOUNT.WALLET, value);
     case 'amount':
-      return INTEGER.test(value);
+      return FLOAT64.test(value) || INTEGER.test(value);
     case 'baseCoin':
     case 'coin':
+      if (value.includes(',')) {
+        return value.split(',').every((coin) => hasSome(currencyAll, coin));
+      }
+
       return hasSome(currencyAll, value);
     case 'category':
       return hasSome(ACCOUNT.CATEGORY, value);
@@ -90,7 +98,7 @@ const isValid = (param) => {
     case 'qty':
       return Boolean(Number(value));
     case 'side':
-      return hasSome(Object.values(TRADE.SIDE), value);
+      return hasSome(Object.values(ORDER.SIDE), value);
     case 'startTime':
       return withinDays(1, value, 31);
     case 'status':

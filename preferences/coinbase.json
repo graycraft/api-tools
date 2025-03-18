@@ -1,13 +1,8 @@
 {
   "aggregate": ["CURRENCY_ALL"],
-  "currency": {
-    "base": "ETH",
-    "network": "ethereum",
-    "quote": "USDC"
-  },
+  "continue": false,
   "debug": false,
-  "enabled": ["aggregate", "parse", "snapshot", "verbose", "validate"],
-  "exit": false,
+  "enabled": ["aggregate", "parse", "snapshot", "validate", "verbose"],
   "parse": ["CURRENCY_ALL", "CURRENCY_ONE", "WITHDRAW_ALL"],
   "snapshot": [
     "ADDRESS_ALL",
@@ -38,5 +33,5 @@
     "WITHDRAW_NEW"
   ],
   "validate": ["ADDRESS_ALL", "ADDRESS_NEW", "ADDRESS_ONE", "ADDRESS_TRANSACTIONS", "CURRENCY_ALL"],
-  "verbose": ["ORDER_PLACE", "WITHDRAW_NEW"]
+  "verbose": ["WITHDRAW_NEW"]
 }

@@ -1,18 +1,19 @@
 /**
- * Handle Coinbase Advanced API endpoint, with an account information of current user by account UUID.
+ * Handle Coinbase Advanced API request, with an account information of current user by account UUID.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_getaccount
- * @typedef {import("#types/response/coinbase/user/account-one.d.js").default} UserAccountOne
+ * @typedef {import("#types/response/coinbase/user/account-one.js").default} JUserAccountOne
  * @module request/coinbase/user/account-one
  */
 
 import { userAccountOne as schema } from '#res/coinbase/user/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
  * @param {string} account_uuid Account UUID.
- * @returns {Promise<UserAccountOne>} JSON data from response.
+ * @returns {Promise<JUserAccountOne>} JSON data from response.
  */
 const userAccountOne = async (account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,

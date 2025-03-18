@@ -1,13 +1,15 @@
 /**
- * Handle Coinbase Advanced API place limit sell order endpoint.
+ * Handle Coinbase Advanced API request, with placing limit sell order.
  *
  * @see https://docs.cdp.coinbase.com/advanced-trade/reference/retailbrokerageapi_postorder
- * @typedef {import("#types/response/coinbase/order/limit-sell.d.js").default} OrderLimitSell
+ * @typedef {import("#types/response/coinbase/order/limit-sell.js").default} JOrderLimitSell
  * @module request/coinbase/order/limit-sell
  */
 
 import nodeCrypto from 'node:crypto';
+
 import { orderLimitSell as schema } from '#res/coinbase/order/schema.mjs';
+
 import post from '../post.mjs';
 import validate, { pair } from '../validate.mjs';
 
@@ -17,15 +19,15 @@ import validate, { pair } from '../validate.mjs';
  * A sell Order will execute at or higher than the limit price.
  * @param {string} base_size Size of the first asset in a trading pair.
  * @param {string} limit_price Price, that an order should be executed at.
- * @param {string} [product_id] Trading pair (e.g. "BTC-USD").
+ * @param {string} [product_id] Currency pair code (e.g. "ETH-USDC").
  * @param {{
- *   client_order_id?, end_time?, leverage?, limit_limit_fok?, limit_limit_gtc?,
- *   limit_limit_gtd?, market_market_ioc?, margin_type?, post_only?, preview_id?,
- *   quote_size?, sor_limit_ioc?, stop_direction?, stop_limit_stop_limit_gtc?,
- *   stop_limit_stop_limit_gtd?, stop_price?, stop_trigger_price?,
- *   trigger_bracket_gtc?, trigger_bracket_gtd?
+ *   client_order_id?: string; end_time?: string; leverage?: string; limit_limit_fok?: string; limit_limit_gtc?: string;
+ *   limit_limit_gtd?: string; market_market_ioc?: string; margin_type?: string; post_only?: string;
+ *   preview_id?: string; quote_size?: string; sor_limit_ioc?: string; stop_direction?: string;
+ *   stop_limit_stop_limit_gtc?: string; stop_limit_stop_limit_gtd?: string; stop_price?: string;
+ *   stop_trigger_price?: string; trigger_bracket_gtc?: string; trigger_bracket_gtd?: string;
  * }} options Optional parameters.
- * @returns {Promise<OrderLimitSell>} JSON data from response.
+ * @returns {Promise<JOrderLimitSell>} JSON data from response.
  */
 const orderLimitSell = async (
   base_size,
@@ -43,7 +45,7 @@ const orderLimitSell = async (
     post_only,
     preview_id,
     quote_size,
-    /* side, */
+    // side,
     sor_limit_ioc,
     stop_direction,
     stop_limit_stop_limit_gtc,
@@ -57,17 +59,17 @@ const orderLimitSell = async (
   const { config, settings } = global.apiTools.coinbase,
     {
       ORDER,
+      ORDER: { SIDE },
       PATH: { ORDER_PLACE },
-      TRADE: { SIDE },
+      PRODUCT: { BASE, QUOTE },
     } = config,
     {
       authentication: { security },
-      asset: { base, quote },
     } = settings,
     data = validate(ORDER_PLACE, {
       defaults: {
         client_order_id: nodeCrypto.randomUUID(),
-        product_id: pair(base.code, quote.code),
+        product_id: pair(BASE.CODE, QUOTE.CODE),
         side: SIDE.SELL,
       },
       optional: { client_order_id, product_id },

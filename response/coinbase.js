@@ -1,6 +1,7 @@
 /**
- * Aggregate a Coinbase Advanced API response.
+ * Operate a Coinbase Advanced API response snapshot.
  *
+ * @see https://docs.cdp.coinbase.com/coinbase-app/docs/welcome
  * @module response/coinbase
  */
 

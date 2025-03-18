@@ -1,13 +1,14 @@
 /**
  * Request a Bybit API endpoint by the `POST` method.
  *
- * @typedef {import("#types/response/bybit.d.js").default} Response
+ * @typedef {import("#types/response/bybit.js").default} JResponse
  * @module request/bybit/post
  */
 
 import { HTTP } from '#lib/constants.mjs';
 import { endpointPost } from '#lib/fetch.mjs';
 import { dirSnapshot } from '#lib/output.mjs';
+import { exitProcess } from '#lib/utility.mjs';
 import parse from '#res/bybit/parse.mjs';
 import snapshot from '#res/bybit/snapshot.mjs';
 
@@ -19,7 +20,7 @@ import post from '../post.mjs';
  * @param {{}} schema JSON-schema to validate response with.
  * @param {"HMAC" | "RSA" | null} [security] Authentication signature security.
  * @param {{}} [data] Data to send with request.
- * @returns {Promise<Response>} JSON data from response.
+ * @returns {Promise<JResponse>} JSON data from response.
  */
 const bybitPost = async (template, schema, security, data = {}) => {
   const { bybit, options } = global.apiTools,
@@ -49,6 +50,7 @@ const bybitPost = async (template, schema, security, data = {}) => {
     );
 
   dirSnapshot(endpoint, options, prefs, global.apiTools.output);
+  exitProcess(json, options, prefs);
 
   return json;
 };

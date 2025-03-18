@@ -1,7 +1,7 @@
 /**
  * Validate parameters for a request.
  *
- * @typedef {Object<string, string>} Dict
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @module library/validation
  */
 
@@ -9,22 +9,24 @@ import { throwRequired, warnOptional, warnRequired } from './output.mjs';
 
 /**
  * Validate request parameters.
- * @param {{ PATH: Dict }} config
+ * @param {{ PATH: dictionary }} config
  * @param {string} path
- * @param {(Dict) => {}} isValid
- * @param {Dict} defaults
- * @param {...Dict[]} options
- * @returns {Dict}
+ * @param {(isValid: dictionary) => {}} isValid
+ * @param {dictionary} defaults
+ * @param {...dictionary[]} options
+ * @returns {dictionary}
  */
 const validate = (config, path, isValid, defaults, ...options) => {
   const data = defaults,
     { PATH } = config;
+
   let index = options.length,
     category,
     key;
 
   while (index) {
     --index;
+
     const option = options[index];
 
     for (category in option) {

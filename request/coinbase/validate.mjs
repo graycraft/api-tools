@@ -1,7 +1,10 @@
 /**
  * Validate parameters for a Coinbase Advanced API request.
  *
- * @typedef {import("#types/common.d.js").DictLike} DictLike
+ * @typedef {import("#types/collection/coinbase/currency_all.js").default} JCurrencyAll
+ * @typedef {import("#types/common.ts").dictLike} dictLike
+ * @typedef {import("#types/common.ts").dictionary} dictionary
+ * @typedef {import("#types/coinbase.ts").orderTypes} orderTypes
  * @module request/coinbase/validate
  */
 
@@ -14,10 +17,10 @@ import { hasSome, isPair, requestValidate } from '../validate.mjs';
 /**
  * @param {string} path
  * @param {{
- *   defaults?: DictLike,
- *   optional?: DictLike,
- *   required?: DictLike,
- *   throw?: DictLike,
+ *   defaults?: dictLike | object;
+ *   optional?: dictLike | object;
+ *   required?: dictLike | object;
+ *   throw?: dictLike | object;
  * }} options
  * @returns
  */
@@ -28,7 +31,7 @@ const coinbaseValidate = (path, options) =>
  * Validate a request data parameter before send.
  * Coinbase Advanced API does not expose available networks.
  * It is only possible to collect networks by generating a deposit address and aggregating from `ADDRESS`.
- * @param {{ [key: string]: object | string }} param
+ * @param {dictionary | { order_ids: { [key in orderTypes]: object | string } }} param
  * @returns {boolean}
  */
 const isValid = (param) => {
@@ -37,19 +40,21 @@ const isValid = (param) => {
     {
       CONTRACT,
       ORDER,
+      ORDER: { SIDE },
       PRODUCT,
       SORT,
-      TRADE: { SIDE },
       USER: { PORTFOLIO },
     } = config,
     [key, value] = Object.entries(param)[0],
     currencyDir = 'collection/coinbase/currency_all',
     currencyFile = fileNewest(currencyDir),
-    currencyAll = fileReadJson(currencyDir, currencyFile.name).map((item) => item.code);
+    currencyAll = /** @type {JCurrencyAll} */ (fileReadJson(currencyDir, currencyFile.name)).map(
+      (item) => item.code,
+    );
 
   /**
-   * @todo Pass array `?order_types=BTC-USDT&order_types=ETH-USDT` instead of `?order_types=BTC-USDT,ETH-USDT` as API requires.
-   * @todo Pass array `?product_ids=BTC-USDT&product_ids=ETH-USDT` instead of `?product_ids=BTC-USDT,ETH-USDT` as API requires.
+   * @todo Pass array `?order_types=BTC-USDC&order_types=ETH-USDC` instead of `?order_types=BTC-USDC,ETH-USDC` as API requires.
+   * @todo Pass array `?product_ids=BTC-USDC&product_ids=ETH-USDC` instead of `?product_ids=BTC-USDC,ETH-USDC` as API requires.
    * @todo `cursor`.
    * `name` as address label is a random string.
    */
@@ -88,7 +93,7 @@ const isValid = (param) => {
         return Boolean(Number(order.base_size)) && Boolean(Number(order.limit_price));
       }
 
-      return value.every((item) => UUID.test(item));
+      return value.every((/** @type {string} */ item) => UUID.test(item));
     case 'order_placement_source':
       return hasSome(ORDER.PLACEMENT, value);
     case 'order_side':
@@ -102,7 +107,7 @@ const isValid = (param) => {
     case 'product_id':
       return isPair(currencyAll, value, pair);
     case 'product_ids':
-      return value.every((item) => isPair(currencyAll, item, pair));
+      return value.every((/** @type {string} */ item) => isPair(currencyAll, item, pair));
     case 'product_type':
       return hasSome(Object.values(PRODUCT), value);
     case 'sort_by':

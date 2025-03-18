@@ -37,7 +37,7 @@ export const fileNewest = (directory) => {
  * Read JSON data from the file in a specified directory.
  * @param {string} directory Directory where file is.
  * @param {string} fileName Name of the file with extension.
- * @returns {object} JSON data.
+ * @returns {[] | object} JSON data.
  */
 export const fileReadJson = (directory, fileName) => {
   const dirName = import.meta.dirname,

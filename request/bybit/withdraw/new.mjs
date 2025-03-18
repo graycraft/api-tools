@@ -1,21 +1,22 @@
 /**
- * Handle Bybit API new wallet withdraw endpoint.
+ * Handle Bybit API new wallet withdraw request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw
  * @see https://bybit-exchange.github.io/docs/v5/asset/withdraw/vasp-list
  * @see https://www.bybit.com/user/assets/money-address
- * @typedef {import("#types/response/bybit/withdraw/new.d.js").default} WithdrawNew
+ * @typedef {import("#types/response/bybit/withdraw/new.js").default} JWithdrawNew
  * @module request/bybit/withdraw/new
  */
 
 import { withdrawNew as schema } from '#res/bybit/withdraw/schema.mjs';
+
 import post from '../post.mjs';
 import validate from '../validate.mjs';
 
 /**
  * API key pair must have "*Withdrawal" permission.
  * @param {string} amount Currency amount to withdraw.
- * @param {string} coin Currency name.
+ * @param {string} coin Currency code.
  * @param {string} [address] Currency address name, case sensitive (
  *   for `forceChain` 0 or 1 fill wallet address, and make sure to add address in the address book first;
      for `forceChain` 2 fill Bybit UID, it can only be another Bybit main account UID. Add UID in the address book first
@@ -25,9 +26,17 @@ import validate from '../validate.mjs';
  *   for `forceChain` 2 this field can be omitted
  * ).
  * @param {{
- *   accountType?, beneficiary?, beneficiaryName?, feeType?, forceChain?, requestId?, tag?, timestamp?, vaspEntityId?
+ *   accountType?: string;
+ *   beneficiary?: string;
+ *   beneficiaryName?: string;
+ *   feeType?: string;
+ *   forceChain?: string;
+ *   requestId?: string;
+ *   tag?: string;
+ *   timestamp?: string;
+ *   vaspEntityId?: string;
  * }} options Optional parameters.
- * @returns {Promise<WithdrawNew>} JSON data from response.
+ * @returns {Promise<JWithdrawNew>} JSON data from response.
  */
 const withdrawNew = async (
   amount,
@@ -47,22 +56,20 @@ const withdrawNew = async (
   } = {},
 ) => {
   const { timestamp: now } = global.apiTools,
-    { config, prefs, settings } = global.apiTools.bybit,
+    { config, settings } = global.apiTools.bybit,
     {
+      COIN: { BASE },
       PATH: { WITHDRAW_NEW },
     } = config,
     {
-      currency: { base, network },
-    } = prefs,
-    {
-      address: { withdraw },
+      account: { withdraw },
       authentication: { security },
     } = settings,
     data = validate(WITHDRAW_NEW, {
       defaults: {
         address: withdraw,
-        chain: network,
-        coin: base,
+        chain: BASE.CHAIN,
+        coin: BASE.NAME,
         timestamp: String(now),
       },
       optional: { address, chain, coin, timestamp },

@@ -1,19 +1,20 @@
 /**
- * Handle Coinbase Advanced API all crypto deposit entries endpoint.
+ * Handle Coinbase Advanced API account's all crypto currencies deposit entries request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
- * @typedef {import("#types/response/coinbase/deposit/crypto-all.d.js").default} DepositCryptoAll
+ * @typedef {import("#types/response/coinbase/deposit/crypto-all.js").default} JDepositCryptoAll
  * @module request/coinbase/deposit/crypto-all
  */
 
 import { depositCryptoAll as schema } from '#res/coinbase/deposit/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
  * @param {string} account_uuid Account UUID.
  * @param {string} [limit] Pagination limit (default: 25, maximum: 300). Not described in documentation.
- * @returns {Promise<DepositCryptoAll>} JSON data from response.
+ * @returns {Promise<JDepositCryptoAll>} JSON data from response.
  */
 const depositCryptoAll = async (account_uuid, limit = '300') => {
   const { config, settings } = global.apiTools.coinbase,

@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
     "checkJs": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "module": "nodenext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
     "moduleResolution": "nodenext",
+    "noImplicitAny": true,
     "paths": {
       "#cllctn/*": ["./collection/*"],
       "#config/*": ["./configuration/*"],
@@ -16,7 +18,7 @@
       "#types/*": ["./types/*"]
     },
     "resolveJsonModule": true,
-    "target": "es6",
+    "target": "ESNext",
     "typeRoots": ["node_modules/@types"],
     "types": ["jest", "node"],
     "verbatimModuleSyntax": true

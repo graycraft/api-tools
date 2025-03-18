@@ -1,12 +1,13 @@
 /**
- * Handle Coinbase Advanced API one account transaction endpoint, by transaction UUID.
+ * Handle Coinbase Advanced API one account transaction request, by transaction UUID.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#list-transactions
- * @typedef {import("#types/response/coinbase/transaction/one.d.js").default} TransactionOne
+ * @typedef {import("#types/response/coinbase/transaction/one.js").default} JTransactionOne
  * @module request/coinbase/transaction/one
  */
 
 import { transactionOne as schema } from '#res/coinbase/transaction/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
@@ -14,7 +15,7 @@ import validate from '../validate.mjs';
  * @param {string} account_uuid Account UUID.
  * @param {string} transaction_uuid Transaction UUID.
  * @param {string} [limit] Pagination limit (default: 25). Not described in documentation.
- * @returns {Promise<TransactionOne>} JSON data from response.
+ * @returns {Promise<JTransactionOne>} JSON data from response.
  */
 const transactionOne = async (account_uuid, transaction_uuid, limit) => {
   const { config, settings } = global.apiTools.coinbase,

@@ -7,6 +7,7 @@
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-auth
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
+ * @typedef {import('#types/coinbase.ts').default} ICoinbase
  * @module socket/coinbase/unsubscribe
  */
 
@@ -16,23 +17,30 @@ import { AUTH } from '#lib/constants.mjs';
 import settings from '#settings/coinbase.json' with { type: 'json' };
 
 /**
+ * @param {{}} data
+ * @param {WebSocket} socket
  * @returns {Promise<{}>}
  */
 const coinbaseUnsubscribe = async (data, socket) => {
   const { timestamp } = global.apiTools,
     {
-      ENCODING,
       SOCKET: { UNSUBSCRIBE },
-    } = config,
-    { user, authentication } = settings,
+    } = /** @type {ICoinbase["config"]} */ (config),
+    { user, authentication } = /** @type {ICoinbase["settings"]} */ (settings),
     { portfolio } = user,
     { delay, keys, secrets, security } = authentication,
-    key = keys[user[portfolio]],
+    key = keys[user[portfolio].uuid],
+    /**
+     * @type {{
+     *   jwt?: string;
+     *   type: string;
+     * }}
+     */
     message = {
       ...data,
       type: UNSUBSCRIBE,
     },
-    secret = secrets[user[portfolio]],
+    secret = secrets[user[portfolio].uuid],
     payload = {
       exp: Math.floor(timestamp / delay) + 120,
       iss: 'cdp',
@@ -42,9 +50,11 @@ const coinbaseUnsubscribe = async (data, socket) => {
     };
 
   console.info('coinbaseUnsubscribe', message);
+
   if (security === AUTH.SECURITY.JWT) {
-    message.jwt = signJwt(/** @type {"hex"} */ (ENCODING), payload, secret, key);
+    message.jwt = signJwt('hex', payload, secret, key);
   }
+
   socket.send(JSON.stringify(message));
 
   return socket;

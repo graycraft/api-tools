@@ -3,12 +3,38 @@
     "CATEGORY": ["inverse", "linear", "option", "spot"],
     "WALLET": ["CONTRACT", "FUND", "OPTION", "SPOT", "UNIFIED"]
   },
-  "ENCODING": "hex",
+  "COIN": {
+    "BASE": {
+      "CHAIN": "ETH",
+      "CHAINTYPE": "Ethereum",
+      "NAME": "ETH"
+    },
+    "QUOTE": {
+      "CHAIN": "ETH",
+      "CHAINTYPE": "Ethereum",
+      "NAME": "USDT"
+    }
+  },
   "HOSTNAME": "api.bybit.com",
   "OPTION": ["Call", "Put"],
   "ORDER": {
     "LIMIT": "Limit",
     "MARKET": "Market",
+    "SIDE": {
+      "BUY": "Buy",
+      "SELL": "Sell"
+    },
+    "STATUS": [
+      "Cancelled",
+      "Deactivated",
+      "Filled",
+      "New",
+      "PartiallyFilled",
+      "PartiallyFilledCanceled",
+      "Rejected",
+      "Triggered",
+      "Untriggered"
+    ],
     "STOP": [
       "BidirectionalTpslOrder",
       "MmRateClose",
@@ -22,17 +48,6 @@
       "TakeProfit",
       "TrailingStop",
       "tpslOrder"
-    ],
-    "STATUS": [
-      "Cancelled",
-      "Deactivated",
-      "Filled",
-      "New",
-      "PartiallyFilled",
-      "PartiallyFilledCanceled",
-      "Rejected",
-      "Triggered",
-      "Untriggered"
     ]
   },
   "PATH": {
@@ -90,10 +105,6 @@
       "Trade",
       "UNKNOWN"
     ],
-    "SIDE": {
-      "BUY": "Buy",
-      "SELL": "Sell"
-    },
     "STATUS": ["Closed", "Delivering", "PreLaunch", "Trading"]
   }
 }

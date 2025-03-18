@@ -1,6 +1,7 @@
 /**
  * Order related JSON-schema for Coinbase Advanced API response structure.
  *
+ * @todo Describe JSON-schemas.
  * @see https://json-schema.org/draft/2020-12/release-notes
  * @module response/coinbase/order/schema
  */
@@ -23,6 +24,10 @@ export const orderBook = {
   additionalProperties: false,
   properties: {
     pricebook: { type: 'object' },
+    last: { type: 'string' },
+    mid_market: { type: 'string' },
+    spread_bps: { type: 'string' },
+    spread_absolute: { type: 'string' },
   },
   required: ['pricebook'],
   type: 'object',

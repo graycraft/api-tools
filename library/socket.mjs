@@ -14,7 +14,11 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-channels
  * @see https://docs.cdp.coinbase.com/advanced-trade/docs/ws-overview
- * @typedef {import("#types/socket/message.d.js").default} WebSocketMessage
+ * @typedef {import("#types/socket/coinbase/candles.js").default} JCandles
+ * @typedef {import("#types/socket/coinbase/heartbeats.js").default} JHeartbeats
+ * @typedef {import("#types/socket/coinbase/l2_data.js").default} JL2Data
+ * @typedef {import("#types/socket/coinbase/market_trades.js").default} JMarketTrades
+ * @typedef {import("#types/socket/message.js").default} JWebSocketMessage
  * @module library/socket
  */
 
@@ -23,19 +27,23 @@ import { dirObject } from './output.mjs';
 
 /**
  * @param {string} url
- * @param {WebSocketMessage} message
+ * @param {JWebSocketMessage} message
  * @returns {WebSocket}
  */
 export const socketData = (url, message) => {
-  const socket = new WebSocket(url /* , protocols */);
+  const socket = new WebSocket(url /*, protocols */);
+
   let count = 0;
 
   dirObject('WS', { message, url });
+
   socket.onclose = (event) => {
     const { code, reason, wasClean } = event;
+
     let output = 'Connection closed cleanly';
 
     if (!wasClean) output = 'Connection closed unexpectedly';
+
     dirObject(output, { code, reason, wasClean });
   };
   socket.onerror = (event) => {
@@ -43,7 +51,9 @@ export const socketData = (url, message) => {
   };
   socket.onmessage = (event) => {
     const { data, origin, lastEventId, ports, source } = event,
+      /** @type {JCandles | JHeartbeats | JL2Data | JMarketTrades | { channel: string; events: [] }} */
       json = JSON.parse(data);
+
     let events;
 
     switch (json.channel) {
@@ -54,6 +64,9 @@ export const socketData = (url, message) => {
             ...event,
             candles: event.candles?.filter((event, index) => index < 2),
           }));
+        break;
+      case 'heartbeats':
+        events = json.events.filter((event, index) => index < 2);
         break;
       case 'l2_data':
         events = json.events
@@ -71,9 +84,6 @@ export const socketData = (url, message) => {
             trades: event.trades?.filter((event, index) => index < 2),
           }));
         break;
-      case 'subscriptions':
-        events = json.events.filter((event, index) => index < 2);
-        break;
       default:
         events = json.events;
         break;
@@ -89,13 +99,18 @@ export const socketData = (url, message) => {
       ports,
       source,
     });
+
     count++;
+
     if (count > 2) socket.close();
   };
+
   /** Connection established. */
   socket.onopen = (event) => {
-    const kTarget = Object.getOwnPropertySymbols(event)[1],
+    const kTarget = String(Object.getOwnPropertySymbols(event)[1]),
+      /** @ts-expect-error */
       response = Object.getOwnPropertySymbols(event[kTarget])[9],
+      /** @ts-expect-error */
       { headersList } = event[kTarget][response];
 
     dirObject('Headers', entryHeaders(headersList));

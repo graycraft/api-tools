@@ -1,16 +1,17 @@
 /**
- * Handle Bybit API key information endpoint.
+ * Handle Bybit API key information request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/user/apikey-info
- * @typedef {import("#types/response/bybit/key/information.d.js").default} KeyInformation
+ * @typedef {import("#types/response/bybit/key/information.js").default} JKeyInformation
  * @module request/bybit/key/information
  */
 
 import { keyInformation as schema } from '#res/bybit/key/schema.mjs';
+
 import get from '../get.mjs';
 
 /**
- * @returns {Promise<KeyInformation>} JSON data from response.
+ * @returns {Promise<JKeyInformation>} JSON data from response.
  */
 const keyInformation = async () => {
   const { config, settings } = global.apiTools.bybit,

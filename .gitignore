@@ -1,3 +1,7 @@
 coverage
 node_modules
 response/**/snapshot
+settings/*
+!settings/bybit.example.json
+!settings/coinbase.example.json
+!settings/fameex.example.json

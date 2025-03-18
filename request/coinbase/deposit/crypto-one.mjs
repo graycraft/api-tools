@@ -1,19 +1,20 @@
 /**
- * Handle Coinbase Advanced API one crypto deposit entry endpoint.
+ * Handle Coinbase Advanced API account's one crypto currency deposit entry request.
  *
  * @see https://docs.cdp.coinbase.com/coinbase-app/docs/api-transactions#show-transaction
- * @typedef {import("#types/response/coinbase/deposit/crypto-one.d.js").default} DepositCryptoOne
+ * @typedef {import("#types/response/coinbase/deposit/crypto-one.js").default} JDepositCryptoOne
  * @module request/coinbase/deposit/crypto-one
  */
 
 import { depositCryptoOne as schema } from '#res/coinbase/deposit/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
  * @param {string} transaction_id Transaction identifier.
  * @param {string} [account_uuid] Account UUID.
- * @returns {Promise<DepositCryptoOne>} JSON data from response.
+ * @returns {Promise<JDepositCryptoOne>} JSON data from response.
  */
 const depositCryptoOne = async (transaction_id, account_uuid) => {
   const { config, settings } = global.apiTools.coinbase,

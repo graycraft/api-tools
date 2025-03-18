@@ -1,37 +1,36 @@
 /**
- * Handle Bybit API one network endpoint.
+ * Handle Bybit API one network request.
  *
  * @see https://bybit-exchange.github.io/docs/v5/asset/coin-info
- * @typedef {import("#types/response/bybit/currency/network-one.d.js").default} CurrencyNetworkOne
+ * @typedef {import("#types/response/bybit/currency/network-one.js").default} JCurrencyNetworkOne
  * @module request/bybit/currency/network-one
  */
 
 import { currencyNetworkOne as schema } from '#res/bybit/currency/schema.mjs';
+
 import get from '../get.mjs';
 import validate from '../validate.mjs';
 
 /**
  * Uses the same URL path as `CURRENCY_ONE` endpoint.
  * Value of `chain` parameter from `CURRENCY_ONE` endpoint must be used.
- * @param {string} coin Currency name.
+ * @param {string} coin Currency code.
  * @param {string} chain Not supported by the API, must be filtered while parsing.
- * @returns {Promise<CurrencyNetworkOne>} JSON data from response.
+ * @returns {Promise<JCurrencyNetworkOne>} JSON data from response.
  */
 const currencyNetworkOne = async (coin, chain) => {
-  const { config, prefs, settings } = global.apiTools.bybit,
+  const { config, settings } = global.apiTools.bybit,
     {
+      COIN: { BASE },
       PATH: { CURRENCY_NETWORK_ONE },
     } = config,
-    {
-      currency: { base, network },
-    } = prefs,
     {
       authentication: { security },
     } = settings,
     data = validate(CURRENCY_NETWORK_ONE, {
       defaults: {
-        chain: network,
-        coin: base,
+        chain: BASE.CHAIN,
+        coin: BASE.NAME,
       },
       optional: { chain, coin },
     }),

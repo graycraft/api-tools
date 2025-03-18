@@ -1,6 +1,7 @@
 /**
  * Balance related JSON-schema for Bybit API response structure.
  *
+ * @todo Describe JSON-schemas.
  * @see https://json-schema.org/draft/2020-12/release-notes
  * @module response/bybit/balance/schema
  */

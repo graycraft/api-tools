@@ -3,13 +3,15 @@
  *
  * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.js
  * @see https://github.com/bybit-exchange/api-usage-examples/blob/master/V5_demo/api_demo/Encryption_HMAC.ts
- * @typedef {import("#types/common.d.js").Dict} Dict
+ * @typedef {import("#types/common.ts").dictionary} dictionary
  * @module request/bybit/sign
  */
 
 import { blind, signHmac } from '#lib/authentication.mjs';
 import { AUTH } from '#lib/constants.mjs';
+import { dirObject } from '#lib/output.mjs';
 
+/** @type {number} */
 let timestamp;
 
 /**
@@ -46,32 +48,41 @@ export const bybitSecret = () => {
 /**
  * Sign a request for Bybit API by specified authentication security method.
  * @param {"GET" | "POST"} method HTTP method to submit the request with.
- * @param {Dict} title Endpoint title to output.
+ * @param {dictionary} title Endpoint title to output.
  * @param {"HMAC" | "RSA" | null} security Authentication signature security.
  * @param {string} key Endpoint path template to be interpolated.
- * @param {object} payload JSON-schema to validate response with.
+ * @param {string} payload Payload to sign.
  * @param {object} [data] Data to send with request.
  * @returns {object} JSON data from response.
  */
 export const bybitSign = (method, title, security, key, payload, data = {}) => {
-  const { config, settings } = global.apiTools.bybit,
-    { ENCODING } = config,
+  const { prefs, settings } = global.apiTools.bybit,
+    { debug } = prefs,
     {
       authentication: { delay },
     } = settings,
     secret = bybitSecret();
-  let headers = {};
+
+  /** @type {dictionary} */
+  let headers = {
+    'X-BAPI-RECV-WINDOW': String(delay),
+    'X-BAPI-TIMESTAMP': String(timestamp),
+  };
 
   global.apiTools.output = title;
+
   if (security === AUTH.SECURITY.HMAC) {
-    const digest = signHmac(ENCODING, payload, secret, key);
+    const digest = signHmac('hex', payload, secret, key);
+
+    if (debug) {
+      dirObject('Signature', { digest, key, payload, secret, timestamp });
+    }
 
     headers = {
+      ...headers,
       'X-BAPI-API-KEY': key,
-      'X-BAPI-RECV-WINDOW': delay,
       'X-BAPI-SIGN': digest,
-      'X-BAPI-SIGN-TYPE': 2,
-      'X-BAPI-TIMESTAMP': timestamp,
+      'X-BAPI-SIGN-TYPE': '2',
     };
     global.apiTools.output[method] = {
       headers: {

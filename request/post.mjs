@@ -2,17 +2,18 @@
  * Request an API endpoint by the `POST` method.
  *
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
- * @typedef {import("#types/api.d.js").Api} Api
- * @typedef {import("./index.mjs").Callback} Callback
+ * @typedef {import("#types/api.ts").default} IApi
+ * @typedef {import("./index.mjs").DCallback} Callback
  * @module request/post
  */
 
 import { HTTP } from '#lib/constants.mjs';
+
 import request from './index.mjs';
 
 /**
  * Analyze, validate, parse and snapshot response data.
- * @param {Api} api A specific API configuration, name, preferences, settings and status.
+ * @param {IApi} api A specific API configuration, name, preferences, settings and status.
  * @param {string} url URL to send request.
  * @param {string} template Endpoint path template to be interpolated.
  * @param {object} headers Headers to send with request.

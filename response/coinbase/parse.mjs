@@ -4,13 +4,22 @@
  *
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/error-response
  * @see https://docs.cdp.coinbase.com/sign-in-with-coinbase/docs/status-codes
- * @typedef {import("#lib/constants.mjs").HttpStatusCode} HttpStatusCode
- * @typedef {import("#lib/constants.mjs").HttpStatusText} HttpStatusText
+ * @typedef {import("#lib/constants.mjs").httpStatusCode} httpStatusCode
+ * @typedef {import("#lib/constants.mjs").httpStatusText} httpStatusText
  * @typedef {import("#lib/fetch.mjs").RFetch} RFetch
- * @typedef {import("#types/response/coinbase.d.js").default} Response
+ * @typedef {import("#types/coinbase.ts").default} ICoinbase
+ * @typedef {import("#types/coinbase.ts").pathName} pathName
+ * @typedef {import("#types/response/coinbase.js").default} JResponse
  * @typedef {import("../parse.mjs").RParse} RParse
  * @typedef {import("../parse.mjs").RParseStatus} RParseStatus
  * @typedef {import("../parse.mjs").ResponseParse} ResponseParse
+ * @typedef {{
+ *   json: {
+ *     error: number;
+ *     errors: [{ id: number, message: string }];
+ *     message: string;
+ *   }
+ * }} RFetchCoinbase
  * @module response/coinbase/parse
  */
 
@@ -37,8 +46,8 @@ const coinbaseParse = (response, endpoint, data) => {
   const { config, prefs } = global.apiTools.coinbase,
     {
       RESPONSE: { OK, SUCCESSFUL },
-    } = config,
-    { json } = response,
+    } = /** @type {ICoinbase["config"]} */ (config),
+    { json } = /** @type {RFetchCoinbase} */ (response),
     errors = json.errors,
     code = json.error ?? errors?.[0]?.id ?? OK,
     description = json.message ?? errors?.[0]?.message ?? SUCCESSFUL,
@@ -49,8 +58,8 @@ const coinbaseParse = (response, endpoint, data) => {
 
 /**
  * Parse JSON from response.
- * @param {Response} json JSON from response.
- * @param {string} endpoint Endpoint name.
+ * @param {JResponse} json JSON from response.
+ * @param {pathName} endpoint Endpoint name.
  * @param {{}} data Request parameters data.
  * @returns {RParse} Parsed JSON data.
  */
@@ -58,11 +67,11 @@ const parseJson = (json, endpoint, data) => {
   const {
       PATH,
       PATH: { CURRENCY_ALL, CURRENCY_ONE, WITHDRAW_ALL },
-    } = config,
+    } = /** @type {ICoinbase["config"]} */ (config),
     {
       user,
       user: { portfolio },
-    } = settings,
+    } = /** @type {ICoinbase["settings"]} */ (settings),
     parsed = [],
     path = PATH[endpoint];
 
@@ -103,11 +112,13 @@ const parseJson = (json, endpoint, data) => {
     default:
       isFiltered = false;
   }
+
   if (isFiltered) parsed.push('items filtered');
   if (isFound) parsed.push('found one item');
   if (isMapped) parsed.push('items mapped');
+
   console.info(
-    `Parsed endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
+    `Parsed response from endpoint "${endpoint}" successfully${parsed.length ? ` (${parsed.join(', ')})` : ''}.`,
   );
 
   return { jsonParsed: jsonParsed ?? json };

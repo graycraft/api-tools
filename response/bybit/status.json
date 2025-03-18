@@ -45,6 +45,7 @@
     "131203": [
       "cannot be transfer",
       "request parameter err",
+      "request parameter err: Limit the query to 1 to 10 coins for account UNIFIED",
       "request parameter err: accountType is invalid for current user",
       "request parameter err: amount invalid",
       "request parameter err: fromAccountType can't be toAccountType",

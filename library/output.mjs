@@ -4,16 +4,9 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/console/dir_static
  * @see https://nodejs.org/docs/latest/api/console.html#consoledirobj-options
  * @see https://nodejs.org/docs/latest/api/util.html#utilinspectobject-showhidden-depth-colors
- * @typedef {Object<string, string>} Dict
- * @typedef {{
- *   flow?: string | undefined;
- *   verbose?: boolean | undefined;
- * }} Options
- * @typedef {{
- *   enabled: string[];
- *   exit: boolean;
- *   verbose: string[];
- * }} Preferences
+ * @typedef {import("#types/common.ts").dictionary} dictionary
+ * @typedef {import("#types/api.ts").options} options
+ * @typedef {import("#types/api.ts").preferences} preferences
  * @module library/output
  */
 
@@ -22,7 +15,7 @@ import { obtainName } from './utility.mjs';
 
 /**
  * Output a list of the properties of an object with maximum nesting depth.
- * Number of Array, TypedArray, Map, Set, WeakMap, WeakSet items is maximized too (default is 100).
+ * Number of Array, TypedArray, Map, Set, WeakMap, WeakSet items is maximized too (default: 100).
  * @param {string} name Name to output in title.
  * @param {{}} data Data to output.
  * @returns {boolean} Whether information has been listed or not.
@@ -50,20 +43,19 @@ export const dirObject = (name, data) => {
  *   }
  * }
  * @param {string} endpoint Request endpoint name.
- * @param {Options} options Options from CLI.
- * @param {Preferences} prefs Preferences of an API.
+ * @param {options} options Options from CLI.
+ * @param {preferences} prefs Preferences of an API.
  * @param {{}} output Gathered information to output.
  * @returns {boolean} Whether information has been output or not.
  */
 export const dirSnapshot = (endpoint, options, prefs, output) => {
-  const { flow, verbose } = options,
+  const { verbose } = options,
     isEnabled = prefs.enabled.includes('verbose'),
     isVerbose = prefs.verbose.includes(endpoint);
 
   if (typeof verbose === 'boolean') {
     if (verbose) {
       dirObject('Snapshot', output);
-      if (prefs.exit && flow === 'exit') global.process.exit();
 
       return true;
     }
@@ -82,7 +74,7 @@ export const dirSnapshot = (endpoint, options, prefs, output) => {
  * Call this method if can not determine parameter value and can not substitute with default, e.g. random values.
  * API has no predefined value, e.g. `orderId`, `price`, `qty`, `subMemberId`.
  * @param {string} template Endpoint path template to be interpolated.
- * @param {Dict} PATH Path dictionary from configuration of a specific API.
+ * @param {dictionary} PATH Path dictionary from configuration of a specific API.
  * @param {string} param Parameter to output.
  * @returns {boolean} Whether information has been shown or not.
  */
@@ -94,13 +86,18 @@ export const throwRequired = (template, PATH, param) => {
  * Call this method if can not determine parameter value but can substitute with default.
  * API might has or has no predefined value.
  * @param {string} template Endpoint path template to be interpolated.
- * @param {Dict} PATH Path dictionary from configuration of a specific API.
+ * @param {dictionary} PATH Path dictionary from configuration of a specific API.
  * @param {string} param Parameter to output.
  * @param {string | string[]} value Fallback value of a parameter.
  * @returns {boolean} Whether information has been shown or not.
  */
 export const warnOptional = (template, PATH, param, value) => {
-  console.warn(obtainName(template, PATH) + ': ' + optional(param) + fallback(value));
+  console.warn(
+    obtainName(template, PATH) +
+      ': ' +
+      optional(param) +
+      fallback(value instanceof Array ? value.join('') : value),
+  );
 
   return true;
 };
@@ -109,7 +106,7 @@ export const warnOptional = (template, PATH, param, value) => {
  * Call this method if can not determine parameter value and can not substitute with default, e.g. range values.
  * API has predefined value, e.g. `coin`, `limit`.
  * @param {string} template Endpoint path template to be interpolated.
- * @param {Dict} PATH Path dictionary from configuration of a specific API.
+ * @param {dictionary} PATH Path dictionary from configuration of a specific API.
  * @param {string} param Parameter to output.
  * @returns {boolean} Whether information has been shown or not.
  */
